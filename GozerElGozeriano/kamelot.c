@@ -68,7 +68,20 @@ void printfcoord(char coords[64])
 	}
 }
 
-int main(void)
+void pauseBeforeEnd(void)
+{
+	char inputChar;
+	inputChar = '0';
+	
+	do
+	{
+		fflush(stdin);
+		printf("(Pulse INTRO para continuar)\n");
+		inputChar = getchar();
+	}while(inputChar != '\n');
+}
+
+int main(int argc, char *argv[])
 {
 	char kmlfilePath[256];
 	FILE * kmlFile;
@@ -88,9 +101,13 @@ int main(void)
 	inText=0;
 		
 	configCodIO();
-	
-	printf("Path to kml file: ");
-	scanf("%s",kmlfilePath);
+	if(argc>1)
+		strcpy(kmlfilePath,argv[1]);
+	else
+	{
+		printf("Path to kml file: ");
+		scanf("%s",kmlfilePath);
+	}
 	
 	kmlFile = fopen(kmlfilePath,"r");
 	if(kmlFile!=0)
@@ -189,6 +206,8 @@ int main(void)
 	{
 		perror("OnOpenFile");
 	}
+	
+	if(argc>1) pauseBeforeEnd();
 	
 	return(0);
 }
