@@ -1,9 +1,12 @@
-# include <stdio .h>
-# include <stdlib .h>
-# include <string .h>
-# include <unistd .h>
-# include <pthread .h>
-
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <pthread.h>
+/*
+Para compilar un código con hilos se hace con "lpthread" de la siguiente manera:
+gcc -Wall -o Nombre_del_ejecutable Nombre_del_archivo.c -lpthread
+*/
 void * hola(void *arg ) {
 	
 	char *msg = "Hola";
