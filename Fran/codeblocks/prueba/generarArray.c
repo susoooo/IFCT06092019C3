@@ -1,0 +1,4 @@
+int generaArray(int elementos)
+{
+
+}
