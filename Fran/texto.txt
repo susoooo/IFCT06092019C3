@@ -1,0 +1,13 @@
+1.Utilizando threads acceder a un archivo e imprimir varias veces por pantalla el contenido del mismo de forma
+ simultanea. Antes de imprimir el contenido del archivo por pantalla, preguntar al usuario cuantos threads se
+ quieren lanzar para recorrer el archivo.
+
+2.Crea un programa que calcule el factorial de un número usando threads. El programa pedirá el número del que
+ se quiere calcular el factorial, y el número de threads que se desean utilizar para el cálculo. Creará tantos
+ threads como se le indiquen y dividirá el calculo del factorial entre los threads indicados.
+
+3.Crea un array de n enteros, siendo n un número que se le pide al usuario por pantalla. Crea 2 threads que
+ rellenen el array de números aleatorios, uno desde la mitad hasta el pricipio y otro desde la mitad hasta
+ el final. Luego reparte el array en 10 partes y utiliza 10 threads para calcular la suma de los elementos
+ incluidos en el array.
+

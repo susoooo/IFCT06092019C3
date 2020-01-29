@@ -1,0 +1,24 @@
+Ejercicio 9: Condición if 1. 
+Realizar un programa que pida al usuario dos números y diga cuál es el mayor y cuál el menor. 
+Ejercicio 10: Condición if 2. 
+Realizar un programa que pida tres números y diga cuáles son pares y cuáles impares. 
+Ejercicio 11: Condición if 3. 
+Realizar un programa que pregunte al usuario el momento del día con una letra (mmañana, t-tarde, n-noche), el sexo con otra letra (m-masculino, f-femenino). El programa dirá: buenos días, tardes, o noches (según el momento) señor o señora según el sexo. 
+Ejercicio 12: Condición if 4. Realizar un programa que pida tres números y diga cuál es el mayor, cuál es el segundo mayor, y cuál es el menor
+
+Ejercicio 13. Escriba un programa en C que muestre el siguiente menú:
+CALCULO DE AREAS
+===========================
+1 - Calcular el área de un triángulo
+2 - Calcular el área de un trapecio
+3 - Calcular el área de un rectángulo
+Tras mostrar el menú, se solicitará al usuario que seleccione una opción. 
+En función de la opción seleccionada el programa deberá pedir los datos necesarios para calcular el área, 
+realizar el cálculo y mostrar el resultado por pantalla.
+Nota: Recuerde que para usar la función raíz cuadrada (sqrt) debe incluir la librería math.h.
+
+Ejercicio 14. Escriba un programa en C que calcule el salario semanal de un trabajador, a partir de las horas trabajadas 
+y el precio cobrado por hora. Ambos valores deben ser solicitados al usuario. 
+La jornada normal es de 40 horas semanales. 
+Las horas extra se pagan un cincuenta por ciento más caras que las normales, 
+y pasan a pagarse al doble que las normales a partir de las 50 horas trabajadas.
