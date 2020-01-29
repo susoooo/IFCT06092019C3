@@ -1,0 +1,47 @@
+Ejercicio 5: Media, mayor y menor de un conjunto fijo.
+Realizar un programa que pida las notas de 40 alumnos por pantalla y muestre un menú
+de opciones: 1. Listar notas, 2.Calcular la media, 3.Calcular el menor, 4.Calcular el
+mayor.
+
+Ejercicio 6: Media, mayor y menor de un conjunto prefijado.
+Igual que el apartado anterior pero en vez de 20 alumnos ahora el número de alumnos se
+le preguntará al usuario al iniciar el programa, este número no podrá superar los 100
+alumnos (controlar que el usuario introduzca un número menor que 100).
+
+Ejercicio 7: Media, mayor y menor. De un conjunto variable.
+Igual que el apartado anterior pero ahora el número de alumnos empieza desde cero y se
+añade al menú la opción 5.Agregar nota, con la que el usuario puede ir agregando las
+notas de una en una.
+
+Ejercicio 8: Arrays multidimensionales. Edificio1.
+Se quiere controlar el número de habitantes de un edificio con 6 pisos y 4 puertas (A,
+B, C, y D) en cada piso.
+Realizar un programa que pida al usuario que introduzca el número de habitantes de
+cada puerta del edificio. El programa debe decir la vivienda (piso y puerta) que más
+habitantes tiene del edificio.
+
+Ejercicio 9: Arrays multidimensionales. Edificio2.
+Se quiere controlar el número de habitantes de un eidificio con 6 pisos y 4 puertas (A,
+B, C, y D) en cada piso.
+Realizar un programa que pida al usuario que introduzca el número de habitantes de
+cada puerta del edificio. El programa debe decir el piso que más habitantes tiene de todo
+el edificio.
+
+Ejercicio 10: Arrays multidimensionales. Edificio3.
+Se quiere controlar el número de habitantes de un eidificio con 6 pisos y 4 puertas (A,
+B, C, y D) en cada piso.
+Realizar un programa que pida al usuario que introduzca el número de habitantes de
+cada puerta del edificio. El programa debe decir la puerta que más habitantes tiene de
+todo el edificio.
+
+Ejercicio 11: Arrays multidimensionales. Edificio3.
+Se quiere controlar el número de habitantes de un eidificio con 6 pisos y 4 puertas (A,
+B, C, y D) en cada piso.
+Realizar un programa que pida al usuario que introduzca el número de habitantes de
+cada puerta del edificio. El programa debe mostrar la media de habitantes de cada piso.
+
+Ejercicio 12: Arrays multidimensionales. Rectas en el plano.
+Se quiere representar rectas en un plano de números enteros. El plano será un array de
+100x100 caracteres. El programa pedirá que se introduzcan los tres coeficientes
+(números enteros) de una recta de la forma ax+by+c=0, representará los puntos de la
+recta como asteriscos en la matriz, y presentará por pantalla dicha matriz.
