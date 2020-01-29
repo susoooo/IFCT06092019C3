@@ -13,12 +13,15 @@ struct Numbers {
 };
 
 void * multiply(void * numbers) {
+  pthread_t this_thread;
   struct Numbers *n = (struct Numbers*) numbers;
   int *sum;
 
   *sum = n->a + n->b;
 
-  printf("Multiply thread. sum::%d\n", *sum);
+  this_thread = pthread_self();
+
+  printf("Multiply thread with ID %u. sum::%d\n", this_thread, *sum); 
 
   pthread_exit(sum);
 }
@@ -39,11 +42,13 @@ int main(int argc, char *argv[])
   t_main = pthread_self();
   attr = pthread_attr_init(&t_main_attr);
 
-  printf("Main launching multiply thread.\n");
-
   pthread_create(&t_mul, NULL, multiply, (void*)&numbers);
+
+  printf("Main launching multiply thread with ID %u.\n", t_mul);
+
+
   pthread_join(t_mul, NULL);
 
-  printf("End of Main thread.\n");
+  printf("End of Main thread witd ID %u.\n", &t_main);
   pthread_exit(NULL);
 }
