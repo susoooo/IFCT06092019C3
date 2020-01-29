@@ -32,9 +32,10 @@ int main(int argc , char *argv []) {
     pthread_t h2;
 
     pthread_create (&h1 , NULL , hola , NULL );
-    pthread_join(h1 , NULL);
+
 
     pthread_create (&h2 , NULL , mundo , NULL);
+    pthread_join(h1 , NULL);
     pthread_join(h2 , NULL);
 
     printf ("Fin \n");
