@@ -15,13 +15,13 @@ calculado y termina.*/
 
 int suma_total = 0; //declarar la variable global
 
-void sumar() {
+void * sumar(void * arg) {
     int i;
-    int suma=suma_total;
+    int suma =0;
     suma = suma + 100; //incrementar suma total en 100
     sleep(1);
-    printf("Pthread =%d despierta \n", (int)pthread_self());
-    suma_total=suma; //se asigna la variable interna a suma_total
+    printf("Pthread =%d despierta \n", (int)pthread_self());//
+    suma_total=suma_total+suma; //se asigna la variable interna a suma_total
 }
 
 int main() {
@@ -30,13 +30,11 @@ int main() {
     for (i=0;i<NUMTH;i++) {
         pthread_create(&th[i], NULL, sumar, NULL);
     }
-    for (i=0;i<NUMTH;i++) {
-         pthread_join(th[i], NULL);
-    }
 
 //TO_DO: crear un bucle que haga JOIN con todos los hilos
-
-printf("Suma total = %d\n",
-suma_total);
+for (i=0;i<NUMTH;i++) {
+       pthread_join(th[i], NULL);
+    }
+printf("Suma total = %d\n",suma_total);
 
 }
