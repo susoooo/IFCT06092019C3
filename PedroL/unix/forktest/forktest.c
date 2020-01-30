@@ -1,0 +1,42 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  pid_t rf;
+  rf = fork();
+
+  int varfork, increment;
+
+  varfork = 10;
+
+  switch (rf) {
+    case -1:
+    printf("No he podido crear el proceso hijo \n");
+    break;
+	
+    case 0:
+    printf("Soy el hijo, mi PID es %d y mi PPID es %d \n", getpid(), getppid());
+    sleep(5);
+    break;
+			
+    default:
+    printf("Soy el padre, mi PID es %d y el PID de mi hijo es %d \n", getpid(), rf);
+    sleep(10);
+  }
+
+  if (rf == 0) {
+    increment = 1;
+  } else {
+    increment = 10;
+  }
+  
+  for (int i = 0; i < 10; i++){
+    varfork += increment;
+  }
+
+  printf("%d \n", varfork);
+
+  printf("Final de ejecucion de %d \n", getpid());
+  exit(0);
+}

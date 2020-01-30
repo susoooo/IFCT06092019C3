@@ -1,0 +1,21 @@
+1Crear un programa que pregunte al usuario cuántos caracteres desea introducir, reserveespacio para dicho número de caracteres, le permita al usuario introducirlos desdeteclado, y por último se los muestre todos seguidos.
+
+2Idem, pero mostrandolos en el orden inverso en el que fueron introducidos.
+
+3Idem a 3 pero con números reales.
+
+4Idem a 4 pero con números enteros.
+
+5Idem a 1, pero en lugar de caracteres, con cadenas de caracteres de hasta 50 caracteres (reservar 50 posiciones para cada cadena).
+
+6Idem a 5, pero reservando solo las posiciones estríctamente necesarias para cada cadena.
+
+7Crear un programa donde el usuario introduzca un caracter, a continuación se le pregunte si desea introducir más, y en caso de respuesta afirmativa, se le vuelva a pedir que introduzca un nuevo caracter, así de forma continua hasta que responda que ya no desea introducir más caracteres. En ese momento mostrar por pantalla todos los caracteres introducidos y abandonar el programa.
+
+8 repetir el 7 con números enteros
+
+9 repetir el 7 con numeros reales
+
+10 repetir el 7 con cadenas de caracteres de hasta 50 caracteres  (reservando 50 posiciones para cada cadena)
+
+11 repetir el 7 con cadenas de caracteres de hasta 50 caracteres pero reservando solo las posiciones de memoria estrictamente necesarias.
