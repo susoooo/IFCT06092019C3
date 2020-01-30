@@ -10,9 +10,9 @@
 
 struct datos
 {
-    char textoLinea[1024];
+    char textoLinea[1024]; //Contenido de la linea de texto.
     int linea; // Linea/fila en la que escribir el texto.
-    int numHilos;
+    int numHilos; // Total de hilos creados.
 };
 
 void * printFichero (void * datosRec)
@@ -20,6 +20,7 @@ void * printFichero (void * datosRec)
 
     int columna;
     int largoLinea;
+    float pausa;
 
     struct datos * pDatos;
 
@@ -41,7 +42,8 @@ void * printFichero (void * datosRec)
 
         if (texto[columna] != '\n')
         {
-            printf("%c", texto[columna]);
+            // printf("%c", texto[columna]);
+            printf("%d, ", fila[pDatos->linea]);
         }
         else
         {
@@ -49,7 +51,8 @@ void * printFichero (void * datosRec)
         }
 
         fflush (stdout);
-        usleep (300000) ;
+        pausa = 800000 * rand() % 11;
+        usleep (pausa);
     }
 }
 
