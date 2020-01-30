@@ -11,7 +11,8 @@ struct boundstrct {
   int upbound, interval, result;
 };
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
   int calcnum, thnum, result;
 
   if (argc == 1) {
@@ -21,66 +22,53 @@ int main(int argc, char** argv) {
     scanf("%d", &thnum);
   } else if (argc == 2) {
     calcnum = atoi(argv[1]);
-
-    printf("Numero de threds: ");
+    printf("Numero de threads: ");
     scanf("%d", &thnum);
   } else {
     calcnum = atoi(argv[1]);
     thnum = atoi(argv[2]);
   }
 
-  printf("\nEl factorial de %d es %d\n", calcnum, ThreadedFactorialLauncher(calcnum, thnum));
-  printf("\tticks: %ld\n", clock());
+  if (thnum < calcnum) {
+    printf("\nEl factorial de %d es %d\n", calcnum, ThreadedFactorialLauncher(calcnum, thnum));
+    printf("\tticks: %ld\n", clock());
+  } else {
+    printf("El numero de threads no puede ser mayor al numero a calcular.\n");
+  }
 
   return 0;
 }
 
-int ThreadedFactorialLauncher(int calcnum, int thnum) {
+int ThreadedFactorialLauncher(int calcnum, int thnum) 
+{
   pthread_t thrd[thnum];
-  struct boundstrct Split[thnum];
-  int lefttosplit, interval, result;
-  
-  lefttosplit = calcnum;
-  interval = calcnum / thnum;
-  result = 0;
 
-  for (int i = 0; i < thnum; i++) { 
-    Split[i].upbound = lefttosplit;
-    Split[i].interval = interval;
-    Split[i].result = lefttosplit;
-    lefttosplit -= interval;
-
-    printf("Split[%d].upbound = %d\n", i, Split[i].upbound);    
-  } 
-  Split[thnum - 1].interval -= (calcnum % thnum) + 1;
-
-  printf("\ncalcnum %% thnum = %d\n", calcnum % thnum);
-  printf("Split[%d].interval = %d\n", thnum - 2, Split[thnum - 2].interval);
-  printf("Split[%d].interval = %d\n\n", thnum - 1, Split[thnum - 1].interval);
+  struct boundstrct Split;
+  Split.upbound = calcnum - 1;
+  Split.interval = calcnum / thnum;
+  Split.result = calcnum;
 
   for (int i = 0; i < thnum; i++) {
-    pthread_create(&thrd[i], NULL, ThreadedFactorialCalc, &Split[i]);
-	usleep(10000);
+    if (i == (thnum - 1)) {
+      Split.interval += calcnum % thnum - 1; 
+    }
+    pthread_create(&thrd[i], NULL, ThreadedFactorialCalc, &Split);
+    usleep(1000);
   }
 
-  result = Split[0].result;
-  printf("Split[0].result = %d\n", result);
-  for (int i = 1; i < thnum; i++) {
-    printf("Split[%d].result = %d\n", i, Split[i].result);
-    result = result * Split[i].result;
-  }
-
-  return result;
+  return Split.result;
 }
 
-void *ThreadedFactorialCalc(void *boundstrct) {
+void *ThreadedFactorialCalc(void *boundstrct) 
+{
   struct boundstrct* Split = boundstrct;
   
   if (Split->interval != 0) {  
-    for (int i = 1; i <= (Split->interval); i++) {
-     Split->result = (Split->result) * ((Split->upbound) - i); 
+    for (int i = 0; i < Split->interval; i++) {
+      Split->result = Split->result * Split->upbound;
+      Split->upbound -= 1; 
     }
   }
 
-  pthread_exit(NULL);
+  pthread_exit((void*)NULL);
 }
