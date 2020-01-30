@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1579856107 source:/home/oscar/Escritorio/Procesos/ejercicio1/procesos1/1.c
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+
