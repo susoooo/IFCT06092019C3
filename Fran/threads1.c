@@ -26,7 +26,7 @@ void * printFichero (void * datosRec)
 
     pDatos = (struct datos *) datosRec;
 
-    int fila[pDatos->numHilos];
+    int fila;
 
     largoLinea = strlen((char *)(pDatos->textoLinea));
 
@@ -34,11 +34,13 @@ void * printFichero (void * datosRec)
 
     strcpy(texto, (pDatos->textoLinea));
 
-    fila[pDatos->linea] = (pDatos->linea);
+    fila = (pDatos->linea);
+
+    clear();
 
     for (columna = 0; columna < largoLinea; columna++)
     {
-        move(fila[pDatos->linea], columna);
+        move(fila, columna);
 
         if (texto[columna] != '\n')
         {
@@ -86,14 +88,14 @@ void main()
     for (contador = 0; contador < numHilos; contador++)
     {
         strcpy( datosEnv->textoLinea, fgets(linea, 1024, (FILE*) fichero) );
-        datosEnv->linea = contador;
-        datosEnv->numHilos = numHilos;
-        pthread_create(&h[contador], NULL, printFichero, (void *)datosEnv) ;
+        datosEnv[contador].linea = contador;
+        datosEnv[contador].numHilos = numHilos;
+        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]) ;
     }
 
     for (contador = 0; contador < numHilos; contador++)
     {
-        pthread_join(h[contador],0);
+        pthread_join(h[contador],NULL);
     }
 
     // usleep(5000000);
