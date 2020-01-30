@@ -11,9 +11,8 @@
 struct datos
 {
     char textoLinea[1024];
-    int linea;
+    int linea; // Linea/fila en la que escribir el texto.
     int numHilos;
-
 };
 
 void * printFichero (void * datosRec)
@@ -26,7 +25,7 @@ void * printFichero (void * datosRec)
 
     pDatos = (struct datos *) datosRec;
 
-    int fila;
+    int fila[pDatos->numHilos];
 
     largoLinea = strlen((char *)(pDatos->textoLinea));
 
@@ -34,17 +33,19 @@ void * printFichero (void * datosRec)
 
     strcpy(texto, (pDatos->textoLinea));
 
-    fila = (pDatos->linea);
-
-    clear();
+    fila[pDatos->linea] = (pDatos->linea);
 
     for (columna = 0; columna < largoLinea; columna++)
     {
-        move(fila, columna);
+        move(fila[pDatos->linea], columna);
 
         if (texto[columna] != '\n')
         {
             printf("%c", texto[columna]);
+        }
+        else
+        {
+            columna = largoLinea;
         }
 
         fflush (stdout);
@@ -87,7 +88,7 @@ void main()
 
     for (contador = 0; contador < numHilos; contador++)
     {
-        strcpy( datosEnv->textoLinea, fgets(linea, 1024, (FILE*) fichero) );
+        strcpy( datosEnv[contador].textoLinea, fgets(linea, 1024, (FILE*) fichero) );
         datosEnv[contador].linea = contador;
         datosEnv[contador].numHilos = numHilos;
         pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]) ;
