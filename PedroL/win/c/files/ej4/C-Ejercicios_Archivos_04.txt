@@ -1,0 +1,1 @@
+Un archivo kml es un documento de texto que contiene en formato xml información sobre coordenadas. Crea un programa que lea un archivo kml y que mueste la información que contiene dicho archivo.

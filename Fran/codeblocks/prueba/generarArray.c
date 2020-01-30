@@ -1,4 +1,0 @@
-int generaArray(int elementos)
-{
-
-}

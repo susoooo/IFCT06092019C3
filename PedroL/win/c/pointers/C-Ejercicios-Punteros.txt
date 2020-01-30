@@ -1,0 +1,5 @@
+2. Diseñe un programa, que sume dos variables de tipo entero, por medio de punteros.
+
+3. Diseñe un programa que lea un array de 15 elementos por teclado y lo muestre por pantalla usando punteros.
+
+4.Diseñe un programa que carge un array con 10 elementos y calcule el mayor, el menor y la media, utilizando punteros para acceder a los elementos del array.
