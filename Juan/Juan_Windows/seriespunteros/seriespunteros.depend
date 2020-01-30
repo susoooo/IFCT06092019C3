@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1576757634 source:c:\users\usuario\documents\cf\seriespunteros\main.c
+	<stdio.h>
+	<stdlib.h>
+
