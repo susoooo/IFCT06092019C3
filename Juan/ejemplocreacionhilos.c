@@ -7,6 +7,7 @@
 Para compilar un código con hilos se hace con "lpthread" de la siguiente manera:
 gcc -Wall -o Nombre_del_ejecutable Nombre_del_archivo.c -lpthread
 */
+
 void * hola(void *arg ) {
 	
 	char *msg = "Hola";
