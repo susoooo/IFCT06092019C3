@@ -10,10 +10,9 @@
 
 struct datos
 {
-    char textoLinea[1024];
-    int linea;
-    int numHilos;
-
+    char textoLinea[1024]; //Contenido de la linea de texto.
+    int linea; // Linea/fila en la que escribir el texto.
+    int numHilos; // Total de hilos creados.
 };
 
 void * printFichero (void * datosRec)
@@ -21,6 +20,7 @@ void * printFichero (void * datosRec)
 
     int columna;
     int largoLinea;
+    float pausa;
 
     struct datos * pDatos;
 
@@ -42,11 +42,17 @@ void * printFichero (void * datosRec)
 
         if (texto[columna] != '\n')
         {
-            printf("%c", texto[columna]);
+            // printf("%c", texto[columna]);
+            printf("%d, ", fila[pDatos->linea]);
+        }
+        else
+        {
+            columna = largoLinea;
         }
 
         fflush (stdout);
-        usleep (300000) ;
+        pausa = 800000 * rand() % 11;
+        usleep (pausa);
     }
 }
 
@@ -85,15 +91,15 @@ void main()
 
     for (contador = 0; contador < numHilos; contador++)
     {
-        strcpy( datosEnv->textoLinea, fgets(linea, 1024, (FILE*) fichero) );
-        datosEnv->linea = contador;
-        datosEnv->numHilos = numHilos;
-        pthread_create(&h[contador], NULL, printFichero, (void *)datosEnv) ;
+        strcpy( datosEnv[contador].textoLinea, fgets(linea, 1024, (FILE*) fichero) );
+        datosEnv[contador].linea = contador;
+        datosEnv[contador].numHilos = numHilos;
+        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]) ;
     }
 
     for (contador = 0; contador < numHilos; contador++)
     {
-        pthread_join(h[contador],0);
+        pthread_join(h[contador],NULL);
     }
 
     // usleep(5000000);
