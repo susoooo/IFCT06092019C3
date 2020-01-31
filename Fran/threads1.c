@@ -17,10 +17,10 @@ struct datos
 
 void * printFichero (void * datosRec)
 {
+    initscr();
 
     int columna;
     int largoLinea;
-    float pausa;
 
     struct datos * pDatos;
 
@@ -38,21 +38,23 @@ void * printFichero (void * datosRec)
 
     for (columna = 0; columna < largoLinea; columna++)
     {
-        move(fila[pDatos->linea], columna);
 
         if (texto[columna] != '\n')
         {
-            printf("%c", texto[columna]);
+            move(fila[pDatos->linea], columna);
+
+            printw("%c-%d", texto[columna], pDatos->linea);
+            refresh();
         }
         else
         {
             columna = largoLinea;
         }
 
-        fflush (stdout);
-        // pausa = 800000 * rand() % 11;
-        usleep (500000);
+        refresh();
+        //usleep (500000);
     }
+    endwin();
 }
 
 void main()
@@ -63,6 +65,10 @@ void main()
     char linea[1024];
 
     FILE * fichero;
+
+    struct datos * datosEnv;
+
+    pthread_t * h;
 
     numHilos = 0;
 
@@ -80,20 +86,21 @@ void main()
     scanf("%d", numHilos);
     */
 
-    struct datos datosEnv[numHilos];
+    datosEnv = malloc(sizeof(struct datos)*numHilos);
 
-    pthread_t h[numHilos];
+    h = malloc(sizeof(pthread_t) * numHilos);
 
-    printf("\nSe van a crear %d hilos.\n", numHilos);
-
-    initscr();
+    printw("\nSe van a crear %d hilos.\n", numHilos);
 
     for (contador = 0; contador < numHilos; contador++)
     {
         strcpy( datosEnv[contador].textoLinea, fgets(linea, 1024, (FILE*) fichero) );
+        printf("\n%s", datosEnv[contador].textoLinea);
+        /*
         datosEnv[contador].linea = contador;
         datosEnv[contador].numHilos = numHilos;
-        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]) ;
+        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]);
+        */
     }
 
     for (contador = 0; contador < numHilos; contador++)
@@ -101,10 +108,7 @@ void main()
         pthread_join(h[contador],NULL);
     }
 
-    // usleep(5000000);
-
-    endwin();
     fclose(fichero);
-    printf("\n\nEjecucion finalizada.\n");
+    printw("\n\nEjecucion finalizada.\n");
 }
 
