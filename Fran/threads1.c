@@ -42,8 +42,7 @@ void * printFichero (void * datosRec)
 
         if (texto[columna] != '\n')
         {
-            // printf("%c", texto[columna]);
-            printf("%d, ", fila[pDatos->linea]);
+            printf("%c", texto[columna]);
         }
         else
         {
@@ -51,8 +50,8 @@ void * printFichero (void * datosRec)
         }
 
         fflush (stdout);
-        pausa = 800000 * rand() % 11;
-        usleep (pausa);
+        // pausa = 800000 * rand() % 11;
+        usleep (500000);
     }
 }
 
@@ -87,7 +86,7 @@ void main()
 
     printf("\nSe van a crear %d hilos.\n", numHilos);
 
-    // initscr();
+    initscr();
 
     for (contador = 0; contador < numHilos; contador++)
     {
@@ -104,7 +103,7 @@ void main()
 
     // usleep(5000000);
 
-    // endwin();
+    endwin();
     fclose(fichero);
     printf("\n\nEjecucion finalizada.\n");
 }
