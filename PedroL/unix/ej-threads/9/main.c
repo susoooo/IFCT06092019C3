@@ -4,11 +4,11 @@
 #include <pthread.h>
 #include <time.h>
 
-#define ARRSIZE 1000000000
-#define PRINTSTEP 1000000
+#define ARRSIZE 1000
+#define PRINTSTEP 10
 
 pthread_t thrd[2];
-int arr[ARRSIZE];
+int smphr, arr[ARRSIZE];
 
 void *RunTheArray(void *direction);
 
@@ -22,15 +22,12 @@ int main(int argc, char** argv[])
   }
 
   //crear threads para recorrer e imprimir el array
-  /*for (i = 0; i < 2; i++) {
+  smphr = 1;
+  for (i = 0; i < 2; i++) {
     direction[i] = i;
     pthread_create(&thrd[i], NULL, RunTheArray, (void*)&direction[i]);
-  }*/
-  direction[0] = 0;
-  direction[1] = 1;
-  pthread_create(&thrd[0], NULL, RunTheArray, (void*)&direction[0]);
-  pthread_create(&thrd[1], NULL, RunTheArray, (void*)&direction[1]);
-
+  }
+  smphr = 0;
   for (i = 0; i < 2; i++) {
     pthread_join(thrd[i], (void**)NULL);
   }
@@ -49,16 +46,18 @@ void *RunTheArray(void *direction)
 
   switch (op) {
     case 0:
+    while(smphr != 0);
     for (int i = 0; i < ARRSIZE; i++) {
       if (!(i % PRINTSTEP))
         printf(" ID:%ld Pos:%d Val:%d\n", selfid, i, arr[i]);
     }
     break;
 
-    default:
+    case 1:
+    while(smphr != 0);
     for (int i = ARRSIZE - 1; i > -1; i--) {
       if (!(i % PRINTSTEP))
-        printf("~ID:%ld Pos:%d Val:%d\n", selfid, i, arr[i]);
+        printf("#ID:%ld Pos:%d Val:%d\n", selfid, i, arr[i]);
     }
   }
   
