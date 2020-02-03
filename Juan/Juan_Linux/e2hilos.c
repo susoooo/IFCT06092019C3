@@ -11,7 +11,8 @@ gcc -Wall -o Nombre_del_ejecutable Nombre_del_archivo.c -lpthread
 // Función suma
 void *suma(void *rango);
 
-struct parametro{
+struct parametro
+{
 int rango[10];
 int resultado;
 };
