@@ -23,7 +23,10 @@ pthread_t thread[10];
 
 void *suma(void *rango)
 {
-int j=0, valor, *suma, num=0;
+int j=0;
+int valor;
+int *suma;
+int num=0;
 
 sleep(1);
 
@@ -49,12 +52,16 @@ int main() {
 
 //TO_DO: controlar el error en la aperture del fichero
 
-archivo= fopen("numeros.dat",O_RDONLY);//ABRIR ARCHIVO,O_RDONLY abre el archivo salida.txt en modo lectura.
+if ((archivo= fopen("numeros.dat","r"))==0)//ABRIR ARCHIVO,O_RDONLY abre el archivo salida.txt en modo lectura.
+{
+	perror("Error al abrir el archivo");
+
+}
 //CONTROLAR SI EXISTE ARCHIVO
 
 
     for(i=0;i<10;i++) {
-        pthread_create(&thread[i],NULL, suma, NULL);
+        pthread_create(&thread[i],NULL, suma, &rango);
         sleep (1);
         rango+=100;
     }
