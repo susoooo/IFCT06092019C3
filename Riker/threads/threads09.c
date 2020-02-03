@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#define SIZE 1000000000
+#define SIZE 100000
 
 int array[SIZE];
 
