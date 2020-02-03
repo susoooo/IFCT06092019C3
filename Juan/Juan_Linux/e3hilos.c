@@ -8,21 +8,22 @@
 Para compilar un código con hilos se hace con "lpthread" de la siguiente manera:
 gcc -Wall -o Nombre_del_ejecutable Nombre_del_archivo.c -lpthread
 */
-pthread_t thread1
+pthread_t thread1;
 pthread_t thmain;
 pthread_attr_t attr;
 
 //TO_DO: definir la estructura necesaria
 struct datos
 {
-int dato1;
-int dato2;
+	int dato1;
+	int dato2;
 };
 
 void *multiplicar (void *arg)
 {
 	int a,b;
-	datos *p= (datos *) (arg);
+	struct datos *p;
+	p= (struct datos *) (arg);
 	pthread_t tid = pthread_self();
 	
 	a=(p->dato1);
@@ -35,7 +36,7 @@ void *multiplicar (void *arg)
 
 int main(int argc, char* argv[])
 {
-	strutc datos param;
+	struct datos param;
 	printf("Introduce dos números\n");
 	scanf("%s", &argv);
 	param.dato1=atoi(argv[1]);
