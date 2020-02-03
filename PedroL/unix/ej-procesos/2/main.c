@@ -5,16 +5,21 @@
 #include <string.h>
 
 int main(int argc, char* argv[]) {
-  int chldnum = atoi(argv[1]);
+  int chldnum;
   pid_t chld[chldnum];
 
-  dummyargs = malloc(sizeof(char) * 10 * 2);
-
-  if (chldnum == 1) {
-    printf("make 1 child\n");
+  if (argc == 1) {
+    printf("specify number of children as first parameter");
   } else {
-    printf("make %d children\n", chldnum);
+    chldnum = atoi(argv[1]);
+
+    if (chldnum == 1) {
+      printf("make 1 child\n");
+    } else {
+      printf("make %d children\n", chldnum);
+    }    
   }
+  
 
   //child making loop
   for (int i = 0; i < chldnum; i++) {
@@ -36,7 +41,5 @@ int main(int argc, char* argv[]) {
   while(wait(0) != -1);
 
   printf("dad gone\n");
-
-  free(dummyargs);
   exit(0);
 }

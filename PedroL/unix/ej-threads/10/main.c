@@ -6,8 +6,11 @@
 
 /*
   TO-DO:
-  - one thread
-  - 
+  - one thread for dot product loop
+  - one thread per row loop
+  - one thread per col loop
+  - one thread per cell
+  - try bigger matrix
 */
 
 int matrix[3][100][100];
