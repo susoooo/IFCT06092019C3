@@ -11,8 +11,8 @@
 #include <pthread.h>
 #include <time.h>
 
-#define M 1000000
-#define N 1000000
+#define M 10000
+#define N 10000
 
 long matrixA[M][N];
 long matrixB[M][N];
