@@ -12,60 +12,73 @@ programa principal escribirá la suma total.*/
 #include <sys/stat.h>
 #include <fcntl.h>
 
-FILE* archivo; 
 //void *suma(void *rango);
-pthread_attr_t attr;
 int f=0;
+int *suma;
+FILE * archivo;
+
+
+pthread_attr_t attr;
+
 pthread_t thread[10];
 
-void *suma(void *rango) {
-	int j=0, valor, *suma, num=0;
-	sleep(1);
-	valor=* ((int *) rango);
-	suma=(int *)malloc (sizeof (int));
-	*suma=0;
+void *sumar(void *rango)
+{
+int j=0, valor, num=0;
 
-	printf("Rango: %d a %d\n",valor+1,valor+100);
-	lseek(f, sizeof(int) * valor, SEEK_SET);
+sleep(1);
 
-	for(j=0;j<100;j++) {
-	fread(&f,sizeof(int),1,archivo);
-	*suma+=num;
-	
-	}
-int main() {
-	
-	int i=0, n=0, rango=0, *estado, pestado=0, nbytes=0, nreg=0; estado=&pestado; pthread_attr_init(&attr);
-	
-	archivo = fopen("numeros.dat", O_RDONLY); //ABRIR UN ARCHIVO EN MODO DE LECTURA NO PERMITE MODIFICACION
-	
-	if (f == -1) {
-    printf("Error al abrir el archivo\n");
-    exit(0);
-					
-}
-	nbytes=lseek(f,0,SEEK_END);
-	nreg=nbytes/sizeof(int);
-	for(i=0;i<10;i++) {
+    valor=* ((int *) rango);
+    suma=(int *)malloc (sizeof (int));
+    *suma=0;
+    printf("Rango: %d a %d\n",valor+1,valor+100);
+    lseek(f, sizeof (int)*valor,SEEK_SET);//posicionarnos en un desplazamiento concreto del fichero
+    for(j=0;j<100;j++) {
+       num=fread(&f,sizeof(int),1, archivo);
+        *suma+=num;
 		
-	pthread_create(&thread[i], NULL, suma,(void*)rango);
-	sleep (1);
-	rango+=100;
-}
-for(i=0;i<10;i++) {
-	pthread_join(thread[i], NULL);
-	printf("Suma Parciales en Prog. Principal: %d\n",*estado);
-	n+=*estado;
-}
-	printf("Suma Total: %d\n",n);
-	printf("Total numeros sumados: %d\n",nreg);
-	close(f);
-return(0);
+    }
 
-	printf("\tSuma Parcial: %d\n",*suma);
-	
-  	pthread_exit(NULL);
-	}
+    printf("\tSuma Parcial: %d\n",*suma);
+
+}
+
+
+int main() {
+    int i=0, n=0, rango=0, *estado, pestado=0, nbytes=0, nreg=0, num=0;
+    estado=&pestado;
+    pthread_attr_init(&attr);
+
+
+if((archivo=fopen("numeros.dat","r"))==0)
+    {
+        perror("Error al abrir el archivo");
+    }
+
+
+
+    for(i=0;i<10;i++) {
+        pthread_create(&thread[i],NULL, sumar, &rango);
+        sleep (1);
+        rango+=100;
+    }
+    for(i=0;i<10;i++) {
+        pthread_join(thread[i], NULL);
+        printf("Suma Parciales en Prog. Principal: %d\n",*estado);
+        n+=*estado;
+    }
+    printf("Suma Total: %d\n",n);
+    printf("Total numeros sumados: %d\n",*suma);
+
+    close(f);
+
+
+//TO_DO: generar la salida del hilo
+
+    return(0);
+
+
+
 }
 	
 	
