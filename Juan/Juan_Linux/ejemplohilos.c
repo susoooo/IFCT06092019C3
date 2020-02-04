@@ -1,9 +1,9 @@
-# include <sys / types .h>
-# include <unistd .h>
-# include <stdio .h>
-# include <stdlib .h>
-# include <string .h>
-# include <pthread .h>
+# include <sys/types.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <pthread.h>
 
 
 /* gcc miprog.c -o miprog -lpthreads
@@ -11,7 +11,6 @@ Las funciones que trabajan con thread (hilos) tienen que tener la siguiente form
 void * mifuncion(void * parametro)
 En un (void *) podemos pasar cualquier cosa. Es el tipo más amplio que nos va a permitir pasar y/o recibir cualquiero cosa.
 A un hilo solo le podemos pasar un parámetro.
-
 */
 
 void * mifuncion(void* mensaje_personal)
