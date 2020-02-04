@@ -38,11 +38,11 @@ sleep(1);
         *suma+=num;
 		
     }
-
-    printf("\tSuma Parcial: %d\n",*suma);
+for(j=0;j<10;j++){
+   printf("\tSuma Parcial: %d\n",*suma); 
 
 }
-
+}
 
 int main() {
     int i=0, n=0, rango=0, *estado, pestado=0, nbytes=0, nreg=0, num=0;
@@ -64,12 +64,12 @@ if((archivo=fopen("numeros.dat","r"))==0)
     }
     for(i=0;i<10;i++) {
         pthread_join(thread[i], NULL);
-        printf("Suma Parciales en Prog. Principal: %d\n",*estado);
+        printf("Suma Parciales en Prog. Principal: %d\n",*suma);
         n+=*estado;
-    }
-    printf("Suma Total: %d\n",n);
+    
+    printf("Suma Total: %d\n",*suma);
     printf("Total numeros sumados: %d\n",*suma);
-
+	}
     close(f);
 
 
