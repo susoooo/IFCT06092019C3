@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 /*
 Para compilar un código con hilos se hace con "lpthread" de la siguiente manera:
 gcc -Wall -o Nombre_del_ejecutable Nombre_del_archivo.c -lpthread
@@ -38,7 +35,7 @@ int main(int argc, char* argv[])
 {
 	struct datos param;
 	printf("Introduce dos números\n");
-	scanf("%s", &argv);
+	scanf("%s", argv);
 	param.dato1=atoi(argv[1]);
 	param.dato2=atoi(argv[2]);
 	
@@ -50,3 +47,4 @@ int main(int argc, char* argv[])
 	printf("Soy main: he lanzado el thread y termino\n");
 	pthread_exit (NULL);
 }
+
