@@ -48,7 +48,7 @@ Contador de colores importantes
 #include <stdlib.h>
 #include <string.h>
 //#include <locale.h>
-#include <windows.h>
+//#include <windows.h>
 
 #define BMPFILE "bmp.bmp"
 #define DEBUG 0
@@ -77,7 +77,7 @@ struct header
 void configCodIO(void)
 {
     //setlocale(LC_ALL, "spanish");
-    SetConsoleCP(1252);
+    // SetConsoleCP(1252);
     //SetConsoleOutputCP(1252);	
 }
 
@@ -93,7 +93,7 @@ int main(void)
 	configCodIO();
 	
 	
-	struct header hdr;
+	//struct header hdr;
 	
 	bmpFile = fopen(BMPFILE,"r");
 	if(bmpFile!=0)

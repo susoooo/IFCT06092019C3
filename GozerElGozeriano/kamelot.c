@@ -5,14 +5,14 @@
 #include <stdlib.h>
 #include <string.h>
 //#include <locale.h>
-#include <windows.h>
+//#include <windows.h>
 
 #define DEBUG 0
 
 void configCodIO(void)
 {
     //setlocale(LC_ALL, "spanish");
-    SetConsoleCP(1252);
+    //SetConsoleCP(1252);
     //SetConsoleOutputCP(1252);	
 }
 
