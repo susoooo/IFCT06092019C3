@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
-#include <unistd.>
+#include <unistd.h>
 
 void* thread_function(void* arg) {
   int i;
