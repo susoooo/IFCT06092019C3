@@ -5,4 +5,4 @@ build: main.c prog1.c prog2.c prog3.c
 	gcc -o prog3 prog3.c
 clean:
 	rm *.out
-	rm prog*
+	rm prog*.out
