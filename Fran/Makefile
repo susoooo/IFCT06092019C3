@@ -1,97 +1,97 @@
 calcuplus:
-	gcc calcuplus2	 				-o calcuplus2.c
-	gcc calcuplus3	 				-o calcuplus3.c
-	gcc calcuplus	 				-o calcuplus.c
+	gcc -o  calcuplus2	 				calcuplus2.c
+	gcc -o  calcuplus3	 				calcuplus3.c
+	gcc -o  calcuplus	 				calcuplus.c
 
 cuentacosas:
-	gcc cuenta2numeros	 		-o cuenta2numeros.c
-	gcc cuenta57	 				-o cuenta57.c
-	gcc cuentaimpares	 		-o cuentaimpares.c
-	gcc cuentanumero	 			-o cuentanumero.c
-	gcc cuentaparimpar	 		-o cuentaparimpar.c
-	gcc contador	 					-o contador.c
+	gcc -o  cuenta2numeros	 		cuenta2numeros.c
+	gcc -o  cuenta57	 				cuenta57.c
+	gcc -o  cuentaimpares	 		cuentaimpares.c
+	gcc -o  cuentanumero	 		cuentanumero.c
+	gcc -o  cuentaparimpar	 		cuentaparimpar.c
+	gcc -o  contador	 				contador.c
 
 ficheros:
-	gcc ficheros1	 				-o ficheros1.c
+	gcc -o  ficheros1	 				ficheros1.c
 
 habitantes:
-	gcc habitantes	 				-o habitantes.c
-	gcc habitantesmedia	 		-o habitantesmedia.c
-	gcc habitantespiso	 			-o habitantespiso.c
-	gcc habitantespuerta	 		-o habitantespuerta.c
+	gcc -o  habitantes	 				habitantes.c
+	gcc -o  habitantesmedia	 		habitantesmedia.c
+	gcc -o  habitantespiso	 		habitantespiso.c
+	gcc -o  habitantespuerta	 		habitantespuerta.c
 
 mallocs:
-	gcc malloc1	 					-o malloc1.c
-	gcc malloc2	 					-o malloc2.c
-	gcc malloc3	 					-o malloc3.c
+	gcc -o  malloc1	 					malloc1.c
+	gcc -o  malloc2	 					malloc2.c
+	gcc -o  malloc3	 					malloc3.c
 
 varios:
-	gcc holaMundo	 				-o holaMundo.c
-	gcc main	 						-o main.c
-	gcc matriz	 						-o matriz.c
-	gcc movetxt	 					-o movetxt.c
-	gcc primerArray	 				-o primerArray.c
-	gcc cosaarray	 				-o cosaarray.c
-	gcc collatz	 					-o collatz.c
-	gcc condicion	 				-o condicion.c
-	gcc gestionEmpleados	 	-o gestionEmpleados.c
+	gcc -o  holaMundo	 				holaMundo.c
+	gcc -o  main	 						main.c
+	gcc -o  matriz	 					matriz.c
+	gcc -o  movetxt	 					movetxt.c
+	gcc -o  primerArray	 			primerArray.c
+	gcc -o  cosaarray	 				cosaarray.c
+	gcc -o  collatz	 					collatz.c
+	gcc -o  condicion	 				condicion.c
+	gcc -o  gestionEmpleados	 	gestionEmpleados.c
 
 notas:
-	gcc notas2	 					-o notas2.c
-	gcc notas	 						-o notas.c
-	gcc notasmenu	 				-o notasmenu.c
+	gcc -o  notas2	 					notas2.c
+	gcc -o  notas	 						notas.c
+	gcc -o  notasmenu	 				notasmenu.c
 
 probaturas:
-	gcc probCurses	 				-o probCurses.c
-	gcc pruebaN	 					-o pruebaN.c
-	gcc pruebatexto	 				-o pruebatexto.c
-	gcc pulsa1	 					-o pulsa1.c
-	gcc reinas	 						-o reinas.c
+	gcc -o  probCurses	 			probCurses.c
+	gcc -o  pruebaN	 					pruebaN.c
+	gcc -o  pruebatexto	 			pruebatexto.c
+	gcc -o  pulsa1	 					pulsa1.c
+	gcc -o  reinas	 					reinas.c
 	
 punteros:
-	gcc punteros1	 				-o punteros1.c
-	gcc punteros2	 				-o punteros2.c
-	gcc punteros3	 				-o punteros3.c
+	gcc -o  punteros1	 				punteros1.c
+	gcc -o  punteros2	 				punteros2.c
+	gcc -o  punteros3	 				punteros3.c
 
 calculitos:
-	gcc rectangulo	 				-o rectangulo.c
-	gcc resistencia	 				-o resistencia.c
-	gcc rombo	 						-o rombo.c
-	gcc salario	 					-o salario.c
-	gcc saludos	 					-o saludos.c
-	gcc segundos	 				-o segundos.c
-	gcc parimpar	 					-o parimpar.c
-	gcc potencia	 					-o potencia.c
-	gcc maxcomundivisor	 	-o maxcomundivisor.c
-	gcc mayormenor	 			-o mayormenor.c
-	gcc media2	 					-o media2.c
-	gcc media	 						-o media.c
-	gcc primo	 						-o primo.c
-	gcc multiplicar4	 				-o multiplicar4.c
-	gcc preciodescuento	 		-o preciodescuento.c
-	gcc funcionmayor	 			-o funcionmayor.c
+	gcc -o  rectangulo	 				rectangulo.c
+	gcc -o  resistencia	 				resistencia.c
+	gcc -o  rombo	 					rombo.c
+	gcc -o  salario	 					salario.c
+	gcc -o  saludos	 					saludos.c
+	gcc -o  segundos	 				segundos.c
+	gcc -o  parimpar	 				parimpar.c
+	gcc -o  potencia	 					potencia.c
+	gcc -o  maxcomundivisor	 	maxcomundivisor.c
+	gcc -o  mayormenor	 			mayormenor.c
+	gcc -o  media2	 					media2.c
+	gcc -o  media	 					media.c
+	gcc -o  primo	 						primo.c
+	gcc -o  multiplicar4	 			multiplicar4.c
+	gcc -o  preciodescuento	 		preciodescuento.c
+	gcc -o  funcionmayor	 			funcionmayor.c
 
 calculitos2:
-	gcc dias	 						-o dias.c
-	gcc divisores	 					-o divisores.c
-	gcc divisorescomunes	 	-o divisorescomunes.c
-	gcc dolares	 					-o dolares.c
-	gcc ecuacion	 					-o ecuacion.c
-	gcc euros	 						-o euros.c
-	gcc factorial	 					-o factorial.c
-	gcc 7numeros	 				-o 7numeros.c
-	gcc altobajo	 					-o altobajo.c
-	gcc arbol	 						-o arbol.c
-	gcc areas	 						-o areas.c
-	gcc asteriscos	 				-o asteriscos.c
-	gcc circulos	 					-o circulos.c
+	gcc -o  dias	 						dias.c
+	gcc -o  divisores	 				divisores.c
+	gcc -o  divisorescomunes	 	divisorescomunes.c
+	gcc -o  dolares	 					dolares.c
+	gcc -o  ecuacion	 				ecuacion.c
+	gcc -o  euros	 						euros.c
+	gcc -o  factorial	 					factorial.c
+	gcc -o  7numeros	 				7numeros.c
+	gcc -o  altobajo	 					altobajo.c
+	gcc -o  arbol	 						arbol.c
+	gcc -o  areas	 						areas.c
+	gcc -o  asteriscos	 				asteriscos.c
+	gcc -o  circulos	 					circulos.c
 	
 structs:
-	gcc struct1	 					-o struct1.c
+	gcc -o  struct1	 					struct1.c
 	
 hilos:
-	gcc threads1	 					-o threads1.c -lpthread
-	gcc threadsPrueba	 			-o threadsPrueba.c -lpthread
+	gcc -o  threads1	 				threads1.c -lpthread
+	gcc -o  threadsPrueba	 		threadsPrueba.c -lpthread
 
 clean: 
 	rm *.out
