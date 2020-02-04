@@ -44,7 +44,6 @@ void * printFichero (void * datosRec)
             move(fila[pDatos->linea], columna);
 
             printw("%c-%d", texto[columna], pDatos->linea);
-            refresh();
         }
         else
         {
