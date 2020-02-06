@@ -1,4 +1,4 @@
-myModuleName = hola
+myModuleName =driver1 
 obj-m := $(myModuleName).o
 build:
 	make -C /usr/src/linux-headers-5.3.0-29-generic M=`pwd` modules
