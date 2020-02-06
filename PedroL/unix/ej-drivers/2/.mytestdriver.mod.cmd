@@ -1,1 +1,0 @@
-cmd_/media/ze/ze/curso/@/repos/IFCT06092019C3/PedroL/unix/ej-drivers/1/mytestdriver.mod := { echo  /media/ze/ze/curso/@/repos/IFCT06092019C3/PedroL/unix/ej-drivers/1/mytestdriver.o; echo; } > /media/ze/ze/curso/@/repos/IFCT06092019C3/PedroL/unix/ej-drivers/1/mytestdriver.mod
