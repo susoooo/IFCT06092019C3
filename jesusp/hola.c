@@ -5,12 +5,12 @@
 
 
 static int hola_init(void){
-    printk("1" "Hola mundo kernel!!!\n");
+    printk(KERN_ALERT "Hola mundo kernel!!!\n");
     return(0);
 }
 
 static void hola_exit(void){
-	printk("1" "Boas noites kernel!!!\n");
+	printk(KERN_ALERT "Boas noites kernel!!!\n");
 }
 
 module_init(hola_init);

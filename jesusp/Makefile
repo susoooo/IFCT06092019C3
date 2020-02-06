@@ -1,4 +1,4 @@
-obj-m := nothing.o hola.o
+obj-m := nothing.o hola.o memoria.o
 
 
 	
