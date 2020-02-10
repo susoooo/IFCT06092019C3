@@ -1,0 +1,1 @@
+cmd_/home/juan/Documentos/IFCT06092019C3/Juan/Linux_Juan/nothing.mod := { echo  /home/juan/Documentos/IFCT06092019C3/Juan/Linux_Juan/nothing.o; echo; } > /home/juan/Documentos/IFCT06092019C3/Juan/Linux_Juan/nothing.mod

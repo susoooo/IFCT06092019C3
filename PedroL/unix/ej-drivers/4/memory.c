@@ -2,15 +2,15 @@
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/kern_levels.h>
-#include <linux/config.h>
 #include <linux/slab.h>
 #include <linux/fs.h>
 #include <linux/errno.h>
 #include <linux/types.h>
 #include <linux/proc_fs.h>
 #include <linux/fcntl.h>
-#include <asm/system.h>
 #include <asm/uaccess.h>
+
+#define DEV_MEMSIZE 5
 
 int memory_major = 60;	//major number
 char *memory_buffer;	//buffer to store data
@@ -18,9 +18,9 @@ char *memory_buffer;	//buffer to store data
 int memory_open(struct inode *inode, struct file *filp);
 int memory_release(struct inode *inode, struct file *filp);
 ssize_t memory_read(struct file *filp, char *buf, size_t count, loff_t *f_pos);
-ssize_t memory_write(struct file *filp, char *buf, size_t count, loff_t *f_pos);
-int memory_init(void);
-void memory_exit(void);
+ssize_t memory_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos);
+static int memory_init(void);
+static void memory_exit(void);
 
 struct file_operations memory_fops = {
   read: memory_read,
@@ -35,16 +35,16 @@ static int memory_init(void)
   
   result = register_chrdev(memory_major, "memory", &memory_fops); //register device
   if (result < 0) {
-    printk(KERN_ALERT "memory: cannot obtain major number %d\n", memory_major)
+    printk(KERN_ALERT "memory: cannot obtain major number %d\n", memory_major);
     return result;
   }
 
-  memory_buffer = kmalloc(1, GFP_KERNEL); //allocate memory for the bffer
+  memory_buffer = kmalloc(DEV_MEMSIZE, GFP_KERNEL); //allocate memory for the bffer
   if (!memory_buffer) {
     result = -ENOMEM;
     goto fail;
   }
-  memset(memory_buffer, 0, 1);
+  memset(memory_buffer, 0, DEV_MEMSIZE);
   printk(KERN_ALERT "Inserting memory module\n");
 
   return 0;
@@ -62,7 +62,7 @@ static void memory_exit(void)
     kfree(memory_buffer); //free buffer memory
   }
 
-  printk(KREN_ALERT "Removing memory moudle\n");
+  printk(KERN_ALERT "Removing memory moudle\n");
 }
 
 int memory_open(struct inode *inode, struct file *filp)
@@ -77,23 +77,37 @@ int memory_release(struct inode *inode, struct file *filp)
 
 ssize_t memory_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 {
-  copy_to_user(buf, memory_buffer, 1);
+  int charsread;
+
+  charsread = 0;
 
   if (*f_pos == 0) {
-    *f_pos += 1;
-    return 1;
+    if (count > DEV_MEMSIZE) {
+      raw_copy_to_user(buf, memory_buffer, DEV_MEMSIZE);
+      *f_pos += 5;
+      charsread = DEV_MEMSIZE;
+    } else {
+      raw_copy_to_user(buf, memory_buffer, count);
+      *f_pos += count;
+      charsread = count;
+    }
   } else {
-    return 0;
+    charsread = 0;
   }
+  return charsread;
 }
 
-ssize_t memory_write(struct file *filp, char *buf, size_t count, loff_t *f_pos)
+ssize_t memory_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos)
 {
   char *tmp;
 
-  tmp = buf + count - 1;
+  if (count <= DEV_MEMSIZE)  {
+    tmp = buf;
+  } else {
+    tmp = buf + count - DEV_MEMSIZE;
+  }
   
-  copy_from_user(memory_buffer, tmp, 1);
+  raw_copy_from_user(memory_buffer, tmp, count);
 
   return 1;
 }

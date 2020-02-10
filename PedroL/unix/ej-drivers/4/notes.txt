@@ -1,0 +1,1 @@
+only reads last char 5 times
