@@ -1,5 +1,5 @@
 #include <linux/init.h>
-#include <linux/config.h>
+#include <generated/autoconf.h>
 #include <linux/module.h>
 #include <linux/kernel.h> /* printk() */
 #include <linux/slab.h>   /* kmalloc() */
@@ -8,7 +8,7 @@
 #include <linux/types.h>  /* size_t */
 #include <linux/proc_fs.h>
 #include <linux/fcntl.h>  /* O_ACCMODE */
-#include <asm/system.h>   /* cli(), *_flags */
+//#include <asm/system.h>   /* cli(), *_flags */
 #include <asm/uaccess.h>  /* copy_from/to_user */
 
 /* Major number */
@@ -23,7 +23,7 @@ int memory_release(struct inode *inode, struct file *filp);
 
 ssize_t memory_read(struct file *filp, char *buf, size_t count, loff_t *f_pos);
 
-ssize_t memory_write(struct file *filp, char *buf, size_t count, loff_t *f_pos);
+ssize_t memory_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos);
 
 void memory_exit(void);
 
@@ -92,7 +92,7 @@ int memory_release(struct inode *inode, struct file *filp)
 ssize_t memory_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 { 
 	/* Transfering data to user space */
-	copy_to_user(buf,memory_buffer,1);
+	raw_copy_to_user(buf,memory_buffer,1);
 	/* Changing reading position as best suits */
 	if(*f_pos == 0)
 	{ 
@@ -103,11 +103,11 @@ ssize_t memory_read(struct file *filp, char *buf, size_t count, loff_t *f_pos)
 		return 0;
 }
 
-ssize_t memory_write( struct file *filp, char *buf, size_t count, loff_t *f_pos)
+ssize_t memory_write( struct file *filp, const char *buf, size_t count, loff_t *f_pos)
 {
 	char *tmp;
 	tmp=buf+count-1;
-	copy_from_user(memory_buffer,tmp,1);
+	raw_copy_from_user(memory_buffer,tmp,1);
 	return 1;
 }
 
