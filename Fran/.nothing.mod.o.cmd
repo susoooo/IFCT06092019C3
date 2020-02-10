@@ -3,6 +3,7 @@ cmd_/home/fran/ifct06092019c3/Fran/nothing.mod.o := gcc -Wp,-MD,/home/fran/ifct0
 source_/home/fran/ifct06092019c3/Fran/nothing.mod.o := /home/fran/ifct06092019c3/Fran/nothing.mod.c
 
 deps_/home/fran/ifct06092019c3/Fran/nothing.mod.o := \
+    $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/retpoline.h) \
   include/linux/kconfig.h \
     $(wildcard include/config/cpu/big/endian.h) \
@@ -490,7 +491,6 @@ deps_/home/fran/ifct06092019c3/Fran/nothing.mod.o := \
     $(wildcard include/config/kallsyms.h) \
     $(wildcard include/config/bpf/events.h) \
     $(wildcard include/config/event/tracing.h) \
-    $(wildcard include/config/module/unload.h) \
     $(wildcard include/config/constructors.h) \
     $(wildcard include/config/function/error/injection.h) \
   include/linux/stat.h \
