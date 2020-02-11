@@ -1,5 +1,5 @@
 
-obj-m := nothing.o hola.o
+obj-m := nothing.o hola.o memoria.o
 
 main: calcu+.c 
 	gcc calcu+.c -o calcu+.out

@@ -71,7 +71,7 @@ int memory_init(void)
 
   /* Allocating memory for the buffer */
 
-  memory_buffer = (char *) kmalloc(5, GFP_KERNEL);
+  memory_buffer = kmalloc(5, GFP_KERNEL);
 
   if (!memory_buffer)
   {
