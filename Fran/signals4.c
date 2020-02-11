@@ -1,4 +1,3 @@
-
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -24,6 +23,8 @@ void controlador (int numeroSenhal)
 {
     int id;
 
+    int seguir;
+
     struct datos * info;
 
     size_t escrito;
@@ -44,8 +45,16 @@ void controlador (int numeroSenhal)
 
     escrito = fwrite(info, sizeof(struct datos), 1, indice);
 
-	free(info);
+    free(info);
 	fclose(indice);
 
+    printf("\n1. Continuar.");
+    printf("\n0. Salir.\n");
+    scanf("\n%d", &seguir);
+
+    if (seguir == 0)
+    {
+        kill (getpid(), SIGTERM);
+    }
 
 }
