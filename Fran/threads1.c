@@ -3,9 +3,6 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
-
-// debe incluirse sudo apt-get install libncurses5-dev libncursesw5-dev
-
 #include <ncurses.h>
 
 struct datos
@@ -58,7 +55,7 @@ void * printFichero (void * datosRec)
 
 void main()
 {
-    int numHilos;
+    int hilos;
     int contador;
 
     char linea[1024];
@@ -69,42 +66,48 @@ void main()
 
     pthread_t * h;
 
-    numHilos = 0;
+    hilos = 0;
 
     fichero = fopen("texto.txt", "r");
 
+    if (fichero == 0)
+    {
+        printf("\nProblemilla abriendo fichero");
+    }
+
     while ( fgets(linea, 1024, (FILE*) fichero) )
     {
-        numHilos++;
+        hilos++;
     }
 
     rewind(fichero);
 
     /*
     printf("\nCuantos hilos se van a crear: ");
-    scanf("%d", numHilos);
+    scanf("%d", hilos);
     */
 
-    datosEnv = malloc(sizeof(struct datos)*numHilos);
+    datosEnv = malloc(sizeof(struct datos) * hilos);
 
-    h = malloc(sizeof(pthread_t) * numHilos);
+    h = malloc(sizeof(h) * hilos);
 
-    printw("\nSe van a crear %d hilos.\n", numHilos);
+    printw("\nSe van a crear %d hilos.\n", hilos);
 
-    for (contador = 0; contador < numHilos; contador++)
+    for (contador = 0; contador < hilos; contador++)
     {
         strcpy( datosEnv[contador].textoLinea, fgets(linea, 1024, (FILE*) fichero) );
-        printf("\n%s", datosEnv[contador].textoLinea);
+        printw("\n%s", datosEnv[contador].textoLinea);
         /*
-        datosEnv[contador].linea = contador;
-        datosEnv[contador].numHilos = numHilos;
-        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]);
+        datosEnv[contador]->linea = contador;
+        datosEnv[contador]->numHilos = hilos;
         */
+        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]);
+        refresh();
     }
 
     for (contador = 0; contador < numHilos; contador++)
     {
-        pthread_join(h[contador],NULL);
+        pthread_join(h[contador], NULL);
     }
 
     fclose(fichero);

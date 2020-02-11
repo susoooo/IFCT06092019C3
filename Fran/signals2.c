@@ -15,7 +15,7 @@ void main()
     signal (SIGUSR2, controlUSR2);
     signal (SIGTERM, controlTERM);
     signal (SIGKILL, controlTERM);
-    signal (SIGINT, controlINT);
+    signal (SIGINT, SIG_IGN);
 
     do
     {
@@ -66,8 +66,3 @@ void controlTERM (int numeroSenhal)
     kill (getpid(), SIGTERM);
 }
 
-void controlINT(int numeroSenhal)
-{
-	printf ("No me salgo \n");
-	printf ("Inténtalo otra vez\n");
-}

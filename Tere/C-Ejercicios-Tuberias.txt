@@ -1,0 +1,5 @@
+1.Escribir un programa que cree un proceso padre y un proceso hijo. Entre ellos se establecerá una tubería, de tal forma que uno de ellos pedirá datos por pantalla al usuario, se los enviará al otro proceso, y este los imprimirá por pantalla.
+
+2.Escribir un programa que cree un proceso para calcular un factorial. El programa preguntará por pantalla el número del cual se quiere calcular el factorial, lo enviará por una tubería al proceso que ha creado, y esperará a que este le envía de vuelta el resultado del cálculo. Tras recibirlo, el programa imprimirá el resultado del cálculo.
+
+3.escribir un programa que lance un proceso insultator. Dicho proceso enviará al programa que lo ha creado, mediante una tubería cada segundo un insulto diferente. En cuanto el programa que lanza el proceso insultator reciba un insulto determinado, enviará por la tubería un mensaje al insultator en el que le solicitará que finalice su ejecución. Tras recibir la petición insultator enviará un mensaje de vuelta indicando su aceptación, y se cerrará. El programa, al recibir la aceptación por parte de insultator, imprimirá un mensaje y se cerrará tambien.
