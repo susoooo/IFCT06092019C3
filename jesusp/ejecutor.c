@@ -2,35 +2,41 @@
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void senhal(int);
 
 main()
 {
+int i;
+i=0;
 pid_t idProceso;
 idProceso = fork();
 switch(idProceso){
         case -1: perror ("No se puede lanzar proceso");
 			break;
 		case 0: signal (SIGUSR1, senhal);
-			while (1)	pause ();
-			if (senhal==3)
+           for (i=0;i<3;i++)
                 {
-                   printf("Esto se acabo papi");
-                   exit(0);
+                     senhal(i);
                 }
+                kill (idProceso, SIGUSR1);
+                printf("Esto se acabo papi\n");
+                exit(0);
 			break;
 		default:
 			while (1)
 			{
-				sleep (1);
+				usleep (5000);
 				kill (idProceso, SIGUSR1);
 			}
 	}
+
 }
 
 void senhal(int numsen)
 {
-printf("Recibida la señal del hijo");
-
+printf("Soy el hijo mi pid es %d y ppid es %d\n",getppid(),getpid());
 }
+
+
