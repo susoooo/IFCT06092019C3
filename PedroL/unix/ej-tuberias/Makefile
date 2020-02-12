@@ -13,14 +13,14 @@ build: 1 2 3 4 5 6
 	make build -C 6
 clean: 1c 2c 3c 4c 5c 6c
 1c:
-	make clean -C 1 -i
+	make clean -C 1
 2c:
-	make clean -C 2 -i
+	make clean -C 2
 3c:
-	make clean -C 3 -i
+	make clean -C 3
 4c:
-	make clean -C 4 -i
+	make clean -C 4
 5c:
-	make clean -C 5 -i
+	make clean -C 5
 6c:
-	make clean -C 6 -i
+	make clean -C 6

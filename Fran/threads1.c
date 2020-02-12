@@ -98,14 +98,14 @@ void main()
         strcpy( datosEnv[contador].textoLinea, fgets(linea, 1024, (FILE*) fichero) );
         printw("\n%s", datosEnv[contador].textoLinea);
         /*
-        datosEnv[contador]->linea = contador;
-        datosEnv[contador]->numHilos = hilos;
+        datosEnv[contador].linea = contador;
+        datosEnv[contador].numHilos = hilos;
         */
         pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]);
         refresh();
     }
 
-    for (contador = 0; contador < numHilos; contador++)
+    for (contador = 0; contador < hilos; contador++)
     {
         pthread_join(h[contador], NULL);
     }
