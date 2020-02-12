@@ -24,11 +24,11 @@ void main(){
 
                 break;
           default: // Padre
-                close(fd[1]); // Cierra el descriptor de escritura
+                close(fd[1]);
                 wait(NULL); // Espera a que finalice el hijo
-                printf("\n Ya me voy");
-
-                write(fd[0], datos, 20);
+                printf("El padre lee");
+                read(fd[0], datos, 20);
+                printf("Datos: %s", datos);
 
      }
 }
