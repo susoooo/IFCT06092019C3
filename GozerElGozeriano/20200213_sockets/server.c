@@ -7,8 +7,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
-//#include <stdlib.h>
-#define NUMBEROFTHEBEAST 666
+#include <stdlib.h>
+#define NUMBEROFTHEBEAST 1666
 #define DEBUG 0
 
 
@@ -26,7 +26,7 @@ int main(void)
 	socketInf.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	// Socket Address asignation
-	if(bind(socketHandler,(struct sockaddr_in *) &socketInf, sizeof(struct sockaddr_in))==-1)
+	if(bind(socketHandler,(struct sockaddr *) &socketInf, sizeof(struct sockaddr_in))==-1)
 		perror("BIND KO");
 	
 	// Read socket until EOF
