@@ -5,20 +5,17 @@
 
 int main()
 {
-char insulto[10][20]:{"cabezabuque","tonto","gilipollas","cabrón","tiomierda","idiota","abrazafarolas","malakito","búfalo","payaso"};
-char mensaje[20];
+char insulto[10][20]:{'cabezabuque','tonto','gilipollas','cabrón','tiomierda','idiota','abrazafarolas','malakito','búfalo','payaso'};
+char mensaje[20];'
 int tuberia[2];
+int contador;
 char recibido;
 int i;
+contador=0;
 i=0;
 pid_t pid;
 pipe(tuberia);
 strand(time(NULL));
- while(feof(insulto)!=0)
-        {
-            fgets(mensaje, 20,indice);
-            contador++;
-        }
 pid =fork();
 signal(SIGUSR1, recibido);
 switch(pid)
