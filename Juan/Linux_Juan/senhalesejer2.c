@@ -17,13 +17,14 @@ main()
     {   
 		case -1: 
 			perror("No se puede lanzar proceso");
+			fflush(stdout);
 			break;
 		case 0:
-			printf("Asociando senhales\n");
+			printf("Hijo: Asociando senhales\n");
+			fflush(stdout);
 			signal(SIGUSR1, controlador_s1);
 			signal(SIGUSR2, controlador_s2);
-			signal(SIGTERM, contralador_termina);
-			signal(SIGINT, controlador_ignora);
+			signal(SIGTERM, controlador_termina);
 			signal(SIGINT, SIG_IGN);
 			
 			while (1)	pause ();
@@ -31,31 +32,39 @@ main()
 		default:
 			while (1)
 			{
-				printf("El proceso pasa por aquí");
+				printf("Padre: El proceso pasa por aquí");
+				fflush(stdout);
 				sleep(1);
 				kill(idProceso, SIGUSR1);
+				usleep(1000);
 				kill(idProceso, SIGUSR2);
-				if(kill(idProceso, SIGTERM)
-				{
-				
-				}
-				;
+				usleep(1000);
 				kill(idProceso, SIGINT);
+				usleep(1000);
+				kill(idProceso, SIGTERM);
+				usleep(1000);
+				kill(getpid(), SIGINT);
 			}
 	}
 }
 
 void controlador_s1 (int numero)
-{printf("He recibido la señal SIGUSR1\n");}
+{printf("Hijo: He recibido la señal SIGUSR1\n");
+fflush(stdout);
+}
 
 void controlador_s2 (int numero)
-{printf("He recibido la señal SIGUSR2\n");}
+{printf("Hijo: He recibido la señal SIGUSR2\n");
+fflush(stdout);
+}
 
 void controlador_termina(int numero)
 {
-printf("Fin de ejecución\n");
+printf("Hijo: Fin de ejecución\n");
+fflush(stdout);
+signal(SIGTERM, SIG_DFL);
+usleep(1000);
+kill(getpid(),SIGTERM);
 }
 
-void controlador_ignora(int numero)
-{}
 
