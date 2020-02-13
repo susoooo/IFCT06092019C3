@@ -2,47 +2,92 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-/*
-struct palabrotas
-{
-    char alagos[20];
-};
-*/
+#include <time.h>
+#include <string.h>
+
+void recibido (int);
+void enviado (int);
 
 void main()
 {
     int insulto[2];
-    char tacos[20][10];
+    int contador;
+    int pos;
+    int lineas;
 
-    char mensaje[9];
+    FILE * indice;
+
+    char mensaje[20];
 
     pid_t pid;
 
     pipe(insulto);
 
+    srand (time(NULL));
+
+    indice = fopen("insultitos.txt", "r");
+
+    lineas = 0;
+
+    while(feof(indice)!= 0)
+    {
+        fgets(mensaje, 20, indice);
+        lineas++;
+    }
+
+    rewind (indice);
+
+    printf("\n.....................Insultator en marcha.....................");
+    fflush(stdout);
+
     pid = fork();
+
+    signal(SIGUSR1, recibido);
 
     switch (pid)
     {
         case -1:
-            printf("No se ha podido crear un hijo. Esteril perdido. \n");
+            printf("\nNo se ha podido crear un hijo. Esteril perdido. \n");
             exit(-1);
         break;
 
         case 0:
 
-            printf("Insultator en marcha... \n");
             do
             {
-                write(insulto[1], mensaje, 10);
-                sleep(1);
-                read(insulto[0], mensaje, 9);
-                if (strcmp(mensaje, "cierrate") == 0)
+                printf("\nAttacking papi...");
+                fflush(stdout);
+
+                pos = rand() % lineas;
+
+                for (contador = 0; contador < pos; contador++)
                 {
-                    printf("\n\t Ok, Ok!!!\n");
+                    fgets(mensaje, 20, indice);
+                }
+
+                rewind(indice);
+
+                write(insulto[1], strtok(mensaje, "\n"), sizeof(mensaje));
+                // kill(getppid(), SIGUSR2);
+                sleep(2);
+
+                read(insulto[0], mensaje, sizeof(mensaje));
+                // kill(getppid(), SIGUSR1);
+                sleep(1);
+
+                if (strcmp(strtok(mensaje, "\n"), "cierrate") == 0)
+                {
+                    printf("\nOk, Ok!!!");
+                    printf("\nEstudiando...\n");
+                    fflush(stdout);
+
                     close(insulto[0]);
-                    write(insulto[1], "Estudiando", 11);
+
+                    strcpy(mensaje, "Estudiando");
+                    write(insulto[1], mensaje, sizeof(mensaje));
                     close(insulto[1]);
+
+                    fclose(indice);
                     exit(0);
                 }
 
@@ -51,22 +96,48 @@ void main()
         break;
 
         default:
+            sleep(1);
+
             do
             {
-                printf("Recibiendo alag... digo insulto... \n");
-                read(insulto[0], mensaje, 10);
-                printf("\t Insulto leido: %s \n", mensaje);
-                if (strcmp(mensaje, "cachomierda") == 0)
+                printf("\n\tRecibiendo alag... digo insulto...");
+                fflush(stdout);
+
+                read(insulto[0], mensaje, sizeof(mensaje));
+                // kill(0, SIGUSR1);
+                sleep(1);
+
+                write(insulto[1], "Grr!!", 6);
+                // kill(0, SIGUSR2);
+                sleep (1);
+
+                printf("\n\tInsulto leido: %s ", mensaje);
+                printf("\n\tNo te pases, que te crujo");
+                fflush(stdout);
+
+                if (strcmp(strtok(mensaje, "\n"), "cachomierda") == 0)
                 {
-                    printf("\n\t Callate y ponte a estudiar!!!\n");
-                    write(insulto[1], "cierrate", 9);
+                    printf("\n\tCallate y ponte a estudiar!!!");
+                    fflush(stdout);
+
                     close(insulto[0]);
+                    write(insulto[1], "cierrate", 9);
                     close(insulto[1]);
                     wait(NULL);
                     exit(0);
                 }
             }
             while (strcmp(mensaje, "Estudiando") != 0);
-
      }
+
+}
+
+void enviado (int ok)
+{
+
+}
+
+void recibido (int ok)
+{
+
 }
