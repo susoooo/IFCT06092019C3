@@ -14,34 +14,67 @@ y esperará a que este le envía de vuelta el resultado del cálculo.
 void main()
 {
 
-	int fac;
-	char caracteres[500];
+	int numero;
+	int factorial;
+	int contador;
+
 	int fildes[2];
+
+	contador=0;
+	factorial=1;
+
+	pid_t idProceso;
+
+	pid_t idProceso2;
 
 	pipe(fildes);
 
+	idProceso = fork();
 
-
-/*preguntar por pantalla el número*/
-
-printf("Ingresa numero para calcular su factorial:  ");
-scanf("%d",&fac);
-
-
-
-
-
-int eleccion(int N, int R)
-{
-int contador;
-
-
-contador=0;
-fac=1;
-
-
-for(contador=N;contador>1;contador--)
+	switch(idProceso)
 	{
-	fac= fac*contador;
+
+		case-1: perror ("No se puede lanzar proceso");
+			break;
+
+		 case 0:
+
+		 /*preguntar por pantalla el número*/
+
+            printf("Ingresa numero para calcular el factorial:  ");
+            scanf("%d",&numero);
+
+			write(fildes[1], &numero, sizeof(numero));
+
+			sleep(1);
+
+			read(fildes[0], &factorial, sizeof(factorial));
+
+            printf("\nEl factorial de %d es: %d \n", numero,factorial);
+
+
+			exit(0);
+			break;
+
+		default:
+			read(fildes[0], &numero, sizeof(numero));
+
+			for(contador=numero;contador>1;contador--)
+            {
+            factorial= factorial* contador;
+            }
+             write(fildes[1], &factorial, sizeof(factorial));
+
+           /* printf("El factorial de %d es: %d \n", numero,factorial);*/
+
 	}
-printf("El factorial de %d es: %d \n", N,fac);
+
+
+
+}
+
+
+
+
+
+
