@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # depslib dependency file v1.0
 1576756968 source:c:\fuentes\codeblocks\prueba\main.c
 	<stdio.h>
@@ -12,3 +13,19 @@
 
 1576673113 source:c:\fuentes\codeblocks\prueba\generararray.c
 
+=======
+# depslib dependency file v1.0
+1576756968 source:c:\fuentes\codeblocks\prueba\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1576496248 source:c:\fuentes\codeblocks\prueba\calculofactorial.c
+
+1576496044 source:c:\fuentes\codeblocks\prueba\combinatoria.c
+
+1576758382 source:c:\fuentes\codeblocks\prueba\ordenacion.c
+
+1576673113 source:c:\fuentes\codeblocks\prueba\generararray.c
+
+>>>>>>> 8bc0b13d6df47f49e7d86b65488d04536bd6d34b

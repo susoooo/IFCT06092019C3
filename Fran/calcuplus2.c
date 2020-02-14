@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main()
+main()
 {
 	int numero1;
 	int numero2;
@@ -10,7 +10,7 @@ void main()
 	float division;
 	int operacion;
 	int correcto;
-
+		
 	numero1 = 12;
 	numero2 = 3;
 	suma = 0;
@@ -19,14 +19,14 @@ void main()
 	division = 0.00;
 	operacion = 0;
 	correcto = 0;
-
+	
 	printf("Hola, soy Calcu+\n");
 	printf("Version 2.0\n");
 	printf("Programado por Fran\n");
-
+	
 	printf("\nDime el primer numero: ");
 	scanf("%d", &numero1);
-
+	
 	printf("\nDime el segundo numero: ");
 	scanf("%d", &numero2);
 
@@ -38,7 +38,7 @@ void main()
 	printf("-------------------------\n");
 	printf("Operacion: ");
 	scanf("%d", &operacion);
-
+	
 	if (operacion > 0 && operacion < 5)
 	{
 		if (operacion == 1)
@@ -79,7 +79,7 @@ void main()
 	{
 		printf("\nOperacion incorrecta");
 	}
-
+	
 	printf("\n\n Ejecucion finalizada. Gracias por su cooperacion, humano\n");
-}
+}	
 
