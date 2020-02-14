@@ -23,11 +23,12 @@ int main(int argc, char *argv[])
   FILE *fp;
   int howmanythreads;
   int counter;
+  pthread_t *threads;
 
   printf("How many threads? ");
   scanf("%d", &howmanythreads);
 
-  pthread_t threads[howmanythreads];
+  threads = malloc(sizeof(pthread_t) * howmanythreads);
 
   fp = fopen("ficheiro.txt", "r");
 

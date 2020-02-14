@@ -3,20 +3,18 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
-
-// debe incluirse sudo apt-get install libncurses5-dev libncursesw5-dev
-
 #include <ncurses.h>
 
 struct datos
 {
-    char textoLinea[1024];
+    char textoLinea[1024]; //Contenido de la linea de texto.
     int linea; // Linea/fila en la que escribir el texto.
-    int numHilos;
+    int numHilos; // Total de hilos creados.
 };
 
 void * printFichero (void * datosRec)
 {
+    initscr();
 
     int columna;
     int largoLinea;
@@ -37,72 +35,82 @@ void * printFichero (void * datosRec)
 
     for (columna = 0; columna < largoLinea; columna++)
     {
-        move(fila[pDatos->linea], columna);
 
         if (texto[columna] != '\n')
         {
-            printf("%c", texto[columna]);
+            move(fila[pDatos->linea], columna);
+
+            printw("%c-%d", texto[columna], pDatos->linea);
         }
         else
         {
             columna = largoLinea;
         }
 
-        fflush (stdout);
-        usleep (300000) ;
+        refresh();
+        //usleep (500000);
     }
+    endwin();
 }
 
 void main()
 {
-    int numHilos;
+    int hilos;
     int contador;
 
     char linea[1024];
 
     FILE * fichero;
 
-    numHilos = 0;
+    struct datos * datosEnv;
+
+    pthread_t * h;
+
+    hilos = 0;
 
     fichero = fopen("texto.txt", "r");
 
+    if (fichero == 0)
+    {
+        printf("\nProblemilla abriendo fichero");
+    }
+
     while ( fgets(linea, 1024, (FILE*) fichero) )
     {
-        numHilos++;
+        hilos++;
     }
 
     rewind(fichero);
 
     /*
     printf("\nCuantos hilos se van a crear: ");
-    scanf("%d", numHilos);
+    scanf("%d", hilos);
     */
 
-    struct datos datosEnv[numHilos];
+    datosEnv = malloc(sizeof(struct datos) * hilos);
 
-    pthread_t h[numHilos];
+    h = malloc(sizeof(h) * hilos);
 
-    printf("\nSe van a crear %d hilos.\n", numHilos);
+    printw("\nSe van a crear %d hilos.\n", hilos);
 
-    // initscr();
-
-    for (contador = 0; contador < numHilos; contador++)
+    for (contador = 0; contador < hilos; contador++)
     {
         strcpy( datosEnv[contador].textoLinea, fgets(linea, 1024, (FILE*) fichero) );
+        printw("\n%s", datosEnv[contador].textoLinea);
+        /*
         datosEnv[contador].linea = contador;
-        datosEnv[contador].numHilos = numHilos;
-        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]) ;
+        datosEnv[contador].numHilos = hilos;
+        */
+        pthread_create(&h[contador], NULL, printFichero, (void *)&datosEnv[contador]);
+        refresh();
     }
 
-    for (contador = 0; contador < numHilos; contador++)
+    for (contador = 0; contador < hilos; contador++)
     {
-        pthread_join(h[contador],NULL);
+        pthread_join(h[contador], NULL);
     }
 
-    // usleep(5000000);
-
-    // endwin();
     fclose(fichero);
-    printf("\n\nEjecucion finalizada.\n");
+    printw("\n\nEjecucion finalizada.\n");
 }
 
