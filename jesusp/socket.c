@@ -25,13 +25,13 @@ len = sizeof(struct sockaddr_in);
 bind(s,(struct sockaddr *) &name, len);
 
 //Se lee del socket hasta el final del fichero
-while ((n = recv(s,buf, sizeof(buf), 0)) > 0)
+while ((n = recvfrom(s,buf, sizeof(buf),0, (struct sockaddr*) &name, &len)) > 0)
 // Se imprime los datos leídos
-write(1, buf, n);
-while ( (n = read(0, buf, sizeof(buf))) > 0)
-
-    /* Se copian las datos al socket */
+{
+    write(1, buf, n);
+    sleep(1);
     sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+}
 
 // Se cierra el socket
 close(s);
