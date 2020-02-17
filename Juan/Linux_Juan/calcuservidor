@@ -30,8 +30,10 @@
 		/* Se lee del socket hasta el final del fichero*/	
 		while((n=recvfrom(sockfd, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len))>0)
 		{
+		
 			// Se imprimen los datos leídos
 			write(1, buf, n);
+			
 			// Se envían los datos de vuelta
 			sendto(sockfd, buf, n, 0, (struct sockaddr*) &name,len);
 			sleep(2);
