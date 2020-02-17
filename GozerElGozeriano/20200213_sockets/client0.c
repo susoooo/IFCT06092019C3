@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <netdb.h>
 #include <string.h>
-#define NUMBEROFTHEBEAST 666
+#define NUMBEROFTHEBEAST 1666
 #define DEBUG 0
 
 

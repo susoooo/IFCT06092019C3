@@ -1,0 +1,3 @@
+Añadir capacidad de enviar para el servidor
+	y de recibir para el cliente
+Hacer que el servidor responda al cliente

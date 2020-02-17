@@ -11,7 +11,7 @@
 void main(void)
 {
     char buf[1024];
-    int s, n, len;
+    int s, n, len, num;
     struct sockaddr_in name;
     /* Se crea el socket */
     s = socket(AF_INET, SOCK_DGRAM, 0);
@@ -24,11 +24,17 @@ void main(void)
     bind (s, (struct sockaddr *) &name, len);
 
     /* Se lee del socket hasta final del fichero*/
-    while ((n = recv(s, buf, sizeof(buf), 0)) > 0)
+    while ((n = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len)) > 0)
+    {
+        /* Se imprime los datos leidos */
+        write(1, buf, n);
 
-    /* Se imprime los datos leidos */
-    write(1, buf, n);
-
+        num = sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+        printf("%d", num);
+        perror("num");
+        fflush(stdout);
+        sleep(1);
+    }
     /* Se cierra el socket */
     close(s);
 }
