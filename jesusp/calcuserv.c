@@ -8,20 +8,20 @@
 #include <sys/socket.h>
 #define PORTNUMBER 12543
 
-void * factorial(void * num1)
+void * factorial(int num1)
 {
     int contador;
     int facto;
     contador=0;
     facto=1;
-    for(contador=1;contador<=*(int*)num1;contador++)
+    for(contador=1;contador<=(int*)num1;contador++)
     {
         facto=facto*contador;
     }
     printf("El factorial es:%d \n",facto);
 }
 
-void * suma(void * num1, void *num2)
+void * suma(int num1, int num2)
 {
     int sum;
     sum = num1 + num2;
@@ -51,15 +51,26 @@ while ((n = recvfrom(s,buf, sizeof(buf),0, (struct sockaddr*) &name, &len)) > 0)
         switch(opcion)
             {
                 case 0:
-                suma();
+                printf("Suma a realizar:");
+                printf("\nPrimer sumando: %d", num1);
+                fflush(stdout);
+
+                printf("\nSegundo sumando: %d", num2);
+                suma(num1,num2);
+                fflush(stdout);
+
                 write(1, buf, n);
                 sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
                 break;
 
                 case 1:
-                factorial();
+                printf("Número factorial %d", num1);
+                factorial(num1);
                 write(1, buf, n);
                 sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+                break;
+                default:
+                perror("Opción equivocada");
             }
     }
 }
