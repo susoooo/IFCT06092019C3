@@ -45,7 +45,12 @@ void main(void)
 
                 sendto(s, "Dame el primer numero: ", 24, 0, (struct sockaddr*) &name, len);
                 sleep(2);
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                do
+                {
+                    n = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                }
+                while (n <= 0);
+
                 num1 = atoi(buf);
                 printf("%d", num1);
                 printf("\nSegundo operando: ");
@@ -53,7 +58,13 @@ void main(void)
 
                 sendto(s, "Dame el segundo numero: ", 25, 0, (struct sockaddr*) &name, len);
                 sleep(2);
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+
+                do
+                {
+                    n = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                }
+                while (n <= 0);
+
                 num2 = atoi(buf);
                 printf("%d", num2);
                 fflush(stdout);
