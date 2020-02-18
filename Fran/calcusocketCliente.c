@@ -58,7 +58,7 @@ int main (void)
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, n, 0, (struct sockaddr*) &name, len);
+                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
 
                 sleep(2);
 
@@ -66,7 +66,7 @@ int main (void)
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, n, 0, (struct sockaddr*) &name, len);
+                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
 
                 sleep(2);
 
