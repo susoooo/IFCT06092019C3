@@ -12,6 +12,7 @@ void main(void)
     char buf[1024];
     int s;
     int n;
+    int ns;
     int len;
     int num1;
     int num2;
@@ -22,7 +23,7 @@ void main(void)
 
     struct sockaddr_in name;
     /* Se crea el socket */
-    s = socket(AF_INET, SOCK_DGRAM, 0);
+    s = socket(AF_INET, SOCK_STREAM, 0);
     name.sin_family = AF_INET;
     name.sin_port = htons(PORTNUMBER);
     name.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -31,7 +32,12 @@ void main(void)
     /* Se asigna direcc1on al socket */
     bind (s, (struct sockaddr *) &name, len);
 
-    n = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+    listen(s, 5);
+
+    /* Acepta conexiones */
+    ns = accept(s, (struct sockaddr *) &name, &len);
+
+    n = recv(ns, buf, sizeof(buf), 0);
 
     opcion1 = atoi(buf);
     printf("%s", buf);
@@ -45,26 +51,26 @@ void main(void)
                 printf("\nPrimer operando: ");
                 fflush(stdout);
 
-                sendto(s, "Dame el primer numero: ", 24, 0, (struct sockaddr*) &name, len);
+                send(ns, "Dame el primer numero: ", 24, 0);
                 sleep(1);
 
-                n = recvfrom(s, &num1, sizeof(num1), 0, (struct sockaddr*) &name, &len);
+                n = recv(ns, &num1, sizeof(num1), 0);
 
                 printf("%d", num1);
                 printf("\nSegundo operando: ");
                 fflush(stdout);
 
-                sendto(s, "Dame el segundo numero: ", 25, 0, (struct sockaddr*) &name, len);
+                send(ns, "Dame el segundo numero: ", 25, 0);
                 sleep(1);
 
-                n = recvfrom(s, &num2, sizeof(num2), 0, (struct sockaddr*) &name, &len);
+                n = recv(ns, &num2, sizeof(num2), 0);
 
 
                 printf("%d\n", num2);
                 fflush(stdout);
 
                 suma = num1 + num2;
-                sendto(s, &suma, sizeof(suma), 0, (struct sockaddr*) &name, len);
+                send(ns, &suma, sizeof(suma), 0);
             break;
 
             case 1:
@@ -72,10 +78,10 @@ void main(void)
                 printf("\nNumero a factorizar: ");
                 fflush(stdout);
 
-                sendto(s, "Dame el numero: ", 24, 0, (struct sockaddr*) &name, len);
+                send(ns, "Dame el numero: ", 24, 0);
                 sleep(1);
 
-                n = recvfrom(s, &num1, sizeof(num1), 0, (struct sockaddr*) &name, &len);
+                n = recv(ns, &num1, sizeof(num1), 0);
 
                 factorial = num1;
 
@@ -84,7 +90,7 @@ void main(void)
                     factorial = factorial * contador;
                 }
 
-                sendto(s, &factorial, sizeof(factorial), 0, (struct sockaddr*) &name, len);
+                send(ns, &factorial, sizeof(factorial), 0);
                 sleep(1);
             break;
 
@@ -92,5 +98,7 @@ void main(void)
                 printf("*");
         }
     printf("\n");
+
+    close(ns);
     close(s);
 }
