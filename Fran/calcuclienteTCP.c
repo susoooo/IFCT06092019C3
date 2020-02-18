@@ -31,7 +31,7 @@ int main (void)
     hp = gethostbyname(hostname);
 
     /* Se crea el socket */
-    s = socket(AF_INET, SOCK_DGRAM, 0);
+    s = socket(AF_INET, SOCK_STREAM, 0);
 
     name.sin_family = AF_INET;
     name.sin_port = htons(PORTNUMBER);
@@ -40,13 +40,12 @@ int main (void)
     memcpy(&name.sin_addr, hp->h_addr_list[0], hp->h_length);
     len = sizeof(struct sockaddr_in);
 
+    connect(s, (struct sockaddr *) &name, len);
+
     printf("\n0. Sumacion.");
     printf("\n1. Factorizar.\n");
     scanf("\n%d", &opcion);
 
-    /* Se lee caracteres del teclado*/
-    //while ( (n = read(0, buf, sizeof(buf))) > 0)
-    //{
         switch (opcion)
         {
             case 0:
@@ -55,42 +54,42 @@ int main (void)
 
                 sleep(1);
 
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                recv(s, buf, sizeof(buf), 0);
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
+                send(s, &numero, sizeof(numero), 0);
 
                 sleep(1);
 
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                recv(s, buf, sizeof(buf), 0);
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
+                send(s, &numero, sizeof(numero), 0);
 
                 sleep(1);
 
-                recvfrom(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, &len);
+                recv(s, &numero, sizeof(numero), 0);
                 printf("\nEl resultado es: %d\n", numero);
 
             break;
 
             case 1:
                 strcpy(buf, "1");
-                sendto(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, len);
+                send(s, buf, sizeof(buf), 0);
 
                 sleep(1);
 
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                recv(s, buf, sizeof(buf), 0);
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
+                send(s, &numero, sizeof(numero), 0);
 
                 sleep(1);
 
-                recvfrom(s, &facto, sizeof(facto), 0, (struct sockaddr*) &name, &len);
+                recv(s, &facto, sizeof(facto), 0);
                 printf("\nEl factorial de %d es: %d\n", numero, facto);
 
             break;
@@ -98,13 +97,7 @@ int main (void)
             default:
                 printf("*");
         }
-        /* Se copian las datos al socket */
-       // sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
 
-        // sleep(2);
-        // n = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
 
-        // write(1, buf, n);
-    // }
     close(s);
 }
