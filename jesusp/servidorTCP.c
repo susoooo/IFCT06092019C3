@@ -34,12 +34,11 @@ int main(void)
     ns = accept (s,(struct sockaddr *) &name, &len);
     /* Se le del socket hasta final de fichero */
     while ((n = recv(ns, buf, sizeof(buf),0)) > 0)
-    {
+
     /* Se imprime lo que se va leyendo */
     write(1, buf, n);
-    sleep(1);
-    send(s, buf, n, 0);
-    }
+
+
     /* Se cierran conexiones */
     close(ns);
     close(s);
