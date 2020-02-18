@@ -33,7 +33,7 @@ void main(void)
     listen(s, 5);
 
     /* Acepta conexiones */
-    ns = accept(s, (struct socket *) &name, &len);
+    ns = accept(s, (struct sockaddr *) &name, &len);
 
     /* Se lee del socket hasta final del fichero*/
     while ((n = recv(ns, buf, sizeof(buf), 0)) > 0)

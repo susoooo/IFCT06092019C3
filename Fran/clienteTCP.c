@@ -44,7 +44,7 @@ int main (void)
     while ((n = read(0, buf, sizeof(buf))) > 0)
     {
         /* Se copian las datos al socket */
-        sendto(s, buf, n, 0);
+        send(s, buf, n, 0);
     }
 
     close(s);
