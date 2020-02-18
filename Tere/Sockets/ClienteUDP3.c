@@ -16,6 +16,7 @@ int main (void)
     int suma;
     int factorial;
     int operacion;
+    int resultado;
 
 
     int n, s, len;
@@ -28,6 +29,7 @@ int main (void)
     numero2= 0;
     suma= 0;
     factorial= 1;
+    resultado=0;
 
  /* Nombre del host local. */
     gethostname(hostname, sizeof (hostname));
@@ -46,7 +48,7 @@ int main (void)
 
 
      /* Se copian los datos al socket */
-    sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+   
 
     printf("Introduce la operacion\n");
     printf("0 - Suma\n");
@@ -55,6 +57,8 @@ int main (void)
 
     printf("Numero de la operacion: ");
     scanf("%d",&operacion);
+ 
+    sendto(s, &operacion, sizeof(operacion), 0, (struct sockaddr*) &name, len);
 
     do
     {
@@ -62,12 +66,21 @@ int main (void)
         {
             printf("Escriba el primer numero\n");
             scanf("%d",&numero1);
+		
+	    sendto(s, &numero1, sizeof(numero1), 0, (struct sockaddr*) &name, len);
 
-
+	
             printf("Escriba el segundo numero\n");
             scanf("%d",&numero2);
 
-            printf("La suma es: %d\n",suma);
+
+	    sendto(s, &numero2, sizeof(numero2), 0, (struct sockaddr*) &name, len);
+		
+	    sleep(2);
+		
+            recvfrom(s, &suma, sizeof(suma),0,(struct sockaddr*) &name, &len);
+
+	printf("La suma es: %d\n",suma);
 
         }
 
@@ -75,33 +88,18 @@ int main (void)
         {
             printf("Escriba el primer numero\n");
             scanf("%d",&numero1);
+	  sendto(s, &numero1, sizeof(numero1), 0, (struct sockaddr*) &name, len);
+ 	   sleep(2);
+		
+            recvfrom(s, &factorial, sizeof(factorial),0,(struct sockaddr*) &name, &len);
+		
+  	printf("El factorial es: %d\n",factorial);
+          
+    	}
 
-
-          printf("El factorial es: %d\n",factorial);
     }
+	while(operacion!=0 && operacion!=1);
+
 }
 
-while(operacion!=0 && operacion!=1);
-
-}
-
-
-recv(s, buf, sizeof(buf),0);
-
-write (1, buf, n);
-
-
-
-
-    /* Se lee caracteres del teclado
-    while ((n= read(0, buf,sizeof(buf)))>0)
-    {
-    Se copian los datos al socket
-    sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
-
-    recv(s, buf, sizeof(buf),0);
-
-    write (1, buf, n);
-    }
-    */
 
