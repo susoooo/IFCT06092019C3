@@ -1,0 +1,1 @@
+cmd_/home/elvis/ifct06092019c3/EM/Ejercicios/memoria.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/elvis/ifct06092019c3/EM/Ejercicios/memoria.ko /home/elvis/ifct06092019c3/EM/Ejercicios/memoria.o /home/elvis/ifct06092019c3/EM/Ejercicios/memoria.mod.o ;  true

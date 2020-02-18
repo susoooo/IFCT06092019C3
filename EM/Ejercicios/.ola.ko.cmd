@@ -1,0 +1,1 @@
+cmd_/home/elvis/ifct06092019c3/EM/Ejercicios/ola.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/elvis/ifct06092019c3/EM/Ejercicios/ola.ko /home/elvis/ifct06092019c3/EM/Ejercicios/ola.o /home/elvis/ifct06092019c3/EM/Ejercicios/ola.mod.o ;  true
