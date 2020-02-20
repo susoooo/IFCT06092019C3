@@ -151,7 +151,7 @@ void getNumbers(int h, int *numbers, int s, struct sockaddr_in *sa_c, socklen_t 
 }
 
 long calculateOperation(int command, int n[]){
-  long r; 
+  long r;
   int counter;
 
   switch (command) {
