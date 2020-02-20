@@ -1,0 +1,1 @@
+pretendamos que la funcion para obtener numeros al azar no da asco
