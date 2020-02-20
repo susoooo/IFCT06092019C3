@@ -36,9 +36,21 @@ int main (void)
 
     /* Se lee caracteres del teclado*/
     while ( (n = read(0, buf, sizeof(buf))) > 0)
+<<<<<<< HEAD
+    {
+        /* Se copian las datos al socket */
+        sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+
+        sleep(2);
+        n = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+
+        write(1, buf, n);
+    }
+=======
 
     /* Se copian las datos al socket */
     sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
     /* Se cierra el socket */
+>>>>>>> 11899ab50d26fa978170e718ebc1921aad2a5c77
     close(s);
 }
