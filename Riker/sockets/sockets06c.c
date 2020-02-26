@@ -15,14 +15,19 @@
 #define MESSAGE_BUFFER_SIZE 1024
 
 int main() {
-
   char buffer[PORTNUMBER];
+  char login[6];
   char hostname[64];
   int client_socket;
   int n;
   socklen_t len;
   struct hostent *hp;
   struct sockaddr_in client_addr;
+
+  /* strcpy(login, "LOGIN",); */
+  sprintf(login, "LOGIN\n");
+
+  len = sizeof(struct sockaddr_in);
 
   gethostname(hostname, sizeof(hostname));
 
@@ -35,10 +40,25 @@ int main() {
   memcpy(&client_addr.sin_addr, hp->h_addr_list[0], hp->h_length);
   len = sizeof(struct sockaddr_in);
 
-  connect(client_socket, (struct sockaddr *) &client_addr, len);
+  if(connect(client_socket, (struct sockaddr *) &client_addr, len)<0)
+    {
+      perror("connect error");
+    }
+  else
+    {
+      /* waiting for prompt */
+      /* send(client_socket, login, n, 0); */
+      n = recv(client_socket, buffer, sizeof(buffer),0);
+      write(STDOUT_FILENO, buffer, n);
+      write(STDOUT_FILENO, "\n> ", 3);
+    }
 
   while ((n = read(STDIN_FILENO, buffer, sizeof(buffer))) > 0) {
     send(client_socket, buffer, n, 0);
+    n = recv(client_socket, buffer, sizeof(buffer),0);
+    write(STDOUT_FILENO, buffer, n);
+    write(STDOUT_FILENO, "\n> ", 3);
+    memset(buffer, '\0', MESSAGE_BUFFER_SIZE);
   }
   close(client_socket);
   return 0;
