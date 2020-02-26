@@ -1,0 +1,7 @@
+#define REPLYMSG "OK"
+#define NICKMSG "NAME "
+#define MSGMSG	"MESSAGE "
+#define MAXNICK 16
+#define BUFFERSIZE 255
+#define MESSAGESIZE 244
+
