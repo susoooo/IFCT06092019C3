@@ -1,41 +1,51 @@
-/* TCP server */
+/* simple TCP server */
 
+#include <arpa/inet.h>
+#include <errno.h>
+#include <netinet/in.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
 #include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 #define PORTNUMBER 47654
 #define MESSAGE_BUFFER_SIZE 1024
 
-int main(void) {
-  char buf[MESSAGE_BUFFER_SIZE];
-  int s;
-  int n, ns, len;
-  struct sockaddr_in name;
+int main() {
 
-  s = socket(PF_INET, SOCK_STREAM, 0);
+  char buffer[1024];
+  int server_socket;
+  int client_socket;
+  socklen_t server_len;
+  socklen_t client_len;
+  int n;
 
-  name.sin_family = AF_INET;
-  name.sin_port = htons(PORTNUMBER);
-  name.sin_addr.s_addr = htonl(INADDR_ANY);
-  len = sizeof(struct  sockaddr_in );
+  struct sockaddr_in server_addr;
+  struct sockaddr_in client_addr;
 
-  bind(s, (struct sockaddr *) &name, len);
+  server_socket = socket(PF_INET, SOCK_STREAM, 0);
+  server_addr.sin_family = AF_INET;
+  server_addr.sin_port = htons(PORTNUMBER);
+  server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+  server_len = sizeof(struct sockaddr_in);
+  server_len = sizeof(struct sockaddr_in);
 
-  listen(s, 5);
+  bind(server_socket, (struct sockaddr *) &server_addr, server_len);
 
-  ns = accept(s, (struct sockaddr *) &name, &len);
+  /* set max simultaneous conection */
+  listen(server_socket, 5);
 
-  while((n=recv(ns, buf, sizeof(buf), 0)) > 0)
-    write(1, buf, n);
+  /* accept client conection */
+  client_socket = accept(server_socket, (struct sockaddr *) &client_addr, &client_len);
 
-  close(ns);
-  close(n);
+  while((n = recv(client_socket, buffer, sizeof(buffer),0)) > 0){
+    write(STDOUT_FILENO, buffer, n);
+    }
 
+  /* close sockets*/
+  close(client_socket);
+  close(server_socket);
   return 0;
 }
