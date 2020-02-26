@@ -8,28 +8,44 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define PORTNUMBER 2401
+#define PORTNUMBER 34201
 #define BUFLEN 1024
 #define SERVRADDR "127.0.0.1"
+
+int s;
 
 int
 main(void)
 {
-    int s, n, bs, br;
     struct sockaddr_in saddr;
     socklen_t addrlen;
+
+    char buf[BUFLEN];
+    int connerr, bs, br;
     
     s = socket(AF_INET, SOCK_STREAM, 0);
-	
     saddr.sin_family = AF_INET;
     saddr.sin_port = htons(PORTNUMBER);
     inet_aton(SERVRADDR, &saddr.sin_addr);
     addrlen = sizeof(struct sockaddr);
     
-    connect(s, (const struct sockaddr*)&saddr, addrlen);
-    sleep(1);
+    connerr = connect(s, (const struct sockaddr*)&saddr, addrlen);
     
-    while (1) {
+    while (!connerr)
+    {
+        memset(buf, 0, BUFLEN);
+        br = write(0, buf, BUFLEN);
+        bs = send(s, buf, br, 0);
+
+        memset(buf, 0, BUFLEN);
+        br = recv(s, buf, BUFLEN, 0);
+        read(1, buf, br);
+        
+        if (!strncmp(buf, "GOODBYE", 7))
+        {
+            connerr = 1; /* exit */
+            br = recv(s, buf, BUFLEN, 0);
+        }
     }
 	
     close(s);

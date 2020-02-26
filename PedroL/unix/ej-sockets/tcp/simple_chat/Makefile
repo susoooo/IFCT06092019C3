@@ -1,4 +1,4 @@
-files = server/main client/main
+files = server client
 build:
 	$(foreach v, $(files), \
 	gcc -o bin/$(v).out src/$(v).c;)
