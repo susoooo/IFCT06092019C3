@@ -1,0 +1,238 @@
+INDICE
+
+    - Nucleo del Sistema Operativo
+	> Arquitectura general
+	> Subsistemas del nucleo
+	> Seguridad en el desarrollo de elementos
+    - Programacion de controladores
+	> Funcionamiento general de un dispositivo
+	> Tipos de controladores
+	> Tecnicas de programacion de controladores
+	> Depuracion y prueba
+	> Compilacion y carga
+    - Programacion concurrente
+	> Metodos de sincronizacion entre procesos y threads
+    - Programacion de comunicaciones
+	> Programacion de componentes de comunicaciones
+
+CONTENIDOS
+
+    - Nucleo del Sistema Operativo
+	> Arquitectura general
+	    : Capas del SO
+		. Nivel usuario
+		. Espacio de kernel
+		. Hardware
+	    : Necesidades del hardware
+		. Mecanismo de interrupciones
+		    - Hardware que maneja interrupciones de dispositivo y kernel
+		. Proteccion de memoria
+		    - Hardware que aisla espacios de memoria
+		. Instrucciones reservadas
+		    - Categorizacion de instrucciones por importancia
+		    - Evita que procesos ejecuten instrucciones si carecen de privilegio
+		. Reloj en tiempo real
+		    - El reloj sincroniza las acciones del hardware
+		    - Debe ser suficientemente rapido para el uso del hardware
+	> Subsistemas del nucleo
+	    : Gestion de Procesos
+		. Espacio de direcciones
+		    - Un espacio por proceso
+			> Stack
+			> Heap
+			> Datos
+			> Codigo
+		. Planificacion de procesos
+		    - Scheduler
+			> Organiza la cola de ejecucion de procesos
+		    - Dispatcher
+			> Envia el primer proceso de la cola al CPU
+		    - Esperar (por entrada/salida, por una alarma, etc.) bloquea al proceso
+		. Procesos y threads
+		    - API de procesos
+			Crear                  fork()
+			                       exec()
+			Terminar               exit()
+			Obtener finalizacion   wait()
+			                       waitpid()
+			Obtener identificador  getpid()
+			Enviar señal           kill()
+			--------------------------------
+		    - API de threads
+			Crear     pthread_create()
+			Terminar  pthread_exit()
+			Dormir    pthread_yield()
+			Terminar  pthread_cancel()
+			--------------------------
+	    : Gestion de Memoria
+	    : Sistema de ficheros
+	    : Control de dispositivos
+	    : Comunicaciones
+	> Seguridad en el desarrollo de elementos
+    - Programacion de controladores
+	> Funcionamiento general de un dispositivo
+	    : Directorio /dev
+	> Tipos de controladores
+	    : Windows drivers
+		.          Device  File-system
+		  Function    +         +
+		  Filter      +         +
+		  ---------------------------
+		. Software Drivers
+		. Herramientas de creacion
+		    - Windows Driver Framework (WDF)
+			> Kernel Mode Driver Framework (KMDF)
+			> User Mode Driver Framework (UMDF)
+	> Tecnicas de programacion de controladores
+	    : Linux
+		. Carga de modulo    insmod()    module_init()
+		  Abrir dispositivo  fopen()     open()
+		  Leer dispositivo   fread()     read()
+		  Escribir dspstvo   fwrite()    write()
+		  Cerrar dspstvo     fclose()    close()
+		  Quitar modulo      rmmod()     module_exit()
+		  --------------------------------------------
+		. Funciones del kernel
+		    - printk
+		    - init_module
+		    - cleanup_module
+		. Estructura minima:
+		    #include <linux/module.h>
+		    MODULE_LICENSE("Dual BSD/GPL");
+		    -------------------------------
+		. Carga del driver en espacio kernel
+		    #include <linux/kernel.h>
+		    module_init(hola_init);
+		    module_init(hola_exit);
+		    -----------------------
+		. Programacion de funciones
+		    static int hola_init(void) {
+			(KERN_ALERT "Hola mundo kernel\n");
+			return 0;
+		    }
+		    ---------------------------------------
+		. Estructura completa
+		    - Includes
+		    - Licencia
+		    - Declaracion de funciones
+		    - Struct de funciones de acceso
+		    - Funciones init y exit
+		    - Variables globales
+		    - Programacion de la logica del driver
+	    : Windows
+		. Windows Driver Kit (WDK)
+		. Visual Studio
+		. Microsoft Developer Network (MSDN)
+	> Depuracion y prueba
+	> Compilacion y carga
+	    : Makefiles (make ...)
+		.Modificacion para compilar el driver
+		    - obj-m := hola.o
+		    - make -C /usr/src/linux-headers-x.x.x-x-generic M=`pwd` modules
+	    : Comandos de modulos
+		. insmod hola.ko
+		. lsmod
+		. rmmod hola
+    - Programacion concurrente
+	> Problemas de sincronizacion
+	    : Carrera critica
+	    : Interbloqueo
+	> Metodos de sincronizacion entre procesos y threads
+	    : Señales
+		. Enviar:    kill(pid_t, SIG);
+		. Recibir:   signal(SIG, function);
+		. Ignorar:   signal(SIG, SIG_IGN);
+		. Restaurar: signal(SIG, SIG_DFL);
+		. SIGINT: Ctrl - C
+		. SIGPIPE: Escritura en una tuberia rota
+		. SIGALRM: Termina un temporizador
+		. SIGUSR1 & 2: Para uso del programador
+	    : Tuberias
+		. Creacion:
+		    int pipefd[2];
+		    pipe(pipefd);
+		    --------------
+		. Cierre
+		    close(pipefd[0]);
+		    close(pipefd[1]);
+		    -----------------
+		. Escritura
+		    char buf[64];
+		    write(pipefd[1], buf, 64);
+		    --------------------------
+		    - Si tuberia llena: Proceso se bloquea hasta poder escribir
+		    - Si no hay proceso escuchando: señal SIGPIPE
+		    - Solo un proceso puede escribir en una tuberia al mismo tiempo
+		. Lectura
+		    char buf[64];
+		    read(pipefd[0], buf, 64);
+		    -------------------------
+		    - Devuelve el numero de elementos leidos
+		    - Solo un proceso puede leer en una tuberia al mismo tiempo
+    - Programacion de comunicaciones
+	> Sockets
+	    : Dominios
+		. AF_UNIX (AF_LOCAL): Misma maquina
+		. AF_INET: Distintas maquinas
+	    : Protocolos
+		. SOCK_STREAM: TCP
+		. SOCK_DGRAM: UDP
+		. SOCK_RAW: Sin protocolo
+	    : Estructua sockaddr_in
+		#include <net/in.h>
+		
+		struct sockaddr_in {
+		    short           sin_family;   = AF_INET
+		    unsigned short  sin_port:     = htons(PORTNUMBER)
+		    struct in_addr  sin_addr;
+		    char            sin_zero[8];
+		}
+
+		struct in_addr {
+		    unsisgned long  s_addr;  = inet_aton("dir.ecc.ion.ip", &sockaddr_in.sin_addr)
+		                             = htonl(INADDR_ANY)
+		}
+		----------------------------------------------------------------------------------
+	    : Includes y definiciones
+		#include <sys/types.h>
+		#include <sys/socket.h>
+		#include <netdb.h>
+		-----------------------
+		char buf[1024];
+		struct sockaddr_in myaddr;
+		socklen_t addrlen;
+		--------------------------
+	> Pasos en UDP
+	    : Servidor
+		. /* inicializar sockaddr_in con INADDR_ANY */
+		. s = socket(AF_????, SOCK_DGRAM, 0);
+		. bind(s, &myaddr, addrlen);
+		. recv(s, buf, sizeof(buf), 0);
+		. send(s, buf, sizeof(buf), 0);
+		. close(s);
+	    : Cliente
+		. /* inicializar sockaddr_in con direccion del servidor */
+		. s = socket(AF_????, SOCK_DGRAM, 0);
+		. bind(s, &myaddr, addrlen);
+		. recv(s, buf, sizeof(buf), 0);
+		. send(s, buf, sizeof(buf), 0);
+		. close(s);
+	> Pasos en TCP
+	    : Servidor
+		. struct sockaddr_in peer;  /* Estructura sockaddr secundaria para guardar
+		. socklen_t peeraddrlen;       los datos de la conexion aceptada */
+		. /* inicializar sockaddr_in con INADDR_ANY */A
+		. s = socket(AF_????, SOCK_STREAM, 0);
+		. bind(s, &myaddr, addrlen);
+		. listen(s, backlog);  /* backlog = limite de conecciones simultaneas */
+		. accept(s, &peer, &peeraddrlen);
+		. recv(s, buf, sizeof(buf), 0);
+		. send(s, buf, sizeof(buf), 0);
+		. close(s);
+	    : Cliente
+		. /* inicializar sockaddr_in con direccion del servidor */
+		. s = socket(AF_????, SOCK_STREAM, 0);
+		. connect(s, &myaddr, addrlen);
+		. recv(s, buf, sizeof(buf), 0);
+		. send(s, buf, sizeof(buf), 0);
+		. close(s);

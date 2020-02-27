@@ -30,7 +30,7 @@ sleep(1);
 
     valor=* ((int *) rango);
     suma=(int *)malloc (sizeof (int));
-    *suma=100;
+    *suma=0;
     printf("Rango: %d a %d\n",valor+1,valor+100);
     lseek(f, sizeof (int)*valor,SEEK_SET);//posicionarnos en un desplazamiento concreto del fichero
     for(j=0;j<100;j++) {

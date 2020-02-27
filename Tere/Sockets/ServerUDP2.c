@@ -26,20 +26,29 @@ int main (void)
 
     bind(s, (struct sockaddr *) &name, len);
 
-    /* Se lee del socket hasta final del fichero */
-    while ((n = recv(s, buf, sizeof(buf),0))>0)
+    
 
-    /* Se imprime los datos leídos */
+    /* Se lee del socket hasta final del fichero */
+    while ((n = recvfrom(s, buf, sizeof(buf),0, (struct sockaddr*) &name, &len))>0)
+{
+
+ 
+  
+  /* Se imprime los datos leídos */
 
     write (1, buf, n);
 
 
-	sleep(2);
 
-   /* Se copian los datos al socket */
-    sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+	
+     /* Se copian los datos al socket */
+sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
+ 
+}
+	
 
-    /* Se cierra el socket */
+
+  /* Se cierra el socket */
     close(s);
     }
 
