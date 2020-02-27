@@ -1,0 +1,1 @@
+cmd_/home/teresa/ifct06092019c3/Tere/memoria.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/teresa/ifct06092019c3/Tere/memoria.ko /home/teresa/ifct06092019c3/Tere/memoria.o /home/teresa/ifct06092019c3/Tere/memoria.mod.o ;  true
