@@ -8,11 +8,14 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+
 #define PORTNUMBER 34201
 #define BUFLEN 1024
 #define SERVRADDR "127.0.0.1"
 
+
 int s;
+
 
 int
 main(void)
@@ -20,8 +23,8 @@ main(void)
     struct sockaddr_in saddr;
     socklen_t addrlen;
 
-    char buf[BUFLEN];
-    int connerr, bs, br;
+    char bufs[BUFLEN], bufr[BUFLEN];
+    int connerr, keepprint, bs, br;
     
     s = socket(AF_INET, SOCK_STREAM, 0);
     saddr.sin_family = AF_INET;
@@ -30,21 +33,26 @@ main(void)
     addrlen = sizeof(struct sockaddr);
     
     connerr = connect(s, (const struct sockaddr*)&saddr, addrlen);
+    /* perror */ perror("\tconnect");
     
     while (!connerr)
     {
-        memset(buf, 0, BUFLEN);
-        br = write(0, buf, BUFLEN);
-        bs = send(s, buf, br, 0);
+        memset(bufs, 0, BUFLEN);
+        br = read(0, bufs, BUFLEN);
+        bs = send(s, bufs, BUFLEN, 0);
+        /* perror */ perror("\tsend");
+        memset(bufr, 0, BUFLEN);
 
-        memset(buf, 0, BUFLEN);
-        br = recv(s, buf, BUFLEN, 0);
-        read(1, buf, br);
-        
-        if (!strncmp(buf, "GOODBYE", 7))
+        do
+        {
+            br = recv(s, bufr, BUFLEN, 0);  
+            printf("%s\n", bufr);
+
+        } while (strcmp(bufr, "OK"));
+
+        if (!strncmp(bufs, "GOODBYE", 7))
         {
             connerr = 1; /* exit */
-            br = recv(s, buf, BUFLEN, 0);
         }
     }
 	

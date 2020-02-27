@@ -29,10 +29,9 @@ main(void)
 	addrlen = sizeof(struct sockaddr_in);
 	
 	bind(s, &saddr, addrlen);
+	listen(s, 5);
 	
 	while (eval != 1) {
-		listen(s, 5);
-		
 		ns = accept(s, &nsaddr, &addrlen);
 		chpid = fork();
 		

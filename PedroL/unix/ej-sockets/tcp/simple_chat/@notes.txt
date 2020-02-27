@@ -1,0 +1,8 @@
+TODO:
+    ~~Message log structure~~
+    ~~Message push to log procedure~~
+    ~~MESSAGE command~~
+
+    ~~More elegant command handling~~
+
+    Debug :^)
