@@ -130,9 +130,9 @@ CONTENIDOS
 		    - obj-m := hola.o
 		    - make -C /usr/src/linux-headers-x.x.x-x-generic M=`pwd` modules
 	    : Comandos de modulos
-		- insmod hola.ko
-		- lsmod
-		- rmmod hola
+		. insmod hola.ko
+		. lsmod
+		. rmmod hola
     - Programacion concurrente
 	> Problemas de sincronizacion
 	    : Carrera critica

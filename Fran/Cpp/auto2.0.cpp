@@ -1,6 +1,9 @@
 #include <iostream>
 #include <windows.h>
 
+#include <stdio.h>
+#include <conio.h>
+
 using namespace std;
 
 class automovil
@@ -218,18 +221,22 @@ int main()
         cout << "Velocidad: " << speed << " - Estado: " << vehiculo.getEstado() << " - Encendido: " << vehiculo.getEncendido() << endl;
         cout << "___________________________________________" << endl;
         cout << endl;
-        cout << "1. Entrar en el automovil." << endl;
-        cout << "2. Salir del automovil." << endl;
-        cout << "3. Encender el automovil." << endl;
-        cout << "4. Apagar el automovil." << endl;
-        cout << "5. Acelerar el automovil." << endl;
-        cout << "6. Frenar el automovil." << endl;
+        cout << "         ENTRAR" << endl;
+        cout << "           " << endl;
+        cout << "           |" << endl;
+        cout << " FRENAR <-   -> ACELERAR" << endl;
+        cout << "           |" << endl;
+        cout << "           v" << endl;
+        cout << "         SALIR"<< endl;
+        cout << "___________________________________________" << endl;
+        cout << "ENTER - Encencer automovil." << endl;
+        cout << "ESC - Apagar el automovil." << endl;
         cout << "0. Finalizar" << endl;
-        cin >> opcion;
+        opcion = getchar();
 
         switch (opcion)
         {
-            case 1:
+            case 38:
                 accion = vehiculo.entrar();
                 if (accion)
                 {
@@ -239,7 +246,7 @@ int main()
                 }
             break;
 
-            case 2:
+            case 40:
                 accion = vehiculo.salir();
                 if (!accion)
                 {
@@ -249,7 +256,7 @@ int main()
                 }
             break;
 
-            case 3:
+            case 13:
                 accion = vehiculo.encender();
                 if (accion)
                 {
@@ -259,7 +266,7 @@ int main()
                 }
             break;
 
-            case 4:
+            case 32:
                 accion = vehiculo.apagar();
                 if (accion)
                 {
@@ -269,7 +276,7 @@ int main()
                 }
             break;
 
-            case 5:
+            case 39:
                 valor = speed;
                 speed = vehiculo.acelerar(1);
                 if (speed != valor)
@@ -281,7 +288,7 @@ int main()
                 }
             break;
 
-            case 6:
+            case 37:
                 valor = speed;
                 speed = vehiculo.acelerar(0);
                 if (speed != valor)
