@@ -5,10 +5,10 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <arpa/inet.h>
 
 #define PORTNUMBER 12543
-
-
+#define MAX_CONEXIONES 12
 
 struct message
 {
@@ -26,8 +26,9 @@ int main (void)
     int ns;
     int len;
     int contUser;
-    char *users[1024];
-    char *messages[1024];
+    char *users[MAX_CONEXIONES];
+    char *dir[MAX_CONEXIONES];
+    char *messages[MAX_CONEXIONES];
     struct message m;
     struct sockaddr_in name;
     char *commads[]={ "NAME", "GOODBYE", "UPDATE_MESSAGES", "MESSAGE" };
@@ -62,9 +63,12 @@ int main (void)
         splitBuffer(buf,&m);
 
         if(strcmp(m.command,commads[0])==0)
-        {
+        {   
             users[contUser]=m.message;
+            dir[contUser]=inet_ntoa(name.sin_addr);
             printf("%s conectado\n",users[contUser]);
+            fflush(stdout);
+            printf("Direccion: %s\n",dir[contUser]);
             fflush(stdout);
             contUser++;
             send(ns,"OK\n",sizeof("OK\n"),0); 
@@ -95,13 +99,16 @@ void splitBuffer (char buf[], struct message *m)
     for(conCommand=0; buf[conCommand]!=' '; conCommand++)
     {
         m->command[conCommand]=buf[conCommand];
-    }
+    }    
 
+    m->command[conCommand]='\0';
 
     for(conMessage=conCommand+1; buf[conMessage]!='\n'; conMessage++)
     {        
         m->message[contador]=buf[conMessage];
         contador++;
     }
+
+    m->message[contador]='\0';    
 
 }
