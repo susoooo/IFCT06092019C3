@@ -21,6 +21,8 @@ int ConnectSocket(int);
 //int SendSocket(int,char*,int);
 void writeText(char *);
 void closeConn(int);
+//void waitConfirm(void);
+void waitConfirm(const char *);
 
 int sockfd;
 
@@ -36,7 +38,7 @@ int main(int argc, char *argv[])
 
 	sockfd = CreateSocket();
 	if(sockfd < 0) error("ERROR opening socket");
-	signal(SIGINT, closeConn);
+	signal(SIGINT, closeConn); // Close connection before interrupt
     if(ConnectSocket(sockfd)<0) error("ERROR connecting");
 
     /* My Nickname */
@@ -52,28 +54,23 @@ int main(int argc, char *argv[])
 	/* End send Hello */
 	
 	/* Get connection ok */
-	rwReturn = read(sockfd,buffer,BUFFERSIZE);
-	if(rwReturn<0) error("ERROR reading socket");
-	printf("Connection linked.\n");
+	waitConfirm("Connection linked.\n");
 	/* End */
 	
-	while(true)
+	while(1)
 	{
+		/* Send text */
 		printf("Mensaje: ");
 		writeText(message);
 		bzero(buffer,BUFFERSIZE);
 		strcat(buffer, MSGMSG);
 		strcat(buffer, message);
 		rwReturn = write(sockfd,buffer,BUFFERSIZE);
-		if(rwReturn<0) error("ERROR writing to socket");
-    /*rwReturn = write(sockfd,buffer,BUFFERSIZE);
-    if (rwReturn < 0) 
-         error("ERROR writing to socket");
-    bzero(buffer,BUFFERSIZE);
-    rwReturn = read(sockfd,buffer,BUFFERSIZE);
-    if (rwReturn < 0) 
-         error("ERROR reading from socket");
-    printf("%s\n",buffer);*/
+		//rwReturn=SendSocket(sockfd,buffer,BUFFERSIZE); /*No diff*/ 
+		if(rwReturn<0) error("ERROR writing to socket\n");
+		/* Wait send ok from server */
+		waitConfirm("");
+	}
     close(sockfd);
     return(0);
 }
@@ -115,8 +112,8 @@ int ConnectSocket(int hSocket)
 
 void writeText(char * text)
 {
-	
-	fgets(text,sizeof(text),stdin);
+	//fgets(text,sizeof(text),stdin); /* KO: Divide el mensaje */
+	scanf("%s",text);
 	if(text[strlen(text)-1]=='\n')
 		text[strlen(text)-1]='\0';
 }
@@ -125,4 +122,16 @@ void closeConn(int snyl)
 {
 	close(sockfd);
 	exit(0);
+}
+
+void waitConfirm(const char * msg)
+{
+	char buffer[BUFFERSIZE];
+	if(read(sockfd,buffer,BUFFERSIZE)<0)
+		error("ERROR reading socket");
+	if(DEBUG) printf("%s\n",buffer);
+	if(strcmp(buffer,REPLYMSG)!=0)
+		printf("Bad return\n");
+	else
+		printf("%s",msg);
 }
