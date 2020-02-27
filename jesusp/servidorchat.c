@@ -41,18 +41,23 @@ int main(void)
 
     if(strncmp(buf, "NAME", 4) == 0)
     {
-        send(ns, "OK\n", 3, 0);
+        send(ns, "OK\n", 4, 0);
         perror("send");
     }
     else
-    if(strcmp(buf, "GOODBYE") == 0)
+    if(strncmp(buf, "GOODBYE", 7) == 0)
     {
-        send(ns, "OK\n", 3, 0);
+        send(ns, "OK", 3, 0);
         perror("send");
+        sleep(1);
         close(ns);
         close(s);
     }
-
+    else
+    {
+        send(ns, "Error\n", 6, 0);
+    }
+    memset(buf, 0, 1024);
     sleep(1);
     }
     close(ns);

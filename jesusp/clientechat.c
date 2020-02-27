@@ -33,18 +33,28 @@ int main(void)
     while (((n = read(0, buf, sizeof(buf))) > 0) && (salir == 0))
     {
         send(s, buf, n, 0);
-        printf("buf %s,send %d\n", buf,n);
+        //printf("buf %s,send %d\n", buf,n);
         fflush(stdout);
         sleep(1);
         perror("send");
-        n = recv(s, buf, sizeof(buf), 0);
-        write(1, buf, n);
-
-        if(strcmp(buf, "GOODBYE")== 0)
+        if(strncmp(buf, "GOODBYE",7)== 0)
         {
+            n = recv(s, buf, sizeof(buf), 0);
+            fflush(stdout);
+            if(strncmp(buf,"OK",2)==0)
+            {
+                salir=1;
+                exit(0);
+            }
+
+        }else
+        {
+            n = recv(s, buf, sizeof(buf), 0);
             write(1, buf, n);
-            salir=1;
         }
+
+
+
 
     }
     close(s);
