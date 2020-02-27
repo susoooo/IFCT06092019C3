@@ -41,13 +41,13 @@ int main(void)
 
     if(strncmp(buf, "NAME", 4) == 0)
     {
-        send(ns, "OK", 3, 0);
+        send(ns, "OK\n", 3, 0);
         perror("send");
     }
     else
     if(strcmp(buf, "GOODBYE") == 0)
     {
-        send(ns, "OK", 3, 0);
+        send(ns, "OK\n", 3, 0);
         perror("send");
         close(ns);
         close(s);

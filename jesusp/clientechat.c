@@ -30,20 +30,21 @@ int main(void)
     len = sizeof(struct sockaddr_in);
     connect(s, (struct sockaddr *) &name , len);
 
-    while ((n = read(0, buf, sizeof(buf)) > 0) && (salir == 0))
+    while (((n = read(0, buf, sizeof(buf))) > 0) && (salir == 0))
     {
         send(s, buf, n, 0);
+        printf("buf %s,send %d\n", buf,n);
+        fflush(stdout);
+        sleep(1);
         perror("send");
         n = recv(s, buf, sizeof(buf), 0);
         write(1, buf, n);
 
-    if(strcmp(buf, "GOODBYE")== 0)
-    {
-        write(1, buf, n);
-        salir = 1;
-    }
-
-
+        if(strcmp(buf, "GOODBYE")== 0)
+        {
+            write(1, buf, n);
+            salir=1;
+        }
 
     }
     close(s);
