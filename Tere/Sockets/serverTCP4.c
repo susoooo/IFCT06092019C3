@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#define PORTNUMBER 12543
+#define PORTNUMBER 33333
 
 void main(void)
 {
