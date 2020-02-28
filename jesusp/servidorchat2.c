@@ -8,7 +8,7 @@
 #include <sys/wait.h>
 #include <sys/socket.h>
 #include <string.h>
-#define PORTNUMBER 12563
+#define PORTNUMBER 33333
 
 int main(void)
 {
@@ -17,11 +17,7 @@ int main(void)
     int n;
     int ns;
     int len;
-    int indice;
-    char mensajes[100][1024];
-    int cont;
     struct sockaddr_in name;
-    cont = 0;
 
     s = socket(AF_INET, SOCK_STREAM, 0);
     perror("socket");
@@ -53,27 +49,6 @@ int main(void)
     {
         send(ns, "OK\n", 4, 0);
         perror("send");
-        strcpy(mensajes[indice],buf);
-        indice++;
-    }
-    else
-    if(strncmp(buf, "UPDATE MESSAGE", 14)== 0)
-    {
-        send(ns,"SENDING n MESSAGES\n", 17, 0);
-        recv(ns, buf,sizeof(buf),0);
-        if(strncmp(buf, "OK\n" , 3)==0)
-        {
-            for(cont = 0; cont < indice; cont++)
-            {
-                printf("MESSAGE %d  %s\n",cont, mensajes[cont]);
-                send(ns, mensajes[indice], sizeof(mensajes[cont]),0);
-
-            }
-            printf("MESSAGE ENDED");
-            send(ns, "OK\n",4 ,0);
-
-
-        }
     }
     else
     if(strncmp(buf, "GOODBYE", 7) == 0)

@@ -40,6 +40,7 @@ int main(void)
         if(strncmp(buf, "GOODBYE",7)== 0)
         {
             n = recv(s, buf, sizeof(buf), 0);
+            printf("%s",buf);
             fflush(stdout);
             if(strncmp(buf,"OK",2)==0)
             {
@@ -48,6 +49,18 @@ int main(void)
             }
 
         }else
+        if(strncmp(buf, "UPDATE MESSAGE", 14)== 0)
+        {
+            printf("OK\n");
+            send(s, "OK\n", 4, 0);
+            while(strncmp(buf, "MESSAGE",7)== 0)
+            {
+                n = recv(s, buf, sizeof(buf), 0);
+                write(1, buf, n);
+                send(s, "OK\n", 4, 0);
+            }
+        }
+        else
         {
             n = recv(s, buf, sizeof(buf), 0);
             write(1, buf, n);
