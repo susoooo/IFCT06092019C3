@@ -37,7 +37,6 @@
 		/* Se leen los carateres del teclado */
 		while((n=read(0,buf,sizeof(buf)))>0)
 		{
-		printf("Escribe un cero para sumar o un uno para factorial \n");
 		/* Se copian los datos al socket */
 		sendto(s, buf, n, 0, (struct sockaddr*) &name, len);
 		sleep(2);

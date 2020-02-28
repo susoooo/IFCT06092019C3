@@ -8,6 +8,7 @@
 
 #define PORTNUMBER 12543
 
+
 	int main(void)
 	{
 		char buf[1024]; /* Puntero al buffer donde se amacenarán los datos recibidos*/

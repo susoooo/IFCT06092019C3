@@ -15,7 +15,8 @@
 		int n;
 		int len; /* Longitud de los datos en bytes*/
 		struct sockaddr_in name;
-	memset(buf, 0, sizeof(buf));
+		
+		memset(buf, 0, sizeof(buf));
 		/* Se crea el socket */
 		sockfd=socket(PF_INET,SOCK_DGRAM,0);
 		name.sin_family = AF_INET;

@@ -2,6 +2,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void controlador_s1 (int);
 void controlador_s2 (int);
