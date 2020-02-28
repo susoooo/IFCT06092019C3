@@ -22,6 +22,24 @@ Cliente:MESSAGE Este es un texto para enviar al chat
 Servidor:OK
 
 
+C)Cuando un cliente desee ver los mensajes que hay en el servidor, deberá enviarle a este el comando UPDATE MESSAGES. El servidor consultará la cola del cliente que ha enviado la petición y le indicará cuantos mensajes hay en su cola pendientes de enviar, mediante un mensaje del tipo SENDING n MESSAGES, en donde n es el número de mensajes del chat que el cliente tiene pendiente de recibir. El cliente contestará con un mensaje de OK. Tras recibir dicho OK el servidor enviará el primer mensaje, con la palabra clave MESSAGE, el número de orden del mensaje dentro de la secuencia que va a enviar, y a continuación el mensaje en sí. En cuanto el cliente reciba el mensaje, enviará un mensaje de vuelta al servidor con la palabra OK. En ese momento el servidor procederá a enviar el siguiente mensaje de la cola de mensajes. y así hasta llegar al último mensaje de la cola.En ese momento, el servidor, tras recibir el OK del cliente, enviará un mensaje MESSAGES ENDED indicando que no hay más mensajes pendientes de envío. Tras recibir este mensaje el cliente responderá con un mensaje de OK. Al recibir este mensaje, el servidor vaciará la cola de mensajes del cliente correspondiente.
+
+Cliente:UPDATE MESSAGES
+Servidor:SENDING n MESSAGES
+Cliente:OK
+Servidor:MESSAGE 1 Bla bla bla
+Cliente:OK
+Servidor:MESSAGE 2 Ipso lorem Lopem ipsum
+Cliente:OK
+Servidor:MESSAGE 3 Otro mensaje más
+Cliente:OK
+....
+Servidor:MESSAGE N El último mensaje
+Cliente:OK
+Servidor:MESSAGES ENDED
+Cliente:OK
+
+
 
 D)Cuando un cliente desee desconectarse,
 enviará al servidor un mensaje indicando GOODBYE.
@@ -30,6 +48,8 @@ enviará un mensaje al cliente de OK. Tras recibir este mensaje, el cliente se d
 
 Cliente:GOODBYE
 Servidor:OK
+
+
 
 
 
@@ -45,6 +65,7 @@ Servidor:OK
 #include <unistd.h>
 #include <string.h>
 #include <netdb.h>
+#include <pthread.h>
 
 #define PORTNUMBER 12543
 
@@ -95,6 +116,10 @@ int main (void)
        n= read(0, buf, sizeof(buf));
 
         send(s, buf, n, 0);
+
+        if(strcmp(strtok(buf, "\n"), "UPDATE MESSAGES")==0)
+
+
 //TODO : HAcer que cuando se envía un goodbye, salir valga 1
 
         if(strcmp(strtok(buf, "\n"), "GOODBYE")==0)
@@ -116,3 +141,7 @@ int main (void)
 
  close(s);
 }
+
+
+
+
