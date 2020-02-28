@@ -1,4 +1,3 @@
-#include <errno.h>
 #include <pthread.h>
 #include <signal.h>
 #include <stdio.h>
@@ -11,13 +10,12 @@
 #include <netinet/in.h>
 
 
+#define PORTNUMBER 33333
 #define BUFLEN 1024
 #define MAXUSRS 3
 #define MSGTXTLEN 128
 #define MSGLOGLEN 100
 #define CHARSINLOG (MSGTXTLEN * MSGLOGLEN)
-#define IDSTRLEN 3
-#define STRIDLEN_NULL "\0\0\0"
 
 
 void init_sock();
@@ -27,7 +25,6 @@ void *handle_commands();
 void init_user();
 void dein_user();
 void push_msg_to_log();
-int id_to_slot_index();
 void send_msg_log();
 void close_and_exit();
 
@@ -48,7 +45,6 @@ int s;
 struct sockaddr_in saddr;
 socklen_t addrlen;
 
-int smphr = 0;
 int openslots = MAXUSRS;
 int slot[MAXUSRS] = { 1, 1, 1 };
 struct User user[MAXUSRS];
@@ -63,7 +59,7 @@ main(void)
     init_sock();
     signal(SIGINT, close_and_exit);
     
-    perror("\tinitialization");
+    perror("initialization");
 
     while (1)
     {
@@ -74,24 +70,14 @@ main(void)
 void
 init_sock(void)
 {
-	int portnum;
-	
-    do
-    {
-        errno = 0;
-        printf("Port number: \n");
-        scanf("%d", &portnum);
-        s = socket(AF_INET, SOCK_STREAM, 0);
-        perror("\tsocket");
-
-        saddr.sin_family = AF_INET;
-        saddr.sin_port = htons(portnum);
-        saddr.sin_addr.s_addr = htonl(INADDR_ANY);
-        addrlen = sizeof(struct sockaddr_in);
-        
-        bind(s, (const struct sockaddr*)&saddr, addrlen);
-        listen(s, MAXUSRS);
-    } while(errno);
+    s = socket(AF_INET, SOCK_STREAM, 0);
+    saddr.sin_family = AF_INET;
+    saddr.sin_port = htons(PORTNUMBER);
+    saddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addrlen = sizeof(struct sockaddr_in);
+    
+    bind(s, (const struct sockaddr*)&saddr, addrlen);
+    listen(s, MAXUSRS);
 }
 
 int
@@ -135,11 +121,11 @@ handle_connections(void)
         openslots--;
 
         pthread_create(&thrd[nxtslot], NULL, handle_commands, (void*)nxtuser);
-        /* perror */ perror("\tpthread_create");
+        perror("pthread_create");
     }
     else
     {
-        /* perror */ perror("\tRejected connection: no user slots left");
+        perror("Rejected connection: no user slots left");
     }
 
         usleep(100000);
@@ -154,9 +140,8 @@ handle_commands(void *arg)
     const char cmdtxt[4][15] =
     {
         "NAME",
-        "GOODBYE", 
+        "GOODBYE",
         "MESSAGE",
-        "UPDATE",
     };
 
     userin = (struct User*)arg;
@@ -165,8 +150,7 @@ handle_commands(void *arg)
 
     while ((br = recv(userin->usrsock, buf, BUFLEN, 0)) > 0)
     {
-		buf[BUFLEN - 1] = '\0';
-        printf("client msg: %s - len: %d\n", buf, br);
+        printf("client msg: %s - len: %d", buf, br);
 
         for (int i = 0 ; i < 4 ; i++)
         {
@@ -194,56 +178,41 @@ handle_commands(void *arg)
             case 1:
             printf("command: GOODBYE\n");
             dein_user(userin);
-            printf("userin->usrsock = %d\n", userin->usrsock);
             /* perror */ perror("\tGOODBYE");
             break;
 
             case 2:
             printf("command: MESSAGE\n");
-            push_msg_to_log(userin ,buf + strlen(cmd) + 1);
+            push_msg_to_log(buf + strlen(cmd) + 1); /* USERIN ARG TO ID MSG IN LOG */
             /* perror */ perror("\tMESSAGE");
             break;
 
             case 3:
             printf("command: UPDATE\n");
-            send_msg_log(userin);
+            send_msg_log(userin); /* WIP */
             /* perror */ perror("\tUPDATE");
             break;
             
-            case -1:
+            default:
             printf("not a command\n");
         }
 
-		if (userin->usrsock != 0)
-		{
-			/* double OK */
-			memset(buf, 0, BUFLEN);
-			strcpy(buf, "OK");
-			bs = send(userin->usrsock, buf, BUFLEN, 0);
-			printf("OK sent - len: %d\n", bs);
-			
-			memset(buf, 0, BUFLEN);
-			br = recv(userin->usrsock, buf, BUFLEN, 0);
-			printf("client msg: %s - len: %d\n", buf, br);
-			memset(buf, 0, BUFLEN);
-		}
-		else
-		{
-			break;
-		}
+        /* double OK */
+        memset(buf, 0, BUFLEN);
+        strcpy(buf, "OK");
+        bs = send(userin->usrsock, buf, BUFLEN, 0);
+        printf("OK sent - len: %d\n", bs);
+        
+        memset(buf, 0, BUFLEN);
+        br = recv(userin->usrsock, buf, BUFLEN, 0);
+        printf("client msg: %s - len: %d\n", buf, br);
+        memset(buf, 0, BUFLEN);
     }
 
     /* connection drop */
-	close(userin->usrsock);
+    openslots++;
     slot[next_user_slot(0)] = 1;
-    
-    /*  critical region: openslots */
-    while (smphr);
-    smphr = 1;
-	openslots++;
-	smphr = 0;
 
-	/* perror */ perror("\tconnection dropped");
     pthread_exit(NULL);
 }
 
@@ -252,7 +221,6 @@ init_user(struct User *userin, char *namestr)
 {
     userin->id = MAXUSRS - openslots;
     strncpy(userin->name, namestr, 64);
-    printf("%s", namestr);
 }
 
 void
@@ -262,59 +230,29 @@ dein_user(struct User *userin)
 }
 
 void
-push_msg_to_log(struct User *userin ,char *msgstr)
+push_msg_to_log(char *msgstr)
 {
-	for (int i = MSGLOGLEN - 1 ; i < 0 ; i--)
+	/* char scratch[MSGTXTLEN]; */
+	
+    for (int i = MSGLOGLEN - 1 ; i < 0 ; i--)
     {
         strcpy(messages[i], messages[i - 1]);
     }
 
-    /* first 3 characters are str */
-    memset(messages[0], 0, MSGTXTLEN);
-    sprintf(messages[0], "%3d%s", userin->id, msgstr);
-}
-
-int
-id_to_slot_index(int tryid)
-{
-	int ret;
-	
-	ret = -1;
-	
-	for (int i = 0 ; i < MAXUSRS ; i++)
-	{
-		if (tryid == user[i].id)
-		{
-			ret = i;
-		}
-	}
+    /* CLIP MSGSTR AND ID MSG (SPRINTF WITH PADDING FOR ID NUM) */
+    strncpy(messages[0], msgstr, MSGTXTLEN);
+    memset(&messages[0][MSGTXTLEN - 8], 0, 7);
 }
 
 void
 send_msg_log(struct User* userin)
 {
-	char idstr[IDSTRLEN], buf[BUFLEN], bufok[3];
-	int indx;
-	
-	/* 
+    /* 
      * EXPECT ID NUMBER AT START OF EACH ENTRY
-     * USE IT TO SEND THE USER NAME AND THE MSG TEXT
+     * USE IT TO SEND FIRST THE USER NAME AND THEN THE MSG TEXT
      */
 	
-	for (int i = 0 ; i < MSGLOGLEN ; i++)
-	{
-		if (strncmp(messages[i], STRIDLEN_NULL, IDSTRLEN))
-		{
-			strncpy(idstr, messages[i], IDSTRLEN);
-            indx = atoi(idstr);
-			indx = id_to_slot_index(indx);
-			sprintf(buf, "\n%d) %s: %s", 
-			        i, user[indx].name, messages[i]);
-
-			send(userin->usrsock, buf, MSGTXTLEN, 0);
-			recv(userin->usrsock, bufok, BUFLEN, 0);
-		}
-	}
+	
 }
 
 void
