@@ -14,8 +14,8 @@ int main(void)
 {
 	//class Persona Alumno;
 	//class Persona Alumno2(53333666,'J');
-	//class Persona Alumno3("Kratu","Barada","Nicto");
-	class Persona Alumno4(53333666,'J',"Kratu","Barada","Nicto",11,11,1979,"Sofia","Bulgaria");
+	//class Persona Alumno3("Klaatu","Barada","Nikto");
+	class Persona Alumno4(53333666,'J',"Klaatu","Barada","Nikto",11,11,1979,"Sofia","Bulgaria");
 	//Alumno.print();
 	//Alumno2.print();
 	//Alumno3.print();
