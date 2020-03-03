@@ -1,0 +1,12 @@
+1-Crea una clase que represente a una persona. Al menos debe contener información sobre su nombre, apellido primero y segundo, fecha de nacimiento, lugar de nacimiento y pais de nacimiento. Crea constructores que permitan la creación de personas sin saber sus datos, conociendo su DNI, su nombre y apellidos, ambos, y todos los datos incluidos en la clase.
+
+Crea objetos para cada uno de los compañeros de clase usando diferentes constructores y haz que las clases impriman los datos que tienen sobre ellos.
+
+
+2-Crea un destructor para la clase anterior que al destruir la clase haga que la persona se despida diciendo su nombre.
+
+3-Crea otro destructor para la clase persona que imprima un mensaje de "DEscanse en paz" indicando la edad que tenía la persona que que representaba el objeto en el momento de destruir el objeto.
+
+4-Crea una clase que represente una pizza de la cadena de pizzas telesuperpizzaqueloflipas. Dicha clase debe guardar información al menos sobre la base elegida, los ingredientes seleccionados, y el precio de la misma. Crea constructores que permitan crear la pizza sin especificar la base (en cuyo caso se escogerá la base "normal"). Crea otro constructor que permita crear una pizza sin especificarle el precio. En dicho caso, deberá calcular automáticamente el precio (en base p.e. del precio de la base escogida y del número de ingredientes solicitados). Crea un constructor que permita crear una pizza especificando solo los ingredientes a utilizar.
+
+5-Crea un destructor de la pizza que imprima un mensaje con el precio de la pizza y diciendo que se va a destruir. Crea otro destructor que guarde el precio de la pizza en un archivo de texto antes de destruir el objeto. 
