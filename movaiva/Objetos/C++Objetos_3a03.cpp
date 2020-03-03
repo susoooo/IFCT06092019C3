@@ -120,7 +120,7 @@ Persona::~Persona()
 {
     int anoActual;
     anoActual=1900+ltm->tm_year;
-    cout << nombre << " se despide ";
+    cout << "Descanse en paz " << nombre << " ";
     if(fechanac.ano==0)
     {
        cout << "no tiene edad" << endl; 
@@ -142,14 +142,6 @@ int main()
     Persona p1("3354606060G", "Natalia", "Martinez");
     Persona p2("Luis","Gonzalez");
     Persona p3("332211445566J","Joaquin","Garcia",f,"Lugo","España");
-
-    cout << "Persona 0" << endl;
-    cout << "DNI: " << p0.getDNI() << endl;
-    cout << "Nombre: " << p0.getNombre() << endl;
-    cout << "Apellidos: " << p0.getApellidos() << endl;
-    cout << "Fecha de nacimiento: " << p0.getFechaNac().dia << "/" << p0.getFechaNac().mes << "/" << p0.getFechaNac().ano << endl;
-    cout << "Lugar de nacimiento: " << p0.getLugarNac() << endl;
-    cout << "Pais de nacimiento: " << p0.getPaisNac() << endl;
 
     cout << "Persona 1" << endl;
     cout << "DNI: " << p1.getDNI() << endl;
