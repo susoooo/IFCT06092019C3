@@ -1,6 +1,22 @@
 #include <iostream>
 using namespace std;
 
+/*
+void hello(int);
+void hello(float);
+
+int main () {
+	hello(9.9);
+}
+
+void hello(int a) {
+	cout << "int";
+}
+
+void hello(float b) {
+	cout << "flt";
+}
+*/
 
 /*
 void print(int a, int& b) {
