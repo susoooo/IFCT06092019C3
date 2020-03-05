@@ -2,6 +2,10 @@
 
 // Crea objetos para cada uno de los compañeros de clase usando diferentes constructores y haz que las clases impriman los datos que tienen sobre ellos.
 
+// * TODO
+//    - [X] call constructor from constructor
+//       - not a good use
+
 #include <iostream>
 #include <cstring>
 #include <stdlib.h>
