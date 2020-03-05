@@ -1,11 +1,11 @@
 /*
-A partir de la clase asalariado, define ahora 
-un par de clases: obrero y médico. En la clase 
-obrero, guarda el nombre del cargo que desempeña. 
-Para la clase médico, guarda información sobre la 
-cantidad de pacientes que tiene a su cargo. Crea 
-los constructores y metodos get y set que creas 
-necesarios.
+Crea un programa que, utilizando las clases anteriores, 
+cree un objeto para almacenar datos sobre una persona 
+que no es asalariada, un asalariado que no es médico 
+ni obrero, sobre dos asalariados y sobre un médico. 
+Todos los objetos creados deberán contener datos en 
+sus propiedades. Haz que el programa muestre los datos 
+de los distintos objetos creados por pantalla.
 */
 
 #include <iostream>
@@ -235,9 +235,26 @@ int main ()
     f.dia=5;
     f.mes=5;
     f.ano=2005;
-    Asalariado a("332211445566J","Joaquin","Garcia",f,"Lugo","España",15.20,0.5);
+    
+    Persona p("33549024B","Maite","Fernandez",f,"Granada","Espana");
+    cout << "Persona" << endl;
+    p.mostrarDatos();
+    
+    Asalariado a1("33221144J","Joaquin","Garcia",f,"Lugo","Espana",1000.20,0.5);
+    cout << "Asalariado 1" << endl;
+    a1.mostrarDatos();
 
-    a.mostrarDatos();
+    Asalariado a2("22114556L","Martin","Garcia",f,"Pontevedra","Espana",750.20,0.5);
+    cout << "Asalariado 2" << endl;
+    a2.mostrarDatos();
+
+    Asalariado a3("11445566K","Joaquin","Garcia",f,"Ferrol","Espana",800.20,0.5);
+    cout << "Asalariado 3" << endl;
+    a3.mostrarDatos();
+
+    Medico m("44556623H","Joaquin","Garcia",f,"Madrid","Espana",2200.20,0.5,4);
+    cout << "Medico" << endl;
+    m.mostrarDatos();
 
     return 0;   
 }
