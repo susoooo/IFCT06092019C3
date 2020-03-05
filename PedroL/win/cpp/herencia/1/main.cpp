@@ -103,7 +103,7 @@ class Medico : public Asalariado {
 
 
 int main() {
-	Persona * pers1 = new Persona();
+	Persona * pers1 = new Persona(34301414);
 	Asalariado * asal1 = new Asalariado();
 	Asalariado * asalv = new Asalariado[2]();
 	Medico * doc = new Medico();
