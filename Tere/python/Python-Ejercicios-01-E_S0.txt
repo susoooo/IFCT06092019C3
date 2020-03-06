@@ -1,0 +1,13 @@
+1-Escriba un programa que pida dos números y que escriba su media aritmética.
+
+2-Escriba un programa que pida el peso (en kilogramos) y la altura (en metros) de una persona y que calcule su índice de masa corporal (imc). El imc se calcula con la fórmula imc = peso / altura 2
+
+3-Escriba un programa que pida una distancia en pies y pulgadas y que escriba esa distancia en centímetros.Un pie son doce pulgadas y una pulgada son 2,54 cm.
+
+4-Escriba un programa que pida una temperatura en grados Celsius y que escriba esa temperatura en grados Fahrenheit. La relación entre grados Celsius (C) y grados Fahrenheit (F) es la siguiente: F = 1,8 * C + 32
+
+5-Escriba un programa que pida una temperatura en grados Fahrenheit y que escriba esa temperatura en grados Celsius. La relación entre grados Celsius (C) y grados Fahrenheit (F) es la siguiente: C = (F - 32) / 1,8
+
+6-Escriba un programa que pida una cantidad de segundos y que escriba cuántos minutos y segundos son.
+
+7-Escriba un programa que pida una cantidad de segundos y que escriba cuántas horas, minutos y segundos son.
