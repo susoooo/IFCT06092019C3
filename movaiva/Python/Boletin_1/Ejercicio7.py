@@ -1,4 +1,5 @@
 segundos=int(input("Segundos: "))
-minutos=segundos/60
-horas=minutos/60
-print(segundos," segundos son ",minutos," minutos y ",horas," horas")
+horas = segundos // 3600
+minutos = segundos % 3600 // 60
+resto = segundos % 60
+print(segundos,"segundos son",horas,"horas,",minutos," minutos y",segundos,"segundos")
