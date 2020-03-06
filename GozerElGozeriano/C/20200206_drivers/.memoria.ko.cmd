@@ -1,0 +1,1 @@
+cmd_/home/jose/Documentos/20200206_drivers/memoria.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/jose/Documentos/20200206_drivers/memoria.ko /home/jose/Documentos/20200206_drivers/memoria.o /home/jose/Documentos/20200206_drivers/memoria.mod.o ;  true
