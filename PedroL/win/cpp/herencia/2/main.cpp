@@ -23,7 +23,6 @@ class LocalComercial {
 	float get_preciomc() { return preciomc; }
 };
 
-
 class Tienda : public LocalComercial {
 	protected:
 	float metrosfach;
@@ -37,7 +36,6 @@ class Tienda : public LocalComercial {
 	float get_metrosfach() { return metrosfach; }
 };
 
-
 class Hosteleria : public LocalComercial {
 	protected:
 	time_t tiempabierto;
@@ -50,7 +48,6 @@ class Hosteleria : public LocalComercial {
 	
 	time_t get_tiempabierto() { return tiempabierto; }
 };
-
 
 class Ropa : public Tienda {
 	protected:
@@ -67,7 +64,6 @@ class Ropa : public Tienda {
 	bool get_aseos() { return aseos; }
 };
 
-
 class Comida : public Tienda {
 	protected:
 	int liniales, cajas;
@@ -83,7 +79,6 @@ class Comida : public Tienda {
 	int get_cajas() { return cajas; }
 };
 
-
 class Ferreteria final : public Tienda {
 	protected:
 	float almacenmc;
@@ -96,7 +91,6 @@ class Ferreteria final : public Tienda {
 	
 	float get_almacenmc() { return almacenmc; }
 };
-
 
 class Drogueria final : public Tienda {
 	protected:
@@ -111,7 +105,6 @@ class Drogueria final : public Tienda {
 	bool get_biohazard() { return biohazard; }
 };
 
-
 class Bar final : public Hosteleria {
 	protected:
 	int barras;
@@ -124,7 +117,6 @@ class Bar final : public Hosteleria {
 	
 	int get_barras() { return barras; }
 };
-
 
 class Restaurante final : public Hosteleria {
 	protected:
@@ -144,7 +136,6 @@ class Restaurante final : public Hosteleria {
 	float get_cocinamc() { return cocinamc; }
 };
 
-
 class ParaLlevar final : public Hosteleria {
 	protected:
 	bool cocina, planevac;
@@ -160,7 +151,6 @@ class ParaLlevar final : public Hosteleria {
 	bool get_planevac() { return planevac; }
 };
 
-
 class Camiseria final : public Ropa {
 	protected:
 	bool amedida;
@@ -173,7 +163,6 @@ class Camiseria final : public Ropa {
 	
 	bool get_amedida() { return amedida; }
 };
-
 
 class Merceria final : public Ropa {
 	protected:
@@ -188,7 +177,6 @@ class Merceria final : public Ropa {
 	int get_mostradores() { return mostradores; }
 };
 
-
 class Sombreria final : public Ropa {
 	protected:
 	int expositores;
@@ -201,7 +189,6 @@ class Sombreria final : public Ropa {
 	
 	int get_expositores() { return expositores; }
 };
-
 
 class Fruteria final : public Comida {
 	protected:
@@ -216,7 +203,6 @@ class Fruteria final : public Comida {
 	bool get_frigorifica() { return frigorifica; }
 };
 
-
 class Carniceria final : public Comida {
 	protected:
 	int frigorificos;
@@ -229,7 +215,6 @@ class Carniceria final : public Comida {
 	
 	int get_frigorificos() { return frigorificos; }
 };
-
 
 class Panaderia final : public Comida {
 	protected:
@@ -247,98 +232,42 @@ class Panaderia final : public Comida {
 	int get_armarios() { return armarios; }
 };
 
+
 class Menu {
-	
-	public:
-	void menu_princ() {
-		int op;
-		
-		cout << "Elija funcion" << endl;
+	protected:
+	int op;
+};
+
+class MenuPrin: public Menu {
+	protected:
+	void print() {
+		cout << "[1] Anadir" << endl
+		     << "[2] Listar" << endl
+		     << "[3] Eliminar" << endl;
 		cin >> op;
 		
 		switch (op) {
-			case 0:
-			/* ... */
+			case 1:
+			break;
+			
+			case 2:
+			break;
+			
+			case 3:
 			break;
 			
 			default:
+			cout << "Opcion incorrecta" << endl;
 		}
 	}
 };
 
 class MenuAnadir : public Menu {
-	string direccion;
-	float metroscuadr;
-	float preciomc;
-	float metrosfach;
-	time_t tiempabierto;
-	bool probadores, aseos;
-	int liniales, cajas;
-	
-	enum Local {
-		CAMISERIA,
-		MERCERIA,
-		SOMBRERIA,
-		FRUTERIA,
-		CARNICERIA,
-		PANADERIA,
-		FERRETERIA,
-		DROGUERIA,
-		BAR,
-		RESTAURANTE,
-		PARALLEVAR,
-	};
-	int op;
+	void print() {
 		
-	public:
-	void mostrar_menu() {
-		cout << "Elija tienda";
-		cin >> op;
-		
-		datos_clase_local();
-		
-		if (op <= 7) {
-			datos_clase_tienda();
-		} else {
-			datos_clase_hosteleria();
-		}
-		
-		if (op <= 2) datos_clase_ropa();
-		if (op <= 5 && op >= 3) datos_clase_comida();
-		
-		switch (op) {
-			case 0:
-			/* ... */
-			break;
-			
-			default:
-		}
-	}
-	
-	void datos_clase_local() {
-		cin >> direccion;
-		cin >> metroscuadr;
-		cin >> preciomc;
-	}
-	
-	void datos_clase_tienda() {
-		cin >> metrosfach;
-	}
-	
-	void datos_clase_hosteleria() {
-		cin >> tiempabierto;
-	}
-	
-	void datos_clase_ropa() {
-		cin >> probadores;
-		cin >> aseos;
-	}
-	
-	void datos_clase_comida() {
-		cin >> liniales;
-		cin >> cajas;
 	}
 };
+
 
 
 int main() {

@@ -1,0 +1,20 @@
+1-Escriba un programa que pida dos números enteros y que calcule su división, escribiendo si la división es exacta o no.
+
+2-Mejore el programa anterior haciendo que tenga en cuenta que no se puede dividir por cero
+
+3-Escriba un programa que pida dos números y que conteste cuál es el menor y cuál el mayor o que escriba que son iguales.
+
+4-Escriba un programa que pida el año actual y un año cualquiera y que escriba cuántos años han pasado desde ese año o cuántos años faltan para llegar a ese año.
+
+5-Mejore el programa anterior haciendo que cuando la diferencia sea exactamente un año, escriba la frase en singular
+
+6-Escriba un programa que pida dos números enteros y que escriba si el mayor es múltiplo del menor.
+
+7-Mejore el programa anterior haciendo que el programa avise cuando se escriben valores negativos o nulos.
+
+8-Escriba un programa que pida tres números y que escriba si son los tres iguales, si hay dos iguales o si son los tres distintos.
+
+9- Escriba un programa que pida un año y que escriba si es bisiesto o no. Se recuerda que los años bisiestos son múltiplos de 4, pero los múltiplos de 100 no lo son, aunque los múltiplos de 400 sí.
+
+10-Escriba un programa que pregunte primero si se quiere calcular el área de un triángulo o la de un círculo. Si se contesta que se quiere calcular el área de un triángulo (escribiendo T o t), el programa tiene que pedir entonces la base y la altura y escribir el área. Si se contesta que se quiere calcular el área de un círculo (escribiendo C o c), el programa tiene que pedir entonces el radio y escribir el área. Se recuerda que el área de un triángulo es base por altura dividido por 2 y que el área de un círculo es Pi (aproximadamente 3,141592) por el radio al cuadrado.
+Nota: Utilice como valor de pi el valor 3.141592.
