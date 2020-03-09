@@ -3,19 +3,7 @@ A partir de ella crea una clase asalariado que guarde información sobre el sueld
 la persona neto al mes y la retención que se le aplica en la nómina.
 Crea al menos un constructor y un los correspondientes métodos de get y set.
 
-2-A partir de la clase asalariado, define ahora un par de clases: obrero y médico.
-En la clase obrero, guarda el nombre del cargo que desempeña.
-Para la clase médico, guarda información sobre la cantidad de pacientes que tiene a su cargo.
-Crea los constructores y metodos get y set que creas necesarios.
-
-3-Crea un programa que, utilizando las clases anteriores,
-cree un objeto para almacenar datos sobre una persona que no es asalariada,
-un asalariado que no es médico ni obrero, sobre dos asalariados y sobre un médico.
-Todos los objetos creados deberán contener datos en sus propiedades.
-Haz que el programa muestre los datos de los distintos objetos creados por pantalla.
-
 */
-
 
 #include <iostream>
 #include <string.h>
@@ -53,6 +41,9 @@ public:
     persona(char docum[10],string nom,char ape1[15],char ape2[15]);
     persona(char docum[10],string nom,char ape1[15],char ape2[15],int dia, int mes, int year,char lug[10],char pa[10]);
     /*~persona();*/
+
+    fijarnombre(string nom);
+    string sacarnombre();
 
     void leerDatos(); //MÉTODOS
 };
@@ -111,7 +102,6 @@ persona::persona(char docum[10],string nom,char ape1[15],char ape2[15])
     fechanacimiento.year = 0;
     memset(lugar,0,10);
     memset(pais,0,10);
-
 }
 
 persona::persona(char docum[10],string nom,char ape1[15],char ape2[15],int dia, int mes, int year,char lug[10],char pa[10])
@@ -125,8 +115,19 @@ persona::persona(char docum[10],string nom,char ape1[15],char ape2[15],int dia, 
     fechanacimiento.year = year;
     strcpy(lugar , lug);
     strcpy(pais, pa);
-
 }
+
+
+persona::fijarnombre(string nom)
+{
+    nombre=nom;
+}
+
+string persona::sacarnombre()
+{
+    return(nombre);
+}
+
 
 /*persona::~persona()
 {
@@ -163,8 +164,10 @@ public:
     Asalariado(int bruto, float reten, float net);
 
     fijarbruto (int bruto); //método set
+    fijarretencion (float reten);
 
     int sacarbruto(); //método get
+    float sacarretencion();
 
     /*metodos nuestros*/
      float calcularneto(int bruto, float reten);
@@ -180,7 +183,6 @@ Asalariado::Asalariado()
     sbruto= 0;
     retencion= 0;
     neto = 0;
-
 }
 
 Asalariado::Asalariado(int bruto, float reten)
@@ -203,13 +205,25 @@ Asalariado::Asalariado(int bruto, float reten)
 Asalariado::fijarbruto (int bruto)
 {
     sbruto=bruto;
-
 }
+
+
+Asalariado::fijarretencion (float reten)
+{
+    retencion= reten;
+}
+
 
 int Asalariado:: sacarbruto()
 {
     return(sbruto);
 }
+
+float Asalariado:: sacarretencion()
+{
+    return(retencion);
+}
+
 
 
 float Asalariado::calcularneto(int bruto, float reten)
@@ -224,22 +238,20 @@ float Asalariado::calcularneto(int bruto, float reten)
    }
 
 
-
    void Asalariado::leerDatos()
 {
     cout << "Salario bruto: "<< sbruto << endl;
     cout << "Retencion: " << retencion<< endl;
-    cout << "Salario neto: "<<neto<< endl;
-}
+    cout << "Salario neto: "<<neto<< endl<<endl;
 
+
+}
 
 
   /*2-A partir de la clase asalariado, define ahora un par de clases: obrero y médico.
 En la clase obrero, guarda el nombre del cargo que desempeña.
 Para la clase médico, guarda información sobre la cantidad de pacientes que tiene a su cargo.
 Crea los constructores y metodos get y set que creas necesarios.*/
-
-
 
 class obrero: public Asalariado
 {
@@ -255,7 +267,6 @@ public:
     fijarcargo(string car);
 
     string sacarcargo();
-
 };
 
 obrero::obrero(string car)
@@ -273,8 +284,6 @@ string obrero:: sacarcargo()
     return(cargo);
 }
 
-
-
 class medico: public Asalariado
 {
     protected:
@@ -290,6 +299,7 @@ public:
 
     int sacarnumpacientes();
 
+    void leerDatos();
 };
 
 medico::medico(int num)
@@ -302,9 +312,16 @@ medico::fijarnumpacientes(int num)
     numpacientes= num;
 }
 
-int medico:: sacarnumpacientes()
+int medico::sacarnumpacientes()
 {
     return(numpacientes);
+}
+
+void medico::leerDatos()
+{
+    persona::leerDatos();
+    cout << "Número Pacientes: "<< numpacientes << endl;
+    Asalariado::leerDatos();
 }
 
 
@@ -314,19 +331,31 @@ un asalariado que no es médico ni obrero, sobre dos asalariados y sobre un médic
 Todos los objetos creados deberán contener datos en sus propiedades.
 Haz que el programa muestre los datos de los distintos objetos creados por pantalla.*/
 
-
 int main()
 {
 
+    persona Pepe("Pepe","Lopez","Lopez");//persona no asalariada
 
-    persona jesus("Jesus","otero","seoane");
+    Asalariado Ana (1000,0.02);// persona asalariada que no es médico ni obrero
 
-    Asalariado jesus1(1000,0.02);
+    Asalariado Manuel (1050,0.02);// persona asalariada
 
-    jesus1.calcularneto(1000, 0.02);
+  //  Asalariado Raul (1200,0.02);// persona asalariada
 
-    jesus.leerDatos();
-    jesus1.leerDatos();
+    medico Raul(40); //médico
 
+    Raul.fijarnombre("Raul");
+    Raul.sacarnombre();
+
+    Raul.fijarbruto(1500);
+    Raul.sacarbruto();
+
+    Raul.fijarretencion (0.04);
+    Raul.sacarretencion();
+
+    Pepe.leerDatos();
+    Ana.leerDatos();
+    Manuel.leerDatos();
+    Raul.leerDatos();
 }
 
