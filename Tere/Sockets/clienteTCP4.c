@@ -10,6 +10,19 @@ Cliente:NAME Juan
 Servidor:OK
 
 
+B)Para enviar un mensaje el cliente deberá enviar el comando MESSAGE y el texto del mensaje.
+El servidor irá almacenando en varias colas, una por usuario conectado,
+los mensajes que va recibiendo. Es decir, si en un momento dado hay 7 clientes conectados,
+deberá mantener los mensajes en 7 colas, una por cada usuario.
+Cada vez que un cliente envíe un mensaje, este aparecerá en la pantalla del servidor
+y se añadirá a la cola de todos los clientes. Si todo ha ido correctamente,
+el servidor devolverá al cliente un mensaje con el texto OK.
+
+Cliente:MESSAGE Este es un texto para enviar al chat
+Servidor:OK
+
+
+
 D)Cuando un cliente desee desconectarse,
 enviará al servidor un mensaje indicando GOODBYE.
 En ese momento el servidor vaciará y eliminará el buffer asociado con ese cliente. Si todo ha ido correctamente,
