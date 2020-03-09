@@ -233,45 +233,11 @@ class Panaderia final : public Comida {
 };
 
 
-class Menu {
-	protected:
-	int op;
-};
-
-class MenuPrin: public Menu {
-	protected:
-	void print() {
-		cout << "[1] Anadir" << endl
-		     << "[2] Listar" << endl
-		     << "[3] Eliminar" << endl;
-		cin >> op;
-		
-		switch (op) {
-			case 1:
-			break;
-			
-			case 2:
-			break;
-			
-			case 3:
-			break;
-			
-			default:
-			cout << "Opcion incorrecta" << endl;
-		}
-	}
-};
-
-class MenuAnadir : public Menu {
-	void print() {
-		
-	}
-};
 
 
 
 int main() {
-	/* ... */
+	
 	
 	return errno;
 }
