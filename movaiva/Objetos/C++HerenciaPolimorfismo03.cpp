@@ -175,6 +175,11 @@ void Elipse::imprimir()
     cout << "Area: " << calcularArea() << endl;
 }
 
+class Cuadrado:public Rectangulo
+{
+    public:
+        Cuadrado(Punto centro,char * nombre, string color, float lado):Rectangulo(centro,nombre,color,lado,lado){};
+};
 
 
 int main ()
@@ -203,6 +208,14 @@ int main ()
     e.cambiarColor("Blanco");
     e.moverForma(p1);
     e.imprimir();
+
+    Cuadrado cd(p0,"Cuadrado","Violeta",2.5);
+
+    cd.imprimir();
+    cd.cambiarColor("Azul Marino");
+    cd.moverForma(p1);
+    cd.cambiarTamano(4);
+    cd.imprimir();
     
     return 0;
 }
