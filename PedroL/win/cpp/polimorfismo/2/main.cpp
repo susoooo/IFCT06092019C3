@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <errno.h>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -98,54 +99,103 @@ class Tecnologias : Ciencias {
 	}
 };
 
+class Arch {
+	protected:
+	std::vector<Tecnologias> v_asigntecn;
+	std::vector<Ciencias> v_asigncien;
+	std::vector<Letras> v_asignletr;
+	std::vector<Musica> v_asignmusi;
+};
+
+class Gen : Arch {
+	std::string names[4] = {
+		"Tecnologias",
+		"Ciencias",
+		"Letras",
+		"Musica",
+	};
+	
+	public:
+	void gen_asign(int num) {
+		std::string nombre;
+		int id;
+		float notas[10];
+		
+		cout << names[num] << endl;
+		cout << "Nombre:" << endl;
+		cin >> nombre;
+		cout << "ID" << endl;
+		cin >> id;
+		
+		switch (num) {
+			case 0:
+			agr_notas(notas, 5);
+			gen_tecn(nombre, id, notas);
+			break;
+			
+			case 1:
+			agr_notas(notas, 5);
+			gen_cien(nombre, id, notas);
+			break;
+			
+			case 2:
+			agr_notas(notas, 10);
+			gen_letr(nombre, id, notas);
+			break;
+			
+			case 3:
+			agr_notas(notas, 1);
+			gen_musi(nombre, id, notas[0]);
+			break;
+		}
+	}
+	
+	void agr_notas(float * notas, int cuen) {
+		for (int i = 0; i < cuen; i++) {
+			cout << "Nota " << i << endl;
+			cin >> notas[i];
+		}
+	}
+	
+	/* EXAMPLE OF METHODS WORTH TEMPLATIZING, IN MY OPINION */
+	
+	void gen_tecn(std::string nombre, int id, float * notas) {
+		Tecnologias * tecnologias;
+		tecnologias = new Tecnologias(nombre, id, notas);
+		v_asigntecn.push_back(std::move(*tecnologias));
+	}
+	
+	void gen_cien(std::string nombre, int id, float * notas) {
+		Ciencias * ciencias;
+		ciencias = new Ciencias(nombre, id, notas);
+		v_asigncien.push_back(std::move(*ciencias));
+	}
+	
+	void gen_letr(std::string nombre, int id, float * notas) {
+		Letras * letras;
+		letras = new Letras(nombre, id, notas);
+		v_asignletr.push_back(std::move(*letras));
+	}
+	
+	void gen_musi(std::string nombre, int id, float notas) {
+		Musica * musica;
+		musica = new Musica(nombre, id, notas);
+		v_asignmusi.push_back(std::move(*musica));
+	}
+};
+
 int main() {
-	Tecnologias * tecnologias;
-	Ciencias * ciencias;
-	Letras * letras;
-	Musica * musica;
-	std::string nombre;
-	int id;
-	float notas[10];
+	Gen gen;
+	int op;
 	
-	cout << "Tecnologias" << endl;
-	cout << "Nombre:" << endl;
-	cin >> nombre;
-	cout << "ID" << endl;
-	cin >> id;
-	for (int i = 0; i < 5; i++) {
-		cout << "Nota " << i << endl;
-		cin >> notas[i];
-	}
-	tecnologias = new Tecnologias(nombre, id, notas);
+	cout << "Crear asignatura" << endl
+	     << "[1]Tecnologias" << endl
+	     << "[2]Ciencias" << endl
+	     << "[3]Letras" << endl
+	     << "[4]Musica" << endl;
+	cin >> op;
+	gen.gen_asign(op - 1);
 	
-	cout << "Ciencias" << endl;
-	cout << "Nombre:" << endl;
-	cin >> nombre;
-	cout << "ID" << endl;
-	cin >> id;
-	for (int i = 0; i < 5; i++) {
-		cout << "Nota " << i << endl;
-		cin >> notas[i];
-	}
-	ciencias = new Ciencias(nombre, id, notas);
-	
-	cout << "Letras" << endl;
-	cout << "Nombre:" << endl;
-	cin >> nombre;
-	cout << "ID" << endl;
-	cin >> id;
-	for (int i = 0; i < 10; i++) {
-		cout << "Nota " << i << endl;
-		cin >> notas[i];
-	}
-	letras = new Letras(nombre, id, notas);
-	
-	cout << "Musica" << endl;
-	cout << "Nombre:" << endl;
-	cin >> nombre;
-	cout << "ID" << endl;
-	cin >> id;
-	cout << "Nota" << endl;
-	cin >> notas[0];
-	musica = new Musica(nombre, id, notas[0]);
+	return errno;
+ 	//B^)<-<
 } 

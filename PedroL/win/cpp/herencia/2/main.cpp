@@ -3,7 +3,6 @@
 #include <errno.h>
 using namespace std;
 
-
 class LocalComercial {
 	protected:
 	string direccion;
@@ -234,10 +233,6 @@ class Panaderia final : public Comida {
 
 
 
-
-
 int main() {
-	
-	
 	return errno;
 }
