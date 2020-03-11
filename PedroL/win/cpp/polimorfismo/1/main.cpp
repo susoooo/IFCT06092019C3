@@ -43,7 +43,7 @@ class Radiador : Electrodomestico {
 	Radiador(float potencia, float watiosPH, int horasEncenUltCiclo) : Electrodomestico(potencia, watiosPH, horasEncenUltCiclo) {}
 	
 	float calcular_consumo() {
-		Electrodomestico::calcular_consumo();
+		return Electrodomestico::calcular_consumo();
 	}
 };
 
