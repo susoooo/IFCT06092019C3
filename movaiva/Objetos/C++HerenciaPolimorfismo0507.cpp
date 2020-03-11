@@ -1,5 +1,9 @@
 /*
-Defina una clase Cuadrado derivada de la clase Rectangulo
+Realice un programa que defina varias formas diferentes, 
+cree un array de punteros de la clase Forma que apunten 
+a los objetos creados. El programa debe realizar un bucle 
+que recorra todas las formas, las ponga todas del mismo 
+color y las mueva a una determinada posición.
 */
 
 #include <iostream>
@@ -66,12 +70,19 @@ class Forma
         char * nombre;
         string color;
     public:
+        Forma();
         Forma(Punto centro,char * nombre,string color);
-        void imprimir();
+        virtual void imprimir();
         void cambiarColor(string color);
         string obtenerColor();
         void moverForma(Punto centro);
+        float calcularArea();
 };
+
+Forma::Forma()
+{
+
+}
 
 Forma::Forma(Punto c,char * n,string clr)
 {
@@ -111,7 +122,7 @@ class Rectangulo:public Forma
         Rectangulo(Punto centro,char * nombre, string color, float ladoMenor,float ladoMayor);
         float calcularArea();
         float calcularPerimetro();
-        void imprimir();
+        virtual void imprimir();
         void cambiarTamano(float escalar);
 };
 
@@ -155,7 +166,7 @@ class Elipse:public Forma
     public:
         Elipse(Punto centro,char * nombre,string color,float radioMayor, float radioMenor);
         float calcularArea();
-        void imprimir();
+        virtual void imprimir();
 
 };
 
@@ -182,7 +193,7 @@ class Cuadrado:public Rectangulo
 {
     public:
         Cuadrado(Punto centro,char * nombre, string color, float lado):Rectangulo(centro,nombre,color,lado,lado){};
-        void imprimir();
+        virtual void imprimir();
 };
 
 void Cuadrado::imprimir()
@@ -193,41 +204,46 @@ void Cuadrado::imprimir()
     cout << "Perimetro: " << calcularPerimetro() << endl;
 }
 
+class Circulo:public Elipse
+{
+    public:
+        Circulo(Punto centro,char * nombre,string color,float radio):Elipse(centro,nombre,color,radio,radio){};
+        virtual void imprimir();
+};
+
+void Circulo::imprimir()
+{
+    Forma::imprimir();
+    cout << "Radio: " << radioMayor << endl;
+    cout << "Area: " << calcularArea() << endl;
+}
+
 
 int main ()
 {
+    
     Punto p0(0,0);
     Punto p1(2,3);
 
     Forma f(p0,"Forma","Amarillo");
 
-    f.imprimir();
-    f.cambiarColor("Rojo");
-    f.moverForma(p1);
-    f.imprimir();
-
     Rectangulo r(p0,"Rectangulo","Verde",2.5,3.5);
-
-    r.imprimir();
-    r.cambiarColor("Azul");
-    r.moverForma(p1);
-    r.cambiarTamano(2);
-    r.imprimir();
 
     Elipse e(p0,"Elipse","Negro",2.5,2);
 
-    e.imprimir();
-    e.cambiarColor("Blanco");
-    e.moverForma(p1);
-    e.imprimir();
-
     Cuadrado cd(p0,"Cuadrado","Violeta",2.5);
+    
+    Circulo cr(p0,"Circulo","Cian",3);
 
-    cd.imprimir();
-    cd.cambiarColor("Azul Marino");
-    cd.moverForma(p1);
-    cd.cambiarTamano(4);
-    cd.imprimir();
+    Forma * formas[5]={&f,&r,&e,&cd,&cr};
+
+    for(int contador=0;contador<5;contador++)
+    {
+        formas[contador]->cambiarColor("Verde");
+        formas[contador]->moverForma(p1);
+        formas[contador]->imprimir();     
+    }
+    
     
     return 0;
 }
