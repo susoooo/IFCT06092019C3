@@ -1,5 +1,5 @@
 /*
-Defina una clase Cuadrado derivada de la clase Rectangulo
+Defina una clase Circulo derivada de la clase Elipse.
 */
 
 #include <iostream>
@@ -193,6 +193,20 @@ void Cuadrado::imprimir()
     cout << "Perimetro: " << calcularPerimetro() << endl;
 }
 
+class Circulo:public Elipse
+{
+    public:
+        Circulo(Punto centro,char * nombre,string color,float radio):Elipse(centro,nombre,color,radio,radio){};
+        void imprimir();
+};
+
+void Circulo::imprimir()
+{
+    Forma::imprimir();
+    cout << "Radio: " << radioMayor << endl;
+    cout << "Area: " << calcularArea() << endl;
+}
+
 
 int main ()
 {
@@ -228,6 +242,13 @@ int main ()
     cd.moverForma(p1);
     cd.cambiarTamano(4);
     cd.imprimir();
+
+    Circulo cr(p0,"Circulo","Cian",3);
+
+    cr.imprimir();
+    cr.cambiarColor("Violeta");
+    cr.moverForma(p1);
+    cr.imprimir();
     
     return 0;
 }

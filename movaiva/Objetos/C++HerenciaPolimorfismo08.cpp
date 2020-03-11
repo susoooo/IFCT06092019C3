@@ -1,5 +1,7 @@
 /*
-Defina una clase Cuadrado derivada de la clase Rectangulo
+Desarrolle un programa que, dado un conjunto de formas, 
+calcule cuál tiene el área máxima e imprima la información 
+de dicha forma.
 */
 
 #include <iostream>
@@ -66,12 +68,19 @@ class Forma
         char * nombre;
         string color;
     public:
+        Forma();
         Forma(Punto centro,char * nombre,string color);
-        void imprimir();
+        virtual void imprimir();
         void cambiarColor(string color);
         string obtenerColor();
         void moverForma(Punto centro);
+        virtual float calcularArea();
 };
+
+Forma::Forma()
+{
+
+}
 
 Forma::Forma(Punto c,char * n,string clr)
 {
@@ -95,6 +104,11 @@ void Forma::moverForma(Punto c)
     centro=c;
 }
 
+float Forma::calcularArea()
+{
+    return 0;
+}
+
 void Forma::imprimir()
 {
     cout << "Nombre: " << nombre << endl;
@@ -109,9 +123,9 @@ class Rectangulo:public Forma
         float ladoMayor;
     public:
         Rectangulo(Punto centro,char * nombre, string color, float ladoMenor,float ladoMayor);
-        float calcularArea();
+        virtual float calcularArea();
         float calcularPerimetro();
-        void imprimir();
+        virtual void imprimir();
         void cambiarTamano(float escalar);
 };
 
@@ -154,8 +168,8 @@ class Elipse:public Forma
         float radioMenor;
     public:
         Elipse(Punto centro,char * nombre,string color,float radioMayor, float radioMenor);
-        float calcularArea();
-        void imprimir();
+        virtual float calcularArea();
+        virtual void imprimir();
 
 };
 
@@ -182,7 +196,7 @@ class Cuadrado:public Rectangulo
 {
     public:
         Cuadrado(Punto centro,char * nombre, string color, float lado):Rectangulo(centro,nombre,color,lado,lado){};
-        void imprimir();
+        virtual void imprimir();
 };
 
 void Cuadrado::imprimir()
@@ -193,41 +207,53 @@ void Cuadrado::imprimir()
     cout << "Perimetro: " << calcularPerimetro() << endl;
 }
 
+class Circulo:public Elipse
+{
+    public:
+        Circulo(Punto centro,char * nombre,string color,float radio):Elipse(centro,nombre,color,radio,radio){};
+        virtual void imprimir();
+};
+
+void Circulo::imprimir()
+{
+    Forma::imprimir();
+    cout << "Radio: " << radioMayor << endl;
+    cout << "Area: " << calcularArea() << endl;
+}
+
 
 int main ()
 {
+    
     Punto p0(0,0);
     Punto p1(2,3);
 
-    Forma f(p0,"Forma","Amarillo");
+    float areaMaxima=0;
+    int formaAreaMaxima;
 
-    f.imprimir();
-    f.cambiarColor("Rojo");
-    f.moverForma(p1);
-    f.imprimir();
+    Forma f(p0,"Forma","Amarillo");
 
     Rectangulo r(p0,"Rectangulo","Verde",2.5,3.5);
 
-    r.imprimir();
-    r.cambiarColor("Azul");
-    r.moverForma(p1);
-    r.cambiarTamano(2);
-    r.imprimir();
-
     Elipse e(p0,"Elipse","Negro",2.5,2);
 
-    e.imprimir();
-    e.cambiarColor("Blanco");
-    e.moverForma(p1);
-    e.imprimir();
-
     Cuadrado cd(p0,"Cuadrado","Violeta",2.5);
+    
+    Circulo cr(p0,"Circulo","Cian",3);
 
-    cd.imprimir();
-    cd.cambiarColor("Azul Marino");
-    cd.moverForma(p1);
-    cd.cambiarTamano(4);
-    cd.imprimir();
+    Forma * formas[5]={&f,&r,&e,&cd,&cr};
+
+    for(int contador=0;contador<5;contador++)
+    {
+            if(formas[contador]->calcularArea() > areaMaxima )
+            {
+                areaMaxima=formas[contador]->calcularArea();
+                formaAreaMaxima=contador;
+            }
+    }
+
+    formas[formaAreaMaxima]->imprimir();
+    
     
     return 0;
 }

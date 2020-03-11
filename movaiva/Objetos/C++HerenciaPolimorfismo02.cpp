@@ -143,8 +143,8 @@ float Rectangulo::calcularPerimetro()
 void Rectangulo::imprimir()
 {
     Forma::imprimir();
-    cout << "Lado: " << ladoMenor << endl;
-    cout << "Lado: " << ladoMayor << endl;
+    cout << "Lado mayor: " << ladoMayor << endl;
+    cout << "Lado menor: " << ladoMenor << endl;
     cout << "Area: " << calcularArea() << endl;
     cout << "Perimetro: " << calcularPerimetro() << endl;
 }
@@ -152,28 +152,31 @@ void Rectangulo::imprimir()
 class Elipse:public Forma
 {
     protected:
-        float radio;
+        float radioMayor;
+        float radioMenor;
     public:
-        Elipse(Punto centro,char * nombre,string color,float radio);
+        Elipse(Punto centro,char * nombre,string color,float radioMayor, float radioMenor);
         float calcularArea();
         void imprimir();
 
 };
 
-Elipse::Elipse(Punto c,char * n,string clr,float r):Forma(c,n,clr)
+Elipse::Elipse(Punto c,char * n,string clr,float rMyr,float rMnr):Forma(c,n,clr)
 {
-    radio=r;
+    radioMayor=rMyr;
+    radioMenor=rMnr;
 }
 
 float Elipse::calcularArea()
 {
-    return PI*radio*radio;
+    return PI*radioMayor*radioMenor;
 }
 
 void Elipse::imprimir()
 {
     Forma::imprimir();
-    cout << "Radio: " << radio << endl;
+    cout << "Radio mayor: " << radioMayor << endl;
+    cout << "Radio menor: " << radioMenor << endl;
     cout << "Area: " << calcularArea() << endl;
 }
 
@@ -199,7 +202,7 @@ int main ()
     r.cambiarTamano(2);
     r.imprimir();
 
-    Elipse e(p0,"Elipse","Negro",2);
+    Elipse e(p0,"Elipse","Negro",2.5,2);
 
     e.imprimir();
     e.cambiarColor("Blanco");
