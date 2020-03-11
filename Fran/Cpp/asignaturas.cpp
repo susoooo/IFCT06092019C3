@@ -19,32 +19,47 @@ public:
     }
 };
 
+asignatura::asignatura()
+{
+    nombre = "";
+    codigo = "";
+}
+
+asignatura::asignatura(string nom, string cod)
+{
+    nombre = nom;
+    codigo = cod;
+}
+
+// ---------------------------------------------------------------------
+
 class ciencias : public asignatura
 {
+protected:
     float notasCiencias[5];
 
-    ciencias():
-    ciencias(int numNotas, float nota[numNotas]);
+public:
+    ciencias();
+    ciencias(float nota[5]);
+
+    float leer_media();
 
     float calcular_media()
     {
         int contador;
         float media;
+        int totalNotas;
+
+        totalNotas = 5;
 
         media = 0.0;
 
-        if (numNotas > 5)
-        {
-            cout << endl << "Numero de notas superior al maximo, se descartan las sobrantes" << endl;
-            numNotas = 5
-        }
-
-        for (contador = 0; contador < numNotas; contador++)
+        for (contador = 0; contador < totalNotas; contador++)
         {
             media = media + notasCiencias[contador];
         }
 
-        return media / numNotas;
+        return media / totalNotas;
     }
 
 };
@@ -59,44 +74,59 @@ ciencias::ciencias()
     }
 }
 
-ciencias::ciencias(int numNotas, float nota[numNotas])
+ciencias::ciencias(float nota[5])
 {
     int contador;
 
-    for (contador = 0; contador < numNotas; contador++)
+    for (contador = 0; contador < 5; contador++)
     {
         notasCiencias[contador] = nota[contador];
     }
 }
 
+float ciencias::leer_media()
+{
+    int contador;
+    float media;
+
+    media = 0.0;
+
+    for (contador = 0; contador < 5; contador++)
+    {
+        media = media + notasCiencias[contador];
+    }
+
+    return media / 5;
+}
+
+// ---------------------------------------------------------------------
+
 class letras : public asignatura
 {
+  protected:
     float notasLetras[10];
 
+  public:
     letras();
-    letras(int numNotas, float nota[numNotas]);
+    letras(float nota[10]);
 
     float calcular_media()
     {
         int contador;
         float media;
+        int totalNotas;
 
+        totalNotas = 10;
         media = 0.0;
 
-        if (numNotas > 10)
-        {
-            cout << endl << "Numero de notas superior al maximo, se descartan las sobrantes" << endl;
-            numNotas = 10;
-        }
-
-        for (contador = 0; contador < numNotas - 1; contador++)
+        for (contador = 0; contador < totalNotas - 1; contador++)
         {
             media = media + notasLetras[contador];
         }
 
-        media = media / (numNotas - 1);
+        media = media / (totalNotas - 1);
 
-        media = media + (notasLetras[numNotas] / 2);
+        media = media + (notasLetras[totalNotas] / 2);
 
         return media;
     }
@@ -113,33 +143,37 @@ letras::letras()
     }
 }
 
-letras::letras(int numNotas, float nota[numNotas])
+letras::letras(float nota[10])
 {
     int contador;
 
-    for (contador = 0; contador < numNotas; contador++)
+    for (contador = 0; contador < 10; contador++)
     {
-        notasLetras[contador] = nota[contad];
+        notasLetras[contador] = nota[contador];
     }
 }
 
+// ---------------------------------------------------------------------
+
 class musicas : public asignatura
 {
+  protected:
     float notasMusicas;
 
+  public:
     musicas();
     musicas(float nota);
 
     float calcular_media()
     {
-        return notaMusicas;
+        return notasMusicas;
     }
 
 };
 
 musicas::musicas()
 {
-    notasMusicas = 0;
+    notasMusicas = 0.0;
 }
 
 musicas::musicas(float nota)
@@ -147,36 +181,38 @@ musicas::musicas(float nota)
     notasMusicas = nota;
 }
 
+// ---------------------------------------------------------------------
+
 class tecnologicas : public ciencias
 {
+  protected:
     float notasPracticas[5];
 
   public:
     tecnologicas();
-    tecnologicas(int numNotas, float nota[numNotas]);
+    tecnologicas(float nota[5]);
 
-    float calcular_media(int numNotas, float nota[numNotas])
+    float calcular_media()
     {
         float media;
         float mediaPracticas;
+        int contador;
+
+        int totalNotas;
+
+        totalNotas = 5;
 
         media = 0.0;
         mediaPracticas = 0.0;
 
-        media = ciencias.calcular_media() * 0.7;
+        media = ciencias:leer_media() * 0.7;
 
-        if (numNotas > totalNotas)
-        {
-            cout << endl << "Numero de notas superior al maximo, se descartan las sobrantes" << endl;
-            numNotas = 5;
-        }
-
-        for (contador = 0; contador < numNotas - 1; contador++)
+        for (contador = 0; contador < totalNotas - 1; contador++)
         {
             mediaPracticas = mediaPracticas + notasPracticas[contador];
         }
 
-        mediaPracticas = mediaPracticas / numNotas;
+        mediaPracticas = mediaPracticas / totalNotas;
 
         media = media + (mediaPracticas * 0.3);
 
@@ -195,18 +231,83 @@ tecnologicas::tecnologicas()
     }
 }
 
-tecnologicas::tecnologicas(int numNotas, float nota[numNotas])
+tecnologicas::tecnologicas(float nota[5])
 {
     int contador;
 
-    for (contador = 0; contador < numNotas; contador++)
+    for (contador = 0; contador < 5; contador++)
     {
-        notasPracticas[contador] = nota[contado];
+        notasPracticas[contador] = nota[contador];
     }
 }
 
+// ---------------------------------------------------------------------
+
 int main()
 {
+    float nota[10];
+    int contador;
+    int salir;
 
+    int totNotas;
+
+    totNotas = 0;
+    salir = 1;
+
+    cout << endl << "Introduzca las notas para la asignatura de: " << endl;
+
+    // ----------------------------------------------------------
+
+    totNotas = 5;
+    cout << endl << "Ciencias - Tecnologicas." << endl;
+    for (contador = 0; contador < totNotas; contador++)
+    {
+        cout << endl << "Introduzca la nota " << contador+1 << " : ";
+        cin >> nota[contador];
+    }
+
+    ciencias cienc(nota);
+
+    cout << endl << "Introduzca las notas de practicas." << endl;
+    for (contador = 0; contador < totNotas; contador++)
+    {
+        cout << endl << "Introduzca la nota " << contador+1 << " : ";
+        cin >> nota[contador];
+    }
+
+    tecnologicas tecnol(nota);
+
+    cout << endl << "La nota media de la asignatura de Ciencias es: " << cienc.calcular_media() << endl;
+    cout << endl << "La nota media de practicas tecnologicas es: " << tecnol.calcular_media() << endl;
+
+    // ----------------------------------------------------------
+
+    totNotas = 10;
+
+    cout << endl << "Introduzca las notas de la asignatura de Letras." << endl;
+    for (contador = 0; contador < totNotas; contador++)
+    {
+        cout << endl << "Introduzca la nota " << contador+1 << " : ";
+        cin >> nota[contador];
+    }
+
+    letras letra(nota);
+
+    cout << endl << "La nota media de la asignatura de Letras es: " << letra.calcular_media() << endl;
+
+    // ----------------------------------------------------------
+
+    totNotas = 1;
+
+    cout << endl << "Introduzca las notas de la asignatura de Musicas." << endl;
+    for (contador = 0; contador < totNotas; contador++)
+    {
+        cout << endl << "Introduzca la nota " << contador+1 << " : " << endl;
+        cin >> nota[contador];
+    }
+
+    musicas musica(nota[0]);
+
+    cout << endl << "La nota media de la asignatura de Musicas es: " << musica.calcular_media() << endl;
 
 }
