@@ -1,6 +1,5 @@
 #include <iostream>
 #include <errno.h>
-#include <vector>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -27,7 +26,7 @@ class Punto {
 };
 
 class Color {
-	char red, green, blue;
+	int red, green, blue;
 	
 	public:
 	Color() {}
@@ -37,9 +36,9 @@ class Color {
 		this->blue = blue;
 	}
 	
-	void set_red(char val) { this->red = val; }
-	void set_green(char val) { this->green = val; }
-	void set_blue(char val) { this->blue = val; }
+	void set_red(int val) { this->red = val; }
+	void set_green(int val) { this->green = val; }
+	void set_blue(int val) { this->blue = val; }
 	char get_red() { return this->red; }
 	char get_green() { return this->green; }
 	char get_blue() { return this->blue; }
@@ -59,12 +58,13 @@ class Forma {
 		coordcentr = nucoordcentr;
 	}
 	
-	void set_color(Color&& nucolor) {
+	void set_nombre(std::string nunombre) { nombre = nunombre; }
+	void set_color(Color nucolor) {
 		color.set_red(nucolor.get_red());
 		color.set_green(nucolor.get_green());
 		color.set_blue(nucolor.get_blue());
 	}
-	void mov_form(Punto&& nucoord) {
+	void set_coordcentr(Punto nucoord) {
 		coordcentr.set_x(nucoord.get_x());
 		coordcentr.set_y(nucoord.get_y());
 		coordcentr.set_z(nucoord.get_z());
@@ -72,7 +72,7 @@ class Forma {
 	
 	void print() {
 		cout << "Forma " << nombre << endl;
-		printf("red:%x green:%x blue:%x\n", color.get_red, color.get_green, color.get_blue);
+		printf("red:%x green:%x blue:%x\n", color.get_red(), color.get_green(), color.get_blue());
 		cout << "coords:" << endl
 		     << "x:" << coordcentr.get_x() << ' '
 		     << "y:" << coordcentr.get_y() << ' '
@@ -90,7 +90,10 @@ class Rect : public Forma {
 		ladomen = nuladomen;
 		ladomay = nuladomay;
 	}
-	Rect(std::string nombre, Color color, Punto coordcentr, double nuladomen, double nuladomay) : Forma(nombre, color, coordcentr) {
+	Rect(std::string nombre, Color color, Punto coordcentr, double nuladomen, double nuladomay) {
+		set_nombre(nombre);
+		set_color(color);
+		set_coordcentr(coordcentr);
 		ladomen = nuladomen;
 		ladomay = nuladomay;
 	}
@@ -110,7 +113,7 @@ class Rect : public Forma {
 	
 	void print() {
 		cout << "Rectangulo " << nombre << endl;
-		printf("red:%x green:%x blue:%x\n", color.get_red, color.get_green, color.get_blue);
+		printf("red:%x green:%x blue:%x\n", color.get_red(), color.get_green(), color.get_blue());
 		cout << "coords:" << endl
 		     << "x:" << coordcentr.get_x() << ' '
 		     << "y:" << coordcentr.get_y() << ' '
@@ -124,7 +127,10 @@ class Rect : public Forma {
 class Cuadr : public Rect {
 	public:
 	Cuadr();
-	Cuadr(double nulado) {
+	Cuadr(std::string nombre, Color color, Punto coordcentr, double nulado) {
+		set_nombre(nombre);
+		set_color(color);
+		set_coordcentr(coordcentr);
 		set_lado(nulado);
 	}
 	
@@ -137,7 +143,7 @@ class Cuadr : public Rect {
 	
 	void print() {
 		cout << "Cuadrado " << nombre << endl;
-		printf("red:%x green:%x blue:%x\n", color.get_red, color.get_green, color.get_blue);
+		printf("red:%x green:%x blue:%x\n", color.get_red(), color.get_green(), color.get_blue());
 		cout << "coords:" << endl
 		     << "x:" << coordcentr.get_x() << ' '
 		     << "y:" << coordcentr.get_y() << ' '
@@ -158,7 +164,10 @@ class Elipse : public Forma {
 		radiomen = nuradiomen;
 		radiomay = nuradiomay;
 	}
-	Elipse(std::string nombre, Color color, Punto coordcent, double nuradiomen, double nuradiomay) : Forma(nombre, color, coordcentr)  {
+	Elipse(std::string nombre, Color color, Punto coordcentr, double nuradiomen, double nuradiomay) {
+		set_nombre(nombre);
+		set_color(color);
+		set_coordcentr(coordcentr);
 		radiomen = nuradiomen;
 		radiomay = nuradiomay;
 	}
@@ -176,7 +185,7 @@ class Elipse : public Forma {
 	}
 	void print() {
 		cout << "Elipse " << nombre << endl;
-		printf("red:%x green:%x blue:%x\n", color.get_red, color.get_green, color.get_blue);
+		printf("red:%x green:%x blue:%x\n", color.get_red(), color.get_green(), color.get_blue());
 		cout << "coords:" << endl
 		     << "x:" << coordcentr.get_x() << ' '
 		     << "y:" << coordcentr.get_y() << ' '
@@ -190,7 +199,10 @@ class Elipse : public Forma {
 class Circulo : public Elipse {
 	public:
 	Circulo();
-	Circulo(double nuradio) {
+	Circulo(std::string nombre, Color color, Punto coordcentr, double nuradio) {
+		set_nombre(nombre);
+		set_color(color);
+		set_coordcentr(coordcentr);
 		set_radio(nuradio);
 	}
 	
@@ -203,7 +215,7 @@ class Circulo : public Elipse {
 	
 	void print() {
 		cout << "Circulo " << nombre << endl;
-		printf("red:%x green:%x blue:%x\n", color.get_red, color.get_green, color.get_blue);
+		printf("red:%x green:%x blue:%x\n", color.get_red(), color.get_green(), color.get_blue());
 		cout << "coords:" << endl
 		     << "x:" << coordcentr.get_x() << ' '
 		     << "y:" << coordcentr.get_y() << ' '
@@ -220,7 +232,7 @@ int main() {
 	Forma * a_forma = new Forma[10]();
 	
 	forma.set_color(Color(21, 21, 21) );
-	forma.mov_form(Punto(1, 1, 1));
+	forma.set_coordcentr(Punto(1, 1, 1));
 	forma.print();
 	
 	rect.print();
