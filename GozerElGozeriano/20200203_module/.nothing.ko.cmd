@@ -1,1 +1,0 @@
-cmd_/home/jose/Documentos/20200203_module/nothing.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/jose/Documentos/20200203_module/nothing.ko /home/jose/Documentos/20200203_module/nothing.o /home/jose/Documentos/20200203_module/nothing.mod.o ;  true
