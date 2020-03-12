@@ -4,6 +4,9 @@ de forma simplificada, a una hipotética empresa dedicada a vender
 un producto.
 
 Todos los empleados son vendedores, jefes de zona o secretarios. 
+Hacer un programa de prueba que muestre como funciona. Probar, 
+especialmente, que el método incrementar salario se comparta bien, 
+según el empleado que sea así es la subida.
 */
 
 #include <iostream>
@@ -41,10 +44,11 @@ class Empleado
         Empleado();
         Empleado(string nombre,string apellidos,string dni,string direccion, int antiguedad, string telefono,float salario);
         void incrementarSalario(float incremento);
-        void cambiarSupervisor(Empleado emp);
+        void cambiarSupervisor(Empleado *emp);
         void imprimir();
         string getNombre();
         string getApellidos();
+        string getDNI();
         
 };
 
@@ -58,10 +62,11 @@ Empleado::Empleado(string n,string a,string d,string drcc, int ant, string t,flo
     nombre=n;
     apellidos=a;
     dni=d;
-    direccion=d;
+    direccion=drcc;
     antiguedad=ant;
     telefono=t;
     salario=s;
+    cambiarSupervisor(this);
 }
 
 void Empleado::incrementarSalario(float incremento)
@@ -69,9 +74,10 @@ void Empleado::incrementarSalario(float incremento)
     salario=salario+(incremento*salario);
 }
 
-void Empleado::cambiarSupervisor(Empleado emp)
+void Empleado::cambiarSupervisor(Empleado * emp)
 {
-    supervisor=&emp;
+    supervisor=emp;
+    cout << "Cambio de supervior de " << nombre << ": " << supervisor->getDNI() << " " << supervisor->getNombre() << endl;
 }
 
 string Empleado::getNombre()
@@ -84,6 +90,11 @@ string Empleado::getApellidos()
     return apellidos;
 }
 
+string Empleado::getDNI()
+{
+    return dni;
+}
+
 void Empleado::imprimir()
 {
     cout << "DNI: " << dni << endl;
@@ -91,9 +102,10 @@ void Empleado::imprimir()
     cout << "Apellidos: " << apellidos << endl;
     cout << "Direccion: " << direccion << endl;
     cout << "Telefono: " << telefono << endl;
-    cout << "Antigüedad: " << antiguedad << endl;
+    cout << "Antiguedad: " << antiguedad << endl;
     cout << "Salario: " << salario << endl;
-    cout << "Supervisor: " << supervisor->getNombre() << " " << supervisor->getApellidos() << endl;
+    cout << "Supervisor: " << supervisor->getDNI() << " " << supervisor->getNombre() << " " << supervisor->getApellidos() << endl;
+    
 }
 /*
 2. Secretario. Tiene despacho, número de fax e incrementa su salario un 5% anual.
@@ -173,6 +185,21 @@ string Cliente::getDNI()
     return dni;
 }
 
+string Cliente::getNombre()
+{
+    return nombre;
+}
+
+void Cliente::setDNI(string dni)
+{
+    this->dni=dni;
+}
+
+void Cliente::setNombre(string nombre)
+{
+    this->nombre=nombre;
+}
+
 void Cliente::imprimir()
 {
     cout << "DNI: " << dni << endl;
@@ -220,68 +247,81 @@ class Vendedor:public Empleado
         string area;
         Cliente clientes[MAX_CLIENTES];
         float comision;
+        int cantidadClientes;
     public:
-        Vendedor(string nombre,string apellidos,string dni,string direccion, int antiguedad, string telefono,float salario,Coche coche,string movil,string area,Cliente clientes[],float comision);
+        Vendedor();
+        Vendedor(string nombre,string apellidos,string dni,string direccion, int antiguedad, string telefono,float salario,Coche coche,string movil,string area,float comision);
         void altaCliente();
         void bajaCliente();
         void cambiarCoche(Coche c);
         void imprimir();
 };
 
-Vendedor::Vendedor(string n,string a,string d,string drcc, int ant, string t,float s,Coche c,string m,string ar,Cliente cl[],float cmsn):Empleado(n,a,d,drcc,ant,t,s)
+Vendedor::Vendedor()
+{
+
+}
+
+Vendedor::Vendedor(string n,string a,string d,string drcc, int ant, string t,float s,Coche c,string m,string ar,float cmsn):Empleado(n,a,d,drcc,ant,t,s)
 {
     coche=c;
     movil=m;
     area=ar;
-    for(int contador=0;contador<MAX_CLIENTES;contador++)
-    {
-        clientes[contador]=cl[contador];
-    }
     comision=cmsn;
     incrementarSalario(0.1);
+    cantidadClientes=0;
 }
 
 void Vendedor::altaCliente()
 {
-    int cnCliente=-1;
     string dni;
     string nombre;
-    for(int contador=0;contador<MAX_CLIENTES;contador++)
+    
+    if(cantidadClientes<MAX_VENDEDORES)
     {
-        if(clientes[contador].getDNI()=="" && clientes[contador].getNombre()=="")
-        {
-            cnCliente=contador;
-        }
-    }
-    if(cnCliente==-1)
-    {
-        cout << "No hay espcacio para clientes" << endl;
-    }
-    else
-    {
+        cout << "Alta de cliente para el vendedor " << dni << endl;
         cout << "Introduzca el DNI del cliente: " << endl;
         cin >> dni;
         cout << "Introduzca el nombre del cliente: " << endl;
         cin >> nombre;
         Cliente c(dni,nombre);
-        clientes[cnCliente]=c;
+        clientes[cantidadClientes]=c;
+        cantidadClientes++;
+        
+    }
+    else
+    {
+        cout << "No hay espcacio para clientes" << endl;
     }
 }
 
 void Vendedor::bajaCliente()
 {
-    string nombre;
-    cout << "Introduzca el nombre del cliente que quiera dar de baja: " << endl;
-    cin >> nombre;
-    for(int contador=0;contador<MAX_CLIENTES;contador++)
+    int borrarCliente=-1;
+    string dni;
+    cout << "Introduzca el DNI del cliente que quiera dar de baja: " << endl;
+    cin >> dni;
+    
+    for(int contador=0;contador<cantidadClientes;contador++)
     {
-        if(clientes[contador].getNombre()==nombre)
+        if(clientes[contador].getDNI()==dni)
         {
-            clientes[contador].setDNI("");
-            clientes[contador].setNombre("");
-            contador=MAX_CLIENTES;
+            borrarCliente=contador;
         }
     }
+
+    if(borrarCliente!=-1)
+    {
+        cantidadClientes--;
+        if(borrarCliente<MAX_CLIENTES)
+        {
+            for(int contador=borrarCliente;contador<cantidadClientes;contador++)
+            {
+                clientes[contador]=clientes[contador+1];
+            }
+        }
+    }
+    
 }
 
 void Vendedor::cambiarCoche(Coche c)
@@ -297,9 +337,9 @@ void Vendedor::imprimir()
     cout << "Movil: " << movil << endl;
     cout << "Zona: " << area << endl;
     cout << "---Clientes---" << endl;
-    for(int contador=0;contador<MAX_CLIENTES;contador++)
+    for(int contador=0;contador<cantidadClientes;contador++)
     {
-        if(clientes[contador].getDNI()=="" && clientes[contador].getNombre()=="")
+        if(clientes[contador].getDNI()!="" && clientes[contador].getNombre()!="")
         {
             clientes[contador].imprimir();
         }
@@ -324,8 +364,9 @@ class Jefe:public Empleado
         Secretario secretario;
         Vendedor vendedores[MAX_VENDEDORES];
         Coche coche;
+        int cantidadVendedores;
     public:
-        Jefe(string nombre,string apellidos,string dni,string direccion, int antiguedad, string telefono,float salario,string despacho,Secretario secretario,Vendedor vendedores[],Coche coche);
+        Jefe(string nombre,string apellidos,string dni,string direccion, int antiguedad, string telefono,float salario,string despacho,Coche coche);
         void cambiarSecretario(Secretario secretario);
         void cambiarCoche(Coche c);
         void altaVendedor(Vendedor v);
@@ -333,14 +374,10 @@ class Jefe:public Empleado
         void imprimir();
 };
 
-Jefe::Jefe(string n,string a,string d,string drcc, int ant, string t,float s,string dp,Secretario sc,Vendedor v[],Coche c):Empleado(n,a,d,drcc,ant,t,s)
+Jefe::Jefe(string n,string a,string d,string drcc, int ant, string t,float s,string dp,Coche c):Empleado(n,a,d,drcc,ant,t,s)
 {
     despacho=dp;
-    secretario=sc;
-    for(int contador=0;contador<MAX_VENDEDORES;contador++)
-    {
-        vendedores[contador]=v[contador];
-    }
+    cantidadVendedores=0;    
     coche=c;
     incrementarSalario(0.2);
 }
@@ -352,7 +389,53 @@ void Jefe::cambiarCoche(Coche c)
 
 void Jefe::cambiarSecretario(Secretario s)
 {
+    secretario.cambiarSupervisor(&secretario);
     secretario=s;
+    s.cambiarSupervisor(this);
+}
+
+void Jefe::altaVendedor(Vendedor v)
+{
+    if(cantidadVendedores<MAX_VENDEDORES)
+    {
+        vendedores[cantidadVendedores]=v;
+        cantidadVendedores++;
+        v.cambiarSupervisor(this);
+    }  
+    else
+    {
+        cout << "No hay espacio para vendedores";
+    } 
+}
+
+void Jefe::bajaVendedor(Vendedor v)
+{
+    int borrarVendedor=-1;
+    for(int contador=0;contador<MAX_VENDEDORES;contador++)
+    {
+        if(vendedores[contador].getDNI()==v.getDNI())
+        {
+            borrarVendedor=contador;
+            contador=MAX_VENDEDORES;
+        }
+    }
+
+    if(borrarVendedor!=-1)
+    {        
+        cantidadVendedores--;
+        vendedores[borrarVendedor].cambiarSupervisor(&vendedores[borrarVendedor]);
+        if(borrarVendedor!=3)
+        {
+            for(int contador=borrarVendedor;contador<cantidadVendedores;contador++)
+            {
+                vendedores[contador]=vendedores[contador+1];
+            }
+        }
+    }
+    else
+    {
+        cout << "Vendedor no encontrado";
+    }
 }
 
 
@@ -361,15 +444,67 @@ void Jefe::imprimir()
     cout << "Puesto: Jefe de zona" << endl;
     Empleado::imprimir();
     cout << "Despacho: " << despacho << endl;
-    cout << "---Secretario---" << endl;
-    secretario.imprimir();
+    cout << "Secretario: " << secretario.getDNI() << " " << secretario.getNombre() << " " << secretario.getApellidos() << endl;
     cout << "---Vendedores---" << endl;
-    for(int contador=0;contador<MAX_VENDEDORES;contador++)
+    for(int contador=0;contador<cantidadVendedores;contador++)
     {
-        vendedores[contador].imprimir();
+        cout << vendedores[contador].getDNI() << " " << vendedores[contador].getNombre() << " " << vendedores[contador].getApellidos() << endl;
     }
     coche.imprimir();
+}
+
+int main ()
+{
+    Coche c1("758021CPJ","Peugeot","308");
+    Coche c2("748035XXX","Opel","Corsa");
+    Coche c3("899541MHZ","Ford","Focus");
+    Coche c4("521478KHJ","Renault","Clio");
+
+    Secretario s1("Adrian","Vilela","99999999J","Calle de la piruleta 7",0,"977202020",1200,"NO","999999999");
+    Secretario s2("Borja","Gonzalez","88888888M","Calle de la piruleta 8",2,"977303030",1500,"SI","877525156");
+
+    Vendedor v1("Manolo","Jimenez","55555555N","Calle de la piruleta 20",1,"777777777",700,c1,"650212532","Chuchelandia norte",150.6);
+    Vendedor v2("Alejandro","Varela","66666666L","Calle de la piruleta 19",5,"555555555",800,c2,"750214892","Chuchelandia sur",100.80);
+
+    Jefe j1("Antonio","Montes","33333333H","Calle de la piruleta 50",7,"555554466",2000,"SI",c3);
+
+    /*v1.altaCliente();
+    v1.altaCliente();
+    v2.altaCliente();
+
+    s1.imprimir();
+    s2.imprimir();
+    v1.imprimir();
+    v2.imprimir();
+    j1.imprimir();
+
+    v1.bajaCliente();
+
+    j1.altaVendedor(v1);
+    j1.altaVendedor(v2);
+
+    s1.imprimir();
+    s2.imprimir();
+    v1.imprimir();
+    v2.imprimir();
+    j1.imprimir();
+
+    j1.bajaVendedor(v2);
+
+    s1.imprimir();
+    s2.imprimir();
+    v1.imprimir();
+    v2.imprimir();
+    j1.imprimir();*/
+
     
+    j1.cambiarSecretario(s2);
+    s2.imprimir();
+    j1.cambiarSecretario(s1);
+    s1.imprimir();
+    
+
+    return 0;
 }
 
 

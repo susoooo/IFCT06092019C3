@@ -1,174 +1,289 @@
 #include <iostream>
 #include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
-struct coordenadas
+struct vehiculo
 {
-    int coord_X;
-    int coord_Y;
+    string matricula;
+    string marca;
+    string modelo;
 };
 
-class forma
+struct cliente
+{
+    int codigo;
+    string nombre;
+    string direccion;
+    string telefono;
+    int activo;
+};
+
+class empleado
 {
 protected:
-    int color;
-    struct coordenadas centro;
     string nombre;
+    string apellido1;
+    string apellido2;
+    string dni;
+    string direccion;
+
+    int antiguedad;
+    string telefono;
+    float salario;
+
+    // empleado * supervisor;
+    string supervisor;
 
 public:
-    forma();
-    forma(int col, struct coordenadas posicion, string nom);
+    empleado();
+    empleado(string nomb, string ape1, string ape2, string dni, string dir, float sueldo);
 
     void imprimir();
-    int obtenerColor();
-    void cambiarColor(int col);
 
-    void moverforma(struct coordenadas posicion);
+    void cambiarSuper(  );
+    void cambiarSalario(float sueldo);
+};
+
+empleado::empleado()
+{
+    cout << endl << "Introduzca datos del empleado: " << endl;
+    cout << endl << "Nombre: ";
+    cin >> nombre;
+    cout << endl << "Apellido 1: ";
+    cin >> apellido1;
+    cout << endl << "Apellido 2: ";
+    cin >> apellido2;
+    cout << endl << "Direccion: ";
+    cin >> direccion;
+    fflush(stdin);
+    cout << endl << "Telefono: ";
+    cin >> telefono;
+    cout << endl << "---------------------------------------------";
+    cout << endl << "Antiguedad: ";
+    cin >> antiguedad;
+    cout << endl << "Salario: ";
+    cin >> salario;
+    cout << endl << "Supervisor: " << endl;
+}
+
+empleado::empleado(string nomb, string ape1, string ape2, string docum, string dir, float sueldo)
+{
+    nombre = nomb;
+    apellido1 = ape1;
+    apellido2 = ape2;
+    dni = docum;
+    direccion = dir;
+    salario = sueldo;
+
+    antiguedad = 0;
+    telefono = "";
+}
+
+void empleado::imprimir()
+{
+    cout << endl << "Datos del empleado: " << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Apellidos: " << apellido1 << " " << apellido2 << endl;
+    cout << "Direccion: " << direccion << endl;
+    cout << "Telefono: " << telefono << endl;
+    cout << "---------------------------------------------" << endl;
+    cout << "Antiguedad: " << antiguedad << " -- " << "Salario: " << salario << endl;
+    cout << "Supervisor: " << endl;
+}
+
+void empleado::cambiarSuper(  )
+{
+
+}
+
+void empleado::cambiarSalario(float sueldo)
+{
+    salario = sueldo;
+}
+
+// --------------------------------------------------------------------
+
+class secretario : public empleado
+{
+protected:
+    int despacho;
+    string numFax;
+    int incremento = 5;
+
+public:
+    secretario();
+    secretario(string nomb, string ape1, string ape2, string docum, string dir, float sueldo, int oficina, string fax);
+
+    void imprimir();
 
 };
 
-forma::forma()
+secretario::secretario()
 {
-    color = 0;
-    centro.coord_X = 0;
-    centro.coord_Y = 0;
-    nombre = "";
+    cout << endl << "Introduzca datos del empleado: " << endl;
+    cout << endl << "Nombre: ";
+    cin >> nombre;
+    cout << endl << "Apellido 1: ";
+    cin >> apellido1;
+    cout << endl << "Apellido 2: ";
+    cin >> apellido2;
+    cout << endl << "Direccion: ";
+    cin >> direccion;
+    cout << endl << "Telefono: ";
+    cin >> telefono;
+    cout << endl << "---------------------------------------------";
+    cout << endl << "Antiguedad: ";
+    cin >> antiguedad;
+    cout << endl << "Salario: ";
+    cin >> salario;
+    cout << endl << "Supervisor: ";
+    cin >> supervisor;
+    cout << endl << "---------------------------------------------";
+    cout << endl << "Numero despacho: ";
+    cin >> despacho;
+    cout << endl << "Numero de fax: ";
+    cin >> numFax;
 }
 
-forma::forma(int col, struct coordenadas posicion, string nom)
+secretario::secretario(string nomb, string ape1, string ape2, string docum, string dir, float sueldo, int oficina, string fax)
 {
-    color = col;
-    centro.coord_X = posicion.coord_X;
-    centro.coord_Y = posicion.coord_Y;
-    nombre = nom;
+    nombre = nomb;
+    apellido1 = ape1;
+    apellido2 = ape2;
+    dni = docum;
+    direccion = dir;
+    salario = sueldo;
+
+    antiguedad = 0;
+    telefono = "";
+
+    despacho = oficina;
+    numFax = fax;
 }
 
-void forma::imprimir()
+void secretario::imprimir()
 {
-    cout << endl << "Nombre: " << nombre << endl;
-    cout << "Color: " << color << endl;
-    cout << "Centro: " << centro.coord_X << "," << centro.coord_Y << endl;
-}
-
-int forma::obtenerColor()
-{
-    return color;
-}
-
-void forma::cambiarColor(int col)
-{
-    color = col;
-}
-
-void forma::moverforma(struct coordenadas posicion)
-{
-    centro.coord_X = posicion.coord_X;
-    centro.coord_Y = posicion.coord_Y;
+    empleado::imprimir();
+    cout << "Puesto: Secretario" << endl;
 }
 
 // ------------------------------------------------------------------
 
-class rectangulo : public forma
+class vendedor : public empleado
 {
 protected:
-    int ladoMenor;
-    int ladoMayor;
+    struct vehiculo coche;
+    string tlfMovil;
+    int areaVentas;
+    struct cliente listaClientes[50];
+    float comision;
+
+    int ultCliente;
+
+    int incremento = 10;
 
 public:
-    rectangulo();
-    rectangulo(int lado1, int lado2);
+    vendedor();
+    vendedor(struct vehiculo coshe, string movil, int area, float porcentaje);
+
+    void cambioCoche(struct vehiculo coshe);
 
     void imprimir();
 
-    int calcArea();
-    int calcPerimetro();
-
-    void cambiarTamanio(int factor);
+    void bajaCliente(int codCliente);
+    void altaCliente(struct cliente nuevoCli);
 
 };
 
-rectangulo::rectangulo()
+vendedor::vendedor()
 {
-   ladoMenor = 0;
-   ladoMayor = 0;
+    cout << endl << "Introduzca datos del empleado: " << endl;
+    cout << endl << "Nombre: ";
+    cin >> nombre;
+    cout << endl << "Apellido 1: ";
+    cin >> apellido1;
+    cout << endl << "Apellido 2: ";
+    cin >> apellido2;
+    cout << endl << "Direccion: ";
+    cin >> direccion;
+    cout << endl << "Telefono: ";
+    cin >> telefono;
+    cout << endl << "---------------------------------------------";
+    cout << endl << "Antiguedad: ";
+    cin >> antiguedad;
+    cout << endl << "Salario: ";
+    cin >> salario;
+    cout << endl << "Supervisor: ";
+    cin >> supervisor;
+    cout << endl << "---------------------------------------------";
+    cout << endl << "Marca coche: ";
+    cin >> coche.marca;
+    cout << endl << "Modelo: ";
+    cin >> coche.modelo;
+    cout << endl << "Matricula: ";
+    cin >> coche.matricula;
+
 }
 
-rectangulo::rectangulo(int lado1, int lado2)
+vendedor::vendedor(struct vehiculo coshe, string movil, int area, float porcentaje)
 {
-    if (lado1 > lado2)
+    coche.marca = coshe.marca;
+    coche.matricula = coshe.matricula;
+    coche.modelo = coshe.modelo;
+
+    tlfMovil = movil;
+
+    areaVentas = area;
+
+    comision = porcentaje;
+}
+
+void vendedor::cambioCoche(struct vehiculo coshe)
+{
+    coche.marca = coshe.marca;
+    coche.matricula = coshe.matricula;
+    coche.modelo = coshe.modelo;
+}
+
+void vendedor::imprimir()
+{
+    empleado::imprimir();
+    cout << "Puesto: Vendedor" << endl;
+}
+
+void vendedor::bajaCliente(int codCliente)
+{
+    int contador;
+
+    for (contador =0; contador < ultCliente; contador++)
     {
-        ladoMenor = lado2;
-        ladoMayor = lado1;
+        if (listaClientes[contador].codigo == codCliente)
+        {
+            listaClientes[contador].activo = 0;
+        }
     }
-    else
-    {
-        ladoMenor = lado1;
-        ladoMayor = lado2;
-    }
+
 }
 
-void rectangulo::imprimir()
+void vendedor::altaCliente(struct cliente nuevoCli)
 {
-    forma:imprimir();
-    cout << "Lado menor: " << ladoMenor << endl;
-    cout << "Lado mayor: " << ladoMayor << endl;
+    ultCliente++;
+
+    listaClientes[ultCliente] = nuevoCli;
+    listaClientes[ultCliente].activo = 1;
 }
 
-int rectangulo::calcArea()
-{
-    return ladoMayor * ladoMenor;
-}
+// -------------------------------------------------------------------
 
-int rectangulo::calcPerimetro()
-{
-    return (ladoMayor * 2) + (ladoMenor * 2);
-}
-
-void rectangulo::cambiarTamanio(int factor)
-{
-    ladoMenor = ladoMenor * factor;
-    ladoMayor = ladoMayor * factor;
-}
-
-// ---------------------------------------------------------------------------
-
+// -------------------------------------------------------------------
 
 int main()
 {
-    struct coordenadas posi;
 
-    forma cosa1;
+    empleado currito1;
 
-    cosa1.imprimir();
-    cosa1.moverforma(7,4);
-
-    posi.coord_X = 9;
-    posi.coord_Y = 7;
-
-    forma cosa2(6, posi, "cosa2");
-
-    cosa2.imprimir();
-
-    posi.coord_X = 5;
-    posi.coord_Y = 2;
-
-    cosa2.moverforma(posi);
-
-    cosa2.imprimir()
-
-    rectangulo rectang1();
-
-    rectangulo rectang2(7, 4);
-
-    rectang2.imprimir();
-
-    cout << endl << "Area: " << rectang2.calcArea() << endl;
-    cout << endl << "Perimetro: " << rectang2.calcPerimetro() << endl;
-
-    rectang2.cambiarColor(3);
-
-    rectang2.imprimir();
-
-
+    currito1.imprimir();
 }

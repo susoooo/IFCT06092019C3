@@ -80,6 +80,7 @@ protected:
 public:
     rectangulo();
     rectangulo(int lado1, int lado2);
+    rectangulo(int lado1, int lado2, int col, string nomb);
 
     void imprimir();
 
@@ -108,6 +109,23 @@ rectangulo::rectangulo(int lado1, int lado2)
         ladoMenor = lado1;
         ladoMayor = lado2;
     }
+}
+
+rectangulo::rectangulo(int lado1, int lado2, int col, string nomb)
+{
+    if (lado1 > lado2)
+    {
+        ladoMenor = lado2;
+        ladoMayor = lado1;
+    }
+    else
+    {
+        ladoMenor = lado1;
+        ladoMayor = lado2;
+    }
+
+    color = col;
+    nombre = nomb;
 }
 
 void rectangulo::imprimir()
@@ -187,14 +205,59 @@ public:
     cuadrado();
     cuadrado(int lado);
 
+    float calcularArea();
+    float calcularPerimetro();
 };
+
+cuadrado::cuadrado()
+{
+    lado = 0;
+}
+
+cuadrado::cuadrado(int lados)
+{
+    lado = lados;
+}
+
+float cuadrado::calcularArea()
+{
+    return lado * lado;
+}
+
+float cuadrado::calcularPerimetro()
+{
+    return lado * 4;
+}
 
 // ---------------------------------------------------------------------------
 
 class circulo : public elipse
 {
+protected:
+    float radio;
+
+public:
+    circulo();
+    circulo(float rad);
+
+    float calcularArea();
 
 };
+
+circulo::circulo()
+{
+    radio = 0.0;
+}
+
+circulo::circulo(float rad)
+{
+    radio = rad;
+}
+
+float circulo::calcularArea()
+{
+    return PI * (radio * radio);
+}
 
 // ---------------------------------------------------------------------------
 
@@ -230,7 +293,7 @@ int main()
     posi.coord_X = 5;
     posi.coord_Y = 2;
 
-    rectangulo rectang2(7, 4);
+    rectangulo rectang2(7, 4, 6, "Rectang2");
 
     rectang2.imprimir();
 
@@ -238,6 +301,7 @@ int main()
     cout << endl << "Perimetro: " << rectang2.calcPerimetro() << endl;
 
     rectang2.cambiarColor(3);
+    rectang2.moverforma(posi);
 
     rectang2.imprimir();
 
