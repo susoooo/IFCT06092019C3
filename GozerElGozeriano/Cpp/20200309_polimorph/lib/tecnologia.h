@@ -7,58 +7,49 @@ Crea una clase Tecnologicas, heredera de la clase ciencias, que tendrá 5 notas 
 Crea un programa que pida al usuario los datos para 1 asignatura Tecnológica, una de ciencias, una de letras, y una de música y que imprima las notas medias.
 */
 
-#ifndef ASIGNATURA_H
-#define ASIGNATURA_H
+#ifndef Tecnologia_H
+#define Tecnologia_H
 
 #include <iostream>
-#define NOTASCIENCIAS 5
-#define NOTASLETRAS 10
-#define NOTASMUSICA 1
-#define NOTASTECNO 5
+#include "ciencias.h"
+
+#define NOTASPRACTICAS 5
 
 using namespace std;
 
-class Asignatura
+class Tecnologia : public Ciencias
 {
 	protected:
-	const char * nombre;
-	int id;
+	float notaspracticas[NOTASPRACTICAS];
 	
 	public:
-	Asignatura(void);
-	Asignatura(const char * name, int id);
-	int getnumNotas(void);
-	void setname(const char * name);
-	void setID(int newID);
+	Tecnologia(void);
+	void setNota(int position, float nota, bool practica);
 	float getNotamedia(void);
 	void print(void);
 };
 
-Asignatura::Asignatura(void)
+Tecnologia::Tecnologia(void)
 {
-	this->nombre = "";
-	this->id = 0;	
+	int n;
+	for(n=0;n<NOTASCIENCIAS;n++) this->notas[n]=0.0f;
 }
 
-Asignatura::Asignatura(const char * name, int id)
+void Tecnologia::setNota(int position, float nota, bool practica)
 {
-	this->nombre = name;
-	this->id = id;
+	if(practica)
+		this->notaspracticas[position]=nota;
+	else
+		this->notas[position]=nota;
 }
 
-void Asignatura::setname(const char * name)
+float Tecnologia::getNotamedia(void)
 {
-	this->nombre = name;
-}
-
-void Asignatura::setID(int newID)
-{
-	this->id = id;
-}
-
-float Asignatura::getNotamedia(void)
-{
-	return(10);
+	int n;
+	float total;
+	total = 0.0f;
+	for(n=0;n<NOTASPRACTICAS;n++) total+=this->notaspracticas[n];
+	return((total/(float)NOTASPRACTICAS)*30.0f/100.0f+(Ciencias::getNotamedia()*70.0f/100.0f));
 }
 
 #endif
