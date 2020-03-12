@@ -30,10 +30,12 @@ class Electro{
 // Constructores:
 
 Electro::Electro(){
-cout << "Constructor sin parámetros" << endl;
+	Vaciar();
+	cout << "Constructor sin parámetros de Electro" << endl;
 }
 
 Electro::~Electro(){
+	Vaciar();
 	cout << "Soy el destructor del Electro" << endl;
 }
 
@@ -49,23 +51,18 @@ Electro::Electro(float p, float cons, float hor){
 void Electro::setPotencia(float p){
 	potencia=p;
 }
-
 void Electro::setConsumo_hora(float cons){
 	consumo_hora= cons;
 }
-
 void Electro::setHoras_on(float hor){
 	horas_on= hor;
 }
-
 float Electro::getPotencia(){
 	return potencia;
 }
-
 float Electro::getConsumo_hora(){
 	return consumo_hora;
 }
-
 float Electro::getHoras_on(){
 	return horas_on;
 }
@@ -83,10 +80,11 @@ void Electro::CalcularConsumo(){
 	consumo= potencia * consumo_hora * horas_on;
 	cout << consumo << " Kwh" << endl;
 }
-
-class Lavadora: public Electro{
+// Clase Lavadora hija de la clase Electro
+class Lavadora:public Electro{
 	
 	public:
+	Lavadora();
 	Lavadora(float p, float cons, float hor):Electro(p, cons, hor){}
 	~Lavadora(){
 	cout << "Soy el destructor de la lavadora" << endl;
@@ -94,20 +92,30 @@ class Lavadora: public Electro{
 	void CalcularConsumo();
 };
 
+Lavadora::Lavadora(){
+cout << "Constructor sin parámetros de Lavadora" << endl;
+}
+
 void Lavadora::CalcularConsumo(){
 	float consumo;
 	consumo= (potencia/2) * consumo_hora * horas_on;
 	cout << consumo << " Kwh" << endl;
 }
 
+// Clase Nevera hija de la clase Electro
 class Nevera:public Electro{
 	public:
-	Nevera(float p, float cons, float hor):Electro( p, cons, hor){}
+	Nevera();
+	Nevera(float p, float cons, float hor):Electro(p, cons, hor){}
 	~Nevera(){
 	cout << "Soy el destructor de la nevera" << endl;
 	}
 	void CalcularConsumo();
 };
+
+Nevera::Nevera(){
+cout << "Constructor sin parámetros de Nevera" << endl;
+}
 
 void Nevera::CalcularConsumo(){
 	float consumo;
@@ -115,13 +123,20 @@ void Nevera::CalcularConsumo(){
 	cout << consumo << " Kwh" << endl;
 }
 
+// Clase Radiador hija de la clase Electro
 class Radiador:public Electro{
 	public:
-	Radiador(float p, float cons, float hor):Electro( p, cons, hor){}
+	Radiador();
+	Radiador(float p, float cons, float hor):Electro(p, cons, hor){}
 	~Radiador(){
 	cout << "Soy el destructor del radiador" << endl;
 	}
 };
+
+Radiador::Radiador(){
+cout << "Constructor sin parámetros de Radiador" << endl;
+}
+
 
 int main() {
 /*
@@ -138,7 +153,6 @@ float pot=0;
 float cons=0;
 float hor=0;
 Lavadora lav[3];
-Nevera nev[3];
 Radiador rad[3];
 
 for(int i=1; i<=3; i++){
@@ -152,17 +166,20 @@ lav[i].setHoras_on(hor);
 lav[i].CalcularConsumo();
 
 cout << "Introduce los datos de la nevera " << i << endl;
-cin >> "%f " >> &pot >> "%f " >> &cons >> "%f" >> &hor >> endl;
-nev[i].setPotencia=pot;
-nev[i].setConsumo_hora=cons;
-nev[i].setHoras_on=hor;
+cin >> pot;
+cin >> cons;
+cin >> hor;
+Nevera nev(pot,cons,hor);
+nev.CalcularConsumo();
 
 cout << "Introduce los datos del radiador " << i << endl;
-cin >> "%f " >> &pot >> "%f " >> &cons >> "%f" >> &hor >> endl;
-rad[i].setPotencia=pot;
-rad[i].setConsumo_hora=cons;
-rad[i].setHoras_on=hor;
-
+cin >> pot;
+cin >> cons;
+cin >> hor;
+rad[i].setPotencia(pot);
+rad[i].setConsumo_hora(cons);
+rad[i].setHoras_on(hor);
+rad[i].CalcularConsumo();
 }
 
 return(0);

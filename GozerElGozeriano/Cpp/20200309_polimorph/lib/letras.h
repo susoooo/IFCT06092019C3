@@ -7,58 +7,44 @@ Crea una clase Tecnologicas, heredera de la clase ciencias, que tendrá 5 notas 
 Crea un programa que pida al usuario los datos para 1 asignatura Tecnológica, una de ciencias, una de letras, y una de música y que imprima las notas medias.
 */
 
-#ifndef ASIGNATURA_H
-#define ASIGNATURA_H
+#ifndef LETRAS_H
+#define LETRAS_H
 
 #include <iostream>
-#define NOTASCIENCIAS 5
-#define NOTASLETRAS 10
-#define NOTASMUSICA 1
-#define NOTASTECNO 5
+#include "asignatura.h"
 
 using namespace std;
 
-class Asignatura
+class Letras : public Asignatura
 {
 	protected:
-	const char * nombre;
-	int id;
+	float notas[NOTASLETRAS];
 	
 	public:
-	Asignatura(void);
-	Asignatura(const char * name, int id);
-	int getnumNotas(void);
-	void setname(const char * name);
-	void setID(int newID);
+	Letras(void);
+	void setNota(int position, float nota);
 	float getNotamedia(void);
 	void print(void);
 };
 
-Asignatura::Asignatura(void)
+Letras::Letras(void)
 {
-	this->nombre = "";
-	this->id = 0;	
+	int n;
+	for(n=0;n<NOTASLETRAS;n++) this->notas[n]=0.0f;
 }
 
-Asignatura::Asignatura(const char * name, int id)
+void Letras::setNota(int position, float nota)
 {
-	this->nombre = name;
-	this->id = id;
+	this->notas[position]=nota;
 }
 
-void Asignatura::setname(const char * name)
+float Letras::getNotamedia(void)
 {
-	this->nombre = name;
-}
-
-void Asignatura::setID(int newID)
-{
-	this->id = id;
-}
-
-float Asignatura::getNotamedia(void)
-{
-	return(10);
+	int n;
+	float total;
+	total = 0.0f;
+	for(n=0;n<NOTASLETRAS-1;n++) total+=this->notas[n];
+	return(((total/(float)NOTASLETRAS-1)/2.0f)+(notas[NOTASLETRAS]/2.0f));
 }
 
 #endif
