@@ -131,6 +131,7 @@ class Gen : Arch {
 			case 0:
 			agr_notas(notas, 5);
 			gen_tecn(nombre, id, notas);
+			cout << v_asigntecn.at(0).get_nota_media();
 			break;
 			
 			case 1:
@@ -160,26 +161,22 @@ class Gen : Arch {
 	/* EXAMPLE OF METHODS WORTH TEMPLATIZING, IN MY OPINION */
 	
 	void gen_tecn(std::string nombre, int id, float * notas) {
-		Tecnologias * tecnologias;
-		tecnologias = new Tecnologias(nombre, id, notas);
+		Tecnologias * tecnologias = new Tecnologias(nombre, id, notas);
 		v_asigntecn.push_back(std::move(*tecnologias));
 	}
 	
 	void gen_cien(std::string nombre, int id, float * notas) {
-		Ciencias * ciencias;
-		ciencias = new Ciencias(nombre, id, notas);
+		Ciencias * ciencias = new Ciencias(nombre, id, notas);
 		v_asigncien.push_back(std::move(*ciencias));
 	}
 	
 	void gen_letr(std::string nombre, int id, float * notas) {
-		Letras * letras;
-		letras = new Letras(nombre, id, notas);
+		Letras * letras = new Letras(nombre, id, notas);
 		v_asignletr.push_back(std::move(*letras));
 	}
 	
 	void gen_musi(std::string nombre, int id, float notas) {
-		Musica * musica;
-		musica = new Musica(nombre, id, notas);
+		Musica * musica = new Musica(nombre, id, notas);
 		v_asignmusi.push_back(std::move(*musica));
 	}
 };

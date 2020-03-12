@@ -241,6 +241,7 @@ int main() {
 	
 	for (int i = 0; i < 10; i++) {
 		a_forma[i].set_color(Color(21, 21, 21) );
+		a_forma[i].set_coordcentr(Punto(i, i, 0.0));
 	}
 	
 	return errno;

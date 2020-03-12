@@ -9,10 +9,14 @@ class Electrodomestico {
 	int horasEncenUltCiclo;
 	
 	public:
-	Electrodomestico(float potencia, float watiosPH, int horasEncenUltCiclo) {
-		this->potencia = potencia;
-		this->watiosPH = watiosPH;
-		this->horasEncenUltCiclo = potencia;
+	Electrodomestico(float nuPotencia, float nuWatiosPH, int nuHorasEncenUltCiclo) {
+		potencia = nuPotencia;
+		watiosPH = nuWatiosPH;
+		horasEncenUltCiclo = nuHorasEncenUltCiclo;
+		
+		cout << "Potencia: " << potencia << endl
+		     << "Watios por hora " << watiosPH << endl
+		     << "Horas encendido desde ultimo ciclo: " << horasEncenUltCiclo << endl;
 	}
 	
 	float calcular_consumo() {
@@ -54,7 +58,7 @@ int main() {
 	float potencia, watiosPH;
 	int horasEncenUltCiclo;
 	
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 1; i++) {
 		cout << "Potencia" << endl;
 		cin >> potencia;
 		cout << "Watios por hora" << endl;
@@ -64,7 +68,7 @@ int main() {
 		lavadora[i] = new Lavadora(potencia, watiosPH, horasEncenUltCiclo);
 	}
 	
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 1; i++) {
 		cout << "Potencia" << endl;
 		cin >> potencia;
 		cout << "Watios por hora" << endl;
@@ -74,7 +78,7 @@ int main() {
 		nevera[i] = new Nevera(potencia, watiosPH, horasEncenUltCiclo);
 	}
 	
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 1; i++) {
 		cout << "Potencia" << endl;
 		cin >> potencia;
 		cout << "Watios por hora" << endl;
