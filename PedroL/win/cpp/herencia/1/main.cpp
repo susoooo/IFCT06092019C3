@@ -70,7 +70,7 @@ class Asalariado : public Persona {
 	float sueldo, retenc;
 	
 	public:
-	Asalariado();
+	Asalariado() {}
 	Asalariado(float nusueldo, float nuretenc) {
 		set_sueldo(nusueldo);
 		set_retenc(nuretenc);
@@ -103,10 +103,10 @@ class Medico : public Asalariado {
 
 
 int main() {
-	Persona * pers1 = new Persona(34301414);
-	Asalariado * asal1 = new Asalariado();
+	Persona pers1(34301414);
+	Asalariado asal1();
 	Asalariado * asalv = new Asalariado[2]();
-	Medico * doc = new Medico();
+	Medico doc();
 	
 	return errno;
 }
