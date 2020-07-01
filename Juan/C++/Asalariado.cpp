@@ -7,12 +7,10 @@ struct Fecha{
 	int dia;
 	int mes;
 	int ano;
-	
 };
 
 class Persona{
 	int edad;
-	char dni[10];
 	char nombre[30];
 	char primer_apellido[50];
 	char segundo_apellido[50];
@@ -27,10 +25,11 @@ class Persona{
 	Persona(char *p_a, char *s_a);
 	Persona(char *nom, int e);
 	Persona(char *dni2, char *p_a, char *s_a);
-	Persona(int e, char *dni2, char *nom, char *p_a, char *s_a, char *l_n, 
-	char *p_n, struct Fecha f_n);
+	Persona(int e, char *dni2, char *nom, char *p_a, char *s_a, 
+	char *l_n, char *p_n, struct Fecha f_n);
 	~Persona();
 	
+	char dni[10];
 	// Métodos set y get
 	void setEdad(int e);
 	void setDni(char *dni2);
@@ -51,8 +50,8 @@ class Persona{
 
 	// Métodos
 	void MostrarPersona();
-	void ModificarPersona(int e, char *dni2, char *nom, char *p_a, char *s_a,
-	char *l_n, char *p_n, struct Fecha f_n);
+	void ModificarPersona(int e, char *dni2, char *nom,
+	char *p_a, char *s_a, char *l_n, char *p_n, struct Fecha f_n);
 	void Vaciar();
 };
 
@@ -64,7 +63,7 @@ cout << "Constructor sin parámetros" << endl;
 }
 
 Persona::~Persona(){
-	cout << "Soy el destructor" << endl;
+	cout << "Soy el destructor " << nombre << " " << primer_apellido << " "<< segundo_apellido << endl;
 }
 
 Persona::Persona(char *c){
@@ -91,8 +90,8 @@ Persona::Persona(char *dni2, char *p_a, char *s_a){
 	strcpy(segundo_apellido, s_a);
 }
 
-Persona::Persona(int e, char *dni2, char *nom, char *p_a, char *s_a, char *l_n,
- char *p_n, struct Fecha f_n){
+Persona::Persona(int e, char *dni2, char *nom, char *p_a,
+ char *s_a, char *l_n, char *p_n, struct Fecha f_n){
 	Vaciar();
 	edad=e;
 	strcpy(dni, dni2);
@@ -185,8 +184,8 @@ void Persona::ModificarPersona(int e, char *dni2, char *nom, char *p_a,
 
 void Persona::MostrarPersona(){
 	
-	cout << edad << dni << nombre << primer_apellido <<
-	segundo_apellido << lugar_nacimiento <<
+	cout << edad <<  dni <<  nombre << primer_apellido 
+	<< segundo_apellido << lugar_nacimiento <<
 	pais_nacimiento << fecha_nacimiento.dia << endl;
 }
 
@@ -204,34 +203,56 @@ void Persona::Vaciar(){
 }
 
 class Asalariado: public Persona{
+
 	//Constructor
 	public:
-	Asalariado(char *dni2, float s);
+	Asalariado();
+	Asalariado(char *dni2, float s, float retencion);
+	Asalariado(char *dni2, float s, float retencion, float sueldo_neto);
 	
 	// Métodos
 	void setSueldo(float s);
-	void setNeto_mes(float n_m);
+	void setSueldo_neto(float n_m);
 	void setRetencion(float ret);
 	float getSueldo();
-	float getNeto_mes();
+	float getSueldo_neto();
 	float getRetencion();
 	float calcularSueldo_neto();
 	
 	protected:
 	float sueldo;
-	float neto_mes;
+	float sueldo_neto;
 	float retencion;
+	
 };
+
+Asalariado::Asalariado(){
+	Vaciar();
+}
+
+Asalariado::Asalariado(char *dni2, float s, float ret){
+	strcpy(dni, dni2);
+	sueldo=s;
+	retencion=ret;
+}
+
+
+Asalariado::Asalariado(char *dni2, float s, float ret, float s_n){
+	strcpy(dni, dni2);
+	sueldo=s;
+	retencion=ret;
+	sueldo_neto=s_n;
+}
 
 void Asalariado::setSueldo(float s){
 	sueldo=s;
 }
 
-void Asalariado::setNeto_mes(float n_m){
-	neto_mes=n_m;
+void Asalariado::setSueldo_neto(float s_n){
+	sueldo_neto=s_n;
 }
 
-void Persona::setRetencion(float ret){
+void Asalariado::setRetencion(float ret){
 	retencion=ret;
 }
 
@@ -239,8 +260,8 @@ float Asalariado::getSueldo(){
 	return sueldo;
 }
 
-float Asalariado::getNeto_mes(){
-	return neto_mes;
+float Asalariado::getSueldo_neto(){
+	return sueldo_neto;
 }
 
 float Asalariado::getRetencion(){
@@ -257,14 +278,18 @@ float Asalariado::calcularSueldo_neto(){
 }
 
 int main() {
-Persona Suso("34563534G");
-Suso.MostrarPersona();
+	struct Fecha f;
+	f.dia=12;
+	f.mes=12;
+	f.ano=2002;
+Persona Juan(47,"34563534G", "Juan", "Rodriguez", "Soto", "Lugo", "España", f);
+Juan.MostrarPersona();
 Persona Fran("Lopez ", "Gonzalez");
 Fran.MostrarPersona();
 Persona Jose("33327474J ", "Vila ", "Arias ");
 Jose.MostrarPersona();
-Asalariado Juan("33222111D");
-cout << Juan.calcularSueldo_neto("33222111D", 800, 21) << endl;
+Asalariado Suso("33222111D", 900, 21);
+cout << Suso.calcularSueldo_neto() << endl;
 
 return(0);
 }

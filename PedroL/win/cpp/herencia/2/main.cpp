@@ -3,6 +3,11 @@
 #include <errno.h>
 using namespace std;
 
+class App {
+	protected:
+	Menu menu;
+	Archivo archivo;
+};
 
 class LocalComercial {
 	protected:
@@ -29,7 +34,7 @@ class Tienda : public LocalComercial {
 	
 	public:
 	Tienda();
-	Tienda(float metrosfach) {
+	Tienda(string direccion, float metroscuadr, float preciomc, float metrosfach) : LocalComercial(direccion, metroscuadr, preciomc) {
 		this->metrosfach = metrosfach;
 	}
 	
@@ -42,7 +47,7 @@ class Hosteleria : public LocalComercial {
 	
 	public:
 	Hosteleria();
-	Hosteleria(time_t tiempabierto) {
+	Hosteleria(string direccion, float metroscuadr, float preciomc, time_t tiempabierto) : LocalComercial(direccion, metroscuadr, preciomc) {
 		this->tiempabierto = tiempabierto;
 	}
 	
@@ -55,7 +60,7 @@ class Ropa : public Tienda {
 	
 	public:
 	Ropa();
-	Ropa(bool probadores, bool aseos) {
+	Ropa(string direccion, float metroscuadr, float preciomc, float metrosfach, bool probadores, bool aseos) : Tienda(direccion, metroscuadr, preciomc, metrosfach) {
 		this->probadores = probadores;
 		this->aseos = aseos;
 	}
@@ -70,7 +75,7 @@ class Comida : public Tienda {
 	
 	public:
 	Comida();
-	Comida(int liniales, int cajas) {
+	Comida(string direccion, float metroscuadr, float preciomc, float metrosfach, int liniales, int cajas) : Tienda(direccion, metroscuadr, preciomc, metrosfach) {
 		this->liniales = liniales;
 		this->cajas = cajas;
 	}
@@ -85,7 +90,7 @@ class Ferreteria final : public Tienda {
 	
 	public:
 	Ferreteria();
-	Ferreteria(float almacenmc) {
+	Ferreteria(string direccion, float metroscuadr, float preciomc, float metrosfach, float almacenmc) : Tienda(direccion, metroscuadr, preciomc, metrosfach)  {
 		this->almacenmc = almacenmc;
 	}
 	
@@ -98,7 +103,7 @@ class Drogueria final : public Tienda {
 	
 	public:
 	Drogueria();
-	Drogueria(bool biohazard) {
+	Drogueria(string direccion, float metroscuadr, float preciomc, float metrosfach, bool biohazard) : Tienda(direccion, metroscuadr, preciomc, metrosfach)  {
 		this->biohazard = biohazard;
 	}
 	
@@ -111,7 +116,7 @@ class Bar final : public Hosteleria {
 	
 	public:
 	Bar();
-	Bar(int barras) {
+	Bar(string direccion, float metroscuadr, float preciomc, time_t tiempabierto, int barras) : Hosteleria(direccion, metroscuadr, preciomc, tiempabierto) {
 		this->barras = barras;
 	}
 	
@@ -125,7 +130,7 @@ class Restaurante final : public Hosteleria {
 	
 	public:
 	Restaurante();
-	Restaurante(int mesas, float comedormc, float cocinamc) {
+	Restaurante(string direccion, float metroscuadr, float preciomc, time_t tiempabierto, int mesas, float comedormc, float cocinamc) : Hosteleria(direccion, metroscuadr, preciomc, tiempabierto) {
 		this->mesas = mesas;
 		this->comedormc = comedormc;
 		this->cocinamc = cocinamc;
@@ -142,7 +147,7 @@ class ParaLlevar final : public Hosteleria {
 	
 	public:
 	ParaLlevar();
-	ParaLlevar(bool cocina, bool planevac) {
+	ParaLlevar(string direccion, float metroscuadr, float preciomc, time_t tiempabierto, bool cocina, bool planevac) : Hosteleria(direccion, metroscuadr, preciomc, tiempabierto) {
 		this->cocina = cocina;
 		this->planevac = planevac;
 	}
@@ -157,7 +162,7 @@ class Camiseria final : public Ropa {
 	
 	public:
 	Camiseria();
-	Camiseria(bool amedida) {
+	Camiseria(string direccion, float metroscuadr, float preciomc, float metrosfach, bool probadores, bool aseos, bool amedida) : Ropa(direccion, metroscuadr, preciomc, metrosfach, probadores, aseos) {
 		this->amedida = amedida;
 	}
 	
@@ -170,7 +175,7 @@ class Merceria final : public Ropa {
 	
 	public:
 	Merceria();
-	Merceria(int mostradores) {
+	Merceria(string direccion, float metroscuadr, float preciomc, float metrosfach, bool probadores, bool aseos, int mostradores) : Ropa(direccion, metroscuadr, preciomc, metrosfach, probadores, aseos) {
 		this->mostradores = mostradores;
 	}
 	
@@ -183,7 +188,7 @@ class Sombreria final : public Ropa {
 	
 	public:
 	Sombreria();
-	Sombreria(int expositores) {
+	Sombreria(string direccion, float metroscuadr, float preciomc, float metrosfach, bool probadores, bool aseos, int expositores) : Ropa(direccion, metroscuadr, preciomc, metrosfach, probadores, aseos) {
 		this->expositores = expositores;
 	}
 	
@@ -196,7 +201,7 @@ class Fruteria final : public Comida {
 	
 	public:
 	Fruteria();
-	Fruteria(bool frigorifica) {
+	Fruteria(string direccion, float metroscuadr, float preciomc, float metrosfach, int liniales, int cajas, bool frigorifica) : Comida(direccion, metroscuadr, preciomc, metrosfach, liniales, cajas) {
 		this->frigorifica = frigorifica;
 	}
 	
@@ -209,7 +214,7 @@ class Carniceria final : public Comida {
 	
 	public:
 	Carniceria();
-	Carniceria(int frigorificos) {
+	Carniceria(string direccion, float metroscuadr, float preciomc, float metrosfach, int liniales, int cajas, int frigorificos) : Comida(direccion, metroscuadr, preciomc, metrosfach, liniales, cajas) {
 		this->frigorificos = frigorificos;
 	}
 	
@@ -223,7 +228,7 @@ class Panaderia final : public Comida {
 	
 	public:
 	Panaderia();
-	Panaderia(bool cafeteria, int armarios) {
+	Panaderia(string direccion, float metroscuadr, float preciomc, float metrosfach, int liniales, int cajas, int armarios) : Comida(direccion, metroscuadr, preciomc, metrosfach, liniales, cajas) {
 		this->cafeteria = cafeteria;
 		this->armarios = armarios;
 	}
@@ -232,46 +237,150 @@ class Panaderia final : public Comida {
 	int get_armarios() { return armarios; }
 };
 
-
-class Menu {
-	protected:
-	int op;
+class Archivo {
+	std::vector<Camiseria>vCamiserias;
+	std::vector<Merceria>vMercerias;
+	std::vector<Sombreria>vSombrerias;
+	std::vector<Fruteria>vFruterias;
+	std::vector<Carniceria>vCarnicerias;
+	std::vector<Panaderia>vPanaderias;
+	std::vector<Ferreteria>vFerreterias;
+	std::vector<Drogueria>vDroguerias;
+	std::vector<Bar>vBares;
+	std::vector<Restaurante>vRestaurantes;
+	std::vector<ParaLlevar>vParaLlevar;
+	
+	std::string labels[10] = {
+		"Camiseria",
+		"Merceria",
+		"Sombreria"
+		"Fruteria",
+		"Carniceria",
+		"Panaderia",
+		"Ferreteria",
+		"Drogueria",
+		"Bares",
+		"Restaurantes",
+		"Para LLevar",
+	};
+	enum Nlabels {
+		CAMISERIA,
+		MERCERIA,
+		SOMBRERIA,
+		FRUTERIA,
+		CARNICERIA,
+		PANADERIA,
+		FERRETERIA,
+		DROGUERIA,
+		BARES,
+		RESTUARIANTES,
+		PARALLEVAR,
+	};
+	
+	public:
+	void inter_anadir () {
+		int i, op;
+		string direccion;
+		float metroscuadr;
+		float preciomc;
+		i = 0;
+		
+		for (auto x: labels) {
+			cout << i++ << ". " << x << endl;
+		}
+		cout << endl;
+		
+		do {
+			cin >> op;
+			
+			i = 0;
+			if (op > PARALLEVAR || op <= 0) {
+				cout << "Opcion invalida" << endl;
+				i = 1;
+			}
+		} while (i);
+		
+		switch (op) {
+			case 0:
+			//Comida(string direccion, float metroscuadr, float preciomc, float metrosfach, int liniales, int cajas)
+			Camiseria * camiseria = new Camiseria(in_str("Direccion"), in_float("Metros cuadrados"), in_float("Precio por metro cuadrado"), in_float("Metros de fachada"), in_bool("Probadores?"), in_bool("Aseos?"), in_bool("A medida?"));
+			break;
+			/* ... */
+		}
+	}
+	
+	std::string in_str(const char * const str) {
+		std::string res;
+		
+		cout << str << ":" << endl;
+		cin >> res;
+		
+		return res;
+	}
+	time_t in_time(const char * const str) {
+		time_t res;
+		
+		return res;
+	}
+	bool in_bool(const char * const str) {
+		bool res;
+		char op;
+		
+		do {
+			cout << str << " [y/n]:" << endl;
+			cin >> op;
+			
+			switch (op) {
+				case 'y':
+				res = true;
+				break;
+				
+				case 'n':
+				res = false;
+				break;
+				
+				default:
+				cout << "escriba 'y' o 'n'" << endl;
+			}
+		} while (op != 'y' || op != 'n');
+		
+		return res;
+	}
+	float in_float(const char * const str) {
+		float res;
+		
+		cout << str << ":" << endl;
+		cin >> res;
+		
+		return res;
+	}
+	int in_int(const char * const str) {
+		int res;
+		
+		cout << str << ":" << endl;
+		cin >> res;
+		
+		return res;
+	}
 };
 
-class MenuPrin: public Menu {
-	protected:
-	void print() {
-		cout << "[1] Anadir" << endl
-		     << "[2] Listar" << endl
-		     << "[3] Eliminar" << endl;
+class Menu : App {
+	public:
+	void menu_principal() {
+		int op;
+		cout << "1. Añadir" << endl
+		     << "2. Listar" << endl
+			 << "3. Eliminar" << endl;
 		cin >> op;
 		
 		switch (op) {
 			case 1:
+			archivo.inter_anadir();
 			break;
-			
-			case 2:
-			break;
-			
-			case 3:
-			break;
-			
-			default:
-			cout << "Opcion incorrecta" << endl;
-		}
+		} 
 	}
 };
-
-class MenuAnadir : public Menu {
-	void print() {
-		
-	}
-};
-
-
 
 int main() {
-	/* ... */
-	
 	return errno;
 }

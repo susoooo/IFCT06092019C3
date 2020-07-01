@@ -1,0 +1,19 @@
+1-Escribe un programa que cree una lista de palabras. Primero debe pedir por pantalla el número de elementos a incluir en la lista, pedir tantas palabras como se haya dicho en ese número, y crear una lista con dichas palabras.
+
+2-Amplia el programa anterior, para que una vez creada la lista, se pida por pantalla una palabra y se diga cuantas veces aparece dicha palabra en la lista.
+
+3-Amplia el programa anterior para que, una vez encontrada una palabra, pida otra palabra, y substituya la segunda palabra por la primera en la lista inicial.
+
+4-Crea un programa que pida un número por pantalla. A continuación pida tantos nombres de personas como el número que se ha escrito por pantalla,y cree con ellos una lista. A continuación pedirá otro número, y otra vez tantos nombres como indique ese segundo número. Este segundo grupo de nombres los guardará en otra lista. A continuación, eliminará de la primera lista, aquellos nombres que se encuentren en la segunda lista. Finalmente imprimirá como ha quedado la primera lista.
+
+5-Crea mediante rangos la siguiente lista: [132, 134, 136, 138]
+
+6-Cree un programa que pida un numero por pantalla. Pida tantos nombres como indica el numero y cree dos listas, una que incluya los nombres en el mismo orden en el que se han metido por pantalla y otra que los incluya en orden inverso.
+
+7-Cree un programa que permita crear dos listas especificando el número de elmentos que tienen y los elementos. A continuación generar A)una lista con las palabras que están en las dos listas B)Una lista con las palabras que solo están en la primera lista C)Una lista con las palabras que solo están en la segunda lista. En las listas A) B) y C) los elementos apareceran una sola vez.
+
+8-Cree un programa que pida un número y a continuación genere una lista con todos los números primos desde él hasta el 0.
+
+9-Escribe un programa que pida una palabra por pantalla y muestre por pantalla una lista con las vocales y el número de veces que aparecen en la palabra.
+
+10-Escribe un programa que pida una palabra por pantalla y muestre por patnalla una lista con las consonantes, y el número de veces que aprecen en la palabra.

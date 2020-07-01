@@ -1,0 +1,27 @@
+1-Defina una clase Forma que tenga los siguientes miembros de datos:
+	 - Color
+	 - Coordenada del centro de la forma (objeto Punto)
+	 - Nombre de la forma (char *)
+   Y, al menos, las siguientes funciones miembro:
+	 - Obtener y cambiar el color
+	 - Mover la forma (o sea, su centro)
+
+2-Defina una clase derivada Rectangulo que tenga los siguientes miembros como datos:
+	 - Lado menor.
+	 - Lado mayor.
+  Y, al menos, las siguientes funciones miembro:
+     	 - Calcular el área (lado menor * lado mayor).
+	 - Calcular el perímetro. (2 * lado menor + 2 * lado mayor).
+	 - Cambiar el tamaño del rectángulo. Recibe como parámetro un factor
+	   de escala. Así, por ejemplo, si el factor vale 2, el rectángulo
+	   duplicará su tamaño y si es 0,5 se reducirá a la mitad.
+
+3-Realice un programa que cree una forma, cambie su color y la mueva cinco puntos
+hacia la derecha.
+
+4-Realice un programa que cree cuatro rectangulos, pida por pantalla al usuario
+el lado mayor y menor de los mismos y su color. A continuación haz que el programa
+calcule el área y perimetro de dichos rectángulos. Luego pide por pantalla un factor
+de escala para cambiar el tamaño de cada uno de los rectangulos y haz que el programa
+muestre nuevamente el área y el perímetro de cada rectángulo.
+
