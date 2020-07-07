@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1579696559 source:c:\users\usuario\documents\cf\clubficheros.c
-	<stdio.h>
-	<stdlib.h>
-	<ctype.h>
-	<string.h>
-
