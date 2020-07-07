@@ -39,7 +39,7 @@ class Empleado
         int antiguedad;
         string telefono;
         float salario;
-        Empleado * supervisor;
+        Empleado *supervisor;
     public:
         Empleado();
         Empleado(string nombre,string apellidos,string dni,string direccion, int antiguedad, string telefono,float salario);
@@ -49,6 +49,7 @@ class Empleado
         string getNombre();
         string getApellidos();
         string getDNI();
+        string getSupervisor();
         
 };
 
@@ -74,10 +75,11 @@ void Empleado::incrementarSalario(float incremento)
     salario=salario+(incremento*salario);
 }
 
-void Empleado::cambiarSupervisor(Empleado * emp)
+void Empleado::cambiarSupervisor(Empleado *emp)
 {
+    //cout << emp->getDNI() << "-" << emp->getNombre() << endl;
     supervisor=emp;
-    cout << "Cambio de supervior de " << nombre << ": " << supervisor->getDNI() << " " << supervisor->getNombre() << endl;
+    //cout << "Cambio de supervior de " << nombre << ": " << supervisor->getDNI() << " " << supervisor->getNombre() << " " << supervisor->getApellidos() << endl;
 }
 
 string Empleado::getNombre()
@@ -97,13 +99,13 @@ string Empleado::getDNI()
 
 void Empleado::imprimir()
 {
-    cout << "DNI: " << dni << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Apellidos: " << apellidos << endl;
-    cout << "Direccion: " << direccion << endl;
-    cout << "Telefono: " << telefono << endl;
-    cout << "Antiguedad: " << antiguedad << endl;
-    cout << "Salario: " << salario << endl;
+    //cout << "DNI: " << dni << endl;
+    //cout << "Nombre: " << nombre << endl;
+    //cout << "Apellidos: " << apellidos << endl;
+    //cout << "Direccion: " << direccion << endl;
+    //cout << "Telefono: " << telefono << endl;
+    //cout << "Antiguedad: " << antiguedad << endl;
+    //cout << "Salario: " << salario << endl;
     cout << "Supervisor: " << supervisor->getDNI() << " " << supervisor->getNombre() << " " << supervisor->getApellidos() << endl;
     
 }
@@ -140,8 +142,8 @@ void Secretario::imprimir()
 {
     cout << "Puesto: Secretario" << endl;
     Empleado::imprimir();
-    cout << "Tiene despacho: " << despacho << endl;
-    cout << "Fax: " << fax << endl;
+    //cout << "Tiene despacho: " << despacho << endl;
+    //cout << "Fax: " << fax << endl;
 }
 /*
 3. Vendedor. Tiene coche de la empresa (identificado por la matricula, marca y modelo), 
@@ -387,11 +389,27 @@ void Jefe::cambiarCoche(Coche c)
     coche=c;
 }
 
-void Jefe::cambiarSecretario(Secretario s)
+void Jefe::cambiarSecretario(Secretario nuevoSecretario)
 {
-    secretario.cambiarSupervisor(&secretario);
-    secretario=s;
-    s.cambiarSupervisor(this);
+    /*string dni;
+    string nombre;
+    dni="";
+    nombre="";
+    dni=secretario.getDNI();
+    nombre=secretario.getNombre();
+    cout << "Secretario: " << dni << " " << nombre << endl;*/
+    if(secretario.getDNI()!="" && secretario.getNombre()!="")
+    {
+        secretario.cambiarSupervisor(&secretario);
+        //cout << "paso por aqui" << endl;
+    }
+    secretario=nuevoSecretario;
+    secretario.cambiarSupervisor(this);
+    //nuevoSecretario.cambiarSupervisor(this);
+    
+    /*dni=secretario.getDNI();
+    nombre=secretario.getNombre();
+    cout << "Secretario: " << dni << " " << nombre << endl;*/
 }
 
 void Jefe::altaVendedor(Vendedor v)
@@ -443,14 +461,14 @@ void Jefe::imprimir()
 {
     cout << "Puesto: Jefe de zona" << endl;
     Empleado::imprimir();
-    cout << "Despacho: " << despacho << endl;
+    /*cout << "Despacho: " << despacho << endl;
     cout << "Secretario: " << secretario.getDNI() << " " << secretario.getNombre() << " " << secretario.getApellidos() << endl;
     cout << "---Vendedores---" << endl;
     for(int contador=0;contador<cantidadVendedores;contador++)
     {
         cout << vendedores[contador].getDNI() << " " << vendedores[contador].getNombre() << " " << vendedores[contador].getApellidos() << endl;
     }
-    coche.imprimir();
+    coche.imprimir();*/
 }
 
 int main ()
@@ -498,10 +516,20 @@ int main ()
     j1.imprimir();*/
 
     
+    cout << "Aqui empieza el codigo" << endl;
     j1.cambiarSecretario(s2);
+    s2.cambiarSupervisor(&j1);
+    cout << "Imprimo el jefe" << endl;
+    j1.imprimir();
+    cout << "Imprimo el secretario 2" << endl;
     s2.imprimir();
+    
     j1.cambiarSecretario(s1);
+    s1.cambiarSupervisor(&j1);
+    s2.cambiarSupervisor(&s2);
+    cout << "Imprimo el secretario 1" << endl;
     s1.imprimir();
+    s2.imprimir();
     
 
     return 0;
