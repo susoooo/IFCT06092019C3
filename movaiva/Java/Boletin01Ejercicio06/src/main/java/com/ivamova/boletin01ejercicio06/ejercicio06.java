@@ -29,7 +29,6 @@ public class ejercicio06 {
         double doble;
         double precioExtra;
         double precioMas50;
-        double resto;
         salario = 0;
         horas = 0;
         horasExtra = 0;
@@ -40,7 +39,6 @@ public class ejercicio06 {
         doble = 0;
         precioExtra = 0.5;
         precioMas50 = 2;
-        resto = 0;
         Scanner entrada = new Scanner(System.in);
         System.out.println("---CALCULO SALARIO SEMANAL---");
         System.out.println("Introduzca las hora trabajadas: ");
