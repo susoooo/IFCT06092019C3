@@ -21,12 +21,42 @@ public class ej5 {
         int j;
         int m;
         int k;
+        int v;
         int found = 0;
         
         for(i=0;i<MAXCIRCULOS;i++){
             circulos[i]= new circulo(sr.nextInt(MATRIX_X+1),sr.nextInt(MATRIX_Y+1),sr.nextInt(MAXRADIO)+1);
         }
         
+        for(i=0;i<MAXCIRCULOS;i++){
+            circulos[i].move(sr.nextInt(MATRIX_X+1),sr.nextInt(MATRIX_Y+1));
+            for(k=0;k<MAXCIRCULOS;k++){
+                if(i!=k){
+                    if(circulos[k].colision(circulos[i])){
+                            System.out.println("Colisión!");
+                            for(v=0;v<MATRIX_X;v++){
+                                for(j=0;j<MATRIX_Y;j++){
+                                    for(m=0;m<MAXCIRCULOS;m++){
+                                        if(circulos[m].incircle(new punto(v,j))){
+                                            found++;
+                                        }
+                                    }
+                                switch (found){
+                                    case 0 -> System.out.print(" ");
+                                    case 1 -> System.out.print("x");
+                                    default -> System.out.print("O");
+                                }
+                                found=0;
+                            }
+                            System.out.print("\n");
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+        /*
         for(i=0;i<MAXCIRCULOS;i++){
             circulos[i].move(sr.nextInt(MATRIX_X+1),sr.nextInt(MATRIX_Y+1));
             for(j=0;j<MATRIX_X;j++){
@@ -42,8 +72,8 @@ public class ej5 {
                     }
                 }
             }
-        }
-        for(i=0;i<MATRIX_X;i++){
+        }*/
+        /*for(i=0;i<MATRIX_X;i++){
             for(j=0;j<MATRIX_Y;j++){
                 for(m=0;m<MAXCIRCULOS;m++){
                     if(circulos[m].incircle(new punto(i,j))){
@@ -62,3 +92,4 @@ public class ej5 {
         
     }
 }
+*/

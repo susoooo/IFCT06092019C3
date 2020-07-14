@@ -1,4 +1,4 @@
-package com.gozerelgozeriano._java.aobjetos;
+package com.gozerelgozeriano.objetoshp;
 
 /*
 1-Crea una clase que represente un punto en el espacio.
