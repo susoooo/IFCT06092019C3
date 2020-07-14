@@ -1,0 +1,8 @@
+1-Crea una clase que represente a una persona. Al menos debe contener información sobre su nombre, apellido primero y segundo, fecha de nacimiento, lugar de nacimiento y pais de nacimiento. Crea constructores que permitan la creación de personas sin saber sus datos, conociendo su DNI, su nombre y apellidos, ambos, y todos los datos incluidos en la clase.
+
+2-A partir de la clase persona crea una clase asalariado que guarde información sobre el sueldo que cobra la persona neto al mes y la retención que se le aplica en la nómina. Crea al menos un constructor y un los correspondientes métodos de get y set.
+
+2-A partir de la clase asalariado, define ahora un par de clases: obrero y médico. En la clase obrero, guarda el nombre del cargo que desempeña. Para la clase médico, guarda información sobre la cantidad de pacientes que tiene a su cargo. Crea los constructores y metodos get y set que creas necesarios.
+
+3-Crea un programa que, utilizando las clases anteriores, cree un objeto para almacenar datos sobre una persona que no es asalariada, un asalariado que no es médico ni obrero, sobre dos asalariados y sobre un médico. Todos los objetos creados deberán contener datos en sus propiedades. Haz que el programa muestre los datos de los distintos objetos creados por pantalla.
+
