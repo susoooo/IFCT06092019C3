@@ -21,17 +21,17 @@ public class circulo extends punto {
     }
     
     public boolean colision(circulo newcirculo){
-        double hipotenusa;
+        double distance;
         if(newcirculo.X() == x){
-            hipotenusa = Math.abs(newcirculo.Y()-y);
+            distance = Math.abs(newcirculo.Y()-y);
         }else{
             if(newcirculo.Y() == y){
-                hipotenusa = Math.abs(newcirculo.X()-x);
+                distance = Math.abs(newcirculo.X()-x);
             }else{
-                hipotenusa = Math.sqrt(Math.pow(newcirculo.X()-x,2)+Math.pow(newcirculo.Y()-y,2));
+                distance = Math.sqrt(Math.pow(newcirculo.X()-x,2)+Math.pow(newcirculo.Y()-y,2));
             }
         }
-        return(hipotenusa < (newcirculo.radio + radio));
+        return(distance < (newcirculo.radio + radio));
     }
     
 }
