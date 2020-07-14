@@ -1,0 +1,23 @@
+Ejercicio 1: Cálculo de área y perímetro
+Escribe un programa que pregunte al usuario los dos lados de un rectángulo y
+presente por pantalla el cálculo del perímetro (suma de los lados) y el área (base por
+altura).
+
+Ejercicio 2: Cambio de dólares a euros.
+Suponiendo que 1 euro = 1.33250 dólares. Escribe un programa que pida al
+usuario un número de dólares y calcule el cambio en euros.
+
+Ejercicio 3
+Realizar un programa que pida al usuario dos números y presente los números delprimero número al segundo que introdujo el usuario. Repetir este ejercicio con todos lostipos de bucles (for, while, y do-while).
+
+Ejercicio 4
+Realizar un programa que pida un número y calcule su factorial.
+
+Ejercicio 5: Condición if 4. Realizar un programa que pida tres números y diga cuál es el mayor, cuál es el segundo mayor, y cuál es el menor
+
+Ejercicio 6: Escriba un programa en C que calcule el salario semanal de un trabajador, a partir de las horas trabajadas y el precio cobrado por hora. Ambos valores deben ser solicitados al usuario. La jornada normal es de 40 horas semanales. Las horas extra se pagan un cincuenta por ciento más caras que las normales, y pasan a pagarse al doble que las normales a partir de las 50 horas trabajadas.
+
+Ejercicio 7: Media, mayor y menor de un conjunto fijo.
+Realizar un programa que pida las notas de hasta 40 alumnos por pantalla y muestre un menú
+de opciones: 1. Listar notas, 2.Calcular la media, 3.Calcular el menor, 4.Calcular el
+mayor.
