@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 public class Util {
     BufferedReader Input = new BufferedReader(new InputStreamReader(System.in));
 
-    static float RandomFloat(float UpperBound) {
+    float RandomFloat(float UpperBound) {
         return (float)Math.random() * UpperBound;
     }
 }
