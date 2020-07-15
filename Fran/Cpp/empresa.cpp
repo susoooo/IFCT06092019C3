@@ -31,8 +31,9 @@ protected:
     string direccion;
 
     int antiguedad;
+    float porcentaje;
     string telefono;
-    float salario;
+    float salarioBase;
 
     // empleado * supervisor;
     string supervisor;
@@ -43,8 +44,8 @@ public:
 
     void imprimir();
 
-    void cambiarSuper(  );
-    void cambiarSalario(float sueldo);
+    void cambiarSuper();
+    float calcularSalario();
 };
 
 empleado::empleado()
@@ -65,7 +66,7 @@ empleado::empleado()
     cout << endl << "Antiguedad: ";
     cin >> antiguedad;
     cout << endl << "Salario: ";
-    cin >> salario;
+    cin >> calcularSalario();
     cout << endl << "Supervisor: " << endl;
 }
 
@@ -99,9 +100,13 @@ void empleado::cambiarSuper(  )
 
 }
 
-void empleado::cambiarSalario(float sueldo)
+float empleado::calcularSalario()
 {
-    salario = sueldo;
+    float salario;
+
+    salario = salarioBase + (salarioBase * (antiguedad * porcentaje)/100);
+
+    return salario;
 }
 
 // --------------------------------------------------------------------

@@ -1,0 +1,12 @@
+1-Crea una clase que represente un punto en el espacio.
+Crea tres objetos puntos y posicionalos en el espacio de forma aleatoria.
+
+2-Crea una clase que represente un ordenador.
+Deberá incluir al menos métodos para enchufarlo, desenchufarlo, encenderlo, y apagarlo. Crea un programa que enchufe un portatil, lo encienda, lo cargue, lo apague y lo desenchufe.
+
+3-Crea una clase que represente a un rectangulo mediante su base y su altura. Implementa métodos para cambiar su base y su altura, y otros que calcule su area y su perímetro. 
+área= base * altura y perímetro=2*base + 2*altura).
+
+4-Crea una clase que represente a un alumno. Cada alumno se identifica por su DNI. Se desea almacenar información de su nombre, sus apellidos, y sus notas finales en las asignaturas en las que se ha matriculado. De dichas asignaturas se dese almacenar tambien el nombre. Un alumno como mucho puede haberse matriculado de 30 asignaturas. Crea un programa en el que se pueda meter los datos de un alumno , y que calcule la nota media del alumno, utilizando objetos. Construye la clase que representa al alumno como hija de la clase definida en el apartado 5.
+
+5-Detector de colisiones: Un circulo puede representarse mediante un punto y un radio. Crea 15 circulos y posicionalos en un espacio bidimensional de 100 x 100. Asginales como mucho un radio de 5. Crea un programa que los mueva aleatoriamente por el espacio bidimensional y que detecte en el momento que se produce una colisión entre dos de ellos. En el momento de producirse una colisión, el programa imprimirá la colisión y se cerrará.
