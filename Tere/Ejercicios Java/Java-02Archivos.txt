@@ -1,0 +1,9 @@
+1.Crear un programa que abra un fichero llamado “prueba.txt” (previamente creado con el block de notas y guardado en la misma carpeta donde este el programa) y que muestre el contenido del mismo por pantalla carácter a carácter.
+
+2.Crear un programa que abra un fichero llamado "prueba.txt" y que cuente el número de letras que contiene y lo muestre por pantalla.
+
+3Crear un programa capaz de copiar un fichero (word por ejemplo, o cualquier otro tipo) en otro. El fichero creado se llamará “copia_de” y el nombre del archivo a copiar. El nombre del fichero a copiar se le deberá pasar como argumento al programa en el momento de ejecutarlo. Si no existe un fichero con el nombre especificado, se mostrará un mensaje de error por pantalla y se saldrá del programa. 
+
+4.Crear un programa que abra un archivo de texto y que genere otro fichero con los mismos contenidos que el original, pero con las vocales que en el original figuren en minúsculas cambiadas a mayusculas, y las que en el original figuren en mayusculas cambiadas a minúsculas.
+
+5.🍵

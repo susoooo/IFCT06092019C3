@@ -1,0 +1,6 @@
+print("Dame la altura")
+alt = input()
+print("Dame el peso")
+peso = input()
+imc = float(peso)/(float(alt)*2)
+print("EL índice de masa corporal es: ", imc)
