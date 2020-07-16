@@ -58,6 +58,7 @@ class Secretario : public Empleado {
 	
 	public:
 	Secretario() {}
+	Secretario(int nusalario) { salario = nusalario; }
 	Secretario(std::string nunombre, std::string nuapell, std::string nudir, int nudni, int nuanyosan, int nutelef, float nusalario, std::string nudesp, int nunumfax) : Empleado(nunombre, nuapell, nudir, nudni, nuanyosan, nutelef, nusalario) {
 		despacho = nudesp;
 		numfax = nunumfax;
@@ -84,6 +85,7 @@ class Vendedor : public Empleado {
 	
 	public:
 	Vendedor() {}
+	Vendedor(int nusalario) { salario = nusalario; }
 	Vendedor(std::string nunombre, std::string nuapell, std::string nudir, int nudni, int nuanyosan, int nutelef, float nusalario, Coche nucoche, int nutelfmov, std::string nuareaven, std::vector<std::string> nulistaclien, float nuporcencom) : Empleado(nunombre, nuapell, nudir, nudni, nuanyosan, nutelef, nusalario) {
 		coche = nucoche;
 		telefmovil = nutelfmov;
@@ -121,6 +123,7 @@ class JefeDeZona : public Empleado {
 	
 	public:
 	JefeDeZona() {}
+	JefeDeZona(int nusalario) { salario = nusalario; }
 	JefeDeZona(std::string nunombre, std::string nuapell, std::string nudir, int nudni, int nuanyosan, int nutelef, float nusalario, Coche nucoche, std::string nudesp, Secretario * nusecretario, std::vector<Vendedor*> nulistven) : Empleado(nunombre, nuapell, nudir, nudni, nuanyosan, nutelef, nusalario) {
 		coche = nucoche;
 		despacho = nudesp;

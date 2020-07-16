@@ -7,7 +7,7 @@ for i in w:
 		s = '<' if i == l[j][0] else ''
 		print(j, ' ', i, l[j][0], s)
 		
-		if i == [j][0]:
+		if i == l[j][0]:
 			l[j][1] += 1
 
-print(l)
+print(l)<

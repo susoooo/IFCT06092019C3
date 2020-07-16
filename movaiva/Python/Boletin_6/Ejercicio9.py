@@ -5,6 +5,7 @@ vocales=['a','e','i','o','u']
 venp=[]
 palabra=input("Introduzca la palabra: ")
 for letra in palabra:
+    letra=letra.lower()
     if (letra in vocales) :
         temporal=[letra,palabra.count(letra)]
         if temporal not in venp:

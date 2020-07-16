@@ -13,6 +13,7 @@ print(words)
 
 #2
 
+
 words = []
 n = int(input("palabras a incluir:"))
 
@@ -27,6 +28,7 @@ print(q, "aparece ", words.count(q), "veces")
 
 
 #3
+
 
 words = []
 n = int(input("palabras a incluir:"))
@@ -44,6 +46,7 @@ while not(q in words):
 
 
 #4
+
 
 n1 = int(input("numero de nombres en lista 1:"))
 names1 = []
@@ -66,10 +69,12 @@ print("lista 1:", names1)
 
 #5
 
+
 l = list(range(132, 139, 2))
 
 
 #6
+
 
 n1 = int(input("numero de nombres en lista 1:"))
 names1 = []
@@ -83,6 +88,7 @@ print("lista 2:", names2)
 
 
 #7
+
 
 n1 = int(input("numero de nombres en lista 1:"))
 names1 = []
@@ -115,6 +121,7 @@ print("res3:", res3)
 
 #8
 
+
 x = int(input("numero hasta donde buscar primos:"))
 p = []
 
@@ -125,6 +132,7 @@ print(p)
 
 
 #9
+
 
 w = input("palabra a evaluar:")
 l = [['a', 0], ['e', 0], ['i', 0], ['o', 0], ['u', 0]]
