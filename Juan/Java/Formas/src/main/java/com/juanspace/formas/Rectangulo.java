@@ -5,6 +5,7 @@
  */
 package com.juanspace.formas;
 
+import java.awt.Color;
 import java.util.Scanner;
 
 /**
@@ -25,7 +26,7 @@ public class Rectangulo extends Forma {
         this.lado_mayor = lma;
     }
     
-    public Rectangulo(String color, double x, double y, String nombre, double lme, double lma){
+    public Rectangulo(Color color, double x, double y, String nombre, double lme, double lma){
         super(color, x, y, nombre);
         this.lado_menor = lme;
         this.lado_mayor = lma;
@@ -50,7 +51,20 @@ public class Rectangulo extends Forma {
     public void Imprimir(){
        System.out.println("Este es el rectángulo ");
        super.Imprimir();
-       System.out.println("Lados "+getLado_Mayor()+" "+getLado_Menor());
-       
+       System.out.println("Lados "+getLado_Mayor()+" "+getLado_Menor());    
+    }
+    
+    public double calcularArea(){
+        return lado_menor*lado_mayor;
+    }
+    
+    public double calcularPerimetro(){
+        return (2*lado_menor)+(2*lado_mayor);
+    }
+    
+    public void cambiarTamanho(double factor){
+        this.lado_menor=(factor*lado_menor);
+        this.lado_mayor=(factor*lado_mayor);
+        System.out.println(this.lado_menor+" "+this.lado_mayor);
     }
 }
