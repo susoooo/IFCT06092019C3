@@ -25,17 +25,21 @@ public class Game extends Canvas{
     private BufferStrategy strategy;                // The stragey that allows us to use accelerate page flipping
     private boolean gameRunning = true;             // True if the game is currently "running", i.e. the game loop is looping
     private boolean waitingForKeyPress = true;      // True if we're holding up game play until a key has been pressed
+    private long lastFire = 0;                      // The time at which last fired a shot
     /* GAME OPTIONS */
-    final private double ACELERATION = 1.02;        // Acelerate aliens when one die
+    final private double ACELERATION = 1.03;        // Acelerate aliens when one die
+    final private long FIRINGINTERVAL = 550;        // The interval between our players shot (ms)
     final private double SHIPMOVESPEED = 300;       // The speed at which the player's ship should move (pixels/sec)
-    private int ALIENSSTARTING = 12;                // Aliens at the start of the game
-    private int ALIENSROWS = 5;                     // Aliens rows at the start of the game
+    final private int ALIENSSTARTING = 12;          // Aliens at the start of the game
+    final private int ALIENSROWS = 5;               // Aliens rows at the start of the game
     /* ACTION */
     private boolean leftPressed = false;            // True if the left cursor key is currently pressed
     private boolean rightPressed = false;           // True if the right cursor key is currently pressed
     private boolean firePressed = false;            // True if we are firing
+    private boolean logicRequiredThisLoop = false;  // True if game logic needs to be applied this loop, normally as a result of a game event
     /* OTHER */
-    private String message = "";                    // The message to display which waiting for a key press
+    private String message = "";                        // The message to display which waiting for a key press
+    final private String STARTSTRING = "Press any key"; // Message at start of the game
     
     /* GETS & SETS */
     public boolean getwaitingForKeyPress(){
@@ -128,17 +132,59 @@ public class Game extends Canvas{
                 Entity entity = (Entity) entities.get(i);
                 entity.draw(graph);
             }
+            
+            // brute force collisions, compare every entity against every other entity. If any of them collide notify 
+            // both entities that the collision has occured
+            for (int p=0;p<entities.size();p++) {
+		for (int s=p+1;s<entities.size();s++) {
+                    Entity me = (Entity) entities.get(p);
+                    Entity him = (Entity) entities.get(s);		
+                    if (me.collidesWith(him)) {
+                        me.collidedWith(him);
+                        him.collidedWith(me);
+                    }
+		}
+            }
+            
+            // remove any entity that has been marked for clear up
+            entities.removeAll(removeList);
+            removeList.clear();
 
+            // if a game event has indicated that game logic should be resolved, cycle round every entity requesting that
+            // their personal logic should be considered.
+            if (logicRequiredThisLoop) {
+		for (int i=0;i<entities.size();i++) {
+                    Entity entity = (Entity) entities.get(i);
+                    entity.doLogic();
+		}
+		logicRequiredThisLoop = false;
+            }
+            
             // if we're waiting for an "any key" press then draw the current message 
             if (waitingForKeyPress) {
 		graph.setColor(Color.white);
-		graph.drawString(message,(DIMENSIONX-graph.getFontMetrics().stringWidth(message))/2,DIMENSIONY/2);
-                graph.drawString("Press any key",(DIMENSIONX-graph.getFontMetrics().stringWidth("Press any key"))/2,DIMENSIONY/2);
+		graph.drawString(message,(DIMENSIONX-graph.getFontMetrics().stringWidth(message))/2,DIMENSIONY/2-60);
+                graph.drawString(STARTSTRING,(DIMENSIONX-graph.getFontMetrics().stringWidth(STARTSTRING))/2,DIMENSIONY/2);
             }
             // finally, we've completed drawing so clear up the graphics and flip the buffer over
             graph.dispose();
             strategy.show();
+            
+            if(!waitingForKeyPress){
+                // resolve the movement of the ship. First assume the ship isn't moving. If either cursor key is pressed then
+                // update the movement appropraitely
+                //ship.setHorizontalMovement(0);
+                if ((leftPressed) && (!rightPressed)) {
+                    ship.setHorizontalMovement(-SHIPMOVESPEED);
+                } else if ((rightPressed) && (!leftPressed)) {
+                    ship.setHorizontalMovement(SHIPMOVESPEED);
+                }
 
+                // if we're pressing fire, attempt to fire
+                if (firePressed) {
+                    tryToFire();
+                }
+            }
             // finally pause for a bit. Note: this should run us at about 100 fps but on windows
             // this might vary each loop due to a bad implementation of timer
             try { Thread.sleep(10); } catch (Exception e) {}
@@ -199,8 +245,7 @@ public class Game extends Canvas{
     public void startGame() {
         // clear out any existing entities and intialise a new set
         entities.clear();
-        initEntities();
-		
+        initEntities();	
         // blank out any keyboard settings we might currently have
         leftPressed = false;
         rightPressed = false;
@@ -224,5 +269,29 @@ public class Game extends Canvas{
 		alienCount++;
             }
 	}
+    }
+    
+    /**
+     * Notification from a game entity that the logic of the game
+     * should be run at the next opportunity (normally as a result of some
+     * game event)
+    */
+    public void updateLogic() {
+	logicRequiredThisLoop = true;
+    }
+    
+    /**
+     * Attempt to fire a shot from the player. Its called "try" since we must first check that the player can fire at this 
+     * point, i.e. has he/she waited long enough between shots
+     */
+    public void tryToFire() {
+	// check that we have waiting long enough to fire
+	if (System.currentTimeMillis() - lastFire < FIRINGINTERVAL) {
+		return;
+	}
+        // if we waited long enough, create the shot entity, and record the time.
+        lastFire = System.currentTimeMillis();
+        ShotEntity shot = new ShotEntity(this,"sprites/shot.gif",ship.getX()+10,ship.getY()-30);
+        entities.add(shot);
     }
 }

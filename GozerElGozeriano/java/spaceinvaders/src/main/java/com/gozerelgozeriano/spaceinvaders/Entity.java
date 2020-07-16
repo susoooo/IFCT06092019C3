@@ -3,6 +3,14 @@ package com.gozerelgozeriano.spaceinvaders;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * An entity represents any element that appears in the game. The entity is responsible for resolving collisions and movement
+ * based on a set of properties defined either by subclass or externally.
+ * 
+ * Note that doubles are used for positions. This may seem strange given that pixels locations are integers. However, using double means
+ * that an entity can move a partial pixel. It doesn't of course mean that they will be display half way through a pixel but allows us not lose
+ * accuracy as we move.
+ */
 public abstract class Entity {
     /** The current x location of this entity */ 
     protected double x;
@@ -18,6 +26,24 @@ public abstract class Entity {
     private Rectangle me = new Rectangle();
     /** The rectangle used for other entities during collision resolution */
     private Rectangle him = new Rectangle();
+    
+    /**
+     * Get the x location of this entity
+     * 
+     * @return The x location of this entity
+     */
+    public int getX() {
+    	return (int) x;
+    }
+
+    /**
+     * Get the y location of this entity
+     * 
+     * @return The y location of this entity
+     */
+    public int getY() {
+    	return (int) y;
+    }
     
     /**
      * Construct a entity based on a sprite image and a location.
@@ -70,4 +96,50 @@ public abstract class Entity {
     public void setHorizontalMovement(double dx) {
 	this.dx = dx;
     }
+    
+    /**
+     * Set the vertical speed of this entity
+     * 
+     * @param dy
+     */
+    public void setVerticalMovement(double dy) {
+	this.dy = dy;
+    }
+	
+    /**
+     * Get the vertical speed of this entity
+     * 
+     * @return The vertical speed of this entity (pixels/sec)
+     */
+    public double getVerticalMovement() {
+	return dy;
+    }
+    
+    /**
+     * Do the logic associated with this entity. This method will be called periodically based on game events
+     */
+    public void doLogic(){
+        
+    }
+    
+    /**
+     * Check if this entity collised with another.
+     * 
+     * @param other The other entity to check collision against
+     * @return True if the entities collide with each other
+     */
+    public boolean collidesWith(Entity other) {
+	me.setBounds((int) x,(int) y,sprite.getWidth(),sprite.getHeight());
+	him.setBounds((int) other.x,(int) other.y,other.sprite.getWidth(),other.sprite.getHeight());
+        // DEBUG if(me.intersects(him)) System.out.println("BANG!");
+	return me.intersects(him);
+    }
+    
+    /**
+     * Notification that this entity collided with another.
+     * 
+     * @param other The entity with which this entity collided.
+     */
+    public abstract void collidedWith(Entity other);
+    
 }
