@@ -5,14 +5,11 @@
  */
 package com.juanspace.colisiones;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.sql.Array;
+
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.util.Formatter;
-import java.util.Random;
+
 
 /**
  *
@@ -23,7 +20,6 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    
     
     public static void main(String[] args) {
         
