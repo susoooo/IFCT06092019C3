@@ -46,7 +46,41 @@ public class Ejercicio01 {
     /**
      * @param args the command line arguments
      */
+    @SuppressWarnings("empty-statement")
     public static void main(String args[]) {
+        
+        
         Forma f1=new Forma("Amarillo",4,5,"Forma");
+        f1.imprimir();
+        f1.cambiarColor("Gris");
+        f1.moverForma(2, 2);
+        f1.imprimir();
+        
+        Rectangulo r1=new Rectangulo("Rosa",5,0,"Rectangulo",(float)5.5,(float)4.8);
+        r1.imprimir();
+        r1.cambiarTamanio((float)0.5);
+        r1.imprimir();
+        
+        Elipse e1=new Elipse("Rojo",4,8,"Elipse",(float)6.5,(float)3.8);
+        e1.imprimir();
+        
+        Cuadrado c1=new Cuadrado("Verde",5,0,"Cuadrado",(float)8.5);
+        c1.imprimir();
+        
+        Circulo cr1=new Circulo("Azul",4,8,"Elipse",(float)4.5);
+        cr1.imprimir();
+        
+        Forma formas[]={f1,r1,e1,c1,cr1};
+        
+        for (int contador = 0; contador < formas.length; contador++) {
+            formas[contador].cambiarColor("Naranja");
+            formas[contador].moverForma(6, 6);
+            formas[contador].imprimir();
+        }
+        
+        
+        
+};
+        
     }
 }
