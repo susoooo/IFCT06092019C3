@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1576845766 source:c:\users\usuario\documents\cf\declararpunteros\main.c
+	<stdio.h>
+	<stdlib.h>
+
