@@ -152,23 +152,6 @@ int main()
     santiago.leerDatos();
     jose.leerDatos();
 
-/*
-   do
-   {
-    cout << "Pon el nombre: ";
-   cin >> nom;
-   cout << "Pon el primer apellido: ";
-   cin >> ape1;
-   cout << "Pon el segundo apellido: ";
-   cin >> ape2;
-   cout << "Pon el numero DNI: ";
-   cin >> docum;
-   cout << "Para salir pulsa 0, para seguir no pulses 0: ";
-   cin >> Salir;
-
-   }
-   while (Salir!=0);*/
-
 
 }
 
