@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.AbstractButton;
 
 /**
  *
@@ -75,6 +74,7 @@ public class Pizza extends javax.swing.JFrame {
         };
         rb_Local.addActionListener(sliceActionListener);
         rb_domicilio.addActionListener(sliceActionListener);
+        txt_resumen.setContentType("text/html");
     }
     
     public void setReady(){
@@ -107,8 +107,8 @@ public class Pizza extends javax.swing.JFrame {
         rb_Local = new javax.swing.JRadioButton();
         rb_domicilio = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txt_resumen = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_resumen = new javax.swing.JEditorPane();
         pnl_domicilio = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
@@ -261,9 +261,7 @@ public class Pizza extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txt_resumen.setColumns(20);
-        txt_resumen.setRows(5);
-        jScrollPane1.setViewportView(txt_resumen);
+        jScrollPane2.setViewportView(txt_resumen);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -271,15 +269,15 @@ public class Pizza extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel7.setText("Nombre");
@@ -382,39 +380,39 @@ public class Pizza extends javax.swing.JFrame {
     private String getRecipeString(){
         String pizzatext;
         int selection;
-        pizzatext = "\tPIZZA\n\n";
-        pizzatext+="BASE:\n";
-        pizzatext+= "\t" + cb_base.getSelectedItem() + "\t" + info.getbaseprizes(cb_base.getSelectedIndex()) + "€\n";
-        pizzatext += "INGREDIENTES\n";
+        pizzatext = "<font face=\"arial\"size=\"24\"<center>PIZZERIA LA MAMMA</center></font><br><br>";
+        pizzatext+="<strong>BASE</strong><br>";
+        pizzatext+= "&nbsp;&nbsp;&nbsp;&nbsp;" + cb_base.getSelectedItem() + "&nbsp;&nbsp;&nbsp;&nbsp;" + info.getbaseprizes(cb_base.getSelectedIndex()) + "€<br>";
+        pizzatext += "<br><strong>INGREDIENTES</strong><br>";
         selection = cb_ingr1.getSelectedIndex();
         if(selection>0){
-            pizzatext += "\t" + cb_ingr1.getSelectedItem() + "\t\t" + info.getingrprizes(selection) + "€\n";
+            pizzatext += "&nbsp;&nbsp;&nbsp;&nbsp;" + cb_ingr1.getSelectedItem() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + info.getingrprizes(selection) + "€<br>";
         }
         selection = cb_ingr2.getSelectedIndex();
         if(selection>0){
-            pizzatext += "\t" + cb_ingr2.getSelectedItem() + "\t\t" + info.getingrprizes(selection) + "€\n";
+            pizzatext += "&nbsp;&nbsp;&nbsp;&nbsp;" + cb_ingr2.getSelectedItem() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + info.getingrprizes(selection) + "€<br>";
         }
         selection = cb_ingr3.getSelectedIndex();
         if(selection>0){
-            pizzatext += "\t" + cb_ingr3.getSelectedItem() + "\t\t" + info.getingrprizes(selection) + "€\n";
+            pizzatext += "&nbsp;&nbsp;&nbsp;&nbsp;" + cb_ingr3.getSelectedItem() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + info.getingrprizes(selection) + "€<br>";
         }
         selection = cb_ingr4.getSelectedIndex();
         if(selection>0){
-            pizzatext += "\t" + cb_ingr4.getSelectedItem() + "\t\t" + info.getingrprizes(selection) + "€\n";
+            pizzatext += "&nbsp;&nbsp;&nbsp;&nbsp;" + cb_ingr4.getSelectedItem() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + info.getingrprizes(selection) + "€<br>";
         }
-        pizzatext += "\nTOTAL\t\t\t" + totalprize +"€";
+        pizzatext += "<br><h2>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;" + totalprize +"€</h2>";
         selection = cb_descuento.getSelectedIndex();
         if(selection>0){
-            pizzatext += "\nDESCUENTO\t" + cb_descuento.getSelectedItem() + "\t\t" + (totalprize - (totalprize*info.getdescuento(selection)/100.0)+"€");
+            pizzatext += "<br><h2>DESCUENTO&nbsp;&nbsp;&nbsp;&nbsp;" + cb_descuento.getSelectedItem() + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + (totalprize - (totalprize*info.getdescuento(selection)/100.0)+"€</h2>");
         }
         
         if(rb_Local.isSelected()){
-            pizzatext += "\n\nServicio local";
+            pizzatext += "<br><br><strong>Servicio local</strong>";
         }else{
-            pizzatext += "\n\nServicio domicilio";
-            pizzatext += "\n" + txt_nombre.getText();
-            pizzatext += "\n" + txt_direccion.getText();
-            pizzatext += "\n" + txt_tlf.getText();
+            pizzatext += "<br><br><strong>Servicio domicilio</strong>";
+            pizzatext += "<br>" + txt_nombre.getText();
+            pizzatext += "<br>" + txt_direccion.getText();
+            pizzatext += "<br>" + txt_tlf.getText();
         }
         return(pizzatext);
     }
@@ -557,14 +555,14 @@ public class Pizza extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnl_domicilio;
     private javax.swing.JPanel pnl_pizzaselect;
     private javax.swing.JRadioButton rb_Local;
     private javax.swing.JRadioButton rb_domicilio;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextArea txt_resumen;
+    private javax.swing.JEditorPane txt_resumen;
     private javax.swing.JTextField txt_tlf;
     // End of variables declaration//GEN-END:variables
 }
