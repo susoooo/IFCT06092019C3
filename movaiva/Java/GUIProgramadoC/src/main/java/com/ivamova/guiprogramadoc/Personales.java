@@ -9,12 +9,13 @@ package com.ivamova.guiprogramadoc;
  *
  * @author Usuario
  */
-public class Personales extends javax.swing.JFrame {
+public class Personales extends javax.swing.JDialog {
 
     /**
      * Creates new form Personales
      */
-    public Personales() {
+    public Personales(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -37,7 +38,8 @@ public class Personales extends javax.swing.JFrame {
         txfApellidos = new javax.swing.JTextField();
         btAceptar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Datos personales");
 
         lblDni.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDni.setText("DNI:");
@@ -114,7 +116,9 @@ public class Personales extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +129,7 @@ public class Personales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_btAceptarActionPerformed
 
     /**
@@ -155,10 +159,17 @@ public class Personales extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Personales().setVisible(true);
+                Personales dialog = new Personales(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -170,8 +181,8 @@ public class Personales extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnPrincipal;
-    private javax.swing.JTextField txfApellidos;
-    private javax.swing.JTextField txfDni;
-    private javax.swing.JTextField txfNombre;
+    public javax.swing.JTextField txfApellidos;
+    public javax.swing.JTextField txfDni;
+    public javax.swing.JTextField txfNombre;
     // End of variables declaration//GEN-END:variables
 }
