@@ -450,19 +450,19 @@ public class ejercicio04 extends javax.swing.JFrame {
     private void btSenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSenActionPerformed
         casilla = txfCasilla.getText();
         numero1 = Double.parseDouble(casilla);
-        txfCasilla.setText(Double.toString(Math.sin(numero1)));
+        txfCasilla.setText(Double.toString(Math.sin(pasarRad(numero1))));
     }//GEN-LAST:event_btSenActionPerformed
 
     private void btCosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCosActionPerformed
         casilla = txfCasilla.getText();
         numero1 = Double.parseDouble(casilla);
-        txfCasilla.setText(Double.toString(Math.cos(numero1)));
+        txfCasilla.setText(Double.toString(Math.cos(pasarRad(numero1))));
     }//GEN-LAST:event_btCosActionPerformed
 
     private void btTanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTanActionPerformed
         casilla = txfCasilla.getText();
         numero1 = Double.parseDouble(casilla);
-        txfCasilla.setText(Double.toString(Math.tan(numero1)));
+        txfCasilla.setText(Double.toString(Math.tan(pasarRad(numero1))));
     }//GEN-LAST:event_btTanActionPerformed
 
     private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
@@ -485,6 +485,11 @@ public class ejercicio04 extends javax.swing.JFrame {
             casilla = "";
         }
         return casilla;
+    }
+    
+    public double pasarRad(double grados)
+    {
+        return grados*Math.PI/180;
     }
 
     /**
