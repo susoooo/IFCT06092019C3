@@ -1,4 +1,3 @@
-ninguno#0.0
 chourizo#0.60
 jamón#2.2
 queso#1.0

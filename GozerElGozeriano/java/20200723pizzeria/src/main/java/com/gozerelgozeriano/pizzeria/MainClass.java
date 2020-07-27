@@ -23,11 +23,7 @@ public class MainClass {
     public static void main(String[] args){
         Pizzainfo info = new Pizzainfo();
         info.Load();
-        Pizza pizza = new Pizza(info);
-        pizza.loadbases(info.getbases());
-        pizza.loadingr(info.getingr());
-        pizza.loaddescuentos(info.getdescuentos());
+        PizzaGrid pizza = new PizzaGrid(info);
         pizza.setVisible(true);
-        pizza.setReady();
     }
 }
