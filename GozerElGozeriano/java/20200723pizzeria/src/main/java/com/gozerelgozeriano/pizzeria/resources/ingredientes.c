@@ -1,0 +1,11 @@
+chourizo#0.60
+jamón#2.2
+queso#1.0
+morcilla#2.1
+champiñon#1.6
+lubrigante#2.6
+grelos#2.0
+piña#1.6
+maracuya#2.3
+chistorra#1.6
+polbo#3.1

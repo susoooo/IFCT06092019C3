@@ -5,28 +5,31 @@
  */
 package com.juanspace.formas;
 
+import java.awt.Color;
+
 /**
  *
  * @author Usuario
  */
 public class Forma {
-    
-    private String color;
+  
+    private Color color;
     private Punto punto;
     private String nombre;
     
     // Constructor
     public Forma(){
     }
-   
-    public Forma(String c, double x, double y, String n){
-        this.color=c;
+    
+    public Forma(Color color, double x, double y, String nombre){
+        punto=new Punto();
+        this.color=color;
         this.punto.setXY(x,y);
-        this.nombre=n;
+        this.nombre=nombre;
     }
 
     // Métodos get y set
-    public String getColor(){
+    public Color getColor(){
         return color;
     }
     
@@ -38,30 +41,20 @@ public class Forma {
         return nombre;
     }
     
-    public void setColor(String color){
+    public void setColor(Color color){
         this.color=color;
     }
     public void setPunto(double x, double y){
-        this.punto.setXY(x,y);
+    this.punto.setXY(x,y);
     }
     public void setNombre(String nombre){
         this.nombre=nombre;
     }
     
     //Métodos
-    
     public void Imprimir(){
         System.out.println("Datos de la forma "+nombre);
         System.out.println(color);
-        System.out.println(punto.getX()+""+punto.getY());
-
-    }
-    
-    public void cambiarColor(String nuevo_color){
-        this.color=nuevo_color;
-    }
-    
-    public void moverForma(double x, double y){
-        this.punto.setXY(x,y);
+        System.out.println(punto.getX()+" "+punto.getY());
     }
 }

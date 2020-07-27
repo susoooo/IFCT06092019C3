@@ -22,7 +22,7 @@ public class Game extends Canvas{
     private ArrayList removeList = new ArrayList(); // The list of entities that need to be removed from the game this loop
     private int alienCount;                         // The number of aliens left on the screen
     /* SCENE */
-    private BufferStrategy strategy;                // The stragey that allows us to use accelerate page flipping
+    private final BufferStrategy STRATEGY;          // The stragey that allows us to use accelerate page flipping
     private boolean gameRunning = true;             // True if the game is currently "running", i.e. the game loop is looping
     private boolean waitingForKeyPress = true;      // True if we're holding up game play until a key has been pressed
     private long lastFire = 0;                      // The time at which last fired a shot
@@ -96,7 +96,7 @@ public class Game extends Canvas{
 
         // create the buffering strategy which will allow AWT to manage our accelerated graphics
         createBufferStrategy(2);
-        strategy = getBufferStrategy();
+        STRATEGY = getBufferStrategy();
         
         // add a listener to respond to the user closing the window. If they do we'd like to exit the game
 	container.addWindowListener(new WindowAdapter() {
@@ -115,7 +115,7 @@ public class Game extends Canvas{
             lastLoopTime = System.currentTimeMillis();
 
             // Get hold of a graphics context for the accelerated surface and blank it out
-            Graphics2D graph = (Graphics2D) strategy.getDrawGraphics();
+            Graphics2D graph = (Graphics2D) STRATEGY.getDrawGraphics();
             graph.setColor(Color.black);
             graph.fillRect(0,0,DIMENSIONX,DIMENSIONY);
 
@@ -168,7 +168,7 @@ public class Game extends Canvas{
             }
             // finally, we've completed drawing so clear up the graphics and flip the buffer over
             graph.dispose();
-            strategy.show();
+            STRATEGY.show();
             
             if(!waitingForKeyPress){
                 // resolve the movement of the ship. First assume the ship isn't moving. If either cursor key is pressed then
@@ -257,7 +257,7 @@ public class Game extends Canvas{
      */
     private void initEntities() {
 	// create the player ship and place it roughly in the center of the screen
-	ship = new ShipEntity(this,"sprites/ship.gif",370,550);                                     // <----------------------------
+	ship = new ShipEntity(this,"sprites/ship.gif",DIMENSIONX/2,DIMENSIONY-50);                  // <----------------------------
 	entities.add(ship);
 		
 	// create a block of aliens (5 rows, by 12 aliens, spaced evenly)

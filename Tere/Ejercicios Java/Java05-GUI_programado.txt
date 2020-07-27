@@ -1,0 +1,9 @@
+1-Crea una aplicación en java con un GUI en la que puedas introducir un nombre en un campo de texto, y al pulsar un botón, se muestre el mensaje "Hola " y el nombre que se ha introducido en el campo de texto.
+
+2-Crea una aplicación con GUI que convierta de Euros a Dolares y viceversa.
+
+3-Crea una calculadora con GUI
+
+4-Crea una calculadora científica (al menos con seno, coseno y tangente) con GUI.
+
+5-Utilizando componentes, crea una aplicación que permita navegar por páginas web.
