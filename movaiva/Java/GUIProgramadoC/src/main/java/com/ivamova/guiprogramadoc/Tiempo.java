@@ -9,16 +9,19 @@ package com.ivamova.guiprogramadoc;
  *
  * @author Usuario
  */
-public class Tiempo extends javax.swing.JFrame {
+public class Tiempo extends javax.swing.JDialog {
     
     private String titulo;
 
     /**
-     * Creates new form Entrada
+     * Creates new form Tiempo
      */
-    public Tiempo(String titulo) {
+    public Tiempo(String titulo,java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.titulo=titulo;
+        lblTitulo.setText(titulo.toUpperCase());
+        this.setTitle("Datos de "+titulo.toLowerCase());
     }
 
     /**
@@ -38,12 +41,7 @@ public class Tiempo extends javax.swing.JFrame {
         spnMinutos = new javax.swing.JSpinner();
         btAceptar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("ENTRADA");
@@ -51,10 +49,19 @@ public class Tiempo extends javax.swing.JFrame {
         lblHora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHora.setText("Hora:");
 
+        spnHora.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
         lblMinutos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMinutos.setText("Minutos:");
 
+        spnMinutos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+
         btAceptar.setText("ACEPTAR");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnPrincipalLayout = new javax.swing.GroupLayout(pnPrincipal);
         pnPrincipal.setLayout(pnPrincipalLayout);
@@ -64,16 +71,17 @@ public class Tiempo extends javax.swing.JFrame {
             .addGroup(pnPrincipalLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnPrincipalLayout.createSequentialGroup()
-                        .addComponent(lblMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(spnMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnPrincipalLayout.createSequentialGroup()
-                        .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(spnHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnPrincipalLayout.createSequentialGroup()
+                            .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(spnHora, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnPrincipalLayout.createSequentialGroup()
+                            .addComponent(lblMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(spnMinutos))))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         pnPrincipalLayout.setVerticalGroup(
             pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,15 +109,15 @@ public class Tiempo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lblTitulo.setText(titulo.toUpperCase());
-    }//GEN-LAST:event_formWindowOpened
+    private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,12 +145,18 @@ public class Tiempo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Tiempo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tiempo("").setVisible(true);
+                Tiempo dialog = new Tiempo("",new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -153,7 +167,7 @@ public class Tiempo extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinutos;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnPrincipal;
-    private javax.swing.JSpinner spnHora;
-    private javax.swing.JSpinner spnMinutos;
+    public javax.swing.JSpinner spnHora;
+    public javax.swing.JSpinner spnMinutos;
     // End of variables declaration//GEN-END:variables
 }

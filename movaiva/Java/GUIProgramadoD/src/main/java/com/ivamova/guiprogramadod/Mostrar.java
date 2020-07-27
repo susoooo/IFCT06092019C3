@@ -3,12 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ivamova.guiprogramadoc;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import javax.swing.JFileChooser;
+package com.ivamova.guiprogramadod;
 
 /**
  *
@@ -16,14 +11,11 @@ import javax.swing.JFileChooser;
  */
 public class Mostrar extends javax.swing.JFrame {
 
-    private String origen;
-
     /**
      * Creates new form Mostrar
      */
-    public Mostrar(String origen) {
+    public Mostrar() {
         initComponents();
-        this.origen = origen;
     }
 
     /**
@@ -36,30 +28,25 @@ public class Mostrar extends javax.swing.JFrame {
     private void initComponents() {
 
         pnPrincipal = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
         scpDatos = new javax.swing.JScrollPane();
         txaDatos = new javax.swing.JTextArea();
-        btCerrar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Mostrar datos");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
-        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("DATOS");
-
         txaDatos.setColumns(20);
         txaDatos.setRows(5);
         scpDatos.setViewportView(txaDatos);
 
-        btCerrar.setText("CERRAR");
-        btCerrar.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCerrarActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
@@ -67,67 +54,49 @@ public class Mostrar extends javax.swing.JFrame {
         pnPrincipal.setLayout(pnPrincipalLayout);
         pnPrincipalLayout.setHorizontalGroup(
             pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(scpDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPrincipalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btCerrar)
-                .addGap(160, 160, 160))
+            .addGroup(pnPrincipalLayout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(btnCerrar)
+                .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(scpDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
         );
         pnPrincipalLayout.setVerticalGroup(
             pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(scpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btCerrar)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPrincipalLayout.createSequentialGroup()
+                .addContainerGap(270, Short.MAX_VALUE)
+                .addComponent(btnCerrar)
+                .addGap(14, 14, 14))
+            .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnPrincipalLayout.createSequentialGroup()
+                    .addComponent(scpDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(54, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txaDatos.setText("");
-        if (origen.equalsIgnoreCase("Mostar datos")) {
-            txaDatos.append(Ventana.persona.imprimir());
-        } else if (origen.equalsIgnoreCase("Listado")) {
-            JFileChooser fileChooser = new JFileChooser();
-            int seleccion = fileChooser.showOpenDialog(txaDatos);
-            if (seleccion == JFileChooser.APPROVE_OPTION) {
-                String archivo = fileChooser.getSelectedFile().getPath();
-                try {
-                    BufferedReader bfLector = new BufferedReader(new FileReader(archivo));
-                    String texto;
-                    while ((texto = bfLector.readLine()) != null) {
-                        txaDatos.append(texto);
-                        txaDatos.append(System.getProperty("line.separator"));
-
-                    }
-                    bfLector.close();
-                } catch (IOException ex) {
-                    System.err.print(ex);
-                }
-            }
-        }
+        txaDatos.setText(Ventana.pedido.imprimir());
+                
     }//GEN-LAST:event_formWindowOpened
-
-    private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
-        this.setVisible(falsea);
-    }//GEN-LAST:event_btCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,14 +128,13 @@ public class Mostrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mostrar("").setVisible(true);
+                new Mostrar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCerrar;
-    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel pnPrincipal;
     private javax.swing.JScrollPane scpDatos;
     private javax.swing.JTextArea txaDatos;
