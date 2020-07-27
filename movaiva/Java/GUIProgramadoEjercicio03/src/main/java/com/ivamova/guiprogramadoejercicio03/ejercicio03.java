@@ -12,12 +12,11 @@ public class ejercicio03 extends javax.swing.JFrame {
     /**
      * Creates new form ejercicio03
      */
-    
     private String casilla;
     private double numero1;
     private double numero2;
     private String operacion;
-    
+
     public ejercicio03() {
         initComponents();
     }
@@ -265,155 +264,154 @@ public class ejercicio03 extends javax.swing.JFrame {
 
     private void bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"2");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "2");
     }//GEN-LAST:event_bt2ActionPerformed
 
     private void bt0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt0ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"0");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "0");
     }//GEN-LAST:event_bt0ActionPerformed
 
     private void btPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPuntoActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        if(!casilla.contains(".")){
-            txfCasilla.setText(casilla+".");
+        casilla = txfCasilla.getText();
+        if (!casilla.contains(".")) {
+            txfCasilla.setText(casilla + ".");
         }
     }//GEN-LAST:event_btPuntoActionPerformed
 
     private void bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"1");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "1");
     }//GEN-LAST:event_bt1ActionPerformed
 
     private void bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"3");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "3");
     }//GEN-LAST:event_bt3ActionPerformed
 
     private void bt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt4ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"4");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "4");
     }//GEN-LAST:event_bt4ActionPerformed
 
     private void bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt5ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"5");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "5");
     }//GEN-LAST:event_bt5ActionPerformed
 
     private void bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt6ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"6");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "6");
     }//GEN-LAST:event_bt6ActionPerformed
 
     private void bt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt7ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"7");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "7");
     }//GEN-LAST:event_bt7ActionPerformed
 
     private void bt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt8ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"8");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "8");
     }//GEN-LAST:event_bt8ActionPerformed
 
     private void bt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt9ActionPerformed
         txfCasilla.setText(comprobar(txfCasilla.getText()));
-        casilla=txfCasilla.getText();
-        txfCasilla.setText(casilla+"9");
+        casilla = txfCasilla.getText();
+        txfCasilla.setText(casilla + "9");
     }//GEN-LAST:event_bt9ActionPerformed
 
     private void btDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDivisionActionPerformed
-        casilla=txfCasilla.getText();
-        numero1=Double.parseDouble(casilla);
-        operacion="/";
+        casilla = txfCasilla.getText();
+        numero1 = Double.parseDouble(casilla);
+        operacion = "/";
         txfCasilla.setText("");
     }//GEN-LAST:event_btDivisionActionPerformed
 
     private void btMultiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMultiplicacionActionPerformed
-        casilla=txfCasilla.getText();
-        numero1=Double.parseDouble(casilla);
-        operacion="*";
+        casilla = txfCasilla.getText();
+        numero1 = Double.parseDouble(casilla);
+        operacion = "*";
         txfCasilla.setText("");
     }//GEN-LAST:event_btMultiplicacionActionPerformed
 
     private void btRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRestaActionPerformed
-        casilla=txfCasilla.getText();
-        numero1=Double.parseDouble(casilla);
-        operacion="-";
+        casilla = txfCasilla.getText();
+        numero1 = Double.parseDouble(casilla);
+        operacion = "-";
         txfCasilla.setText("");
     }//GEN-LAST:event_btRestaActionPerformed
 
     private void btSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSumaActionPerformed
-        numero1=Double.parseDouble(txfCasilla.getText());
-        operacion="+";
+        numero1 = Double.parseDouble(txfCasilla.getText());
+        operacion = "+";
         txfCasilla.setText("");
     }//GEN-LAST:event_btSumaActionPerformed
 
     private void btIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIgualActionPerformed
-        numero2=Double.parseDouble(txfCasilla.getText());
-        txfCasilla.setText("");
-        boolean error=false;
-        double resultado=0;
-        
-        switch (operacion)
-        {
-            case "+":
-                resultado=numero1+numero2;
-                break;
-            case "-":
-                resultado=numero1-numero2;
-                break;
-            case "*":
-                resultado=numero1*numero2;
-                break;
-            case "/":
-                if(numero2==0)
-                {
-                    error=true;
-                }else
-                {
-                    resultado=numero1/numero2;
-                }
-                break;
-            default:
-                break;
+        if (txfCasilla.getText() != "") {
+            numero2 = Double.parseDouble(txfCasilla.getText());
+            txfCasilla.setText("");
+            boolean error = false;
+            double resultado = 0;
+
+            switch (operacion) {
+                case "+":
+                    resultado = numero1 + numero2;
+                    break;
+                case "-":
+                    resultado = numero1 - numero2;
+                    break;
+                case "*":
+                    resultado = numero1 * numero2;
+                    break;
+                case "/":
+                    if (numero2 == 0) {
+                        error = true;
+                    } else {
+                        resultado = numero1 / numero2;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            operacion = "=";
+            if (error) {
+                txfCasilla.setText("No se puede dividir por cero");
+            } else {
+                txfCasilla.setText(sinCeros(resultado));
+            }
         }
-        operacion="=";
-        if(error)
-        {
-            txfCasilla.setText("No se puede dividir por cero");
-        }else{
-            txfCasilla.setText(sinCeros(resultado));
-        }
+
     }//GEN-LAST:event_btIgualActionPerformed
 
-    public String sinCeros(double resultado)
-    {
-        String retorno=Double.toString(resultado);
-        if(resultado%1==0){
-            retorno=retorno.substring(0,retorno.length()-2);
+    public String sinCeros(double resultado) {
+        String retorno = Double.toString(resultado);
+        if (resultado % 1 == 0) {
+            retorno = retorno.substring(0, retorno.length() - 2);
         }
         return retorno;
-            
+
     }
-    public String comprobar(String casilla)
-    {
-        if(casilla.contains("No se puede dividir por cero")){
-            casilla="";
-        } else if(casilla.equals("0")){
-            casilla="";
-        } 
+
+    public String comprobar(String casilla) {
+        if (casilla.contains("No se puede dividir por cero")) {
+            casilla = "";
+        } else if (casilla.equals("0")) {
+            casilla = "";
+        }
         return casilla;
     }
+
     /**
      * @param args the command line arguments
      */
