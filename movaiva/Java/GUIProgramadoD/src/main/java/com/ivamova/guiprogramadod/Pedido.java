@@ -12,17 +12,23 @@ package com.ivamova.guiprogramadod;
 public class Pedido {
     private String masa;
     private String ingredientes[];
+    private Double precios[];
     private String descuento;
     private String entrega;
     private String cliente;
     private String direccion;
-    private double precio;
+    private double precio=0;
 
-    public Pedido(String masa, String[] ingredientes, String descuento, String entrega) {
+    public Pedido(String masa, String[] ingredientes,Double[] precios, String descuento, String entrega) {
         this.masa = masa;
         this.ingredientes = ingredientes;
+        this.precios=precios;
         this.descuento = descuento;
         this.entrega = entrega;
+    }
+
+    public Pedido() {
+        
     }
 
     public String getMasa() {
@@ -81,17 +87,43 @@ public class Pedido {
         this.precio = precio;
     }
     
+    public Double[] getPrecios() {
+        return precios;
+    }
+
+    public void setPrecios(Double[] precios) {
+        this.precios = precios;
+    }
+    
+    public void calcularPrecio()
+    {
+        for(int contador=0;contador<precios.length;contador++)
+        {
+            if(precios[contador]!=null){
+                precio+=precios[contador];
+            }
+            
+        }
+        
+        precio-=precio*(Integer.parseInt(descuento)/100);
+    }
+    
     public String imprimir()
     {
+        calcularPrecio();
         String texto="";
-        texto+="Masa: "+masa+"\n";
+        texto+="Masa: "+masa;
+        texto+="\t"+precios[0]+"\n";
         texto+="Ingredientes: \n";
         for(int contador=0;contador<ingredientes.length;contador++){
-            texto+="\t"+ingredientes[contador]+"\n";
+            if(ingredientes[contador]!=null){
+               texto+=ingredientes[contador];
+               texto+="\t"+precios[contador+1]+"\n";
+            }
         }
         texto+="Descuento: "+descuento+"%\n";
         texto+="Forma de entrega: "+entrega+"\n";
-        if(entrega.contains("domicilio")){
+        if(entrega.equalsIgnoreCase("domicilio")){
             texto+="Cliente: "+cliente+"\n";
             texto+="Dirección: "+direccion+"\n";
         }

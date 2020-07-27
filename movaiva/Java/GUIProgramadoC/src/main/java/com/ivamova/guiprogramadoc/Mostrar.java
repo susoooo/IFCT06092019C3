@@ -126,7 +126,7 @@ public class Mostrar extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
-        this.setVisible(falsea);
+        this.setVisible(false);
     }//GEN-LAST:event_btCerrarActionPerformed
 
     /**

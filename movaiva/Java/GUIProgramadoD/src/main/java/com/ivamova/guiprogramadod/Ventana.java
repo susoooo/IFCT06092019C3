@@ -19,13 +19,12 @@ public class Ventana extends javax.swing.JFrame {
     private String ingredientes[]={"chourizo", "jamón", "queso", "morcilla", 
         "champiñon", "lubrigante", "grelos", "piña", "maracuya", "chistorra", 
         "polbo","lechuga","bacon","aceitunas","atun","pollo"};
-    private double precioIngre[]={0.1,0.5,0.1,0.2,0.1,2,0.25,0.4,0.6,0.2,1,0.2,0.2,0,1,0.25,0.2};
+    private Double precioIngre[]={0.1,0.5,0.1,0.2,0.1,2.0,0.25,0.4,0.6,0.2,1.0,0.2,0.2,0.1,0.25,0.2};
     private String masas[]={"hiperextramegafina", "hipermegafina", "extrahiperfina", 
         "megaextrafina", "extrafina", "megafina", "hiperfina", "fina"};
-    private double precioMasa[]={0.1,0.2,0.25,0.3,0.35,0.4,0.45,0.5};
-    private String descuento[]={"50","20","10","5"};
-    public static Pedido pedido;
-   
+    private double precioMasa[]={10,10.5,11,11.5,12,12.5,13,13.5};
+    private String descuento[]={"0","5","10","20","50"};
+    private Pedido pedido=new Pedido();
 
     /**
      * Creates new form Ventana
@@ -70,24 +69,10 @@ public class Ventana extends javax.swing.JFrame {
         lblCliente = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JLabel();
         txfDireccion = new javax.swing.JTextField();
-        chb01 = new javax.swing.JCheckBox();
-        chb02 = new javax.swing.JCheckBox();
-        chb03 = new javax.swing.JCheckBox();
-        chb04 = new javax.swing.JCheckBox();
-        chb05 = new javax.swing.JCheckBox();
-        chb06 = new javax.swing.JCheckBox();
-        chb07 = new javax.swing.JCheckBox();
-        chb08 = new javax.swing.JCheckBox();
-        chb09 = new javax.swing.JCheckBox();
-        chb10 = new javax.swing.JCheckBox();
-        chb11 = new javax.swing.JCheckBox();
-        chb12 = new javax.swing.JCheckBox();
-        chb13 = new javax.swing.JCheckBox();
-        chb14 = new javax.swing.JCheckBox();
-        chb15 = new javax.swing.JCheckBox();
-        chb16 = new javax.swing.JCheckBox();
         btPedido = new javax.swing.JButton();
         btnMostrar2 = new javax.swing.JButton();
+        btReset = new javax.swing.JButton();
+        btIngredinetes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,6 +123,20 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        btReset.setText("RESET");
+        btReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btResetActionPerformed(evt);
+            }
+        });
+
+        btIngredinetes.setText("INGREDIENTES");
+        btIngredinetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIngredinetesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnPrincipalLayout = new javax.swing.GroupLayout(pnPrincipal);
         pnPrincipal.setLayout(pnPrincipalLayout);
         pnPrincipalLayout.setHorizontalGroup(
@@ -146,27 +145,11 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnPrincipalLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbLocal)
-                            .addComponent(lblEntrega))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbDomicilio)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnPrincipalLayout.createSequentialGroup()
                         .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb15, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblMasa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb07, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb12, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb08, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbxMasa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnPrincipalLayout.createSequentialGroup()
                                 .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDireccion)
@@ -176,39 +159,28 @@ public class Ventana extends javax.swing.JFrame {
                                     .addComponent(txfDireccion)
                                     .addComponent(txfCliente, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb03, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb04, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb05, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb06, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb09, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb10, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnPrincipalLayout.createSequentialGroup()
                                 .addComponent(lblDescuento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbxDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb13, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb14, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(7, 7, 7)
+                                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(rbLocal)
+                                    .addComponent(lblEntrega))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbDomicilio)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(pnPrincipalLayout.createSequentialGroup()
+                        .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(chb01, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chb02, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                                .addComponent(lblMasa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbxMasa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPrincipalLayout.createSequentialGroup()
-                .addComponent(btPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMostrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(btPedido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btReset)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMostrar2))
+                            .addComponent(btIngredinetes))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnPrincipalLayout.setVerticalGroup(
             pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,39 +189,9 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMasa)
                     .addComponent(cbxMasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb01)
-                    .addComponent(chb02))
+                .addGap(16, 16, 16)
+                .addComponent(btIngredinetes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb03)
-                    .addComponent(chb04))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb05)
-                    .addComponent(chb06))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb09)
-                    .addComponent(chb10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb08)
-                    .addComponent(chb11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb07)
-                    .addComponent(chb12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb13)
-                    .addComponent(chb14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chb15)
-                    .addComponent(chb16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescuento)
                     .addComponent(cbxDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,7 +212,9 @@ public class Ventana extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btPedido)
-                    .addComponent(btnMostrar2)))
+                    .addComponent(btnMostrar2)
+                    .addComponent(btReset))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -281,7 +225,7 @@ public class Ventana extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -303,16 +247,6 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPedidoActionPerformed
         String masa=cbxMasa.getSelectedItem().toString();
-        String[] ingre=new String[ingredientes.length];
-        int contIngre=0;
-        Component[] componentes=pnPrincipal.getComponents();
-        for(int contador=0;contador<componentes.length;contador++){
-            if(componentes[contador] instanceof JCheckBox){
-                if(((JCheckBox)componentes[contador]).isSelected()){
-                    ingre[contIngre]=((JCheckBox)componentes[contador]).getText();
-                }       
-            }            
-        }
         String descuento=cbxDescuento.getSelectedItem().toString();
         String entrega;
         String cliente="";
@@ -324,26 +258,45 @@ public class Ventana extends javax.swing.JFrame {
         }else
         {
             entrega="Local";
-        }
-        double precio=0;
-        precio+=precioMasa[cbxMasa.getSelectedIndex()];
-        for(int contador=0;contador<ingre.length;contador++){
-            precio+=precioIngre[Arrays.binarySearch(ingredientes, ingre[contador])];
-        }
-        precio-=precio*(Integer.parseInt(descuento)*100);
+        } 
         
-        pedido=new Pedido(masa,ingre,descuento,entrega);
+        Double[] precios=pedido.getPrecios();
+        precios[0]=precioMasa[cbxMasa.getSelectedIndex()];
+        pedido.setPrecios(precios);
+        pedido.setMasa(masa);
+        pedido.setDescuento(descuento);
+        pedido.setEntrega(entrega);
         if(entrega.equalsIgnoreCase("Domicilio")){
             pedido.setCliente(cliente);
             pedido.setDireccion(direccion);
         }
-        pedido.setPrecio(precio);
     }//GEN-LAST:event_btPedidoActionPerformed
 
     private void btnMostrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrar2ActionPerformed
-        Mostrar mostrar=new Mostrar();
+        Mostrar mostrar=new Mostrar(pedido);
         mostrar.setVisible(true);
     }//GEN-LAST:event_btnMostrar2ActionPerformed
+
+    private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
+        cbxMasa.setSelectedIndex(0);
+        cbxDescuento.setSelectedIndex(0);
+        rbLocal.setSelected(true);
+        txfCliente.setEnabled(false);
+        lblCliente.setEnabled(false);
+        txfDireccion.setEnabled(false);
+        lblDireccion.setEnabled(false);
+        txfCliente.setText("");
+        txfDireccion.setText("");
+        pedido=new Pedido();
+    }//GEN-LAST:event_btResetActionPerformed
+
+    private void btIngredinetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngredinetesActionPerformed
+        Ingredientes ingredientes=new Ingredientes(pedido,this.ingredientes,this.precioIngre);
+        ingredientes.setVisible(true);
+        pedido=ingredientes.getPedido();
+        this.ingredientes=ingredientes.getIngredientes();
+        this.precioIngre=ingredientes.getPrecioIngre();
+    }//GEN-LAST:event_btIngredinetesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,27 +334,13 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btIngredinetes;
     private javax.swing.JButton btPedido;
+    private javax.swing.JButton btReset;
     private javax.swing.ButtonGroup btgEntrega;
     private javax.swing.JButton btnMostrar2;
     private javax.swing.JComboBox<String> cbxDescuento;
     private javax.swing.JComboBox<String> cbxMasa;
-    private javax.swing.JCheckBox chb01;
-    private javax.swing.JCheckBox chb02;
-    private javax.swing.JCheckBox chb03;
-    private javax.swing.JCheckBox chb04;
-    private javax.swing.JCheckBox chb05;
-    private javax.swing.JCheckBox chb06;
-    private javax.swing.JCheckBox chb07;
-    private javax.swing.JCheckBox chb08;
-    private javax.swing.JCheckBox chb09;
-    private javax.swing.JCheckBox chb10;
-    private javax.swing.JCheckBox chb11;
-    private javax.swing.JCheckBox chb12;
-    private javax.swing.JCheckBox chb13;
-    private javax.swing.JCheckBox chb14;
-    private javax.swing.JCheckBox chb15;
-    private javax.swing.JCheckBox chb16;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDescuento;
     private javax.swing.JLabel lblDireccion;

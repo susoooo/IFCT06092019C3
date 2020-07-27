@@ -11,11 +11,13 @@ package com.ivamova.guiprogramadod;
  */
 public class Mostrar extends javax.swing.JFrame {
 
+    Pedido pedido;
     /**
      * Creates new form Mostrar
      */
-    public Mostrar() {
+    public Mostrar(Pedido pedido) {
         initComponents();
+        this.pedido=pedido;
     }
 
     /**
@@ -94,7 +96,7 @@ public class Mostrar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txaDatos.setText(Ventana.pedido.imprimir());
+        txaDatos.setText(pedido.imprimir());
                 
     }//GEN-LAST:event_formWindowOpened
 
@@ -128,7 +130,7 @@ public class Mostrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mostrar().setVisible(true);
+                new Mostrar(null).setVisible(true);
             }
         });
     }
