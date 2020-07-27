@@ -5,17 +5,25 @@
  */
 package com.ivamova.guiprogramadoc;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Usuario
  */
 public class Mostrar extends javax.swing.JFrame {
 
+    private String origen;
+
     /**
      * Creates new form Mostrar
      */
-    public Mostrar() {
+    public Mostrar(String origen) {
         initComponents();
+        this.origen = origen;
     }
 
     /**
@@ -31,8 +39,15 @@ public class Mostrar extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         scpDatos = new javax.swing.JScrollPane();
         txaDatos = new javax.swing.JTextArea();
+        btCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mostrar datos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("DATOS");
@@ -41,12 +56,23 @@ public class Mostrar extends javax.swing.JFrame {
         txaDatos.setRows(5);
         scpDatos.setViewportView(txaDatos);
 
+        btCerrar.setText("CERRAR");
+        btCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnPrincipalLayout = new javax.swing.GroupLayout(pnPrincipal);
         pnPrincipal.setLayout(pnPrincipalLayout);
         pnPrincipalLayout.setHorizontalGroup(
             pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(scpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(scpDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPrincipalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btCerrar)
+                .addGap(160, 160, 160))
         );
         pnPrincipalLayout.setVerticalGroup(
             pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -54,7 +80,10 @@ public class Mostrar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
-                .addComponent(scpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                .addComponent(scpDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btCerrar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,6 +99,35 @@ public class Mostrar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txaDatos.setText("");
+        if (origen.equalsIgnoreCase("Mostar datos")) {
+            txaDatos.append(Ventana.persona.imprimir());
+        } else if (origen.equalsIgnoreCase("Listado")) {
+            JFileChooser fileChooser = new JFileChooser();
+            int seleccion = fileChooser.showOpenDialog(txaDatos);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                String archivo = fileChooser.getSelectedFile().getPath();
+                try {
+                    BufferedReader bfLector = new BufferedReader(new FileReader(archivo));
+                    String texto;
+                    while ((texto = bfLector.readLine()) != null) {
+                        txaDatos.append(texto);
+                        txaDatos.append(System.getProperty("line.separator"));
+
+                    }
+                    bfLector.close();
+                } catch (IOException ex) {
+                    System.err.print(ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,12 +159,13 @@ public class Mostrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mostrar().setVisible(true);
+                new Mostrar("").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCerrar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnPrincipal;
     private javax.swing.JScrollPane scpDatos;

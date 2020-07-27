@@ -5,13 +5,18 @@
  */
 package com.ivamova.guiprogramadoc;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Usuario
  */
 public class Ventana extends javax.swing.JFrame {
     
-    private Persona persona;
+    static Persona persona;
 
     /**
      * Creates new form Ventana
@@ -38,6 +43,7 @@ public class Ventana extends javax.swing.JFrame {
         btListado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registro de personas");
 
         btPersonales.setText("Datos personales");
         btPersonales.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +53,7 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         btEntrada.setText("Datos de entrada");
+        btEntrada.setActionCommand("entrada");
         btEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEntradaActionPerformed(evt);
@@ -54,12 +61,33 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         btSalida.setText("Datos de salida");
+        btSalida.setActionCommand("salida");
+        btSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalidaActionPerformed(evt);
+            }
+        });
 
         btMostrar.setText("Mostar datos");
+        btMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMostrarActionPerformed(evt);
+            }
+        });
 
         btGuardar.setText("Guardar datos");
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarActionPerformed(evt);
+            }
+        });
 
         btListado.setText("Listado");
+        btListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnPrincipalLayout = new javax.swing.GroupLayout(pnPrincipal);
         pnPrincipal.setLayout(pnPrincipalLayout);
@@ -108,14 +136,73 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPersonalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPersonalesActionPerformed
-       Personales personales=new Personales();
+       Personales personales=new Personales(this,true);
        personales.setVisible(true);
+       String dni=personales.txfDni.getText();
+       String nombre=personales.txfNombre.getText();
+       String apellidos=personales.txfApellidos.getText();
+       persona=new Persona(dni,nombre,apellidos);
     }//GEN-LAST:event_btPersonalesActionPerformed
 
     private void btEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntradaActionPerformed
-        Tiempo tiempo=new Tiempo(evt.getActionCommand());
+        Tiempo tiempo=new Tiempo(evt.getActionCommand(),this,true);
         tiempo.setVisible(true);
+        String hora=tiempo.spnHora.getValue().toString();
+        if(hora.length()<2)
+        {
+            hora="0"+hora;
+        }
+        String minuto=tiempo.spnMinutos.getValue().toString();
+        if(minuto.length()<2)
+        {
+            minuto="0"+minuto;
+        }
+        String entrada=hora+":"+minuto;
+        persona.setHora_entrada(entrada);
     }//GEN-LAST:event_btEntradaActionPerformed
+
+    private void btSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalidaActionPerformed
+        Tiempo tiempo=new Tiempo(evt.getActionCommand(),this,true);
+        tiempo.setVisible(true);
+        String hora=tiempo.spnHora.getValue().toString();
+        if(hora.length()<2)
+        {
+            hora="0"+hora;
+        }
+        String minuto=tiempo.spnMinutos.getValue().toString();
+        if(minuto.length()<2)
+        {
+            minuto="0"+minuto;
+        }
+        String salida=hora+":"+minuto;
+        persona.setHora_salida(salida);
+    }//GEN-LAST:event_btSalidaActionPerformed
+
+    private void btMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarActionPerformed
+        Mostrar mostrar=new Mostrar(evt.getActionCommand());
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_btMostrarActionPerformed
+
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int seleccion = fileChooser.showOpenDialog(btGuardar);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            String archivo = fileChooser.getSelectedFile().getPath();
+            try {
+                BufferedWriter bfEscritor = new BufferedWriter(new FileWriter(archivo,true));
+                bfEscritor.write(persona.imprimir());
+                bfEscritor.newLine();
+                bfEscritor.close();
+            } catch (IOException ex) {
+                System.err.print(ex);
+            }
+        }
+    }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void btListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListadoActionPerformed
+        Mostrar mostrar=new Mostrar(evt.getActionCommand());
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_btListadoActionPerformed
 
     /**
      * @param args the command line arguments
