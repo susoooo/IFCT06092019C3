@@ -714,7 +714,7 @@ public class Pizza extends javax.swing.JFrame {
 
         LblPrecio.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         LblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        LblPrecio.setText("0.0");
+        LblPrecio.setText("0.0€");
 
         javax.swing.GroupLayout PanelComprarLayout = new javax.swing.GroupLayout(PanelComprar);
         PanelComprar.setLayout(PanelComprarLayout);
@@ -799,105 +799,105 @@ public class Pizza extends javax.swing.JFrame {
 
     private void RdoFinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoFinaMouseReleased
         LblListaBase.setText("Fina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoFinaMouseReleased
 
     private void RdoHiperfinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoHiperfinaMouseReleased
         LblListaBase.setText("Hiperfina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoHiperfinaMouseReleased
 
     private void RdoMegafaunaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoMegafaunaMouseReleased
         LblListaBase.setText("Megafina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoMegafaunaMouseReleased
 
     private void RdoExtrafinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoExtrafinaMouseReleased
         LblListaBase.setText("Extrafina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoExtrafinaMouseReleased
 
     private void RdoMegaextrafinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoMegaextrafinaMouseReleased
         LblListaBase.setText("Megaextrafina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoMegaextrafinaMouseReleased
 
     private void RdoExtrahiperfinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoExtrahiperfinaMouseReleased
         LblListaBase.setText("Extrahiperfina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoExtrahiperfinaMouseReleased
 
     private void RdoHipermegafinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoHipermegafinaMouseReleased
         LblListaBase.setText("Hipermegafina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoHipermegafinaMouseReleased
 
     private void RdoHiperextramegafinaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoHiperextramegafinaMouseReleased
         LblListaBase.setText("Hiperextramegafina");
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
         ChkBase.setSelected(true);
     }//GEN-LAST:event_RdoHiperextramegafinaMouseReleased
 
     private void ChkChorizoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkChorizoMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkChorizoMouseReleased
 
     private void ChkJamonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkJamonMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkJamonMouseReleased
 
     private void ChkQuesoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkQuesoMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkQuesoMouseReleased
 
     private void ChkMorcillaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkMorcillaMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkMorcillaMouseReleased
 
     private void ChkChampiñonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkChampiñonMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkChampiñonMouseReleased
 
     private void ChkLubriganteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkLubriganteMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkLubriganteMouseReleased
 
     private void ChkGrelosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkGrelosMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkGrelosMouseReleased
 
     private void ChkPiñaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkPiñaMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkPiñaMouseReleased
 
     private void ChkMaracuyaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkMaracuyaMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkMaracuyaMouseReleased
 
     private void ChkChistorraMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkChistorraMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkChistorraMouseReleased
 
     private void ChkPolloMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChkPolloMouseReleased
         UpdateIngredientSummary();
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_ChkPolloMouseReleased
 
     private void BtnComprarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnComprarMouseReleased
@@ -945,25 +945,25 @@ public class Pizza extends javax.swing.JFrame {
     private void RdoCeroPorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoCeroPorMouseReleased
         FieldCodigo.setEnabled(false);
         Descuento = 1.0f;
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_RdoCeroPorMouseReleased
 
     private void RdoDiezPorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoDiezPorMouseReleased
         FieldCodigo.setEnabled(true);
         Descuento = 0.9f;
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_RdoDiezPorMouseReleased
 
     private void RdoVeintePorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoVeintePorMouseReleased
         FieldCodigo.setEnabled(true);
         Descuento = 0.8f;
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_RdoVeintePorMouseReleased
 
     private void RdoVeinticincoPorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RdoVeinticincoPorMouseReleased
         FieldCodigo.setEnabled(true);
         Descuento = 0.75f;
-        LblPrecio.setText(CalcularMonto().toString());
+        LblPrecio.setText(CalcularMonto().toString() + "€");
     }//GEN-LAST:event_RdoVeinticincoPorMouseReleased
 
     private Float CalcularMonto() {
