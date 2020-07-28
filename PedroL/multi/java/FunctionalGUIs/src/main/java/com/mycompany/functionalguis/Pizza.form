@@ -894,7 +894,7 @@
                   <Font name="Tahoma" size="12" style="2"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="0.0"/>
+                <Property name="text" type="java.lang.String" value="0.0&#x20ac;"/>
               </Properties>
             </Component>
           </SubComponents>
