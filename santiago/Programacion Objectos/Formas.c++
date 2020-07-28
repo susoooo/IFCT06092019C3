@@ -64,6 +64,15 @@ class rectangulo : public Forma
 		~rectangulo();
 };
 
+class cuadrado : public rectangulo
+{
+	public:
+		cuadrado();
+		Ladosrand();
+		Imprimir();
+		~cuadrado();
+};
+
 class elipse : public Forma
 {
 	protected:
@@ -77,6 +86,15 @@ class elipse : public Forma
 		calcuArea();
 		imprimir();
 		~elipse();
+};
+
+class circulo : public elipse
+{
+	public:
+		circulo();
+		Datos();
+		imprimir();
+		~circulo();
 };
 
 cordenadas::cordenadas()
@@ -285,6 +303,50 @@ elipse::~elipse()
 	inicializar();
 }
 
+cuadrado::cuadrado()
+{
+	inicializar();
+}
+
+cuadrado::Ladosrand()
+{
+	LadoMayor=rand();
+	LadoMenor=LadoMayor;
+}
+
+cuadrado::Imprimir()
+{
+	cout<<"Su lado es "<<LadoMenor<<endl;	
+}
+
+cuadrado::~cuadrado()
+{
+	LadoMayor=0;
+	LadoMayor=0;
+}
+
+circulo::circulo()
+{
+	inicializar();
+}
+
+circulo::Datos()
+{
+	cout<<"introducca el tamano del radio"<<endl;
+	cin>>radioMayor;
+	radioMenor=radioMayor;
+}
+
+circulo::imprimir()
+{
+	cout<<"El area de la circulo es "<<Area<<endl;
+}
+
+circulo::~circulo()
+{
+	inicializar();
+}
+
 int main()
 {
 	char Cc;
@@ -304,8 +366,9 @@ int main()
 	Cc=0;
 	cout<<"Quiere morver la forma pulse M"<<endl;
 	cin>>Cc;
-	if(Cc=='M')
-		{objforma.MoverLaForma();}
+	
+		if(Cc=='M')
+			{objforma.MoverLaForma();}
 	
 	rectangulo Objrectangulo;
 	Objrectangulo.Ladosrand();
@@ -318,5 +381,17 @@ int main()
 	Objelipse.Datos();
 	Objelipse.calcuArea();
 	Objelipse.imprimir();
+	
+	cuadrado Objcuadrado;
+	Objcuadrado.Ladosrand();
+	Objcuadrado.Imprimir();
+	Objcuadrado.CalcularElArea();
+	Objcuadrado.CalcularElPerimetro();
+	Objcuadrado.CambiarElTamano();
+	
+	circulo Objcirculo;
+	Objcirculo.Datos();
+	Objcirculo.calcuArea();
+	Objcirculo.imprimir();
 
 }
