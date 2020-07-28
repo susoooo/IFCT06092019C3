@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /EM/Java/Gradle/.gradle/
 /EM/Java/int/nbproject/private/
 /EM/Java/holamundoant/nbproject/private/
@@ -13,3 +14,22 @@
 /EM/Java/calcu/target/
 /EM/Java/Sistema/target/
 /EM/Java/archivo/target/
+=======
+/Juan/Java/holamundo/target/
+/Juan/Java/intro/target/
+/Juan/Java/archivos/target/
+/Juan/Java/espacio/target/
+/Juan/Java/rectangulo/target/
+/Juan/Java/Formas/target/
+/Juan/Java/colisiones/target/
+/Juan/Java/gradleholamundo/.gradle/
+/Juan/Java/JavaAntHolaMundo/nbproject/private/
+/Juan/Java/gradleholamundo/build/
+/Juan/Java/JavaAntHolaMundo/build/
+/Juan/Java/Alquiler/target/
+/Juan/Java/Ventana2/target/
+/Juan/Java/Ventana3/target/
+/Juan/Java/mavenproject1/target/
+/Juan/Java/Ejemplo1/target/
+/Juan/Java/Calculadora/target/
+>>>>>>> 822ef7ad461e660bac65821d4c9c7fbb07e9e474
