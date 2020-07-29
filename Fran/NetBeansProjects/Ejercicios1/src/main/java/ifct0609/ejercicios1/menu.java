@@ -1,22 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ifct0609.ejercicios1;
 
-/**
- *
- * @author Usuario
- */
-
 import java.util.*;
-        
+import javax.swing.JFrame;        
+  
 public class menu 
 {
-    public static void main(String[] args)
+    public class SimpleFrame extends JFrame 
+    {
+        public SimpleFrame() 
+        {
+            super("Frame Title");
+            setSize(800, 600);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setVisible(true);
+        }
+    }
+
+    /**
+     *
+     * @param args
+     */
+    
+    public void main(String[] args)
     {
         int opcion;
+        
+        SimpleFrame sf = new SimpleFrame();
         
         do
         {
