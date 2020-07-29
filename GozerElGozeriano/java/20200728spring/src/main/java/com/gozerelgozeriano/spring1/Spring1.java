@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Spring1 {
         
     private int contador;
-    private final double start;
+    private final long start;
         
     public static void main(String[] args) {
         SpringApplication.run(Spring1.class, args);
@@ -57,7 +57,7 @@ public class Spring1 {
         
     @GetMapping("/time")
     public String time(){
-        double currenttime;
+        long currenttime;
         contador++;
         currenttime = System.currentTimeMillis();
         return(String.valueOf(currenttime-start));
