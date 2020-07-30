@@ -3,10 +3,17 @@
 2-Crea una aplicación que muestre el contenido de una página:
 
 <iframe src="https://www.starwars.com" width="100%" height="80%"title="Que bien programao!!!"></iframe>
+
+ 
+
 */
 
 package com.example.demo;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +32,7 @@ SpringApplication.run(ApplicationVariasPaginasWeb.class, args);
 public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 return String.format("Hello %s!", name);
 }
+
 
 @GetMapping("/hasta luego")
 public String hastaluego(@RequestParam(value = "name", defaultValue = "World") String name) {
