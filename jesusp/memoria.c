@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+#include <stdio.h>
+#include <stdlib.h>
+#include <alloca.h>
+void main()
+{
+char *caracter;
+
+int num;
+int cont;
+
+printf("Dime los caracteres que quieres: ");
+scanf("%d",&num);
+getchar();
+caracter=malloc(sizeof(char)*num);
+for(cont=0;cont<num;cont++)
+{
+  printf("\nIntroduce caracteres %d:",cont+1);
+  scanf("%c",&caracter[cont]);
+  getchar;
+=======
 #include <linux/init.h>
 //#include <linux/config.h>
 #include <linux/module.h>
@@ -63,22 +84,18 @@ int memory_init(void) {
  fail:
    memory_exit();
     return result;
+>>>>>>> 8fdb877eb39804fc629e6a39a65687ddd5300d72
 }
+ printf("\nHas introducido:");
 
-void memory_exit(void) {
-  /* Freeing the major number */
-  unregister_chrdev(memory_major, "memory");
-  /* Freeing buffer memory */
-  if (memory_buffer) {
-    kfree(memory_buffer);
-  }
-  printk("<1>Removing memory module\n");
+for(cont=0;cont<num;cont++)
+{
+   printf("%c",caracter[cont]);
 }
-
-int memory_open(struct inode *inode, struct file *filp) {
-  		/* Success */
-  return 0;
+printf("\n");
 }
+<<<<<<< HEAD
+=======
 
 int memory_release(struct inode *inode, struct file *filp) {
   /* Success */
@@ -109,3 +126,4 @@ module_init(memory_init);
 module_exit(memory_exit);
 
 MODULE_LICENSE("Dual BSD/GPL");
+>>>>>>> 8fdb877eb39804fc629e6a39a65687ddd5300d72
