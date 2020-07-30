@@ -15,6 +15,8 @@ void main(void)
     int len;
     int num1;
     int num2;
+    int factorial;
+    int contador;
     int suma;
     int opcion1;
 
@@ -44,18 +46,21 @@ void main(void)
                 fflush(stdout);
 
                 sendto(s, "Dame el primer numero: ", 24, 0, (struct sockaddr*) &name, len);
-                sleep(2);
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
-                num1 = atoi(buf);
+                sleep(1);
+
+                n = recvfrom(s, &num1, sizeof(num1), 0, (struct sockaddr*) &name, &len);
+
                 printf("%d", num1);
                 printf("\nSegundo operando: ");
                 fflush(stdout);
 
                 sendto(s, "Dame el segundo numero: ", 25, 0, (struct sockaddr*) &name, len);
-                sleep(2);
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
-                num2 = atoi(buf);
-                printf("%d", num2);
+                sleep(1);
+
+                n = recvfrom(s, &num2, sizeof(num2), 0, (struct sockaddr*) &name, &len);
+
+
+                printf("%d\n", num2);
                 fflush(stdout);
 
                 suma = num1 + num2;
@@ -65,12 +70,27 @@ void main(void)
             case 1:
                 printf("\nRealizando factoramiento: ");
                 printf("\nNumero a factorizar: ");
+                fflush(stdout);
 
+                sendto(s, "Dame el numero: ", 24, 0, (struct sockaddr*) &name, len);
+                sleep(1);
+
+                n = recvfrom(s, &num1, sizeof(num1), 0, (struct sockaddr*) &name, &len);
+
+                factorial = num1;
+
+                for (contador = num1-1; contador > 1; contador--)
+                {
+                    factorial = factorial * contador;
+                }
+
+                sendto(s, &factorial, sizeof(factorial), 0, (struct sockaddr*) &name, len);
+                sleep(1);
             break;
 
             default:
                 printf("*");
         }
-
+    printf("\n");
     close(s);
 }

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                          <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="EtiquetaNombreSO" min="-2" max="-2" attributes="0"/>
+                              <Component id="EqituetaVersionSO" min="-2" max="-2" attributes="0"/>
+                              <Component id="EtiquetaVendedorJRE" min="-2" max="-2" attributes="0"/>
+                              <Component id="EtiquetaVersionJRE" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="CampoNombreSO" max="32767" attributes="0"/>
+                              <Component id="CampoVersionSO" max="32767" attributes="0"/>
+                              <Component id="CampoVendedorJRE" max="32767" attributes="0"/>
+                              <Component id="CampoVersionJRE" pref="255" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CampoNombreSO" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="EtiquetaNombreSO" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CampoVersionSO" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="EqituetaVersionSO" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CampoVendedorJRE" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="EtiquetaVendedorJRE" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="CampoVersionJRE" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="EtiquetaVersionJRE" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <Component id="BotonInfo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="CampoNombreSO">
+        </Component>
+        <Component class="javax.swing.JTextField" name="CampoVersionSO">
+        </Component>
+        <Component class="javax.swing.JTextField" name="CampoVendedorJRE">
+        </Component>
+        <Component class="javax.swing.JTextField" name="CampoVersionJRE">
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonInfo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mostrar Info"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInfoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EtiquetaNombreSO">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre S.O.:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EqituetaVersionSO">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Versi&#xf3;n S.O.:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EtiquetaVendedorJRE">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Vendedor JRE:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EtiquetaVersionJRE">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Versi&#xf3;n JRE:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

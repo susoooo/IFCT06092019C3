@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.7" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="196" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="CheckBmostrarformatoCondicional" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="TmarcaDeAgua" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="Tgeneral" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="SeparadorGeneral" min="-2" pref="358" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="CheckBmodoPantallaCompleta" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="CheckBmostrarBarraDeHerramientasFlotantesEnFlash" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="CheckBenviarAutomáticamente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="TmodoDeAnchoDeDocumento" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="ComboBmodoDeAnchoDeDocumento" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="TestiloAutomaticoDeCuadriculaPorDefecto" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="ComboBestilo" min="-2" pref="117" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="Tdisponibles" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBver" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBinteractivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBeditable" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBflashvisualización" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="TmodosDeVisualización" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="TformatosDeExportación" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBflashformato" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBhtml" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBexcel" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="CheckBpdf" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="Tdisponibles2" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="TporDefectoEjecutarComo" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="ComboBejecución" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="SeparadorFormatoCondicional" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="Bformato" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="Baceptar" min="-2" pref="92" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="Bcancelar" min="-2" pref="92" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="Bayuda" min="-2" pref="92" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="SeparadorGeneral" min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="Tgeneral" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TestiloAutomaticoDeCuadriculaPorDefecto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ComboBestilo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TmodosDeVisualización" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TformatosDeExportación" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Tdisponibles" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Tdisponibles2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="CheckBver" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CheckBpdf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="CheckBexcel" min="-2" max="-2" attributes="0"/>
+                              <Component id="CheckBinteractivo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="CheckBhtml" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CheckBeditable" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="CheckBflashformato" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CheckBflashvisualización" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="TporDefectoEjecutarComo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ComboBejecución" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="CheckBmodoPantallaCompleta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="CheckBmostrarBarraDeHerramientasFlotantesEnFlash" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="CheckBenviarAutomáticamente" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="TmodoDeAnchoDeDocumento" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="ComboBmodoDeAnchoDeDocumento" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="SeparadorFormatoCondicional" min="-2" pref="10" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="CheckBmostrarformatoCondicional" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="TmarcaDeAgua" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="Bformato" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane1" min="-2" pref="504" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Baceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Bcancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Bayuda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTree" name="TreePropiedades">
+              <Properties>
+                <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
+                  <TreeModel code=""/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="Tgeneral">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="General"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="SeparadorGeneral">
+        </Component>
+        <Component class="javax.swing.JLabel" name="TestiloAutomaticoDeCuadriculaPorDefecto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estilo autom&#xe1;tico de cuadr&#xed;cula por defecto"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboBestilo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Pasteles"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="TmodosDeVisualizaci&#xf3;n">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modos de visualizaci&#xf3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Tdisponibles">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Disponiibles:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Tdisponibles2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Disponiibles:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBver">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Ver"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBinteractivo">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Interactivo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBeditable">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Editable"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBflashvisualizaci&#xf3;n">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Flash"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBpdf">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="PDF"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBexcel">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Excel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBexcelActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBhtml">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="HTML"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBflashformato">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Flash"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="TformatosDeExportaci&#xf3;n">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Formatos de exportaci&#xf3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="TporDefectoEjecutarComo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Por defecto ejecutar como:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboBejecuci&#xf3;n">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Interactivo"/>
+                <StringItem index="1" value="Ver"/>
+                <StringItem index="2" value="Editable"/>
+                <StringItem index="3" value="Fash"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBmodoPantallaCompleta">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Abrir siempre este documento en modo de pantalla completa"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBmostrarBarraDeHerramientasFlotantesEnFlash">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Mostrar barras de herramientas flotantes en Flash"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBenviarAutom&#xe1;ticamente">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Enviar autom&#xe1;ticamente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="TmodoDeAnchoDeDocumento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modo de ancho de documento:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboBmodoDeAnchoDeDocumento">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="1">
+                <StringItem index="0" value="Fijo"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Formato condicional"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="SeparadorFormatoCondicional">
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="CheckBmostrarformatoCondicional">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mostrar formato condicional"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="TmarcaDeAgua">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Marca de agua"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Bformato">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Formato"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Baceptar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Bcancelar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Bayuda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

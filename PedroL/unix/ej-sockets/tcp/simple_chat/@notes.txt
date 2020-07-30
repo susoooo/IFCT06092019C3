@@ -1,0 +1,26 @@
+TODO:
+    ~~Message log structure~~
+    ~~Message push to log procedure~~
+    ~~MESSAGE command~~
+
+    ~~More elegant command handling~~
+
+    ~~Update messages procedure
+        Server wait for client OK~~
+        
+    ~~GOODBYE doesnt drop connection~~
+    
+    ~~openslots is a critical region~~
+
+    Missed specification for UPDATE
+
+    Check that user is initialized before allowing further commands
+        (non-zero id? userin->id = MAXUSRS - openslots + 1;)
+
+    Either push_msg_to_log() or send_msg_log() are faulty (probably former)
+        server msg: 
+        :   1yo 2
+
+        (after sending "MESSAGE yo" and "MESSAGE yo 2")
+
+    Test with more than one user

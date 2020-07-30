@@ -16,6 +16,7 @@ int main (void)
     int len;
     int opcion;
     int numero;
+    int facto;
 
     char buf[1024];
     char hostname[64];
@@ -52,30 +53,45 @@ int main (void)
                 strcpy(buf, "0");
                 sendto(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, len);
 
-                sleep(2);
+                sleep(1);
 
                 recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, n, 0, (struct sockaddr*) &name, len);
+                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
 
-                sleep(2);
+                sleep(1);
 
                 recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
                 printf("\n%s", buf);
                 scanf("%d", &numero);
                 // read(0, buf, sizeof(buf));
-                sendto(s, &numero, n, 0, (struct sockaddr*) &name, len);
+                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
 
-                sleep(2);
+                sleep(1);
 
-                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
-                printf("\nEl resultado es: %s", buf);
+                recvfrom(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, &len);
+                printf("\nEl resultado es: %d\n", numero);
 
             break;
 
             case 1:
+                strcpy(buf, "1");
+                sendto(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, len);
+
+                sleep(1);
+
+                recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr*) &name, &len);
+                printf("\n%s", buf);
+                scanf("%d", &numero);
+                // read(0, buf, sizeof(buf));
+                sendto(s, &numero, sizeof(numero), 0, (struct sockaddr*) &name, len);
+
+                sleep(1);
+
+                recvfrom(s, &facto, sizeof(facto), 0, (struct sockaddr*) &name, &len);
+                printf("\nEl factorial de %d es: %d\n", numero, facto);
 
             break;
 
