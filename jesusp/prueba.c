@@ -1,21 +1,46 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include <stdlib.h>
 
-int main (int argc, char *argv[])
- {
-int i;
-printf("Ejecutando el programa invocador (execprog1). Sus argumentos son:\n");
-for (i = 0; i < argc; i++)
-printf("argv[%d]: %s\n", i, argv[i]);
-sleep(10);
-strcpy(argv[0], "execprog2");
+int main()
+{
+char * pMemo;
+size_t leido;
+FILE *miFich;
 
-if (execv ("./execprog2", argv) < 0)
+miFich = fopen("prueba.txt","r");
+if(miFich!=0)
     {
-        printf("Error en la invocacion a execprog2\n");
-        exit(1);
-    };
-exit(0);
+
+        pMemo=malloc(sizeof(char));
+        if(pMemo!=NULL)
+                {
+                    do
+                    {
+                        leido = fread(pMemo,sizeof(char),1,miFich);
+                        if(leido!=1)
+                        {
+                            perror("\nNo he podido leer");
+                        }
+                        else
+                        {
+                            printf("%c-",*pMemo);
+
+                        }
+
+                    }
+            while(!feof(miFich));
+            free(pMemo);
+        }
+        else
+        {
+            perror("No he consequido reservar memoria");
+        }
+        fclose(miFich);
+
+    }
+    else
+    {
+        perror("Esteeeeeee... Algo ha ido mal");
+    }
+
 }
