@@ -1,0 +1,5 @@
+#include <unistd.h>
+STDIN_FILENO
+STDOUT_FILENO
+read(0, &buf, sizeof(int), 0);
+read(STDIN_FILENO, &buf, sizeof(int), 0);

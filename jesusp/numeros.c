@@ -1,42 +1,42 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <pthread.h>
-int *n;
-int numero(void * num)
-{
-int numer;
-printf("dame un numero");
-scanf("%d",&numer);
-return(numer);
-}
-int suma()
-{
-suma=suma+*n;
-printf("La suma es:%d",suma);
-}
+#include <stdio.h>
 
-int main()
-{
+main(){
+int numero1;
+int numero2;
+int numero3;
+numero1=0;
+numero2=0;
+numero3=0;
 
-int contador;
-contador=0;
-
-pthread_t h1;
-pthread_t h2;
-
-    n=malloc(sizeof(int)*numero());
-for(contador=1;contador<=numer;contador++)
-{
-n[contador]=rand()%10;
-}
-for(contador=1;contador<=n;contador++)
-    {
-        pthread_create(&h1,NULL,numero,(void*)suma);
-        pthread_create(&h2,NULL,numero,(void*)suma);
-    }
-    pthread_join(h1,NULL);
-    pthread_join(h2,NULL);
-
+printf("Hola soy Numeros.com\n");
+printf("Version 2.0 \n");
+printf("Dame el numero1:");
+scanf("%d", &numero1);
+printf("Dame el numero2:");
+scanf("%d", &numero2);
+printf("Dame el numero3:");
+scanf("%d", &numero3);
+	if(numero1>numero2 && numero1>numero3 && numero2>numero3){
+		printf("Numero1 es el mayor, el segundo es numero2 y  numero3 es el menor");
+	}else{
+		if(numero1>numero2 && numero1>numero3 && numero3>numero2){
+			printf("Numero1 es el mayor, el segundo es numero3 y  numero2 es el menor");
+			}else{
+				if(numero2>numero1 && numero2>numero3 && numero3>numero1){
+			printf("Numero2 es el mayor, el segundo es numero3 y el numero1 es el menor");
+				}else{
+				if(numero2>numero1 && numero1>numero3 && numero2>numero3){
+				printf("Numero2 es el mayor, el segundo es numero1 y el numero3 es el menor");
+				}else{
+					if(numero3>numero1 && numero3>numero2 && numero1>numero2){
+					printf("Numero3 es el mayor, el segundo es numero1 y el numero2 es el menor");
+				}else{
+					if(numero3>numero2 && numero3>numero1 && numero2>numero1){
+					printf("Numero3 es el mayor, el segundo es numero2 y el numero1 es el menor");
+				}
+				}
+				}
+				}
+			}
+		}
 }
