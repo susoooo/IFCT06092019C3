@@ -12,6 +12,9 @@
 
 package com.gozerelgozeriano.springjson;
 
+import java.util.Arrays;
+import java.util.Map;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +27,40 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductStoreController {
     private ProductStore store = new ProductStore();
     
-    @GetMapping("/add")
-    public void add(@RequestParam(value = "num") int num) {
-        stoore
+    @GetMapping("/store/add")
+    public void add(@RequestParam(value = "name") String name,
+                    @RequestParam(value = "prize") double prize) {
+        store.addproduct(name,prize);
     }
+    
+    @GetMapping("/store/query")
+    public String query(@RequestParam(value="name", defaultValue="ALLPRODUCTS") String name){
+        String text;
+        text = "";
+        Map<String, Object> map;
+        map = new ModelMap();
+
+        for(Product prd: store.query(name)){
+            map.clear();
+            map.put("name", prd.getnombre());
+            map.put("prize",prd.getprecio());
+            text += map.toString()+"<br>";
+        }
+        return text;
+    }
+    
+    @GetMapping("/store/change_money")
+    public void changeprize(@RequestParam(value = "name") String name,
+                            @RequestParam(value = "prize") double prize) {
+        store.changeprecio(name,prize);
+        
+    }
+    
+    @GetMapping("/store/change_name")
+    public void changename(@RequestParam(value = "oldname") String oldname,
+                           @RequestParam(value = "newname") String newname) {
+        store.changename(oldname,newname);
+        
+    }
+    
 }

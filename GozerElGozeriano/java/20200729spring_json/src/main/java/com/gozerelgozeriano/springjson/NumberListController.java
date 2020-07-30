@@ -20,17 +20,17 @@ public class NumberListController {
     
     private NumberList nl = new NumberList();
 
-    @GetMapping("/add")
+    @GetMapping("/list/add")
     public void add(@RequestParam(value = "num") int num) {
         nl.add(num);
     }
     
-    @GetMapping("/query")
+    @GetMapping("/list/query")
     public String query() {
         return(Arrays.toString(nl.getlist()));
     }
     
-    @GetMapping("/remove")
+    @GetMapping("/list/remove")
     public void remove() {
         nl.remove();
     }
