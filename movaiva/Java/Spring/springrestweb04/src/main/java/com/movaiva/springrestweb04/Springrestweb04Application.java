@@ -46,16 +46,44 @@ public class Springrestweb04Application {
 		public String menu() {
 			return cabecera();
 		}
+		
+		@GetMapping("/formadd")
+		public String formadd() {
+			String texto=cabecera();
+			
+			return texto;
+		}
+		
+		@GetMapping("/formsearch")
+		public String formsearch() {
+			String texto=cabecera();
+			
+			return texto;
+		}
+		
+		@GetMapping("/formmoney")
+		public String formmoney() {
+			String texto=cabecera();
+			return texto;
+		}
+		
+		@GetMapping("/formname")
+		public String formname() {
+			String texto=cabecera();
+			return texto;
+		}
         
         @GetMapping("/consulta")
-	public HashMap<String,Double> consulta(@RequestParam(value = "producto", defaultValue = "nada") String producto) {
+	public String consulta(@RequestParam(value = "producto", defaultValue = "nada") String producto) {
+        	String texto=cabecera();
                 if(producto.equals("nada")){
-                    return listaPrecios;
+                    texto+="\n"+listaPrecios.toString();
                 }else{
                     HashMap<String,Double> nuevaLista=new HashMap<String,Double>();
                     nuevaLista.put(producto, listaPrecios.get(producto));
-                    return nuevaLista;
+                    texto+="\n"+nuevaLista;
                 }
+                return texto;
 	}
         
         @GetMapping("/add")
@@ -88,34 +116,41 @@ public class Springrestweb04Application {
             String textoFormateado="";
             double suma=0;
             int contador=0;
+            
+            textoFormateado=cabecera();
+            
             Map.Entry<String,Double> entry = listaPrecios.entrySet().iterator().next();
-            precio=entry.getValue();
-            for(String entrada : listaPrecios.keySet())
-            {
-                if(precio<listaPrecios.get(entrada)){
-                    precio=listaPrecios.get(entrada);
-                    producto=entrada;
+            
+            if(entry.getValue()==null) {
+            	precio=entry.getValue();
+            	for(String entrada : listaPrecios.keySet())
+                {
+                    if(precio<listaPrecios.get(entrada)){
+                        precio=listaPrecios.get(entrada);
+                        producto=entrada;
+                    }
+                    contador++;
+                    suma+=listaPrecios.get(entrada);
                 }
-                contador++;
-                suma+=listaPrecios.get(entrada);
-            }
-            texto="<ul><li>El producto con el precio más caro: %s %.2f</li>";
-            textoFormateado=String.format(texto, producto,precio);
-            
-            for(String entrada : listaPrecios.keySet())
-            {
-                if(precio>listaPrecios.get(entrada)){
-                    precio=listaPrecios.get(entrada);
-                    producto=entrada;
+                texto="<ul><li>El producto con el precio más caro: %s %.2f</li>";
+                textoFormateado+=String.format(texto, producto,precio);
+                
+                for(String entrada : listaPrecios.keySet())
+                {
+                    if(precio>listaPrecios.get(entrada)){
+                        precio=listaPrecios.get(entrada);
+                        producto=entrada;
+                    }
                 }
+                texto="<li>El producto con el precio más barato: %s %.2f</li>";
+                textoFormateado+=String.format(texto, producto,precio);
+                
+                suma=suma/contador;
+                
+                texto="<li>La media de los precios es: %.2f</li></ul>";
+                textoFormateado+=String.format(texto, suma);
             }
-            texto="<li>El producto con el precio más barato: %s %.2f</li>";
-            textoFormateado+=String.format(texto, producto,precio);
             
-            suma=suma/contador;
-            
-            texto="<li>La media de los precios es: %.2f</li></ul>";
-            textoFormateado+=String.format(texto, suma);
             return textoFormateado;
             
         }
@@ -128,6 +163,7 @@ public class Springrestweb04Application {
         			+ "<li><a href=\"formsearch\">Consultar producto</a></li>"
         			+ "<li><a href=\"formmoney\">Cambiar precio</a></li>"
         			+ "<li><a href=\"formname\">Cambiar nombre</a></li>"
+        			+ "<li><a href=\"statistics\">Estadísticas</a></li>"
         			+ "</ul>";
         	return html;
         }
