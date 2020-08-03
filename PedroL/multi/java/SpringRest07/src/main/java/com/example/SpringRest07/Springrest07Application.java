@@ -1,5 +1,7 @@
 package com.example.springrest07;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +27,8 @@ public class Springrest07Application {
 						"<body>\n" +
 						"<a href=\"/json_preview\">01. JSON preview</a><br>" +
 						"<a href=\"/length_of\">02. Length of</a><br>\n" +
-						"<a href=\"/weird_list\">03. Weird list</a><br>\n" +
-						"<a href=\"/price_list_manager\">04. Price list manager</a><br>\n" +
+						"<a href=\"/list\">03. Number list</a><br>\n" +
+						"<a href=\"/price_list\">04. Price list</a><br>\n" +
 						"</body>\n" +
 						"</html>";
 		
@@ -37,6 +39,8 @@ public class Springrest07Application {
 		String response = 
 						"<html>\n" +
 						"<body>\n" +
+						"<a href=\"/index\">/index</a><br>" +
+						"<hr>" +
 						"<a href=\"/json_preview/place\">a) Place</a><br>\n" +
 						"<a href=\"/json_preview/forum_post\">b) Forum post</a>\n" +
 						"</body>\n" +
@@ -66,36 +70,6 @@ public class Springrest07Application {
 						"<html>\n" +
 						"<body>\n" +
 						body +
-						"</body>\n" +
-						"</html>";
-		return response;
-	}
-	@GetMapping("/weird_list")
-	public String weird_list() {
-		String response =
-						"<html>\n" +
-						"<body>\n" +
-						"<a href=\"/weird_list/add\">/add</a><br>\n" +
-						"<a href=\"/weird_list/query\">/query</a><br>\n" +
-						"<a href=\"/weird_list/remove\">/remove</a><br>\n" +
-						"</body>\n" +
-						"</html>";
-		
-		return response;
-	}
-	@GetMapping("/price_list_manager")
-	public String price_list_manager() {
-		String response =
-						"<html>\n" +
-						"<body>\n" +
-						"<a href=\"/price_list_manager/consulta\">/consulta</a><br>\n" +
-						"<a href=\"/price_list_manager/add\">/add</a><br>\n" +
-						"<a href=\"/price_list_manager/change_money\">/change_money</a><br>\n" +
-						"<a href=\"/price_list_manager/change_name\">/change_name</a><br>\n" +
-						"<hr>" +
-						"<a href=\"/price_list_amanger/mas_caro\">/mas_caro</a><br>\n" +
-						"<a href=\"/price_list_amanger/mas_barato\">/mas_barato</a><br>\n" +
-						"<a href=\"/price_list_amanger/media\">/media</a><br>\n" +
 						"</body>\n" +
 						"</html>";
 		

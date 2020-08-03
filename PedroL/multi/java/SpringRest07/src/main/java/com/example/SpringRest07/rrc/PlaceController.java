@@ -15,16 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PlaceController {
 	
-	private Float[] location;
-	
-	@GetMapping("/json_preview/place")
-	public Place place() {
-		location = new Float[] {
+	private Float[] location = new Float[] {
 			25.2285f,
 			55.3273f,
 		};
-		
-		return new Place("Grand Hyatt", location);
-	}
+	
+	@GetMapping("/json_preview/place")
+	public Place place() { return new Place("Grand Hyatt", location); }
 	
 }
