@@ -1,7 +1,5 @@
 package com.example.springrest07;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,7 +63,7 @@ public class Springrest07Application {
 						"letter_count: " + letter_count.toString() + "<br>" +
 						"number_count: " + number_count.toString() + "<br>"
 						:
-						"/length_of?entry=your string here";
+						"/entry=...";
 		response =
 						"<html>\n" +
 						"<body>\n" +

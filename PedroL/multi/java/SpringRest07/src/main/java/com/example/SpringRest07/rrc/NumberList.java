@@ -21,7 +21,7 @@ public class NumberList {
 	public void add(Integer new_num) { number_list.add(new_num); }
 	public Integer remove_last() { return number_list.remove(number_list.size() - 1);	}
 	public Integer get_last() { return number_list.lastElement(); }
-	public Object[] get_all() { return number_list.toArray(); }
+	public Vector<Integer> get_all() { return number_list; }
 	public int size() { return number_list.size(); }
 	
 }

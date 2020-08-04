@@ -41,14 +41,15 @@ public class PriceListController {
 						"<a href=\"/price_list/mas_caro\">/mas_caro</a><br>\n" +
 						"<a href=\"/price_list/mas_barato\">/mas_barato</a><br>\n" +
 						"<a href=\"/price_list/media\">/media</a><br>\n" +
+						"<a href=\"/price_list/all_stats\">/all_stats</a><br>\n" +
 						"</body>\n" +
 						"</html>";
 		
 		return response;
 	}
 	@GetMapping("/price_list/consulta")
-	public Object consulta(@RequestParam(name = "product", defaultValue = "") String product) { 
-		Object consulta = new Object();
+	public HashMap<String, Float> consulta(@RequestParam(name = "product", defaultValue = "") String product) { 
+		HashMap<String, Float> consulta = new HashMap<>();
 		
 		if(product.isBlank()) {
 			consulta = price_list.get_all();
@@ -100,16 +101,26 @@ public class PriceListController {
 		return response;
 	}
 	@GetMapping("/price_list/mas_caro")
-	public Object mas_caro() {
-		return price_list.get_most_expensive();
+	public HashMap<String, Float> mas_caro() {
+		return price_list.get_highest_priced();
 	}
 	@GetMapping("/price_list/mas_barato")
-	public Object mas_barato() {
-		return price_list.get_least_expensive();
+	public HashMap<String, Float> mas_barato() {
+		return price_list.get_lowest_priced();
 	}
 	@GetMapping("/price_list/media")
 	public Object media() {
 		return price_list.get_median();
+	}
+	@GetMapping("/price_list/all_stats")
+	public Object all_stats() { //doesnt work :))
+		Object stats = new Object() {
+			HashMap<String, Float> get_highest_priced() { return price_list.get_highest_priced();} 
+			HashMap<String, Float> get_lowest_priced() { return price_list.get_lowest_priced(); }
+			Object get_median() { return price_list.get_median(); }
+		};
+		
+		return stats;
 	}
 	
 }
