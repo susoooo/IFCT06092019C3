@@ -1,0 +1,13 @@
+Un club deportivo desea realizar una aplicación para llevar la gestión de la información de la que dispone de las personas que juegan en alguno de los equipos del club. La información que se guarda de cada persona que juega es su nombre, apellidos, edad y altura. Se pide realizar un programa que almacene la información de forma permanente y que como mínimo permita lo siguiente:
+
+1-Añadir datos de una persona
+2-Listar los datos de todas las personas de las que se guarda información
+3-Buscar por el nombre a una persona y que se listen sus datos
+4-Encontrar a la persona más veterana que juega en el club y listar sus datos
+5-Encontrar a la persna más joven que juega en el club y listar sus datos
+6-Encontrar a la persona más alta que juega en el club y listar sus datos
+7-Encontrar a la persona más baja que juega en el club y listar sus datos
+8-Ver, uno a uno, los datos de todas las personas, hasta que se pulse una tecla determinada
+9-Calcular la media de las edades de las personas que juegan en el club
+10-Calcular la media de las alturas de las personas que juegan en el club
+11-Eliminar datos de una persona determinada
