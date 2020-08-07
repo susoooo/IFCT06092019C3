@@ -1,0 +1,8 @@
+Hiperextramegafina,3.75
+Hipermegafina,4.0
+Extrahiperfina,4.25
+Megaextrafina,4.50
+Extrafina,4.75
+Megafina,5.0
+Hiperfina,5.25
+Fina,5.50
