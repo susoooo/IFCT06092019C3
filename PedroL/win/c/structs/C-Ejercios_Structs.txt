@@ -1,5 +1,0 @@
-La información de todos los empleados de la empresa DATASYSTEM está almacenada en  una  variable  de  tipo  struct    llamada  “empleado”.  La  información  con  que  se cuenta de cada empleado es: nombre, sexo y sueldo. Se pide: Realizar un programa en C que lea en un array de estructuras los datos de 10 trabajadores de la empresa y que imprima los datos del empleado con mayor y menor salario
-
-Crear un programa que pida al usuario los nombres, edades, y alturas, de 10 jugadores. Posteriormente le presentará un menú que le permita: 1. Listar los nombres de los jugadores; 2. Listar las alturas de los jugadores; 3. Listar las edades de los jugadores.
-
-Crear un programa que pida al usuario los nombres, edades, y alturas, de 10 jugadores. Posteriormente le presentará un menú que le permita: 1. Listar los nombres de los jugadores; 2. Listar las alturas de los jugadores; 3. Listar las edades de los jugadores; 4.Buscar un jugador por su nombre y presentar su altura y su edad; 5. Indicar la edad y el nombre del jugador más alto de la lista.

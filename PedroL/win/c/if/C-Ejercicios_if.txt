@@ -1,7 +1,0 @@
-Ejercicio 9: Condición if 1. 
-Realizar un programa que pida al usuario dos números y diga cuál es el mayor y cuál el menor. 
-Ejercicio 10: Condición if 2. 
-Realizar un programa que pida tres números y diga cuáles son pares y cuáles impares. 
-Ejercicio 11: Condición if 3. 
-Realizar un programa que pregunte al usuario el momento del día con un numero (1-mañana, 2-tarde, 3-noche), el sexo con otro numero (1-masculino, 2-femenino). El programa dirá: buenos días, tardes, o noches (según el momento) señor o señora según el sexo. 
-Ejercicio 12: Condición if 4. Realizar un programa que pida tres números y diga cuál es el mayor, cuál es el segundo mayor, y cuál es el menor
