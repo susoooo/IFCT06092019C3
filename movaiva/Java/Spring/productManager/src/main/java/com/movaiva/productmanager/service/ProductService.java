@@ -29,6 +29,17 @@ public class ProductService {
 		return products;
 	}
 	
+	public void save(Product product) {
+		productRepository.save(product);	 
+	}
 	
+	public List<Product> findByName(String name) {
+		return productRepository.findByName(name);
+		
+	}
+	
+	public void update(String newName,String name) {
+		productRepository.update(newName, name);
+	}
 
 }
