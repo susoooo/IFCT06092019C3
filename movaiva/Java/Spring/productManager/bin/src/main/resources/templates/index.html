@@ -9,35 +9,33 @@
     <title>Administrador de productos</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Administrador de productos</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" th:href="@{/}" href="#">Administrador de productos</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/fromadd.html" th:href="@{/formAdd}">Añadir producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Añadir producto</a>
+            <a class="nav-link" href="/formsearch.html" th:href="@{/formSearch}">Buscar producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Listar producto</a>
+            <a class="nav-link" href="/frommoney.html" th:href="@{/formMoney}">Cambiar precio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cambiar precio</a>
+            <a class="nav-link" href="/fromname.html" th:href="@{/formName}">Cambiar nombre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cambiar nombre</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Estadísticas</a>
+            <a class="nav-link" href="/statistics.html" th:href="@{/statistics}">Estadísticas</a>
           </li>
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div class="container mt-3">
       <table class="table">
         <thead>
           <tr>
@@ -47,7 +45,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="product:{$products}">
+          <tr th:each="product:${products}">
             <td th:text="${product.id}"/>
             <td th:text="${product.name}"/>
             <td th:text="${product.prize}"/>
