@@ -1,9 +1,0 @@
-2. Crea un programa en C que tenga una función que dado un valor en Euros devuelva el valor en Dolares . Considere usar funciones. Sabiendo que 01 Euro Equivale Actualmente a 1,17 Dolares.
-
-4. Diseñe un programa, que muestre el mayor y el menor de tres introducidos por el usuario. Desarrolle 02 Funciones una para calcular el número mayor y otra para calcular el número menor.
-
-0. Escriba una función llamada “multiplicación” que reciba como argumento cuatro números reales distintos de cero y que regrese el producto de ellos.
-
-6. Realizar una función llamada media2, que toma dos números reales como parámetros, y devuelve un número real que es la media de los dos números pasados como parámetros.
-
-9. Crear una función que compruebe si el numero que se le pasa como parámetro es o no primo. Si es, devolverá un 1, y si no lo es, devolverá un 0.
