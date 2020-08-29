@@ -10,14 +10,14 @@
   </head>
   <body>
     <div th:replace="/fragments/head"></div>
-
     <div class="container">
       <div th:if=${errors} class="alert alert-danger mt-3" role="alert">
         <div class="container-fluid" th:each="error:${errors}">
             <p class="text-center mb-0" th:text="${error}"></p>
         </div>
       </div>
-      <form method="POST" th:action="@{/addProduct}" th:object="${product}">
+      <form method="POST" th:action="@{/editProduct}" th:object="${product}">
+        <input type="hidden" name="id" th:field="*{id}">
         <div class="form-group">
           <label for="name">Nombre:</label>
           <input type="text" class="form-control" id="name" th:field="*{name}"/>
@@ -26,7 +26,7 @@
           <label for="prize">Precio</label>
           <input type="number" step="any" min="0" class="form-control" id="prize" th:field="*{prize}"/>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">Editar</button>
       </form>
     </div>
   </body>
