@@ -2,6 +2,7 @@ package com.movaiva.productmanager.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -34,12 +35,15 @@ public class ProductService {
 	}
 	
 	public List<Product> findByName(String name) {
-		return productRepository.findByName(name);
-		
+		return productRepository.findByName(name);		
 	}
 	
-	public void update(String newName,String name) {
-		productRepository.update(newName, name);
+	public Optional<Product> findById(Integer id) {
+		return productRepository.findById(id);
+	}
+	
+	public void update(Integer id,String name, Double prize) {
+		productRepository.update(id,name,prize);
 	}
 
 }

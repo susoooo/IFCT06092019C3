@@ -1,6 +1,7 @@
 package com.movaiva.productmanager.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,12 +11,13 @@ import com.movaiva.productmanager.entity.Product;
 
 public interface ProductRepository extends CrudRepository<Product,Integer> {
 	
-	@Modifying 
 	@Query("select p from Product p where p.name like %:name%")
 	public List<Product> findByName(String name);
+	@Query("select p from Product p where p.id=:id")
+	public Optional<Product> findById(Integer id);
 	@Modifying
-	@Query("update Product p set p.name=:newName where p.name=:name")
-	public void update(String newName,String name);
+	@Query("update Product p set p.name=:name, p.prize=:prize where p.id=:id")
+	public void update(Integer id, String name, Double prize);
 	 
 
 }
