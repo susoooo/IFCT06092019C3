@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
   `nombre_cli` varchar(255) DEFAULT NULL,
   `apellidos_cli` varchar(255) DEFAULT NULL,
   `usuario_cli` varchar(255) DEFAULT NULL,
+  `email_cli` varchar(255) DEFAULT NULL,
   `contrasena_cli` varchar(255) DEFAULT NULL,
   `estado_cli` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id_cli`)
@@ -19,7 +20,9 @@ CREATE TABLE IF NOT EXISTS `Organizador` (
   `nombre_org` varchar(255) DEFAULT NULL,
   `apellidos_org` varchar(255) DEFAULT NULL,
   `usuario_org` varchar(255) DEFAULT NULL,
+  `email_org` varchar(255) DEFAULT NULL,
   `contrasena_org` varchar(255) DEFAULT NULL,
+  `cuentaBancaria_org` varchar(255) DEFAULT NULL,
   `estado_org` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id_org`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
