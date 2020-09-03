@@ -1,4 +1,22 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+/EM/Java/Gradle/.gradle/
+/EM/Java/int/nbproject/private/
+/EM/Java/holamundoant/nbproject/private/
+/EM/Java/holamundoant/build/
+/EM/Java/Gradle/build/
+/EM/Java/Ventana001/target/
+/EM/Java/Ventana002/target/
+/EM/Java/Ventana003/target/
+/EM/Java/Ventana004/target/
+/EM/Java/GUI001/target/
+/EM/Java/cambio/target/
+/EM/Java/cambio1/target/
+/EM/Java/calcu/target/
+/EM/Java/Sistema/target/
+/EM/Java/archivo/target/
+=======
+=======
 /santiago/Java/Hola_mundo/target/
 /santiago/Java/Area_perimetro/target/
 /santiago/Java/Cambio_dolares_a_euros/target/
@@ -31,6 +49,7 @@
 /santiago/Java/superpizza/target/
 =======
 <<<<<<< HEAD
+>>>>>>> 92f4edea8b6439298dfa4734c6536a5049a79892
 /Juan/Java/holamundo/target/
 /Juan/Java/intro/target/
 /Juan/Java/archivos/target/
@@ -48,6 +67,12 @@
 /Juan/Java/mavenproject1/target/
 /Juan/Java/Ejemplo1/target/
 /Juan/Java/Calculadora/target/
+<<<<<<< HEAD
+>>>>>>> 822ef7ad461e660bac65821d4c9c7fbb07e9e474
+/EM/Java/Appbotones/target/
+/EM/Java/pizza/target/
+/EM/Java/sistemahospital/target/
+=======
 /Juan/Java/sistema/target/
 /Juan/Java/ejercicio5b2/target/
 /Juan/Java/registropersonas/target/
@@ -56,3 +81,4 @@
 /PedroL/multi/java/FunctionalGUIs/target/
 >>>>>>> 7043895fbf8741f01c244ee6473ece98616e11d7
 >>>>>>> 6af90cfb4918a08ef20e534c2993b124f2ff0b20
+>>>>>>> 92f4edea8b6439298dfa4734c6536a5049a79892
