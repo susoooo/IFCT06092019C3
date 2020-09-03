@@ -35,7 +35,7 @@ return ("<iframe src=\"https://www.starwars.com\" width=\"100%\" height=\"80%\"t
 
 }
 
-@GetMapping("/Incremento")
+
 
 
 

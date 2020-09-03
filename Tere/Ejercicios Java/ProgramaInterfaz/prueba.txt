@@ -1,0 +1,14 @@
+1-Crea un programa que mueste la siguiente información del sistema en campos de texto:
+
+	Nombre del SSOO
+	Versión del SSOO
+	Nombre del Vendedor de la JRE	
+	Versión de la JRE
+
+(Pista: System.getProperty())
+
+2-Crea un pequeño programa con interface gráfica que permita seleccionar un archivo y
+ copiarlo en otro archivo.
+
+3-Crea un pequeño editor de textos que permita guardar los textos que se van haciendo en archivos.
+

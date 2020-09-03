@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" charset="utf-8"></script>
+
+    <title>Administrador de productos</title>
+  </head>
+  <body>
+    <div th:replace="/fragments/head"></div>
+    <div class="container mt-3">
+      <div th:if=${statistics} class="container-fluid">
+        <div class="container" th:each="statistic : ${statistics}">
+          <p class="text-center mb-0" th:text="${statistic}"></p>
+        </div>
+      </div>
+      <div th:unless=${statistics} class="container-fluid">
+        <p class="text-center mb-0">No hay datos de estadística</p>
+      </div>
+    </div>
+  </body>
+</html>

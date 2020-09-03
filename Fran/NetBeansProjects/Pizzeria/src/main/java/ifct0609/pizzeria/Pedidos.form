@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JFrame" name="Pedidos">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[665, 710]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[665, 710]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[665, 710]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="PanelPedidos" alignment="1" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="PanelPedidos" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="PanelPedidos">
+          <Properties>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[665, 681]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[665, 681]"/>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="RBMorcilla" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBPina" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBQueso" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBAceitunas" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBAtun" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="RBAnchoas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBChampinones" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBPepperoni" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBMaracuya" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBCebolla" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="RBBacon" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="RBTomate" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="RBChistorra" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="RBChorizo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="RBLubrigante" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="RBJamon" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="RBPolbo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="RBGrelos" min="-2" max="-2" attributes="0"/>
+                                      <Component id="RBZorza" min="-2" max="-2" attributes="0"/>
+                                      <Component id="RBExtraMozzarela" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="EtiquetaIngredientes" min="-2" max="-2" attributes="0"/>
+                                  <Component id="EtiquetaMasa" min="-2" pref="111" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="RBEntregalocal" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="RBEntregadomicilio" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="RBhiperextramegafina" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="RBHipermegafina" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="RBMegaextrafina" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="RBExtrahiperfina" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="RBMegafina" min="-2" max="-2" attributes="0"/>
+                                              <Component id="RBExtrafina" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="RBFina" min="-2" max="-2" attributes="0"/>
+                                              <Component id="RBHiperfina" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="EtiquetaAviso" min="-2" pref="430" max="-2" attributes="0"/>
+                                      <Component id="EtiquetaCabecera1" min="-2" pref="552" max="-2" attributes="0"/>
+                                      <Component id="jSeparator1" pref="565" max="32767" attributes="0"/>
+                                      <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="EtiquetaModoentrega" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jSeparator5" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BotonFinalizar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="EtiquetaCabecera1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="EtiquetaMasa" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="RBHipermegafina" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="RBExtrafina" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="RBMegafina" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RBFina" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="RBHiperfina" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBhiperextramegafina" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="RBExtrahiperfina" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="RBMegaextrafina" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="EtiquetaAviso" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="EtiquetaIngredientes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="RBAtun" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBAnchoas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBChorizo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBJamon" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="RBMorcilla" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBChampinones" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBLubrigante" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBGrelos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="RBPina" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBMaracuya" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBChistorra" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBPolbo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="RBQueso" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBPepperoni" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBBacon" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBExtraMozzarela" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="RBAceitunas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBCebolla" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBTomate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBZorza" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator2" min="-2" pref="4" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jSeparator5" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="EtiquetaModoentrega" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="RBEntregalocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RBEntregadomicilio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="BotonFinalizar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="EtiquetaCabecera1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Engravers MT" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="TUSUPERPIZZAQUELOFLIPAS"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBHipermegafina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Hipermegafina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBExtrahiperfina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Extrahiperfina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBMegaextrafina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Megaextrafina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBExtrafina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Extrafina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBMegafina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Megafina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBHiperfina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Hiperfina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBFina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Fina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaMasa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Seleccionar masa"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBhiperextramegafina">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoMasas"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Hiperextramegafina"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator1">
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaAviso">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="AVISO: El coste de la masa incluye salsa de tomate y mozzarela."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaIngredientes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Seleccionar ingredientes"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBAtun">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="At&#xfa;n"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBAnchoas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anchoas"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBChorizo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Chorizo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBJamon">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Jam&#xf3;n"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBGrelos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Grelos"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBLubrigante">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lubrigante"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBChampinones">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Champi&#xf1;ones"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBMorcilla">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Morcilla"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBPolbo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Polbo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBChistorra">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Chistorra"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBMaracuya">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Maracuy&#xe1;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBPina">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pi&#xf1;a"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBExtraMozzarela">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Extra Mozzarella"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBBacon">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bacon"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBPepperoni">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pepperoni"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBQueso">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Queso"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBAceitunas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aceitunas"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBCebolla">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cebolla"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBTomate">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tomate natural"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBZorza">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zorza"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="BotonFinalizar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Finalizar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonFinalizarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator2">
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaModoentrega">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modo de entrega"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBEntregalocal">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoEntrega"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Recoger en local"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="RBEntregadomicilio">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="GrupoEntrega"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Entrega en domicilio"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator5">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Descuento"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0%"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="10%"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="20%"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="25%"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.ButtonGroup" name="GrupoMasas">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="GrupoEntrega">
+    </Component>
+    <Container class="javax.swing.JFrame" name="PanelDatos">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 300]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 300]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="EtiquetaDatosenvio" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="EtiquetaTelefono" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="CampoTelefono" min="-2" pref="128" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="BotonAceptar" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="EtiquetaDireccion" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                              <Component id="CampoDireccion" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="EtiquetaNombre" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="CampoNombre" min="-2" pref="248" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="EtiquetaDatosenvio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="CampoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="EtiquetaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="EtiquetaDireccion" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoDireccion" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="EtiquetaTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <Component id="BotonAceptar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="EtiquetaDatosenvio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Datos envio"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="CampoNombre">
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaNombre">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaDireccion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Direccion:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="CampoDireccion">
+            </Component>
+            <Component class="javax.swing.JLabel" name="EtiquetaTelefono">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="CampoTelefono">
+            </Component>
+            <Component class="javax.swing.JButton" name="BotonAceptar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aceptar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="PanelPrincipal" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="PanelPrincipal" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="PanelPrincipal">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="EtiquetaCabecera" min="-2" pref="552" max="-2" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                          <Component id="EtiquetaPedidos" min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="BotonPedido" min="-2" pref="121" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="EtiquetaImporte" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="CampoImporte" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="EtiquetaEuros" min="-2" pref="13" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="BotonConfirmar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="TextoPedido" min="-2" pref="536" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="EtiquetaCabecera" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="EtiquetaPedidos" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="BotonPedido" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="TextoPedido" min="-2" pref="238" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="BotonConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BotonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoImporte" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="EtiquetaImporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="EtiquetaEuros" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="EtiquetaCabecera">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Engravers MT" size="18" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="TUSUPERPIZZAQUELOFLIPAS"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EtiquetaPedidos">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Pedidos"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonPedido">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Realizar Pedido"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonPedidoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="TextoPedido">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonConfirmar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Confirmar Pedido"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonCancelar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar Pedido"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CampoImporte">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="14" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EtiquetaImporte">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="IMPORTE:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="EtiquetaEuros">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x20ac;"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

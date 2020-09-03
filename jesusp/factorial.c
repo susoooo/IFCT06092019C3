@@ -1,35 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
 
-void * factorial(void * numero)
+int factori(int numero)
 {
-    int contador;
-    int facto;
-    contador=0;
-    facto=1;
-    for(contador=1;contador<=*(int*)numero;contador++)
-    {
-        facto=facto*contador;
-    }
-    printf("El factorial es:%d \n",facto);
+	int contador;
+	int factorial;
+	contador=0;
+	factorial=1;
+	for(contador=1;contador<=numero; contador++)
+	{
+		factorial=factorial*contador;
+	}
+	printf("El factorial es:%d",factorial);
 }
-
-int main(int numero)
-{
-pthread_t(fac);
-int num;
-printf("Inserta un numero:");
-scanf("%d",&num);
-if(num==0)
-    {
-        printf("Numero no válido");
-    }
-else
-    {
-       pthread_create(&fac,NULL,factorial,(void *)&num);
-       usleep(1000000);
-    }
-pthread_join(fac,NULL);
+int main()
+{	
+	int numero;
+	numero=0;
+	
+	printf("Dame un numero: ");
+	scanf("%d", &numero);
+	if(numero==0)
+	{
+		printf("numero no valido");
+	}
+	else
+	{
+		factori(numero);
+	}
 }

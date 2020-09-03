@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" charset="utf-8"></script>
+
+    <title>Administrador de productos</title>
+  </head>
+  <body>
+    <div th:replace="/fragments/head"></div>
+    <div class="container mt-3">
+      <div th:if=${products.size()!=0} class="container-fluid">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Producto</th>
+              <th scope="col" colspan="2">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="product : ${products}">
+              <td th:text="${product.getId()}"/>
+              <td th:text="${product.getName()}"/>
+              <td th:text="${product.getPrize()}"/>
+              <td>
+                <button type="button" class="btn btn-warning">
+                  <a class="text-white" th:href="'/formEdit?id=' + ${product.getId()}">Editar</a>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div th:unless=${products.size()!=0} class="container-fluid">
+        <p class="text-center mb-0">No hay productos</p>
+      </div>
+
+
+    </div>
+  </body>
+</html>
