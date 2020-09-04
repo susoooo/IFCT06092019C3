@@ -31,9 +31,10 @@ public class Cliente {
 		
 	}
 
-	public Cliente(String usuario, String contrasena) {
+	public Cliente(String usuario, String contrasena, String email) {
 		this.usuario = usuario;
 		this.contrasena = contrasena;
+		this.email=email;
 	}
 
 	public Integer getId() {

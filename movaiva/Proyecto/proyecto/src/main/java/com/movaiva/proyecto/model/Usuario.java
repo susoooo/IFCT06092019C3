@@ -30,7 +30,7 @@ public class Usuario {
 		return nick;
 	}
 
-	public void setUsuario(String nick) {
+	public void setNick(String nick) {
 		this.nick = nick;
 	}
 
@@ -57,5 +57,10 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nick=" + nick + ", email=" + email + ", password=" + password + ", tipo=" + tipo
+				+ "]";
+	}
 }

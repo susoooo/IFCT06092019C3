@@ -31,24 +31,29 @@
       </ul>
     </div>
 
-    <form th:action="@{/inicioSesion}" method="POST" class="form-inline my-2 my-lg-0">
+    <form th:action="@{/inicioSesion}" class="form-inline my-2 my-lg-0">
       <button class="btn btn-outline-light btn-sm my-2 my-sm-0" type="submit">Iniciar Sesión</button>
     </form>
   </nav>
     <div class="container mt-3">
-      <div th:if=${errors} class="alert alert-danger mt-3" role="alert">
-        <div class="container-fluid" th:each="error:${errors}">
+      <div th:if=${errores} class="alert alert-danger mt-3" role="alert">
+        <div class="container-fluid" th:each="error:${errores}">
             <p class="text-center mb-0" th:text="${error}"></p>
         </div>
       </div>
-      <form class="form-signin" action="@{/registrar}" method="POST" th:object="${usuario}">
+      <form class="form-signin" th:action="@{/registrar}" th:object="${usuario}" method="POST">
         <div class="text-center mb-4">
           <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         </div>
 
         <div class="form-label-group">
-          <input type="text" id="usuario" class="form-control" placeholder="Usuario" th:field="*{nick}" required>
-          <label for="usuario">Usuario</label>
+          <input type="text" id="nick" class="form-control" placeholder="Usuario" th:field="*{nick}" required>
+          <label for="nick">Usuario</label>
+        </div>
+
+        <div class="form-label-group">
+          <input type="email" id="email" class="form-control" placeholder="Dirección de correo" th:field="*{email}" required>
+          <label for="usuario">Dirección de correo</label>
         </div>
 
         <div class="form-label-group">
@@ -61,7 +66,7 @@
           <label for="confirmar">Confirmar contraseña</label>
         </div>
 
-        <div class="custom-control custom-radio custom-control-inline">
+        <div class="custom-control custom-radio custom-control-inline mb-3">
           <input type="radio" id="cliente" name="tipo" class="custom-control-input" value="cliente" th:field="*{tipo}">
           <label class="custom-control-label" for="cliente">Cliente</label>
         </div>

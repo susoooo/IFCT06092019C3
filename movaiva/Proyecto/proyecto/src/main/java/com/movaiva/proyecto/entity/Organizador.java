@@ -33,9 +33,10 @@ public class Organizador {
 		
 	}
 
-	public Organizador(String usuario, String contrasena) {
+	public Organizador(String usuario, String contrasena,String email) {
 		this.usuario = usuario;
 		this.contrasena = contrasena;
+		this.email=email;
 	}
 
 	public String getNombre() {
