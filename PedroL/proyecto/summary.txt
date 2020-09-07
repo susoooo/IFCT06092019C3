@@ -12,7 +12,7 @@ BASE
 		o	Velocidad de movimiento horizontal
 		o	Salto vertical
 		o	Apuntar la cámara con el ratón
-		Versión 0.4 – Condición de victoria
+		Versión 0.4 – Condición de victoria/perdida
 		o	Llaves para la salida
 		Versión 0.5 – Iluminación de pruebas
 
