@@ -67,14 +67,14 @@
         </div>
 
         <div class="custom-control custom-radio custom-control-inline mb-3">
-          <input type="radio" id="cliente" name="tipo" class="custom-control-input" value="cliente" th:field="*{tipo}">
+          <input type="radio" id="cliente" name="tipo" class="custom-control-input" value="cliente" th:field="*{tipo}" required>
           <label class="custom-control-label" for="cliente">Cliente</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" id="organizador" name="tipo" class="custom-control-input" value="organizador" th:field="*{tipo}">
+          <input type="radio" id="organizador" name="tipo" class="custom-control-input" value="organizador" th:field="*{tipo}" required>
           <label class="custom-control-label" for="organizador">Organizador</label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
+        <button class="btn btn-lg btn-primary btn-block" id="enviar" type="submit" disabled>Registrarse</button>
       </form>
     </div>
     <script type="text/javascript">
@@ -82,6 +82,7 @@
       //variables
       var pass1 = $('[id=password]');
       var pass2 = $('[id=confirmar]');
+      var enviar =$('[id=enviar]');
       var confirmacion = "Las contraseñas si coinciden";
       var longitud = "La contraseña debe estar formada entre 6-10 carácteres (ambos inclusive)";
       var negacion = "No coinciden las contraseñas";
@@ -98,6 +99,7 @@
         //condiciones dentro de la función
         if(valor1 != valor2){
           span.text(negacion).addClass('negacion');
+          enviar.attr("disabled",true);
         }
         if(valor1.length==0 || valor1==""){
           span.text(vacio).addClass('negacion');
@@ -107,6 +109,7 @@
         }
         if(valor1.length!=0 && valor1==valor2){
           span.text(confirmacion).removeClass("negacion").addClass('confirmacion');
+          enviar.removeAttr("disabled");
         }
       }
       //ejecuto la función al soltar la tecla
