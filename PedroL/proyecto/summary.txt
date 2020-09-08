@@ -1,19 +1,19 @@
 https://github.com/BrianWill/byteschool
 
 BASE 
-		Versión 0.0 – Mapa de pruebas 
-		Versión 0.1 – Entidades temporales
-		o	Personaje jugador
-		o	Personajes no jugador
-		Versión 0.2 – Comportamientos básicos de la cámara
-		o	Seguimiento del personaje jugador
-		Version 0.3 – Controles básicos
-		o	Dirección de movimiento
-		o	Velocidad de movimiento horizontal
-		o	Salto vertical
-		o	Apuntar la cámara con el ratón
-		Versión 0.4 – Condición de victoria/perdida
-		o	Llaves para la salida
+>		Versión 0.0 – Mapa de pruebas 
+>		Versión 0.1 – Entidades temporales
+>		o	Personaje jugador
+>		o	Personajes no jugador
+>		Versión 0.2 – Comportamientos básicos de la cámara
+>		o	Seguimiento del personaje jugador
+>		Version 0.3 – Controles básicos
+>		o	Dirección de movimiento
+>		o	Velocidad de movimiento horizontal
+>		o	Salto vertical
+>		o	Apuntar la cámara con el ratón
+>		Versión 0.4 – Condición de victoria/perdida
+>		o	Llaves para la salida
 		Versión 0.5 – Iluminación de pruebas
 
 PRODUCTO MÍNIMO VIABLE 
