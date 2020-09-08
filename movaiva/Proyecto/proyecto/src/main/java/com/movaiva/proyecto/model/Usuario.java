@@ -5,7 +5,11 @@ public class Usuario {
 	private String nick;
 	private String email;
 	private String password;
+	private String nombre;
+	private String apellidos;
+	private String cuentaBancaria;
 	private String tipo;
+	
 	
 	public Usuario() {
 		
@@ -57,10 +61,34 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getCuentaBancaria() {
+		return cuentaBancaria;
+	}
+
+	public void setCuentaBancaria(String cuentaBancaria) {
+		this.cuentaBancaria = cuentaBancaria;
+	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nick=" + nick + ", email=" + email + ", password=" + password + ", tipo=" + tipo
-				+ "]";
+		return "Usuario [id=" + id + ", nick=" + nick + ", email=" + email + ", password=" + password + ", nombre="
+				+ nombre + ", apellidos=" + apellidos + ", cuentaBancaria=" + cuentaBancaria + ", tipo=" + tipo + "]";
 	}
 }
