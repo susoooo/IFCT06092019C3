@@ -2,6 +2,7 @@ package com.movaiva.proyecto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -36,5 +37,13 @@ public class ClienteService {
 	
 	public Integer findId(String usuario,String email) {
 		return clienteRepository.findId(usuario, email);
+	}
+	
+	public Optional<Cliente> findById(Integer id) {
+		return clienteRepository.findById(id);
+	}
+	
+	public void update(Cliente cliente) {
+		clienteRepository.update(cliente.getNombre(), cliente.getApellidos(), cliente.getContrasena(),cliente.getId());
 	}
 }

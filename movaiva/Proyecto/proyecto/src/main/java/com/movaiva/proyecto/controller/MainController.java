@@ -3,6 +3,7 @@ package com.movaiva.proyecto.controller;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,9 +30,13 @@ public class MainController {
 	private OrganizadorService organizadorService;
 
 	@GetMapping("/")
-	public String home(HttpSession session,Model model) {
+	public String home(HttpServletRequest request,HttpSession session,Model model) {
 		Usuario usuario=(Usuario) session.getAttribute("usuario");
 		System.out.println(">>>>Home: Sesion -- "+session.getAttribute("usuario"));
+		if(usuario!=null) {
+			request.getSession().setAttribute("usuario", usuario);
+			model.addAttribute("usuario", usuario);
+		}
 		return "index";
 	}
 
@@ -98,7 +103,7 @@ public class MainController {
 				usuario.setId(id);
 			}
 			request.getSession().setAttribute("usuario", usuario);
-			return "index";
+			return "redirect:/";
 		}
 	}
 
@@ -120,6 +125,9 @@ public class MainController {
 			if((usuario.getNick().equals(cliente.getUsuario())) && (usuario.getPassword().equals(cliente.getContrasena()))) {
 				if(cliente.getEstado()!=null && cliente.getEstado().equalsIgnoreCase("A")) {
 					usuario.setId(cliente.getId());
+					usuario.setEmail(cliente.getEmail());
+					usuario.setNombre(cliente.getNombre());
+					usuario.setApellidos(cliente.getApellidos());
 					usuario.setTipo("cliente");
 					encontrado=true;
 				}else {
@@ -136,6 +144,10 @@ public class MainController {
 				if (usuario.getNick().equals(organizador.getUsuario()) && (usuario.getPassword().equals(organizador.getContrasena()))) {
 					if(organizador.getEstado().equalsIgnoreCase("A")) {
 						usuario.setId(organizador.getId());
+						usuario.setEmail(organizador.getEmail());
+						usuario.setNombre(organizador.getNombre());
+						usuario.setApellidos(organizador.getApellidos());
+						usuario.setCuentaBancaria(organizador.getCuentaBancaria());
 						usuario.setTipo("organizador");
 						encontrado=true;
 					}else {
@@ -163,19 +175,51 @@ public class MainController {
 		{			
 			System.out.println(">>>>Iniciar: Usuario -- "+usuario.toString());
 			request.getSession().setAttribute("usuario", usuario);
-			return "index";
+			return "redirect:/";
 		}
 	}
 	
 	@GetMapping("/cerrarSesion")
 	private String cerrarSesion(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/formEdicion")
 	private String formEdicion(HttpServletRequest request,Model model) {
 		model.addAttribute("usuario",request.getSession().getAttribute("usuario"));
+		System.out.println(">>>> FromEdicion: Usuario -- "+request.getSession().getAttribute("usuario"));
 		return "formEdicion";
+	}
+	
+	@PostMapping("/editar")
+	private String editar(HttpServletRequest request,@ModelAttribute Usuario usuario) {
+		System.out.println(">>>> Editar: Usuario -- "+usuario.toString());
+		System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());
+		if(usuario.getTipo().equalsIgnoreCase("cliente")) {
+			Optional<Cliente> opCliente=clienteService.findById(usuario.getId());
+			Cliente cliente=opCliente.get();
+			cliente.setNombre(usuario.getNombre());
+			cliente.setApellidos(usuario.getApellidos());
+			if(usuario.getPassword()!=null && !usuario.getPassword().equalsIgnoreCase("")) {
+				System.out.println("<<<< Paso por aqui");
+				cliente.setContrasena(usuario.getPassword());
+			}
+			clienteService.update(cliente);			
+		}else {
+			Optional<Organizador> opOrganizador=organizadorService.findById(usuario.getId());
+			Organizador organizador=opOrganizador.get();
+			organizador.setNombre(usuario.getNombre());
+			organizador.setApellidos(usuario.getApellidos());
+			organizador.setCuentaBancaria(usuario.getCuentaBancaria());
+			if(usuario.getPassword()!=null && !usuario.getPassword().equalsIgnoreCase("")) {
+				organizador.setContrasena(usuario.getPassword());
+			}
+			organizadorService.update(organizador);
+		}
+		
+		request.getSession().setAttribute("usuario", usuario);
+		System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());
+		return "redirect:/";
 	}
 }

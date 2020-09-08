@@ -2,6 +2,7 @@ package com.movaiva.proyecto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -34,8 +35,16 @@ public class OrganizadorService {
 		return organizadores;		
 	}
 	
+	public Optional<Organizador> findById(Integer id) {
+		return organizadorRepository.findById(id);
+	}
+	
 	public Integer findId(String usuario,String email) {
 		return organizadorRepository.findId(usuario, email);
+	}
+	
+	public void update(Organizador organizador) {
+		organizadorRepository.update(organizador.getNombre(), organizador.getApellidos(), organizador.getContrasena(), organizador.getCuentaBancaria(),organizador.getId());
 	}
 
 }
