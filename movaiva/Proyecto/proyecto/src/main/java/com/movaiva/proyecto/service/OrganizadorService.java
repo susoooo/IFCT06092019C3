@@ -34,5 +34,8 @@ public class OrganizadorService {
 		return organizadores;		
 	}
 	
+	public Integer findId(String usuario,String email) {
+		return organizadorRepository.findId(usuario, email);
+	}
 
 }

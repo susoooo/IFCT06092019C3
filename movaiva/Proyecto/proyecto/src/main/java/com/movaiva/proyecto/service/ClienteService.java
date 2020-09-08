@@ -33,4 +33,8 @@ public class ClienteService {
 		}
 		return clientes;
 	}
+	
+	public Integer findId(String usuario,String email) {
+		return clienteRepository.findId(usuario, email);
+	}
 }
