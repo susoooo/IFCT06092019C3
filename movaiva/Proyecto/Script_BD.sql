@@ -57,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `Evento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `Participa` (
-  `id_par` int NOT NULL AUTO_INCREMENT,
   `id_eve` int,
   `id_cli` int,
-  PRIMARY KEY (`id_par`),
+  PRIMARY KEY (`id_eve`),
+  PRIMARY KEY (`id_cli`),
   FOREIGN KEY (`id_cli`) REFERENCES `Cliente`(`id_cli`),
   FOREIGN KEY (`id_eve`) REFERENCES `Evento`(`id_eve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
