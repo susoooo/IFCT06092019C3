@@ -14,12 +14,10 @@ public class GameState : MonoBehaviour {
 		keys_left = keys_total;
 		
 		Debug.Log(keys_left);
-		
 	}
 
-    // Update is called once per frame
+  // Update is called once per frame
 	void Update() {
-		
 		
 	}
 	
@@ -31,7 +29,6 @@ public class GameState : MonoBehaviour {
 		if (keys_left == 0) {
 			Time.timeScale = 0;
 		}
-		
 	}
 	
 }

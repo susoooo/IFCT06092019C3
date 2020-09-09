@@ -22,4 +22,5 @@
 	Consolidated PlayerKey.cs into PlayerMovement.cs
 
 09/09:
-	
+	Slightly improved camera motion
+	Implemented basic visibility calculation (that needs fixing)

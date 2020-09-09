@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour {
 		
 		main_camera = GameObject.FindGameObjectWithTag("MainCamera");
 		rigidbody = GetComponent<Rigidbody>();
-		
   }
 
   // Update is called once per frame
@@ -62,10 +61,17 @@ public class PlayerMovement : MonoBehaviour {
 				Space.Self
 			);
 			
-			Debug.Log(main_camera.transform.rotation.eulerAngles);
-			
+			if (
+				main_camera.transform.rotation.eulerAngles.x > 0.0f &&
+				main_camera.transform.rotation.eulerAngles.x < 45.0f
+			) {
+				main_camera.transform.Translate(
+					0.0f,
+					-0.30f * mouse_y_axis,
+					-0.15f * mouse_y_axis
+				);
+			}
 		}
-		
   }
 	
 	void OnCollisionEnter(Collision collision) {
@@ -75,7 +81,6 @@ public class PlayerMovement : MonoBehaviour {
 			collision.gameObject.SetActive(false);
 			game_state.update_key_count();
 		}
-		
 	}
 	
 }
