@@ -1,14 +1,18 @@
 package com.movaiva.proyecto.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Organizador")
+@Table(name="organizador")
 public class Organizador {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,14 +33,18 @@ public class Organizador {
 	@Column(name="estado_org")
 	private String estado;
 	
+	@OneToMany(mappedBy="organizador" )
+	private List<Evento> listaEvento;
+	
 	public Organizador() {
-		
+		this.listaEvento=new ArrayList<Evento>();
 	}
 
 	public Organizador(String usuario, String contrasena,String email) {
 		this.usuario = usuario;
 		this.contrasena = contrasena;
 		this.email=email;
+		this.listaEvento=new ArrayList<Evento>();
 	}
 
 	public String getNombre() {
@@ -98,12 +106,24 @@ public class Organizador {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Evento> getListaEvento() {
+		return listaEvento;
+	}
+	
+	public void addEvento(Evento e) {
+		this.listaEvento.add(e);		
+	}
+
+	public void setListaEvento(List<Evento> listaEvento) {
+		this.listaEvento=listaEvento;
+	}
 
 	@Override
 	public String toString() {
 		return "Organizador [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", usuario=" + usuario
 				+ ", email=" + email + ", contrasena=" + contrasena + ", cuentaBancaria=" + cuentaBancaria + ", estado="
-				+ estado + "]";
+				+ estado + ", listaEvento=" + listaEvento.toString() + "]";
 	}
 
 	
