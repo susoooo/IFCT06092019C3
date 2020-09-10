@@ -58,6 +58,7 @@
      <Compile Include="Assets\DebugIMGUI.cs" />
      <Compile Include="Assets\GameState.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
+     <Compile Include="Assets\LightManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Usuario/Documents/Git/IFCT06092019C3/PedroL/proyecto/unity/fase-base/Proyecto-BASE/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

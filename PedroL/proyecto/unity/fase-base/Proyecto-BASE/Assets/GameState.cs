@@ -31,4 +31,11 @@ public class GameState : MonoBehaviour {
 		}
 	}
 	
+	void OnGUI() {
+		GUI.Box(
+			new Rect (Screen.width - 50, 0, 50, 50),
+			"Keys::\n" + keys_taken.ToString()
+		);
+	}
+	
 }

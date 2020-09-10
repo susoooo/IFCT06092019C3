@@ -24,3 +24,13 @@
 09/09:
 	Slightly improved camera motion
 	Implemented basic visibility calculation (that needs fixing)
+	
+10/09:
+	Moved light/visibility code to LightManager.cs
+	Expanded LightManager.cs to handle multiple light sources
+		(Calculates visibility off the closest source)
+	Built base-0.5 version
+	Started MVP phase
+	
+11/09:
+	
