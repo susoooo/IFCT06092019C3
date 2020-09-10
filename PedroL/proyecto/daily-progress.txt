@@ -1,0 +1,26 @@
+:: DAILY PROGRESS ::
+
+08/09:
+	Added Key object with Key tag
+	Renamed scripts/classes
+		"Player" to "PlayerMovement"
+	Added script
+		"PlayerKey"
+	Fixed jump
+		Only triggers on button down
+		Only triggers when touching ground
+		Increased jump force to compensate
+	Using MainCamera instead of Player´s camera component
+	Added collision event handler in PlayerKey
+		Deactivates KeyObject and increments key_count
+	Added debugging script
+		Shows key_count in top left
+	Changed camera to third person perspective
+	Added win condition
+		Satisfied when no keys are left in the world
+		Pauses the game and shows a message
+	Consolidated PlayerKey.cs into PlayerMovement.cs
+
+09/09:
+	Slightly improved camera motion
+	Implemented basic visibility calculation (that needs fixing)
