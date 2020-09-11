@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour {
 	GameState game_state;
 	GameObject main_camera;
 	new Rigidbody rigidbody;
-	const float jump_multiplier = 300.0f;
-	const float mouse_multiplier = 5.0f;
-	const float speed_multiplier = 10.0f;
+	const float jump_multiplier = 200.0f;
+	const float mouse_multiplier = 4.0f;
+	const float speed_multiplier = 1.5f;
 	bool jump_button;
 	float horizontal_axis;
 	float vertical_axis;
@@ -64,8 +64,8 @@ public class PlayerMovement : MonoBehaviour {
 			);
 			main_camera.transform.Translate(
 				0.0f,
-				-0.30f * mouse_y_axis,
-				-0.15f * mouse_y_axis
+				-0.15f * mouse_y_axis,
+				0.0f //-0.05 * mouse_y_axis
 			);
 		}
   }

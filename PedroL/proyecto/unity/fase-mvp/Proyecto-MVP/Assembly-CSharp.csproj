@@ -40,6 +40,7 @@
      <Compile Include="Assets\GameState.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\LightManager.cs" />
+     <None Include="Assets\BrokenVector\LowPolyTreePack\README.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
