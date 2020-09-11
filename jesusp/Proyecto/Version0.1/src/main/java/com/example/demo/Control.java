@@ -32,7 +32,7 @@ Entidad n = new Entidad();
     return "Saved"; 
   }
 @GetMapping(path="/all")
-  public @ResponseBody Iterable<Entidad> getAllUsers() {
+  public @ResponseBody Iterable<Entidad> getAllUsers() {      
     // This returns a JSON or XML with the users
     return userRepository.findAll();
   }
