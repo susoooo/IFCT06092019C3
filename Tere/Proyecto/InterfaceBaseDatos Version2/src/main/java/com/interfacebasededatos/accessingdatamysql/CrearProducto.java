@@ -5,6 +5,7 @@
  */
 package com.interfacebasededatos.accessingdatamysql;
 
+import com.interfacebasededatos.accessingdatamysql.CrearCliente;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,10 +82,21 @@ public class CrearProducto extends javax.swing.JFrame {
 
         jLabelDatosVenta.setText("Datos de venta:");
 
+        jTextFieldPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPrecioFocusLost(evt);
+            }
+        });
+
         jLabelPrecio.setText("Precio:");
 
         jLabelDescuento.setText("Descuento:");
 
+        jTextFieldIVA.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldIVAFocusLost(evt);
+            }
+        });
         jTextFieldIVA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldIVAActionPerformed(evt);
@@ -322,27 +334,11 @@ public class CrearProducto extends javax.swing.JFrame {
             String command = "curl localhost:8080/demo/addP -d IdProducto=" + jTextFieldCodigoProducto.getText();
             command = command + " -d nombreproducto=" + jTextFieldNombreProducto.getText();
             
+            command = command + " -d precio=" +jTextFieldPrecio.getText();
+                      
             command = command + " -d IVA=" +jTextFieldIVA.getText();
-            
-            float IVA= Float.parseFloat(jTextFieldIVA.getText());
-           
-            command = command + " -d PVP=" + jTextFieldPVP.getText();
-                       
-            float PVP= Float.parseFloat(jTextFieldPVP.getText());
-            
-            float resultado = PVP + PVP*IVA;
-           
-          
-            
-            //this.segundonumero=Float.parseFloat(this.EtiquetaCasilla.getText());
-             
-            String resultadoS =String.valueOf(resultado);
-            
-            jTextFieldPrecio.setText(resultadoS);
-            
-                        
-            command = command + " -d precio=" + resultadoS;
-            
+                      
+            command = command + " -d PVP=" + jTextFieldPVP.getText();          
             
             command = command + " -d Descuento=" + jTextFieldDescuento.getText();
             command = command + " -d Descripcion=" + jTextAreaDescripción.getText();
@@ -376,6 +372,30 @@ public class CrearProducto extends javax.swing.JFrame {
         dispose();     
     }//GEN-LAST:event_jButtonCancelarCrearProductoActionPerformed
 
+    private void jTextFieldIVAFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldIVAFocusLost
+              this.CalcularPVP();
+    }//GEN-LAST:event_jTextFieldIVAFocusLost
+
+    private void jTextFieldPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPrecioFocusLost
+       this.CalcularPVP();
+    }//GEN-LAST:event_jTextFieldPrecioFocusLost
+
+    private void CalcularPVP(){
+        
+         float precio= Float.parseFloat(jTextFieldPrecio.getText());
+         float IVA= Float.parseFloat(jTextFieldIVA.getText());
+         float resultado = precio + precio*IVA;
+         
+         if(!(precio==0||IVA==0)) //si precio=0 o IVA=0 NO hace lo que pongo dentro
+         {
+                     
+          String resultadoS =String.valueOf(resultado);
+            
+         jTextFieldPVP.setText(resultadoS);
+         }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -402,6 +422,7 @@ public class CrearProducto extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CrearProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -410,6 +431,8 @@ public class CrearProducto extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarCrearProd;
