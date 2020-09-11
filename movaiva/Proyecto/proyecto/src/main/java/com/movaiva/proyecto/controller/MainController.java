@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.movaiva.proyecto.entity.Cliente;
+import com.movaiva.proyecto.entity.Evento;
 import com.movaiva.proyecto.entity.Organizador;
 import com.movaiva.proyecto.model.Usuario;
+import com.movaiva.proyecto.service.CategoriaService;
 import com.movaiva.proyecto.service.ClienteService;
+import com.movaiva.proyecto.service.EventoService;
 import com.movaiva.proyecto.service.OrganizadorService;
+import com.movaiva.proyecto.service.ProvinciaService;
 
 @Controller
 public class MainController {
@@ -28,6 +32,12 @@ public class MainController {
 	private ClienteService clienteService;
 	@Autowired
 	private OrganizadorService organizadorService;
+	@Autowired
+	private CategoriaService categoriaService;
+	@Autowired
+	private ProvinciaService provinciaService;
+	@Autowired
+	private EventoService eventoService;
 
 	@GetMapping("/")
 	public String home(HttpServletRequest request,HttpSession session,Model model) {
@@ -221,5 +231,17 @@ public class MainController {
 		request.getSession().setAttribute("usuario", usuario);
 		System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());
 		return "redirect:/";
+	}
+	
+	@GetMapping("/formCrearEvento")
+	public String formCrearEvento(HttpServletRequest request,Model model) {
+		model.addAttribute("usuario",request.getSession().getAttribute("usuario"));
+		model.addAttribute("categorias",categoriaService.findAll());
+		model.addAttribute("provincias",provinciaService.findAll());
+		model.addAttribute("evento",new Evento());
+		System.out.println(">>>> FromCrearEvento: Usuario -- "+request.getSession().getAttribute("usuario"));
+		System.out.println(">>>> FromCrearEvento: Usuario -- "+model.getAttribute("categorias"));
+		System.out.println(">>>> FromCrearEvento: Usuario -- "+model.getAttribute("provincias"));
+		return "formCrearEvento";	
 	}
 }

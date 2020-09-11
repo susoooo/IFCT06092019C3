@@ -33,15 +33,15 @@ public class Evento {
 	private String estado;
 	
 	@ManyToOne
-	@JoinColumn(name="id_cat")
+	@JoinColumn(name="id_cat")// Columna de la tabla evento que enlaza con la tabla categoria
 	private Categoria categoria;
 	
 	@ManyToOne
-	@JoinColumn(name="id_pro")
+	@JoinColumn(name="id_pro")// Columna de la tabla evento que enlaza con la tabla provincia
 	private Provincia provincia;
 	
 	@ManyToOne
-	@JoinColumn(name="id_org")
+	@JoinColumn(name="id_org")// Columna de la tabla evento que enlaza con la tabla organizador
 	private Organizador organizador;
 
 	public Evento() {
