@@ -206,30 +206,32 @@ public class MainController {
 	private String editar(HttpServletRequest request,@ModelAttribute Usuario usuario) {
 		System.out.println(">>>> Editar: Usuario -- "+usuario.toString());
 		System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());
-		if(usuario.getTipo().equalsIgnoreCase("cliente")) {
-			Optional<Cliente> opCliente=clienteService.findById(usuario.getId());
-			Cliente cliente=opCliente.get();
-			cliente.setNombre(usuario.getNombre());
-			cliente.setApellidos(usuario.getApellidos());
-			if(usuario.getPassword()!=null && !usuario.getPassword().equalsIgnoreCase("")) {
-				System.out.println("<<<< Paso por aqui");
-				cliente.setContrasena(usuario.getPassword());
+		if(request.getSession().getAttribute("usuario")!=null) {
+			if(usuario.getTipo().equalsIgnoreCase("cliente")) {
+				Optional<Cliente> opCliente=clienteService.findById(usuario.getId());
+				Cliente cliente=opCliente.get();
+				cliente.setNombre(usuario.getNombre());
+				cliente.setApellidos(usuario.getApellidos());
+				if(usuario.getPassword()!=null && !usuario.getPassword().equalsIgnoreCase("")) {
+					cliente.setContrasena(usuario.getPassword());
+				}
+				clienteService.update(cliente);			
+			}else {
+				Optional<Organizador> opOrganizador=organizadorService.findById(usuario.getId());
+				Organizador organizador=opOrganizador.get();
+				organizador.setNombre(usuario.getNombre());
+				organizador.setApellidos(usuario.getApellidos());
+				organizador.setCuentaBancaria(usuario.getCuentaBancaria());
+				if(usuario.getPassword()!=null && !usuario.getPassword().equalsIgnoreCase("")) {
+					organizador.setContrasena(usuario.getPassword());
+				}
+				organizadorService.update(organizador);
 			}
-			clienteService.update(cliente);			
-		}else {
-			Optional<Organizador> opOrganizador=organizadorService.findById(usuario.getId());
-			Organizador organizador=opOrganizador.get();
-			organizador.setNombre(usuario.getNombre());
-			organizador.setApellidos(usuario.getApellidos());
-			organizador.setCuentaBancaria(usuario.getCuentaBancaria());
-			if(usuario.getPassword()!=null && !usuario.getPassword().equalsIgnoreCase("")) {
-				organizador.setContrasena(usuario.getPassword());
-			}
-			organizadorService.update(organizador);
+			
+			request.getSession().setAttribute("usuario", usuario);
+			System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());			
 		}
 		
-		request.getSession().setAttribute("usuario", usuario);
-		System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());
 		return "redirect:/";
 	}
 	
@@ -242,6 +244,47 @@ public class MainController {
 		System.out.println(">>>> FromCrearEvento: Usuario -- "+request.getSession().getAttribute("usuario"));
 		System.out.println(">>>> FromCrearEvento: Usuario -- "+model.getAttribute("categorias"));
 		System.out.println(">>>> FromCrearEvento: Usuario -- "+model.getAttribute("provincias"));
-		return "formCrearEvento";	
+		if(request.getSession().getAttribute("usuario")!=null) {
+			return "formCrearEvento";	
+		}else {
+			return "redirect:/";
+		}
+		
+	}
+	
+	@PostMapping("/crearEvento")
+	public String crearEvento(HttpServletRequest request,@ModelAttribute Evento evento,Model model) {
+		System.out.println(">>>> CrearEvento: Evento -- "+evento);
+		Usuario usuario=(Usuario) request.getSession().getAttribute("usuario");
+		if(usuario!=null)
+		{
+			System.out.println(">>>> CrearEvento: Sesión -- "+usuario.toString());
+			Optional<Organizador> opOrganizador=organizadorService.findById(usuario.getId());
+			Organizador organizador=opOrganizador.get();
+			System.out.println(">>>> CrearEvento: Organizador -- "+organizador);
+			evento.setOrganizador(organizador);
+			evento.setEstado("A");
+			eventoService.save(evento);
+			request.getSession().setAttribute("usuario", usuario);			
+		}
+		return "redirect:/";
+	}
+	
+	@GetMapping("/misEventos")
+	public String misEventos(HttpServletRequest request,Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		if(usuario!=null) {
+			System.out.println(">>>> MisEventos: Sesión -- "+usuario.toString());
+			Optional<Organizador> opOrganizador=organizadorService.findById(usuario.getId());
+			Organizador organizador=opOrganizador.get();
+			System.out.println(">>>> MisEventos: Organizador -- "+organizador.toString());
+			List<Evento> misEventos=eventoService.findByOrganizador(organizador);
+			model.addAttribute("eventos",misEventos);
+			model.addAttribute("usuario",usuario);		
+			return "misEventos";
+		}else{
+			return "redirect:/";
+		}
+		
 	}
 }

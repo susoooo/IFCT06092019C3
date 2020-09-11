@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.movaiva.proyecto.entity.Evento;
+import com.movaiva.proyecto.entity.Organizador;
 import com.movaiva.proyecto.repository.EventoRepository;
 
 @Service
@@ -34,4 +35,12 @@ public class EventoService {
 		eventoRepository.save(evento);
 	}
 	
+	
+	public List<Evento> findByOrganizador(Organizador organizador){
+		List<Evento> eventos=new ArrayList<Evento>();
+		for (Evento evento:eventoRepository.findByOrganizador(organizador)) {
+			eventos.add(evento);
+		}
+		return eventos;
+	}
 }
