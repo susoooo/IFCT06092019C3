@@ -27,7 +27,7 @@
           <a class="nav-link" th:href="@{/eventos}">Mis eventos</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
-          <a class="nav-link" th:href="@{/crearEvento}">Crear evento</a>
+          <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>
         </li>
         <li class="nav-item">
           <a class="nav-link">Contacto</a>

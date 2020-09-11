@@ -32,7 +32,7 @@ public class Organizador {
 	private String cuentaBancaria;
 	@Column(name="estado_org")
 	private String estado;
-	
+
 	@OneToMany(mappedBy="organizador" )
 	private List<Evento> listaEvento;
 	

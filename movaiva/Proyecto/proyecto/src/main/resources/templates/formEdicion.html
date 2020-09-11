@@ -23,6 +23,15 @@
         <li class="nav-item">
           <a class="nav-link" th:href="@{/}">Inicio</a>
         </li>
+        <li th:if="${usuario!=null and usuario.getTipo()=='cliente'}" class="nav-item">
+          <a class="nav-link" th:href="@{/reservas}">Mis reservas</a>
+        </li>
+        <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
+          <a class="nav-link" th:href="@{/eventos}">Mis eventos</a>
+        </li>
+        <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
+          <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link">Contacto</a>
         </li>
@@ -48,7 +57,7 @@
       <div class="text-center mb-4">
         <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       </div>
-      
+
       <input type="hidden" id="id" th:field="*{id}">
       <input type="hidden" id="email" th:field="*{email}">
       <input type="hidden" id="nick" th:field="*{nick}">
