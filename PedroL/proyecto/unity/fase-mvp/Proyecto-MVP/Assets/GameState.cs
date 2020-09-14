@@ -7,6 +7,7 @@ public class GameState : MonoBehaviour {
 	public int keys_total;
 	public int keys_taken = 0;
 	public int keys_left;
+	public bool game_lost = false;
 	
 	// Start is called before the first frame update
 	void Start() {
@@ -29,6 +30,11 @@ public class GameState : MonoBehaviour {
 		if (keys_left == 0) {
 			Time.timeScale = 0;
 		}
+	}
+	
+	public void game_loss() {
+		game_lost = true;
+		Time.timeScale = 0;
 	}
 	
 	void OnGUI() {

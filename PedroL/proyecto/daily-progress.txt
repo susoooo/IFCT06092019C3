@@ -33,4 +33,10 @@
 	Started MVP phase
 	
 11/09:
+	Reordered the MVP phase versions
+	Created Map scene
+		Populated it with basic buildings and some nice trees
+		
+14/09:
+	Created Enemy.cs for enemy behavior scripting
 	

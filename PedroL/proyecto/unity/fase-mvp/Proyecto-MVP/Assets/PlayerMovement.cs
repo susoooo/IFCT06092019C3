@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour {
 	GameState game_state;
 	GameObject main_camera;
 	new Rigidbody rigidbody;
-	const float jump_multiplier = 300.0f;
-	const float mouse_multiplier = 5.0f;
-	const float speed_multiplier = 10.0f;
+	const float jump_multiplier = 200.0f;
+	const float mouse_multiplier = 4.0f;
+	const float speed_multiplier = 1.5f;
 	bool jump_button;
 	float horizontal_axis;
 	float vertical_axis;
@@ -64,18 +64,22 @@ public class PlayerMovement : MonoBehaviour {
 			);
 			main_camera.transform.Translate(
 				0.0f,
-				-0.30f * mouse_y_axis,
-				-0.15f * mouse_y_axis
+				-0.15f * mouse_y_axis,
+				0.0f //-0.05 * mouse_y_axis
 			);
 		}
   }
 	
 	void OnCollisionEnter(Collision collision) {
-		Debug.Log(collision.collider.name + " collision");
+		Debug.Log(collision.collider.tag + " collision");
 		
+		//Looking mappable...
 		if (collision.gameObject.tag == "Key") {
 			collision.gameObject.SetActive(false);
 			game_state.update_key_count();
+		}
+		if (collision.gameObject.tag == "Enemy") {
+			game_state.game_loss();
 		}
 	}
 	

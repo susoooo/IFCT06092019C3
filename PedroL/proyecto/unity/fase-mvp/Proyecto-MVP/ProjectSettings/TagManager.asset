@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Key
   - LightSource
+  - Enemy
   layers:
   - Default
   - TransparentFX
