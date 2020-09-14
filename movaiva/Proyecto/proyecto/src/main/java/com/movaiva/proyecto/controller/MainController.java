@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.movaiva.proyecto.entity.Cliente;
 import com.movaiva.proyecto.entity.Evento;
@@ -253,7 +254,7 @@ public class MainController {
 	}
 	
 	@PostMapping("/crearEvento")
-	public String crearEvento(HttpServletRequest request,@ModelAttribute Evento evento,Model model) {
+	public String crearEvento(HttpServletRequest request,@ModelAttribute Evento evento) {
 		System.out.println(">>>> CrearEvento: Evento -- "+evento);
 		Usuario usuario=(Usuario) request.getSession().getAttribute("usuario");
 		if(usuario!=null)
@@ -280,11 +281,52 @@ public class MainController {
 			System.out.println(">>>> MisEventos: Organizador -- "+organizador.toString());
 			List<Evento> misEventos=eventoService.findByOrganizador(organizador);
 			model.addAttribute("eventos",misEventos);
-			model.addAttribute("usuario",usuario);		
+			model.addAttribute("usuario",usuario);				
 			return "misEventos";
 		}else{
 			return "redirect:/";
 		}
-		
+	}
+	
+	@GetMapping("/formEditarEvento")
+	public String formEditarEvento(@RequestParam Integer id,HttpServletRequest request, Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		if(usuario!=null) {		
+			System.out.println(">>>> formEditarEvento: Sesión -- "+usuario.toString());
+			Optional<Evento> opEvento=eventoService.findById(id);
+			Evento evento=opEvento.get();
+			System.out.println(">>>> formEditarEvento: Evento -- "+evento.toString());
+			model.addAttribute("evento",evento);
+			model.addAttribute("usuario", usuario);
+			model.addAttribute("categorias",categoriaService.findAll());
+			model.addAttribute("provincias",provinciaService.findAll());
+			return "formEditarEvento";
+		}else {
+			return "redirect:/";
+		}
+	}
+	
+	@PostMapping("/editarEvento")
+	public String editarEvento(HttpServletRequest request,@ModelAttribute Evento evento) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		if(usuario!=null) {
+			System.out.println(">>>> EditarEvento: Sesión -- "+usuario.toString());
+			System.out.println(">>>> EditarEvento: Evento -- "+evento.getId());
+			eventoService.update(evento);
+			request.getSession().setAttribute("usuario", usuario);			
+		}
+		return "redirect:/misEventos";
+	}
+	
+	@PostMapping("/editarEstado")
+	public String editarEstado(HttpServletRequest request,@ModelAttribute Evento evento) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		if(usuario!=null) {	
+			System.out.println(">>>> EditarEstado: Sesión -- "+usuario.toString());
+			System.out.println(">>>> EditarEstado: Evento -- "+evento);
+			eventoService.delete(evento);
+			request.getSession().setAttribute("usuario", usuario);			
+		}
+		return "redirect:/misEventos";
 	}
 }

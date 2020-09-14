@@ -2,6 +2,7 @@ package com.movaiva.proyecto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -35,6 +36,9 @@ public class EventoService {
 		eventoRepository.save(evento);
 	}
 	
+	public Optional<Evento> findById(Integer id) {
+		return eventoRepository.findById(id);
+	}
 	
 	public List<Evento> findByOrganizador(Organizador organizador){
 		List<Evento> eventos=new ArrayList<Evento>();
@@ -42,5 +46,13 @@ public class EventoService {
 			eventos.add(evento);
 		}
 		return eventos;
+	}
+	
+	public void update(Evento evento) {
+		eventoRepository.update(evento.getNombre(), evento.getDireccion(), evento.getProvincia(), evento.getCategoria(), evento.getAforo(), evento.getInicio(), evento.getFin(), evento.getId());
+	}
+	
+	public void delete(Evento evento) {
+		eventoRepository.updateEstado(evento.getId());
 	}
 }
