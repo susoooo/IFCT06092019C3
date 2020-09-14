@@ -71,11 +71,15 @@ public class PlayerMovement : MonoBehaviour {
   }
 	
 	void OnCollisionEnter(Collision collision) {
-		Debug.Log(collision.collider.name + " collision");
+		Debug.Log(collision.collider.tag + " collision");
 		
+		//Looking mappable...
 		if (collision.gameObject.tag == "Key") {
 			collision.gameObject.SetActive(false);
 			game_state.update_key_count();
+		}
+		if (collision.gameObject.tag == "Enemy") {
+			game_state.game_loss();
 		}
 	}
 	

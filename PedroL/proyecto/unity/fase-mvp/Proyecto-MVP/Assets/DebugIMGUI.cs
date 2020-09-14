@@ -36,6 +36,18 @@ public class DebugIMGUI : MonoBehaviour {
 				"ur so good" 
 			);
 		}
+		
+		if (game_state.game_lost) {
+			GUI.Box(
+				new Rect (
+					Screen.width / 2 - 50,
+					Screen.height / 2 - 12,
+					100,
+					24
+				),
+				"ur so bad" 
+			);
+		}
   }
 	
 }

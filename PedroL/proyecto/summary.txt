@@ -18,10 +18,9 @@ BASE
 >
 PRODUCTO MÍNIMO VIABLE 
 		Versión 1.0  – Mapa final
-		o	Entrada
+>		o	Entrada
 >		o	Espacios exteriores
-		o	Espacios interiores
-		o	Posiciones de los objetos y enemigos
+>		o	Posiciones de los objetos
 		Versión 1.1 – Comportamientos finales de los enemigos
 		o	Rutas de patrulla
 		o	Pathfinding
