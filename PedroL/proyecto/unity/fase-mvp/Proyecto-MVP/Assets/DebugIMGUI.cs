@@ -20,9 +20,13 @@ public class DebugIMGUI : MonoBehaviour {
 	
 	void OnGUI()
   {
-    GUI.Box(
+    /*GUI.Box(
 			new Rect ( (Screen.width / 2) - 50, 0, 100, 50),
 			"visibility:\n" + light_manager.visibility.ToString()
+		);
+		GUI.Box(
+			new Rect (Screen.width - 50, 0, 50, 50),
+			"Keys:\n" + keys_taken.ToString()
 		);
 		
 		if (game_state.keys_left == 0) {
@@ -36,7 +40,6 @@ public class DebugIMGUI : MonoBehaviour {
 				"ur so good" 
 			);
 		}
-		
 		if (game_state.game_lost) {
 			GUI.Box(
 				new Rect (
@@ -47,7 +50,7 @@ public class DebugIMGUI : MonoBehaviour {
 				),
 				"ur so bad" 
 			);
-		}
+		}*/
   }
 	
 }

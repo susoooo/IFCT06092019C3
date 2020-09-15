@@ -40,3 +40,5 @@
 14/09:
 	Created Enemy.cs for enemy behavior scripting
 	
+15/09:
+	Simple viewcone script in Enemy.cs
