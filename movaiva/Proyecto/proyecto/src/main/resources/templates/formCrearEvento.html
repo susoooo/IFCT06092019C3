@@ -86,16 +86,14 @@
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group form-label-group col-md-10">
+          <div class="form-label-group">
             <input type="text" id="direccion" class="form-control" placeholder="Dirección" th:field="*{direccion}" required>
             <label for="direccion">Dirección del evento</label>
           </div>
-          <div class="form-group form-label-group col-md-2">
-            <input type="text" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
+          <div class="form-label-group">
+            <input type="number" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
             <label for="aforo">Aforo</label>
           </div>
-        </div>
 
         <div class="input-daterange input-group" id="datepicker">
           <div class="form-label-group mitad">

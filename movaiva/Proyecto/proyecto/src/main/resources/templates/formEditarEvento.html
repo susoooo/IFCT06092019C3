@@ -59,7 +59,7 @@
         <div class="text-center mb-4">
           <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         </div>
-        <input type="hidden" id="id" name="id" th:field="*{id}">
+
         <div class="form-label-group">
           <input type="text" id="nombre" class="form-control" placeholder="Nombre" th:field="*{nombre}" required>
           <label for="nombre">Nombre del evento</label>
@@ -86,16 +86,14 @@
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group form-label-group col-md-10">
+        <div class="form-label-group">
             <input type="text" id="direccion" class="form-control" placeholder="Dirección" th:field="*{direccion}" required>
             <label for="direccion">Dirección del evento</label>
           </div>
-          <div class="form-group form-label-group col-md-2">
-            <input type="text" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
+          <div class="form-label-group">
+            <input type="number" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
             <label for="aforo">Aforo</label>
           </div>
-        </div>
 
         <div class="input-daterange input-group" id="datepicker">
           <div class="form-label-group mitad">
@@ -107,8 +105,10 @@
             <label for="fin">Fin del evento</label>
           </div>
         </div>
-        <button class="btn btn-lg btn-primary" id="enviar" type="submit">Editar</button>
-        <button class="btn btn-lg btn-primary" id="borrar" type="submit">Borrar</button>
+        <input type="hidden" name="id" th:field="*{id}">
+        <input type="hidden" name="organizador" th:field="*{organizador}">
+        <button class="btn btn-sm btn-primary" id="enviar" type="submit">Editar</button>
+        <button class="btn btn-sm btn-primary" id="borrar" type="button">Borrar</button>
 
       </form>
     </div>
@@ -121,6 +121,7 @@
 
     $('#borrar').click(function(){
       $('#formEditar').attr('action', '/editarEstado');
+      $('#formEditar').submit();
     });
     </script>
   </body>

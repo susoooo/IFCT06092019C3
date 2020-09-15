@@ -255,7 +255,7 @@ public class MainController {
 	
 	@PostMapping("/crearEvento")
 	public String crearEvento(HttpServletRequest request,@ModelAttribute Evento evento) {
-		System.out.println(">>>> CrearEvento: Evento -- "+evento);
+		//System.out.println(">>>> CrearEvento: Evento -- "+evento.toString());
 		Usuario usuario=(Usuario) request.getSession().getAttribute("usuario");
 		if(usuario!=null)
 		{
@@ -311,7 +311,7 @@ public class MainController {
 		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
 		if(usuario!=null) {
 			System.out.println(">>>> EditarEvento: Sesión -- "+usuario.toString());
-			System.out.println(">>>> EditarEvento: Evento -- "+evento.getId());
+			//System.out.println(">>>> EditarEvento: Evento -- "+evento.toString());
 			eventoService.update(evento);
 			request.getSession().setAttribute("usuario", usuario);			
 		}
@@ -323,7 +323,7 @@ public class MainController {
 		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
 		if(usuario!=null) {	
 			System.out.println(">>>> EditarEstado: Sesión -- "+usuario.toString());
-			System.out.println(">>>> EditarEstado: Evento -- "+evento);
+			//System.out.println(">>>> EditarEstado: Evento -- "+evento.toString());
 			eventoService.delete(evento);
 			request.getSession().setAttribute("usuario", usuario);			
 		}
