@@ -24,6 +24,8 @@ DROP TABLE IF EXISTS `ofertas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ofertas` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `empresaId` bigint NOT NULL,
+  `alta` tinyint(1) NOT NULL,
   `puesto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `salario` int NOT NULL,
   `jornada` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -31,7 +33,7 @@ CREATE TABLE `ofertas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +42,7 @@ CREATE TABLE `ofertas` (
 
 LOCK TABLES `ofertas` WRITE;
 /*!40000 ALTER TABLE `ofertas` DISABLE KEYS */;
+INSERT INTO `ofertas` VALUES (1,2,1,'Actor Actriz',2000,'Jornada a tiempo parcial',1512,NULL,NULL),(2,2,1,'Albañil',1000,'Jornada parcial por horas',1552,'2020-09-15 06:33:58','2020-09-15 06:33:58');
 /*!40000 ALTER TABLE `ofertas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-07 12:42:43
+-- Dump completed on 2020-09-15 12:50:35

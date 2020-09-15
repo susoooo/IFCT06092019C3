@@ -15,6 +15,7 @@ class CreateEmpresarioTable extends Migration
     {
         Schema::create('empresario', function (Blueprint $table) {
             $table->id();
+			$table->boolean('alta');
 			$table->string('nombre');
 			$table->string('apellido');
 			$table->string('segundoApellido');
