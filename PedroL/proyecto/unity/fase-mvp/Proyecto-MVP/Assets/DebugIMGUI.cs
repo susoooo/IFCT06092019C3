@@ -21,7 +21,11 @@ public class DebugIMGUI : MonoBehaviour {
 	void OnGUI()
   {
     /*GUI.Box(
-			new Rect ( (Screen.width / 2) - 50, 0, 100, 50),
+			new Rect (
+			(Screen.width / 2) - 50, 
+			0, 
+			100, 
+			50),
 			"visibility:\n" + light_manager.visibility.ToString()
 		);
 		GUI.Box(
