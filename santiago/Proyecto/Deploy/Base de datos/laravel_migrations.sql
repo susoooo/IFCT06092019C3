@@ -27,7 +27,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (18,'2019_08_19_000000_create_failed_jobs_table',1),(19,'2020_09_07_074215_create_empresa_table',1),(20,'2020_09_07_084840_create-empresario-table',1),(21,'2020_09_07_085002_create-indices-table',1),(22,'2020_09_07_085055_create-profesiones-table',1),(23,'2020_09_07_085125_create-ofertas-table',1),(24,'2020_09_07_095919_create-administradores-table',2);
+INSERT INTO `migrations` VALUES (32,'2019_08_19_000000_create_failed_jobs_table',1),(38,'2020_09_07_074215_create_empresa_table',2),(39,'2020_09_07_084840_create-empresario-table',2),(40,'2020_09_07_085055_create-profesiones-table',3),(41,'2020_09_07_085125_create-ofertas-table',3),(42,'2020_09_07_095919_create-administradores-table',3);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-07 12:42:42
+-- Dump completed on 2020-09-15 12:50:35

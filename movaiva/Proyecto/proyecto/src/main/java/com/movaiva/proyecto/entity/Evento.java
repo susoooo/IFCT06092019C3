@@ -18,7 +18,7 @@ public class Evento {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_eve")
-	private Integer id;
+	private Integer eventoId;
 	@Column(name="nombre_eve")
 	private String nombre;
 	@Column(name="direccion_eve")
@@ -26,9 +26,9 @@ public class Evento {
 	@Column(name="aforo_eve")
 	private Integer aforo;
 	@Column(name="inicio_eve")
-	private Date inicio;
+	private String inicio;
 	@Column(name="fin_eve")
-	private Date fin;
+	private String fin;
 	@Column(name="estado_eve")
 	private String estado;
 	
@@ -48,7 +48,7 @@ public class Evento {
 		
 	}
 
-	public Evento(String nombre, String direccion, Integer aforo, Date inicio, Date fin, String estado,
+	public Evento(String nombre, String direccion, Integer aforo, String inicio, String fin, String estado,
 			Categoria categoria, Provincia provincia, Organizador organizador) {
 		super();
 		this.nombre = nombre;
@@ -86,19 +86,19 @@ public class Evento {
 		this.aforo = aforo;
 	}
 
-	public Date getInicio() {
+	public String getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(Date inicio) {
+	public void setInicio(String inicio) {
 		this.inicio = inicio;
 	}
 
-	public Date getFin() {
+	public String getFin() {
 		return fin;
 	}
 
-	public void setFin(Date fin) {
+	public void setFin(String fin) {
 		this.fin = fin;
 	}
 
@@ -134,16 +134,20 @@ public class Evento {
 		this.organizador = organizador;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer geteventoId() {
+		return eventoId;
+	}
+	
+	public void seteventoId(Integer id) {
+		this.eventoId=id;
 	}
 	
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", aforo=" + aforo + ", inicio="
-				+ inicio + ", fin=" + fin + ", estado=" + estado + ", categoria=" + categoria + ", provincia="
-				+ provincia + ", organizador=" + organizador + "]";
+		return "Evento [id=" + eventoId + ", nombre=" + nombre + ", direccion=" + direccion + ", aforo=" + aforo + ", inicio="
+				+ inicio + ", fin=" + fin + ", estado=" + estado + ", categoria=" + categoria.toString() + ", provincia="
+				+ provincia.toString() + ", organizador=" + organizador.toString() + "]";
 	}
 	
 	

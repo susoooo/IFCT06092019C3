@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `administradores`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `administradores` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `alta` tinyint(1) NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `segundoApellido` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-07 12:42:42
+-- Dump completed on 2020-09-15 12:50:34

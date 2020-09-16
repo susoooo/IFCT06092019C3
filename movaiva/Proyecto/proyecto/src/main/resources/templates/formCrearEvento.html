@@ -9,8 +9,7 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" href="../static/css/style.css">
     <script th:src="@{/js/jquery.3.5.1.js}" src="../static/js/jquery.3.5.1.js" charset="utf-8"></script>
     <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" charset="utf-8"></script>
-    <script th:src="@{/locale/bootstrap-datepicker.es.min.js}" src="../static/js/bootstrap-datepicker.js" charset="utf-8"></script>
-    <script th:src="@{/js/bootstrap-datepicker.js}" src="../static/js/bootstrap-datepicker.min.js" charset="utf-8"></script>
+    <script th:src="@{/js/bootstrap-datepicker.js}" src="../static/js/bootstrap-datepicker.js" charset="utf-8"></script>
 
     <title>Administrador de tickets</title>
   </head>
@@ -30,7 +29,7 @@
           <a class="nav-link" th:href="@{/reservas}">Mis reservas</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
-          <a class="nav-link" th:href="@{/eventos}">Mis eventos</a>
+          <a class="nav-link" th:href="@{/misEventos}">Mis eventos</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>
@@ -62,13 +61,13 @@
         </div>
 
         <div class="form-label-group">
-          <input type="text" id="nombre" class="form-control" placeholder="Nombre" th:field="*{nombre}">
+          <input type="text" id="nombre" class="form-control" placeholder="Nombre" th:field="*{nombre}" required>
           <label for="nombre">Nombre del evento</label>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-              <select th:field="*{categoria}" class="form-control" id="categoria" name="categoria">
+              <select th:field="*{categoria}" class="form-control" id="categoria" name="categoria" required>
                 <option value="">Selecciona la categoria</option>
                 <option
                 th:each="Categoria : ${categorias}"
@@ -77,7 +76,7 @@
               </select>
           </div>
           <div class="form-group col-md-6">
-            <select th:field="*{provincia}" class="form-control" id="provincia" name="provincia">
+            <select th:field="*{provincia}" class="form-control" id="provincia" name="provincia" required>
               <option value="">Selecciona la provincia</option>
               <option
               th:each="Provincia : ${provincias}"
@@ -87,29 +86,26 @@
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group form-label-group col-md-10">
-            <input type="text" id="direccion" class="form-control" placeholder="Dirección" th:field="*{direccion}">
+          <div class="form-label-group">
+            <input type="text" id="direccion" class="form-control" placeholder="Dirección" th:field="*{direccion}" required>
             <label for="direccion">Dirección del evento</label>
           </div>
-          <div class="form-group form-label-group col-md-2">
-            <input type="text" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}">
+          <div class="form-label-group">
+            <input type="number" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
             <label for="aforo">Aforo</label>
           </div>
-        </div>
 
         <div class="input-daterange input-group" id="datepicker">
           <div class="form-label-group mitad">
-            <input type="text" class="form-control" id="inicio" name="inicio" th:field="*{inicio}" />
+            <input type="text" class="form-control" id="inicio" name="inicio" th:field="*{inicio}"  required/>
             <label for="inicio">Inicio del evento</label>
           </div>
           <div class="form-label-group mitad">
-            <input type="text" class="form-control" id="fin" name="fin" th:field="*{fin}" />
+            <input type="text" class="form-control" id="fin" name="fin" th:field="*{fin}" required/>
             <label for="fin">Fin del evento</label>
           </div>
         </div>
           <button class="btn btn-lg btn-primary btn-block" id="enviar" type="submit">Crear</button>
-        </div>
       </form>
     </div>
     <script type="text/javascript">

@@ -123,7 +123,7 @@ public class Organizador {
 	public String toString() {
 		return "Organizador [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", usuario=" + usuario
 				+ ", email=" + email + ", contrasena=" + contrasena + ", cuentaBancaria=" + cuentaBancaria + ", estado="
-				+ estado + ", listaEvento=" + listaEvento.toString() + "]";
+				+ estado + "]";
 	}
 
 	

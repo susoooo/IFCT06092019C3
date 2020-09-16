@@ -4,6 +4,7 @@
     <meta charset="utf-8">
 
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+    <script th:src="@{/js/jquery.3.5.1.js}" src="../static/js/jquery.3.5.1.js" charset="utf-8"></script>
     <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js" charset="utf-8"></script>
 
     <title>Administrador de tickets</title>
@@ -24,7 +25,7 @@
           <a class="nav-link" th:href="@{/reservas}">Mis reservas</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
-          <a class="nav-link" th:href="@{/eventos}">Mis eventos</a>
+          <a class="nav-link" th:href="@{/misEventos}">Mis eventos</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>

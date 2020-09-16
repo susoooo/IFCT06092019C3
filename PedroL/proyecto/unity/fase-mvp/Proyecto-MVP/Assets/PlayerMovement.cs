@@ -6,25 +6,19 @@ public class PlayerMovement : MonoBehaviour {
 	
 	GameState game_state;
 	GameObject main_camera;
-	new Rigidbody rigidbody;
-	const float jump_multiplier = 300.0f;
-	const float mouse_multiplier = 5.0f;
-	const float speed_multiplier = 10.0f;
+	Rigidbody rigid_body;
+	const float jump_multiplier = 200.0f, mouse_multiplier = 4.0f, speed_multiplier = 1.5f;
 	bool jump_button;
-	float horizontal_axis;
-	float vertical_axis;
-	float mouse_x_axis;
-	float mouse_y_axis;
+	float horizontal_axis,  vertical_axis, mouse_x_axis, mouse_y_axis;
 	
   // Start is called before the first frame update
   void Start() {
-		game_state = GameObject.FindObjectOfType<GameState>();
-		
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		
+		game_state = GameObject.Find("Empty").GetComponent<GameState>();
 		main_camera = GameObject.FindGameObjectWithTag("MainCamera");
-		rigidbody = GetComponent<Rigidbody>();
+		rigid_body = GetComponent<Rigidbody>();
   }
 
   // Update is called once per frame
@@ -43,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		if (jump_button) {
 			if (Physics.Raycast(transform.position, Vector3.down, 1.5f)) {
-				rigidbody.AddForce(Vector3.up * jump_multiplier);
+				rigid_body.AddForce(Vector3.up * jump_multiplier);
 			}
 		}
 		
@@ -64,26 +58,23 @@ public class PlayerMovement : MonoBehaviour {
 			);
 			main_camera.transform.Translate(
 				0.0f,
-				-0.30f * mouse_y_axis,
-				-0.15f * mouse_y_axis
+				-0.15f * mouse_y_axis,
+				0.0f
 			);
 		}
   }
 	
 	void OnCollisionEnter(Collision collision) {
-		Debug.Log(collision.collider.name + " collision");
+		Debug.Log(collision.collider.tag + " collision");
 		
+		//Looking mappable...
 		if (collision.gameObject.tag == "Key") {
 			collision.gameObject.SetActive(false);
 			game_state.update_key_count();
 		}
-	}
-	
-	void OnGUI() {
-		GUI.Box(
-			new Rect (0, 0, 150, 50),
-			"main_camera.transform.rotation.eulerAngles.x:\n" + main_camera.transform.rotation.eulerAngles.x.ToString()
-		);
+		/*if (collision.gameObject.tag == "Enemy") {
+			game_state.game_loss();
+		}*/
 	}
 	
 }

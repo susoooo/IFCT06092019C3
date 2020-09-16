@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `Evento` (
   `nombre_eve` varchar(255) DEFAULT NULL,
   `direccion_eve` varchar(255) DEFAULT NULL,
   `aforo_eve` int DEFAULT NULL,
-  `inicio_eve` date DEFAULT NULL,
-  `fin_eve` date DEFAULT NULL,
+  `inicio_eve` varchar(255) DEFAULT NULL,
+  `fin_eve` varchar(255) DEFAULT NULL,
   `estado_eve` varchar(1) DEFAULT NULL,
   `id_org` int,
   `id_cat` int,
@@ -57,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `Evento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `Participa` (
+  `id_par` int,
   `id_eve` int,
   `id_cli` int,
-  PRIMARY KEY (`id_eve`),
-  PRIMARY KEY (`id_cli`),
+  PRIMARY KEY (`id_par`),
   FOREIGN KEY (`id_cli`) REFERENCES `Cliente`(`id_cli`),
   FOREIGN KEY (`id_eve`) REFERENCES `Evento`(`id_eve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

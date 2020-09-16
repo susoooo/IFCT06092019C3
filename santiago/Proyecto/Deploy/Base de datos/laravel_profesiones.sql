@@ -25,11 +25,12 @@ DROP TABLE IF EXISTS `profesiones`;
 CREATE TABLE `profesiones` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `profesion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `solicitud` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `solicitudId` bigint DEFAULT NULL,
+  `solicitud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +39,7 @@ CREATE TABLE `profesiones` (
 
 LOCK TABLES `profesiones` WRITE;
 /*!40000 ALTER TABLE `profesiones` DISABLE KEYS */;
+INSERT INTO `profesiones` VALUES (1,'Albañil',NULL,NULL,NULL,NULL),(2,'Fontaner@',NULL,NULL,NULL,NULL),(3,'Actor Actriz',NULL,NULL,NULL,NULL),(4,'Analista',NULL,NULL,NULL,NULL),(5,'Conductor Conductora',NULL,NULL,NULL,NULL),(6,'Doctor Doctora',NULL,NULL,NULL,NULL),(7,'Enfermer@',NULL,NULL,NULL,NULL),(8,'Pintor Pintora',NULL,NULL,NULL,NULL),(9,'Escritor Escritora',NULL,NULL,NULL,NULL),(10,'Narrador Narradora',NULL,NULL,NULL,NULL),(11,'Youtuber',NULL,NULL,NULL,NULL),(12,'Electricista',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `profesiones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-07 12:42:42
+-- Dump completed on 2020-09-15 12:50:35
