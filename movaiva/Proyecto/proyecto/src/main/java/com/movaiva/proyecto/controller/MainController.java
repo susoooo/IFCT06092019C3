@@ -311,7 +311,7 @@ public class MainController {
 		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
 		if(usuario!=null) {
 			System.out.println(">>>> EditarEvento: Sesión -- "+usuario.toString());
-			//System.out.println(">>>> EditarEvento: Evento -- "+evento.toString());
+			System.out.println(">>>> EditarEvento: Evento -- "+evento.toString());
 			eventoService.update(evento);
 			request.getSession().setAttribute("usuario", usuario);			
 		}

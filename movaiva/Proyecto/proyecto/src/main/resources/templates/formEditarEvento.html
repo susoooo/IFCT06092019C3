@@ -91,7 +91,7 @@
             <label for="direccion">Dirección del evento</label>
           </div>
           <div class="form-label-group">
-            <input type="number" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
+            <input type="number" id="eventoId" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
             <label for="aforo">Aforo</label>
           </div>
 
@@ -105,7 +105,7 @@
             <label for="fin">Fin del evento</label>
           </div>
         </div>
-        <input type="hidden" name="id" th:field="*{id}">
+        <input type="text" th:field="*{eventoId}">
         <input type="hidden" name="organizador" th:field="*{organizador}">
         <button class="btn btn-sm btn-primary" id="enviar" type="submit">Editar</button>
         <button class="btn btn-sm btn-primary" id="borrar" type="button">Borrar</button>

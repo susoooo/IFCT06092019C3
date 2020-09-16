@@ -55,8 +55,8 @@
 
   </nav>
   <div class="container mt-3">
-    <div th:if=${eventos.size()!=0} class="container-fluid">
-        <table class="table">
+    <div th:if=${eventos.size()!=0} class="table-responsive-sm">
+        <table class="table table-sm">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -80,7 +80,7 @@
               <td th:text="${evento.getFin()}"/>
               <td>
                 <button type="button" class="btn btn-warning">
-                  <a class="text-white" th:href="'/formEditarEvento?id=' + ${evento.getId()}">Editar</a>
+                  <a class="text-white" th:href="'/formEditarEvento?id=' + ${evento.geteventoId()}">Editar</a>
                 </button>
               </td>
             </tr>

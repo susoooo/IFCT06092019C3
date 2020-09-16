@@ -18,7 +18,7 @@ public class Evento {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_eve")
-	private Integer id;
+	private Integer eventoId;
 	@Column(name="nombre_eve")
 	private String nombre;
 	@Column(name="direccion_eve")
@@ -134,14 +134,18 @@ public class Evento {
 		this.organizador = organizador;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer geteventoId() {
+		return eventoId;
+	}
+	
+	public void seteventoId(Integer id) {
+		this.eventoId=id;
 	}
 	
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", aforo=" + aforo + ", inicio="
+		return "Evento [id=" + eventoId + ", nombre=" + nombre + ", direccion=" + direccion + ", aforo=" + aforo + ", inicio="
 				+ inicio + ", fin=" + fin + ", estado=" + estado + ", categoria=" + categoria.toString() + ", provincia="
 				+ provincia.toString() + ", organizador=" + organizador.toString() + "]";
 	}

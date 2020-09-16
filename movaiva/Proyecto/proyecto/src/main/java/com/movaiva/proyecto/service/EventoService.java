@@ -49,10 +49,10 @@ public class EventoService {
 	}
 	
 	public void update(Evento evento) {
-		eventoRepository.update(evento.getNombre(), evento.getDireccion(), evento.getProvincia(), evento.getCategoria(), evento.getAforo(), evento.getInicio(), evento.getFin(), evento.getId());
+		eventoRepository.update(evento.getNombre(), evento.getDireccion(), evento.getProvincia(), evento.getCategoria(), evento.getAforo(), evento.getInicio(), evento.getFin(), evento.geteventoId());
 	}
 	
 	public void delete(Evento evento) {
-		eventoRepository.updateEstado(evento.getId());
+		eventoRepository.updateEstado(evento.geteventoId());
 	}
 }
