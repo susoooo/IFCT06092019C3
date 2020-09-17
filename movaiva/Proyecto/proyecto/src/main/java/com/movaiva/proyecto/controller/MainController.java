@@ -43,11 +43,22 @@ public class MainController {
 	@GetMapping("/")
 	public String home(HttpServletRequest request,HttpSession session,Model model) {
 		Usuario usuario=(Usuario) session.getAttribute("usuario");
+		List<Evento> eventos;
 		System.out.println(">>>>Home: Sesion -- "+session.getAttribute("usuario"));
 		if(usuario!=null) {
 			request.getSession().setAttribute("usuario", usuario);
 			model.addAttribute("usuario", usuario);
+			if(usuario.getTipo().equalsIgnoreCase("cliente")) {
+				eventos=eventoService.findAll();
+			}else {
+				Organizador organizador=organizadorService.findById(usuario.getId()).get();
+				eventos=eventoService.findByOrganizador(organizador);
+			}
+		}else {
+			eventos=eventoService.findAll();
 		}
+		model.addAttribute("eventos", eventos);
+		model.addAttribute("buscarEvento", new Evento());
 		return "index";
 	}
 
@@ -58,7 +69,7 @@ public class MainController {
 	}
 
 	@PostMapping("/registrar")
-	public String registrar(HttpServletRequest request,@ModelAttribute Usuario usuario) {
+	public String registrar(HttpServletRequest request,@ModelAttribute Usuario usuario,Model model) {
 		System.out.println(">>>>Registrar: Usuario -- "+usuario.toString());
 		List <Cliente> clientes=clienteService.findAll();
 		List <Organizador> organizadores=organizadorService.findAll();
@@ -114,6 +125,7 @@ public class MainController {
 				usuario.setId(id);
 			}
 			request.getSession().setAttribute("usuario", usuario);
+			//model.addAttribute("buscarEvento", new Evento());
 			return "redirect:/";
 		}
 	}
@@ -193,6 +205,7 @@ public class MainController {
 	@GetMapping("/cerrarSesion")
 	private String cerrarSesion(HttpServletRequest request) {
 		request.getSession().invalidate();
+		//model.addAttribute("buscarEvento", new Evento());
 		return "redirect:/";
 	}
 	
@@ -232,7 +245,7 @@ public class MainController {
 			request.getSession().setAttribute("usuario", usuario);
 			System.out.println(">>>> Editar: Sesión -- "+request.getSession().getAttribute("usuario").toString());			
 		}
-		
+		//model.addAttribute("buscarEvento", new Evento());
 		return "redirect:/";
 	}
 	
@@ -248,6 +261,7 @@ public class MainController {
 		if(request.getSession().getAttribute("usuario")!=null) {
 			return "formCrearEvento";	
 		}else {
+			//model.addAttribute("buscarEvento", new Evento());
 			return "redirect:/";
 		}
 		
@@ -268,9 +282,10 @@ public class MainController {
 			eventoService.save(evento);
 			request.getSession().setAttribute("usuario", usuario);			
 		}
+		//model.addAttribute("buscarEvento", new Evento());
 		return "redirect:/";
 	}
-	
+	/*
 	@GetMapping("/misEventos")
 	public String misEventos(HttpServletRequest request,Model model) {
 		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
@@ -284,10 +299,11 @@ public class MainController {
 			model.addAttribute("usuario",usuario);				
 			return "misEventos";
 		}else{
+			//model.addAttribute("buscarEvento", new Evento());
 			return "redirect:/";
 		}
 	}
-	
+	*/
 	@GetMapping("/formEditarEvento")
 	public String formEditarEvento(@RequestParam Integer id,HttpServletRequest request, Model model) {
 		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
@@ -302,6 +318,7 @@ public class MainController {
 			model.addAttribute("provincias",provinciaService.findAll());
 			return "formEditarEvento";
 		}else {
+			//model.addAttribute("buscarEvento", new Evento());
 			return "redirect:/";
 		}
 	}
@@ -329,4 +346,54 @@ public class MainController {
 		}
 		return "redirect:/misEventos";
 	}
+	/*
+	
+	@GetMapping("/unirseEvento")
+	public String unirseEvento(@RequestParam Integer id,HttpServletRequest request, Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		if(usuario!=null) {		
+			System.out.println(">>>> UnisreEvento: Sesión -- "+usuario.toString());
+			Optional<Evento> opEvento=eventoService.findById(id);
+			Evento evento=opEvento.get();
+			System.out.println(">>>> UnirseEvento: Evento -- "+evento.toString());
+			Cliente cliente=clienteService.findById(usuario.getId()).get();
+			cliente.addEvento(evento);
+			clienteService.save(cliente);
+			model.addAttribute("usuario", usuario);			
+		}
+		//model.addAttribute("buscarEvento", new Evento());
+		return "redirect:/";
+	}
+	
+	
+	@GetMapping("/misReservas")
+	public String misReservas(HttpServletRequest request,Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		boolean esta;
+		if(usuario!=null) {
+			System.out.println(">>>> MisReservas: Sesión -- "+usuario.toString());
+			Cliente cliente=clienteService.findById(usuario.getId()).get();
+			System.out.println(">>>> MisEventos: Cliente -- "+cliente.toString());
+			List<Evento> eventos=eventoService.findAll();
+			List<Evento> misEventos=new ArrayList<Evento>();;
+			for(Evento e:eventos) {
+				esta=false;
+				for(Cliente c: e.getClientes()) {
+					if(cliente==c) {
+						esta=true;
+					}
+				}
+				if(esta) {
+					misEventos.add(e);
+				}
+			}
+			model.addAttribute("eventos",misEventos);
+			model.addAttribute("usuario",usuario);				
+			return "misReservas";
+		}else{
+			//model.addAttribute("buscarEvento", new Evento());
+			return "redirect:/";
+		}
+	}
+	*/
 }

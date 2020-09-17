@@ -22,11 +22,13 @@
           <a class="nav-link" th:href="@{/}">Inicio</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='cliente'}" class="nav-item">
-          <a class="nav-link" th:href="@{/reservas}">Mis reservas</a>
+          <a class="nav-link" th:href="@{/misReservas}">Mis reservas</a>
         </li>
+        <!-- 
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/misEventos}">Mis eventos</a>
         </li>
+         -->
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>
         </li>
@@ -51,7 +53,59 @@
 
   </nav>
     <div class="container mt-3">
-
+      <div class="container-fluid">
+      <!-- 
+        <div id="search-section" class="container-fluid">
+          <div class="container-fluid text-center pt-3 outbox">
+            <div class='row'>
+              <div class='col-lg-8 col-md-10 col-sm-11 mx-auto'>
+                <form class='order-1 d-flex flex-sm-row flex-column align-items-center' th:action="@{/buscar}" th:object="${buscarEvento}" >
+                  <input type="text" class='border-0 form-control h-100 mt-2 mt-sm-0' placeholder="Nombre del evento a buscar" th:field="*{nombre}">
+                  <button class='btn btn-primary mr-sm-1 mt-4 mt-sm-0 flex-fill'>Buscar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+         -->
+		<div th:if=${eventos.size()!=0} class="table-responsive-sm">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Provincia</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Aforo</th>
+              <th scope="col">Fecha de inicio</th>
+              <th scope="col">Fecha de fin</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="evento : ${eventos}">
+              <td th:text="${evento.getNombre()}"/>
+              <td th:text="${evento.getCategoria().getNombre()}"/>
+              <td th:text="${evento.getProvincia().getNombre()}"/>
+              <td th:text="${evento.getDireccion()}"/>
+              <td th:text="${evento.getAforo()}"/>
+              <td th:text="${evento.getInicio()}"/>
+              <td th:text="${evento.getFin()}"/>
+              <td>
+                <button th:if="${usuario!=null and usuario.getTipo()=='organizador'}" type="button" class="btn btn-warning">
+                  <a class="text-white" th:href="'/formEditarEvento?id=' + ${evento.geteventoId()}">Editar</a>
+                </button>
+                <button th:if="${usuario!=null and usuario.getTipo()=='cliente'}" type="button" class="btn btn-success">
+                  <a class="text-white" th:href="'/unirseEvento?id=' + ${evento.geteventoId()}">Unirse</a>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div th:unless=${eventos.size()!=0} class="container-fluid">
+        <p class="text-center mb-0">No hay eventos</p>
+      </div>
     </div>
   </body>
 </html>

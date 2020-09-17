@@ -1,6 +1,8 @@
 package com.movaiva.proyecto.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -43,6 +46,9 @@ public class Evento {
 	@ManyToOne
 	@JoinColumn(name="id_org")// Columna de la tabla evento que enlaza con la tabla organizador
 	private Organizador organizador;
+	
+	@ManyToMany(mappedBy = "eventos")
+    private Set<Cliente> clientes = new HashSet<>();
 
 	public Evento() {
 		
@@ -142,7 +148,11 @@ public class Evento {
 		this.eventoId=id;
 	}
 	
+	public Set<Cliente> getClientes() {
+		return clientes;
+	}
 
+	
 	@Override
 	public String toString() {
 		return "Evento [id=" + eventoId + ", nombre=" + nombre + ", direccion=" + direccion + ", aforo=" + aforo + ", inicio="

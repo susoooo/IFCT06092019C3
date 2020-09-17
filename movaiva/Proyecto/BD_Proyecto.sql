@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `db_proyecto` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `db_proyecto`;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_proyecto
@@ -28,7 +26,7 @@ CREATE TABLE `categoria` (
   `id_cat` int NOT NULL AUTO_INCREMENT,
   `nombre_cat` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_cat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +35,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'Concierto'),(2,'Motociclismo');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,8 +80,8 @@ CREATE TABLE `evento` (
   `nombre_eve` varchar(255) DEFAULT NULL,
   `direccion_eve` varchar(255) DEFAULT NULL,
   `aforo_eve` int DEFAULT NULL,
-  `inicio_eve` date DEFAULT NULL,
-  `fin_eve` date DEFAULT NULL,
+  `inicio_eve` varchar(255) DEFAULT NULL,
+  `fin_eve` varchar(255) DEFAULT NULL,
   `estado_eve` varchar(1) DEFAULT NULL,
   `id_org` int DEFAULT NULL,
   `id_cat` int DEFAULT NULL,
@@ -94,7 +93,7 @@ CREATE TABLE `evento` (
   CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_org`) REFERENCES `organizador` (`id_org`),
   CONSTRAINT `evento_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categoria` (`id_cat`),
   CONSTRAINT `evento_ibfk_3` FOREIGN KEY (`id_pro`) REFERENCES `provincia` (`id_pro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,6 +102,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
+INSERT INTO `evento` VALUES (1,'Primer Evento','Torre de Hercules',100,'24/09/2020','24/09/2020','A',2,1,2),(2,'Segundo Evento','Ourense',150,'30/09/2020','02/10/2020','A',2,1,4),(3,'Tercer Evento','Pontevedra',1500,'30/09/2020','03/10/2020','A',2,2,3);
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `organizador` (
   `cuenta_bancaria_org` varchar(255) DEFAULT NULL,
   `email_org` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_org`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `organizador` (
 
 LOCK TABLES `organizador` WRITE;
 /*!40000 ALTER TABLE `organizador` DISABLE KEYS */;
-INSERT INTO `organizador` VALUES (1,NULL,NULL,'organizador1','organizadro1',NULL,NULL,'organizador1@proyecto.com'),(2,NULL,NULL,'organizador2','organizador2','A',NULL,'organizador2@proyecto.com');
+INSERT INTO `organizador` VALUES (1,NULL,NULL,'organizador1','organizadro1',NULL,NULL,'organizador1@proyecto.com'),(2,'Manuel','Gonzalez','organizador2','organizador2','A','','organizador2@proyecto.com'),(3,NULL,NULL,'organizador3','organizador3','A',NULL,'organizador3@proyecto.com');
 /*!40000 ALTER TABLE `organizador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,12 +144,10 @@ DROP TABLE IF EXISTS `participa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `participa` (
-  `id_par` int NOT NULL AUTO_INCREMENT,
-  `id_eve` int DEFAULT NULL,
-  `id_cli` int DEFAULT NULL,
-  PRIMARY KEY (`id_par`),
+  `id_eve` int NOT NULL,
+  `id_cli` int NOT NULL,
+  PRIMARY KEY (`id_eve`,`id_cli`),
   KEY `id_cli` (`id_cli`),
-  KEY `id_eve` (`id_eve`),
   CONSTRAINT `participa_ibfk_1` FOREIGN KEY (`id_cli`) REFERENCES `cliente` (`id_cli`),
   CONSTRAINT `participa_ibfk_2` FOREIGN KEY (`id_eve`) REFERENCES `evento` (`id_eve`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -161,6 +159,7 @@ CREATE TABLE `participa` (
 
 LOCK TABLES `participa` WRITE;
 /*!40000 ALTER TABLE `participa` DISABLE KEYS */;
+INSERT INTO `participa` VALUES (1,3);
 /*!40000 ALTER TABLE `participa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +174,7 @@ CREATE TABLE `provincia` (
   `id_pro` int NOT NULL AUTO_INCREMENT,
   `nombre_pro` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_pro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,6 +183,7 @@ CREATE TABLE `provincia` (
 
 LOCK TABLES `provincia` WRITE;
 /*!40000 ALTER TABLE `provincia` DISABLE KEYS */;
+INSERT INTO `provincia` VALUES (1,'Lugo'),(2,'A Coruña'),(3,'Pontevedra'),(4,'Ourense');
 /*!40000 ALTER TABLE `provincia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-08 13:26:06
+-- Dump completed on 2020-09-17 12:47:36

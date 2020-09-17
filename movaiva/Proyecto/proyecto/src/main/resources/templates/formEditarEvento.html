@@ -26,7 +26,7 @@
           <a class="nav-link" th:href="@{/}">Inicio</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='cliente'}" class="nav-item">
-          <a class="nav-link" th:href="@{/reservas}">Mis reservas</a>
+          <a class="nav-link" th:href="@{/misReservas}">Mis reservas</a>
         </li>
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/misEventos}">Mis eventos</a>

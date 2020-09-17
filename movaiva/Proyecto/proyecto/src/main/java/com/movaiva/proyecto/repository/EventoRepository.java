@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.movaiva.proyecto.entity.Categoria;
+import com.movaiva.proyecto.entity.Cliente;
 import com.movaiva.proyecto.entity.Evento;
 import com.movaiva.proyecto.entity.Organizador;
 import com.movaiva.proyecto.entity.Provincia;

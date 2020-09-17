@@ -1,10 +1,16 @@
 package com.movaiva.proyecto.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +32,17 @@ public class Cliente {
 	private String contrasena;
 	@Column(name="estado_cli")
 	private String estado;
+	
+	@ManyToMany
+	@JoinTable(name="participa",
+			joinColumns = {
+                    @JoinColumn(name = "id_cli", referencedColumnName = "id_cli",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "id_eve", referencedColumnName = "id_eve",
+                            nullable = false, updatable = false)})
+    private Set<Evento> eventos = new HashSet<>();
+	
 	
 	public Cliente() {
 		
@@ -88,6 +105,18 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void addEvento(Evento evento) {
+		if(this.eventos==null) {
+			this.eventos=new HashSet<>();
+		}
+		this.eventos.add(evento);
+	}
+	
+	public void removeEvento(Evento evento) {
+        this.eventos.remove(evento);
+        evento.getClientes().remove(this);
+    }
 
 	@Override
 	public String toString() {
