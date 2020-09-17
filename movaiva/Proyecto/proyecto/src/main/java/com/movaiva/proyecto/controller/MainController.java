@@ -346,7 +346,7 @@ public class MainController {
 		}
 		return "redirect:/misEventos";
 	}
-	/*
+	
 	
 	@GetMapping("/unirseEvento")
 	public String unirseEvento(@RequestParam Integer id,HttpServletRequest request, Model model) {
@@ -395,5 +395,5 @@ public class MainController {
 			return "redirect:/";
 		}
 	}
-	*/
+	
 }
