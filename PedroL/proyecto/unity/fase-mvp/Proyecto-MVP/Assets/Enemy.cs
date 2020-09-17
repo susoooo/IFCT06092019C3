@@ -16,31 +16,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 	
 	GameState game_state;
-	GameObject player;
+	public GameObject player;
 	RaycastHit hit;
 	const float max_detection_distance = 15.0f;
 	const float max_detection_angle = 45.0f;
-	const float detection_sensibility = 1.0f;
+	const float detection_sensibility = 500.0f;
 	bool ray_did_hit;
 	bool in_sight;
 	float contact_meter;
 	Vector3 player_direction;
 	float angle_from_forward;
+	NavMeshAgent agent;
+	public GameObject checkpoint_group;
+	Transform[] checkpoints;
+	int next_checkpoint = 0;
 	
 	// Start is called before the first frame update
 	void Start() {
 		game_state = GameObject.Find("Empty").GetComponent<GameState>();
 		player = GameObject.FindWithTag("Player");
+		agent = GetComponent<NavMeshAgent>();
+		checkpoints = checkpoint_group.GetComponentsInChildren<Transform>();
 		contact_meter = 0;
 		ray_did_hit = false;
 	}
 
     // Update is called once per frame
 	void Update() {
+		Player_Detection();
+		
+		if (!agent.pathPending && agent.remainingDistance < 0.5f) {
+			Move_To_Next_Checkpoint();
+		}
+	}
+	
+	void Move_To_Next_Checkpoint() {
+		if (checkpoints.Length == 0) {
+			return;
+		}
+		
+		agent.destination = checkpoints[next_checkpoint].position;
+		next_checkpoint = (next_checkpoint + 1) % checkpoints.Length;
+	}
+	
+	void Player_Detection() {
 		player_direction = -transform.position + player.transform.position;
 		angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
 		
@@ -58,11 +82,9 @@ public class Enemy : MonoBehaviour {
 				Time.deltaTime;
 			contact_meter = (contact_meter > 100.0f) ? 100.0f : contact_meter;
 		} else {
-			contact_meter -= 33.0f * Time.deltaTime;
+			contact_meter -= 100.0f * Time.deltaTime;
 			contact_meter = (contact_meter < 0.0f) ? 0.0f : contact_meter;
 		}
-		
-		Debug.Log("angle: " + angle_from_forward);
 	}
 	
 	float Normalize_Bounded_Value(float lower_bound, float upper_bound, float value) {
@@ -73,18 +95,12 @@ public class Enemy : MonoBehaviour {
 		return (value - upper_bound) / upper_bound;
 	}
 	
-	void OnFixedUpdate() {
-		//raycast = Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, max_detection_distance);
-	}
-	
 	void OnDrawGizmos() {
 		Gizmos.color = in_sight ? Color.red : Color.white;
 		
-		//Visualization of angle between enemy's facing direction and direction to player
-		Gizmos.DrawRay(transform.position, -transform.position + player.transform.position);
 		Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * max_detection_distance);
-		
 		Gizmos.DrawSphere(transform.position + (Vector3.up * 1.5f), contact_meter * 0.003f);
+		Gizmos.DrawRay(transform.position, -transform.position + checkpoints[next_checkpoint - 1].position);
 	}
 	
 }

@@ -47,3 +47,8 @@
 	Contact meter for each enemy that fills up when they see the player and depletes when they don't
 		Fill rate is a function of distance from enemy, angle of vision, a sensitivity multiplier (for generally speeding up or down the rate), and deltaTime
 	Currently the meter is debug mode, so it only shows in editor view; next step is to port it to game view
+	
+17/09:
+	Baked navigation mesh
+	Added navigation agent to enemy and checkpoint object
+	Added second enemy to test navigation and detection scripts
