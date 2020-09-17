@@ -22,7 +22,12 @@ public class Enemy : MonoBehaviour {
 	GameState game_state;
 	GameObject player;
 	RaycastHit hit;
-	bool can_be_seen;
+	const float max_detection_distance = 15.0f;
+	const float max_detection_angle = 45.0f;
+	const float detection_sensibility = 1.0f;
+	bool ray_did_hit;
+	bool in_sight;
+	float contact_meter;
 	Vector3 player_direction;
 	float angle_from_forward;
 	
@@ -30,29 +35,56 @@ public class Enemy : MonoBehaviour {
 	void Start() {
 		game_state = GameObject.Find("Empty").GetComponent<GameState>();
 		player = GameObject.FindWithTag("Player");
+		contact_meter = 0;
+		ray_did_hit = false;
 	}
 
     // Update is called once per frame
 	void Update() {
 		player_direction = -transform.position + player.transform.position;
 		angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
-		can_be_seen = angle_from_forward < 20.0f;
 		
-		Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, 15.0f);
-		can_be_seen = (hit.collider.name == "Player") ? can_be_seen : false;
+		ray_did_hit = Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, max_detection_distance);
+		in_sight = 
+			ray_did_hit && 
+			(hit.collider.name == "Player") && 
+			(angle_from_forward < max_detection_angle);
 		
-		Debug.Log("angle_from_forward: " + angle_from_forward.ToString());
+		if (in_sight) {
+			contact_meter += 
+				Normalize_Bounded_Value(max_detection_angle, angle_from_forward) * 
+				Normalize_Bounded_Value(max_detection_distance, hit.distance) * 
+				detection_sensibility * 
+				Time.deltaTime;
+			contact_meter = (contact_meter > 100.0f) ? 100.0f : contact_meter;
+		} else {
+			contact_meter -= 33.0f * Time.deltaTime;
+			contact_meter = (contact_meter < 0.0f) ? 0.0f : contact_meter;
+		}
+		
+		Debug.Log("angle: " + angle_from_forward);
+	}
+	
+	float Normalize_Bounded_Value(float lower_bound, float upper_bound, float value) {
+		return (value - upper_bound) / (lower_bound - upper_bound);
+	}
+	
+	float Normalize_Bounded_Value(float upper_bound, float value) {
+		return (value - upper_bound) / upper_bound;
 	}
 	
 	void OnFixedUpdate() {
-		//Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, 15.0f);
+		//raycast = Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, max_detection_distance);
 	}
 	
 	void OnDrawGizmos() {
-		Gizmos.color = can_be_seen ? Color.red : Color.white;
+		Gizmos.color = in_sight ? Color.red : Color.white;
 		
+		//Visualization of angle between enemy's facing direction and direction to player
 		Gizmos.DrawRay(transform.position, -transform.position + player.transform.position);
-		Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 15);
+		Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * max_detection_distance);
+		
+		Gizmos.DrawSphere(transform.position + (Vector3.up * 1.5f), contact_meter * 0.003f);
 	}
 	
 }
