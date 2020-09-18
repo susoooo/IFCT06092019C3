@@ -52,3 +52,6 @@
 	Baked navigation mesh
 	Added navigation agent to enemy and checkpoint object
 	Added second enemy to test navigation and detection scripts
+	
+18/09:
+	Added third enemy patrol

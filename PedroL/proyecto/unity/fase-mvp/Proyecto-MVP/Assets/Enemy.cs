@@ -13,6 +13,15 @@
 		If a chasing enemy loses contact, it will search around the last seen spot, then return to its checkpoint route
 */
 
+// contact_meter BECOMES alertness
+//
+// Patrolling --[ last_alertness < alertness && alertness > 50.0f ]--> Searching
+//
+// Searching --[ last_alertness > alertness && alertness == 0.0f ]--> Patrolling
+// Searching --[ last_alertness < alertness && alertness == 100.0f ]--> Chasing
+//
+// Chasing --[ last_alertness > alertness && alertness < 80.0f ]--> Searching
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,58 +30,72 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
 	
 	GameState game_state;
-	public GameObject player;
-	RaycastHit hit;
-	const float max_detection_distance = 15.0f;
-	const float max_detection_angle = 45.0f;
-	const float detection_sensibility = 500.0f;
-	bool ray_did_hit;
+	GameObject player;
+	const float max_detection_distance = 15.0f, max_detection_angle = 45.0f, detection_sensibility = 500.0f;
 	bool in_sight;
 	float contact_meter;
-	Vector3 player_direction;
-	float angle_from_forward;
 	NavMeshAgent agent;
 	public GameObject checkpoint_group;
 	Transform[] checkpoints;
-	int next_checkpoint = 0;
+	int next_checkpoint = 1;
 	
-	// Start is called before the first frame update
+	// Unity handlers
 	void Start() {
 		game_state = GameObject.Find("Empty").GetComponent<GameState>();
 		player = GameObject.FindWithTag("Player");
 		agent = GetComponent<NavMeshAgent>();
 		checkpoints = checkpoint_group.GetComponentsInChildren<Transform>();
+		
 		contact_meter = 0;
-		ray_did_hit = false;
+		
+		agent.autoBraking = true;
 	}
 
-    // Update is called once per frame
 	void Update() {
-		Player_Detection();
+		Player_Contact();
+		Patrol();
+	}
+	
+	void OnDrawGizmos() {
+		Gizmos.color = in_sight ? Color.red : Color.white;
 		
+		Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * max_detection_distance);
+		Gizmos.DrawSphere(transform.position + (Vector3.up * 1.5f), contact_meter * 0.003f);
+		Gizmos.DrawRay(transform.position, -transform.position + checkpoints[next_checkpoint - 1].position);
+	}
+	
+	// Local methods
+	void Patrol() {
 		if (!agent.pathPending && agent.remainingDistance < 0.5f) {
 			Move_To_Next_Checkpoint();
 		}
 	}
 	
+	void Chase() {
+		//
+	}
+	
+	void Search() {
+		//
+	}
+	
 	void Move_To_Next_Checkpoint() {
-		if (checkpoints.Length == 0) {
+		if (checkpoints.Length == 0) { 
 			return;
 		}
 		
 		agent.destination = checkpoints[next_checkpoint].position;
 		next_checkpoint = (next_checkpoint + 1) % checkpoints.Length;
+		next_checkpoint = (next_checkpoint == 0) ? 1 : next_checkpoint;
 	}
 	
-	void Player_Detection() {
-		player_direction = -transform.position + player.transform.position;
-		angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
+	void Player_Contact() {
+		RaycastHit hit;
+		Vector3 player_direction = -transform.position + player.transform.position;
+		float angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
+		bool ray_did_hit = Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, max_detection_distance);
 		
-		ray_did_hit = Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, max_detection_distance);
-		in_sight = 
-			ray_did_hit && 
-			(hit.collider.name == "Player") && 
-			(angle_from_forward < max_detection_angle);
+		in_sight = ray_did_hit && (hit.collider.name == "Player") && (angle_from_forward < max_detection_angle);
 		
 		if (in_sight) {
 			contact_meter += 
@@ -94,13 +117,22 @@ public class Enemy : MonoBehaviour {
 	float Normalize_Bounded_Value(float upper_bound, float value) {
 		return (value - upper_bound) / upper_bound;
 	}
-	
-	void OnDrawGizmos() {
-		Gizmos.color = in_sight ? Color.red : Color.white;
-		
-		Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * max_detection_distance);
-		Gizmos.DrawSphere(transform.position + (Vector3.up * 1.5f), contact_meter * 0.003f);
-		Gizmos.DrawRay(transform.position, -transform.position + checkpoints[next_checkpoint - 1].position);
-	}
-	
 }
+
+/*
+class BehaviourState {
+	float alertness, last_alertness;
+	enum Behaviour {
+		patrolling,
+		searching,
+		chasing,
+	}
+	Behaviour behaviour;
+	Vector3 player_last_seen;
+	
+	void Update() {
+		
+		//player_last_seen
+	}
+}
+*/
