@@ -43,13 +43,26 @@ public class MainController {
 	@GetMapping("/")
 	public String home(HttpServletRequest request,HttpSession session,Model model) {
 		Usuario usuario=(Usuario) session.getAttribute("usuario");
-		List<Evento> eventos;
+		List<Evento> eventos=new ArrayList<>();
+		boolean esta=false;
 		System.out.println(">>>>Home: Sesion -- "+session.getAttribute("usuario"));
 		if(usuario!=null) {
 			request.getSession().setAttribute("usuario", usuario);
 			model.addAttribute("usuario", usuario);
 			if(usuario.getTipo().equalsIgnoreCase("cliente")) {
-				eventos=eventoService.findAll();
+				Cliente cliente=clienteService.findById(usuario.getId()).get();
+				List<Evento> misEventos=eventoService.findAll();
+				for(Evento e:misEventos) {
+					esta=false;
+					for(Cliente c: e.getClientes()) {
+						if(cliente==c) {
+							esta=true;
+						}
+					}
+					if(!esta) {
+						eventos.add(e);
+					}
+				}
 			}else {
 				Organizador organizador=organizadorService.findById(usuario.getId()).get();
 				eventos=eventoService.findByOrganizador(organizador);
@@ -393,6 +406,36 @@ public class MainController {
 		}else{
 			//model.addAttribute("buscarEvento", new Evento());
 			return "redirect:/";
+		}
+	}
+	
+	@GetMapping("/borrarEvento")
+	public String borrarEvento(@RequestParam Integer id,HttpServletRequest request, Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		//model.addAttribute("buscarEvento", new Evento());
+		if(usuario!=null) {
+			Cliente cliente=clienteService.findById(usuario.getId()).get();
+			Evento evento=eventoService.findById(id).get();
+			cliente.removeEvento(evento);
+			clienteService.update(cliente);
+			request.getSession().setAttribute("usuario", usuario);
+			return "redirect:/misReservas";	
+		}else {			
+			return "redirect:/";	
+		}		
+	}
+	
+	@GetMapping("/listarParticipantes")
+	public String listarParticipantes(@RequestParam Integer id,HttpServletRequest request, Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");
+		//model.addAttribute("buscarEvento", new Evento());
+		if(usuario!=null) {
+			Evento evento=eventoService.findById(id).get();
+			model.addAttribute("participantes",evento.getClientes());
+			request.getSession().setAttribute("usuario", usuario);
+			return "listarParticipantes";	
+		}else {			
+			return "redirect:/";	
 		}
 	}
 	
