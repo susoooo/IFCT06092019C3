@@ -127,7 +127,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 221}
   m_MaxSize: {x: 12005, y: 4021}
   vertical: 0
-  controlID: 56
+  controlID: 82
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 881, y: 492}
   m_MaxSize: {x: 16006, y: 14042}
   vertical: 0
-  controlID: 149
+  controlID: 143
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 492}
   m_MaxSize: {x: 12005, y: 14042}
   vertical: 1
-  controlID: 55
+  controlID: 81
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -392,20 +392,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 81
   m_LastFolders:
-  - Assets/Prefab
+  - Assets
   m_LastFoldersGridSize: 81
-  m_LastProjectPath: E:\Repositorio\IFCT06092019C3\Fran\Proyecto Tron\Tron 0.3
+  m_LastProjectPath: E:\Repositorio\IFCT06092019C3\Fran\Proyecto Tron\Tron 0.3.1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 68440000
-    m_LastClickedID: 17512
-    m_ExpandedIDs: 000000005e44000000ca9a3b
+    m_SelectedIDs: fe440000
+    m_LastClickedID: 17662
+    m_ExpandedIDs: 00000000fe44000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -433,7 +433,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005e440000
+    m_ExpandedIDs: 00000000fe440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000ac34000000000000e8330000d43300003063000044630000aa440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -558,7 +558,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4049fdff0c4bfdffb04cfdff6afbffff
+      m_ExpandedIDs: 6afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 20.161655, y: 3.625082, z: 26.025473}
     speed: 2
-    m_Value: {x: -6.62722, y: 18.978664, z: 42.04818}
+    m_Value: {x: 20.161655, y: 3.625082, z: 26.025473}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -668,11 +668,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.22310318, y: -0.005262269, z: 0.0012044105, w: 0.97478056}
     speed: 2
-    m_Value: {x: -0.08419118, y: 0.705801, z: -0.0851051, w: -0.698222}
+    m_Value: {x: -0.2231032, y: 0.0052622696, z: -0.0012044105, w: -0.9747806}
   m_Size:
     m_Target: 206.14783
     speed: 2
-    m_Value: 45.02718
+    m_Value: 206.14783
   m_Ortho:
     m_Target: 0
     speed: 2
