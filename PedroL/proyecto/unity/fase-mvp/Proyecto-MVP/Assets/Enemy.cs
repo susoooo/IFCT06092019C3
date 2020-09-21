@@ -13,15 +13,6 @@
 		If a chasing enemy loses contact, it will search around the last seen spot, then return to its checkpoint route
 */
 
-// contact_meter BECOMES alertness
-//
-// Patrolling --[ last_alertness < alertness && alertness > 50.0f ]--> Searching
-//
-// Searching --[ last_alertness > alertness && alertness == 0.0f ]--> Patrolling
-// Searching --[ last_alertness < alertness && alertness == 100.0f ]--> Chasing
-//
-// Chasing --[ last_alertness > alertness && alertness < 80.0f ]--> Searching
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,15 +20,21 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 	
+	const float max_detection_distance = 15.0f, max_detection_angle = 45.0f, detection_sensibility = 500.0f, search_timer_max = 2.0f;
 	GameState game_state;
 	GameObject player;
-	const float max_detection_distance = 15.0f, max_detection_angle = 45.0f, detection_sensibility = 500.0f;
-	bool in_sight;
-	float contact_meter;
 	NavMeshAgent agent;
 	public GameObject checkpoint_group;
 	Transform[] checkpoints;
-	int next_checkpoint = 1;
+	int next_checkpoint;
+	Vector3 player_last_known;
+	bool in_sight;
+	float contact_meter, search_timer;
+	enum Task {
+		patrol,
+		search,
+		chase,
+	} Task task;
 	
 	// Unity handlers
 	void Start() {
@@ -45,17 +42,65 @@ public class Enemy : MonoBehaviour {
 		player = GameObject.FindWithTag("Player");
 		agent = GetComponent<NavMeshAgent>();
 		checkpoints = checkpoint_group.GetComponentsInChildren<Transform>();
-		
+		next_checkpoint = 1;
 		contact_meter = 0;
-		
+		task = Task.patrol;
 		agent.autoBraking = true;
 	}
-
 	void Update() {
-		Player_Contact();
-		Patrol();
+		RaycastHit hit;
+		Vector3 player_direction;
+		float angle_from_forward;
+		
+		player_direction = -transform.position + player.transform.position;
+		angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
+		in_sight = 
+			Physics.Raycast(transform.position, player_direction, out hit, max_detection_distance)
+			&&
+			hit.collider.name == "Player"
+			&&
+			angle_from_forward < max_detection_angle;
+		
+		switch (task) {
+			case Task.patrol:
+				if (in_sight) {
+					contact_meter += 
+						Normalize_Bounded_Value(max_detection_angle, angle_from_forward) * 
+						Normalize_Bounded_Value(max_detection_distance, hit.distance) * 
+						detection_sensibility * 
+						Time.deltaTime;
+				} else {
+					contact_meter -= 100.0f * Time.deltaTime;
+					contact_meter = (contact_meter < 0.0f) ? 0.0f : contact_meter;
+				}
+				if (contact_meter > 100.0f) {
+					contact_meter = 100.0f;
+					task = Task.search;
+				}
+				Patrol();
+				break;
+			case Task.search:
+				if (in_sight) {
+					search_timer = search_timer_max;
+					task = Task.chase;
+				} else {
+					search_timer -= Time.deltaTime;
+					Search();
+					if (search_timer < 0.0f) {
+						task = Task.patrol;
+					}
+				}
+				break;
+			case Task.chase:
+				if (in_sight) {
+					Chase();
+				} else {
+					player_last_known = player.transform.position;
+					task = Task.search;
+				}
+				break;
+		}
 	}
-	
 	void OnDrawGizmos() {
 		Gizmos.color = in_sight ? Color.red : Color.white;
 		
@@ -66,73 +111,32 @@ public class Enemy : MonoBehaviour {
 	
 	// Local methods
 	void Patrol() {
-		if (!agent.pathPending && agent.remainingDistance < 0.5f) {
-			Move_To_Next_Checkpoint();
+		if (!agent.pathPending && agent.remainingDistance < 0.5f && checkpoints.Length != 0) {
+			agent.destination = checkpoints[next_checkpoint].position;
+			next_checkpoint = (next_checkpoint + 1) % checkpoints.Length;
+			next_checkpoint = (next_checkpoint == 0) ? 1 : next_checkpoint;
 		}
 	}
-	
-	void Chase() {
-		//
-	}
-	
 	void Search() {
-		//
-	}
-	
-	void Move_To_Next_Checkpoint() {
-		if (checkpoints.Length == 0) { 
-			return;
-		}
-		
-		agent.destination = checkpoints[next_checkpoint].position;
-		next_checkpoint = (next_checkpoint + 1) % checkpoints.Length;
-		next_checkpoint = (next_checkpoint == 0) ? 1 : next_checkpoint;
-	}
-	
-	void Player_Contact() {
-		RaycastHit hit;
-		Vector3 player_direction = -transform.position + player.transform.position;
-		float angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
-		bool ray_did_hit = Physics.Raycast(transform.position, -transform.position + player.transform.position, out hit, max_detection_distance);
-		
-		in_sight = ray_did_hit && (hit.collider.name == "Player") && (angle_from_forward < max_detection_angle);
-		
-		if (in_sight) {
-			contact_meter += 
-				Normalize_Bounded_Value(max_detection_angle, angle_from_forward) * 
-				Normalize_Bounded_Value(max_detection_distance, hit.distance) * 
-				detection_sensibility * 
-				Time.deltaTime;
-			contact_meter = (contact_meter > 100.0f) ? 100.0f : contact_meter;
-		} else {
-			contact_meter -= 100.0f * Time.deltaTime;
-			contact_meter = (contact_meter < 0.0f) ? 0.0f : contact_meter;
+		//How to limit the random spot to accessible locations?
+		if (!agent.pathPending && agent.remainingDistance < 0.5f) {
+			NavMeshHit hit;
+			NavMesh.SamplePosition(
+				new Vector3(Random.insideUnitCircle.x, 0.0f, Random.insideUnitCircle.y), 
+				out hit, 
+				4.0f, 
+				NavMesh.AllAreas
+			);
+			agent.destination = hit.position;
 		}
 	}
-	
+	void Chase() {
+		agent.destination = player.transform.position;
+	}
 	float Normalize_Bounded_Value(float lower_bound, float upper_bound, float value) {
 		return (value - upper_bound) / (lower_bound - upper_bound);
 	}
-	
 	float Normalize_Bounded_Value(float upper_bound, float value) {
 		return (value - upper_bound) / upper_bound;
 	}
 }
-
-/*
-class BehaviourState {
-	float alertness, last_alertness;
-	enum Behaviour {
-		patrolling,
-		searching,
-		chasing,
-	}
-	Behaviour behaviour;
-	Vector3 player_last_seen;
-	
-	void Update() {
-		
-		//player_last_seen
-	}
-}
-*/

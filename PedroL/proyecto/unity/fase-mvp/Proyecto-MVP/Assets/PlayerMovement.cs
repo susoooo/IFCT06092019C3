@@ -72,9 +72,9 @@ public class PlayerMovement : MonoBehaviour {
 			collision.gameObject.SetActive(false);
 			game_state.update_key_count();
 		}
-		/*if (collision.gameObject.tag == "Enemy") {
+		if (collision.gameObject.tag == "Enemy") {
 			game_state.game_loss();
-		}*/
+		}
 	}
 	
 }
