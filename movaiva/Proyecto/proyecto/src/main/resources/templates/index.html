@@ -68,8 +68,8 @@
           </div>
         </div>
          -->
-		<div th:if=${eventos.size()!=0} class="table-responsive-sm">
-        <table id="eventos" class="table table-sm">
+		<div th:if=${eventos.size()!=0}>
+        <table class="table table-responsive-sm table-sm">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -110,13 +110,5 @@
         <p class="text-center mb-0">No hay eventos</p>
       </div>
     </div>
-    <script type="text/javascript">    
-		  $(document).ready(function() {
-		  $('#eventos').DataTable({
-			    "pagingType": "full_number" // "simple" option for 'Previous' and 'Next' buttons only
-		  });
-		  $('.dataTables_length').addClass('bs-select');
-		});
-    </script>
   </body>
 </html>
