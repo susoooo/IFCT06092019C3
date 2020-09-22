@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Buscador de empleo</title>
+        <title>{{$titulo}}</title>
 		<style>
 			.button {
 				border: none;
@@ -32,6 +32,45 @@
 				right: 56px;
 				width: 70px;
 				top: 10px;
+				float: right;				
+				padding:5px;
+				background-color: silver;
+				border: 3px solid #73AD21;
+				border-radius: 5px;
+			}
+			
+			.right_M {				
+				margin: auto;
+				position: absolute;
+				right: 56px;
+				width: 70px;
+				top: 70px;
+				float: right;				
+				padding:5px;
+				background-color: silver;
+				border: 3px solid #73AD21;
+				border-radius: 5px;
+			}
+			
+			.right_AE {				
+				margin: auto;
+				position: absolute;
+				right: 56px;
+				width: 70px;
+				top: 130px;
+				float: right;				
+				padding:5px;
+				background-color: silver;
+				border: 3px solid #73AD21;
+				border-radius: 5px;
+			}
+			
+			.right_C {				
+				margin: auto;
+				position: absolute;
+				right: 56px;
+				width: 70px;
+				top: 190px;
 				float: right;				
 				padding:5px;
 				background-color: silver;
@@ -76,9 +115,12 @@
 					</article><br>
 					@endforeach
 				@endforeach
-			
+				
 		</section>
-		<aside>
-			<a class="right " href="{{route('registro_empresario')}}"> Inicio sesión</a>
+		<aside>			
+			<a href="{{route('registro_empresa')}}" class="right btn-primary">Añadir empresa</a>
+			<a href="{{route('crear_oferta')}}" class="right_M btn-primary">Añadir oferta</a>
+			<!-- <a href="{{route('crear_oferta')}}" class="right_AE btn-primary">Modificar oferta</a>
+			<a href="{{route('crear_oferta')}}" class="right_C btn-primary">Cerrar sesión</a> -->
 		</aside>
 </html>

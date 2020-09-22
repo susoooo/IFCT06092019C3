@@ -22,6 +22,7 @@ class CreateEmpresarioTable extends Migration
 			$table->integer('DNI');
 			$table->string('password');
             $table->timestamps();
+			$table->rememberToken();
         });
     }
 
