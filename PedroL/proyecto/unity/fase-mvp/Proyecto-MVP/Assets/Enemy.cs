@@ -20,14 +20,14 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 	
-	const float max_detection_distance = 15.0f, max_detection_angle = 45.0f, detection_sensibility = 500.0f, search_timer_max = 2.0f;
+	const float max_detection_distance = 15.0f, max_detection_angle = 65.0f, detection_sensibility = 500.0f, search_timer_max = 50.0f, search_radius_multiplier = 10.0f;
 	GameState game_state;
 	GameObject player;
 	NavMeshAgent agent;
 	public GameObject checkpoint_group;
 	Transform[] checkpoints;
 	int next_checkpoint;
-	Vector3 player_last_known;
+	Vector3 player_last_known, eye_level, eye_position;
 	bool in_sight;
 	float contact_meter, search_timer;
 	enum Task {
@@ -45,40 +45,43 @@ public class Enemy : MonoBehaviour {
 		next_checkpoint = 1;
 		contact_meter = 0;
 		task = Task.patrol;
-		agent.autoBraking = true;
+		agent.autoBraking = false;
+		agent.speed = 3f;
+		eye_level = Vector3.up * 0.8f;
 	}
 	void Update() {
 		RaycastHit hit;
 		Vector3 player_direction;
 		float angle_from_forward;
 		
-		player_direction = -transform.position + player.transform.position;
+		eye_position = transform.position + eye_level;
+		player_direction = -eye_position + player.transform.position;
 		angle_from_forward = Vector3.Angle(transform.TransformDirection(Vector3.forward), player_direction);
 		in_sight = 
-			Physics.Raycast(transform.position, player_direction, out hit, max_detection_distance)
-			&&
-			hit.collider.name == "Player"
-			&&
-			angle_from_forward < max_detection_angle;
+		 Physics.Raycast(eye_position, player_direction, out hit, max_detection_distance)
+		 &&
+		 hit.collider.name == "Player"
+		 &&
+		 angle_from_forward < max_detection_angle;
 		
 		switch (task) {
 			case Task.patrol:
 				if (in_sight) {
 					contact_meter += 
-						Normalize_Bounded_Value(max_detection_angle, angle_from_forward) * 
-						Normalize_Bounded_Value(max_detection_distance, hit.distance) * 
-						detection_sensibility * 
-						Time.deltaTime;
+					Normalize_Bounded_Value(max_detection_angle, angle_from_forward) * 
+					Normalize_Bounded_Value(max_detection_distance, hit.distance) * 
+					detection_sensibility * 
+					Time.deltaTime;
+					contact_meter = (contact_meter > 100.0f) ? 100.0f : contact_meter;
 				} else {
 					contact_meter -= 100.0f * Time.deltaTime;
 					contact_meter = (contact_meter < 0.0f) ? 0.0f : contact_meter;
 				}
-				if (contact_meter > 100.0f) {
-					contact_meter = 100.0f;
+				Patrol();
+				if (contact_meter == 100.0f) {
 					task = Task.search;
 				}
-				Patrol();
-				break;
+			break;
 			case Task.search:
 				if (in_sight) {
 					search_timer = search_timer_max;
@@ -88,9 +91,10 @@ public class Enemy : MonoBehaviour {
 					Search();
 					if (search_timer < 0.0f) {
 						task = Task.patrol;
+						search_timer = search_timer_max;
 					}
 				}
-				break;
+			break;
 			case Task.chase:
 				if (in_sight) {
 					Chase();
@@ -98,15 +102,19 @@ public class Enemy : MonoBehaviour {
 					player_last_known = player.transform.position;
 					task = Task.search;
 				}
-				break;
+			break;
 		}
 	}
 	void OnDrawGizmos() {
-		Gizmos.color = in_sight ? Color.red : Color.white;
+		switch (task) {
+			case Task.patrol: Gizmos.color = Color.white; break;
+			case Task.search: Gizmos.color = Color.yellow; break;
+			case Task.chase:  Gizmos.color = Color.red; break;
+		}
 		
-		Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * max_detection_distance);
-		Gizmos.DrawSphere(transform.position + (Vector3.up * 1.5f), contact_meter * 0.003f);
-		Gizmos.DrawRay(transform.position, -transform.position + checkpoints[next_checkpoint - 1].position);
+		Gizmos.DrawRay(eye_position, transform.TransformDirection(Vector3.forward) * max_detection_distance);
+		Gizmos.DrawSphere(eye_position + (Vector3.up * 1.5f), contact_meter * 0.003f);
+		Gizmos.DrawRay(eye_position, -eye_position + agent.destination);
 	}
 	
 	// Local methods
@@ -118,14 +126,17 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 	void Search() {
-		//How to limit the random spot to accessible locations?
 		if (!agent.pathPending && agent.remainingDistance < 0.5f) {
 			NavMeshHit hit;
 			NavMesh.SamplePosition(
-				new Vector3(Random.insideUnitCircle.x, 0.0f, Random.insideUnitCircle.y), 
-				out hit, 
-				4.0f, 
-				NavMesh.AllAreas
+			 new Vector3(
+			  player_last_known.x + (Random.insideUnitCircle.x * search_radius_multiplier), 
+			  player_last_known.y, 
+			  player_last_known.z + (Random.insideUnitCircle.y * search_radius_multiplier)
+			 ), 
+			 out hit, 
+			 4.0f, 
+			 NavMesh.AllAreas
 			);
 			agent.destination = hit.position;
 		}

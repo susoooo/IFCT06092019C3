@@ -55,3 +55,9 @@
 	
 18/09:
 	Added third enemy patrol
+	
+21/09:
+	Expanded Enemy.cs to include 3 states of alertness and distinct behavior for each
+	
+22/09:
+	Version 1.1

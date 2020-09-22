@@ -28,7 +28,7 @@ public class LightManager : MonoBehaviour {
 			Light source_light = source.GetComponent<Light>();
 			distance = Vector3.Distance(player.transform.position, source.transform.position);
 			
-			if ((distance * (source_light.intensity * 0.5f) ) < shortest_distance) { //wtf
+			if ((distance * (source_light.intensity * 0.5f) ) < shortest_distance) {
 				shortest_distance = distance;
 				closest_source = source_light;
 			}
@@ -38,12 +38,13 @@ public class LightManager : MonoBehaviour {
 		
 		//This is bad, it doesn´t take Light.range into account
 		//And doesn't make smooth transitions when lights differ in intensity
+		//AND goes through walls!
 		if (distance < max_visibility_radius) {
 			visibility = 1.0f;
 		} else {
 			visibility =  1 / Mathf.Pow( 
-				distance - max_visibility_radius + 1,
-				1 / (closest_source.intensity * 0.5f)
+			  distance - max_visibility_radius + 1,
+			 1 / (closest_source.intensity * 0.5f)
 			);
 			visibility = (visibility < 0.05f) ? 0.0f : visibility;
 		}

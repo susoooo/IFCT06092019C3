@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	GameState game_state;
 	GameObject main_camera;
 	Rigidbody rigid_body;
-	const float jump_multiplier = 200.0f, mouse_multiplier = 4.0f, speed_multiplier = 1.5f;
+	const float jump_multiplier = 200.0f, mouse_multiplier = 4.0f, speed_multiplier = 3.5f;
 	bool jump_button;
 	float horizontal_axis,  vertical_axis, mouse_x_axis, mouse_y_axis;
 	
@@ -43,23 +43,23 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if (mouse_x_axis != 0) {
 			transform.Rotate(
-				0.0f,
-				mouse_multiplier * mouse_x_axis,
-				0.0f,
-				Space.World
+			 0.0f,
+			 mouse_multiplier * mouse_x_axis,
+			 0.0f,
+			 Space.World
 			);
 		}
 		if (mouse_y_axis != 0) {
 			main_camera.transform.Rotate(
-				-mouse_multiplier * mouse_y_axis,
-				0.0f,
-				0.0f,
-				Space.Self
+			 -mouse_multiplier * mouse_y_axis,
+			 0.0f,
+			 0.0f,
+			 Space.Self
 			);
 			main_camera.transform.Translate(
-				0.0f,
-				-0.15f * mouse_y_axis,
-				0.0f
+			 0.0f,
+			 -0.15f * mouse_y_axis,
+			 0.0f
 			);
 		}
   }

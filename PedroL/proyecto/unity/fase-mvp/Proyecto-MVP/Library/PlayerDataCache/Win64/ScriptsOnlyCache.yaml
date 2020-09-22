@@ -2,19 +2,18 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - DebugIMGUI
+    - Enemy
     - GameState
     - LightManager
     - PlayerMovement
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
-    - TestRunner.Callbacks.WindowResultUpdaterDataHolder
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    - UnityEditor.TestTools.TestRunner.TestRunnerWindow
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/Map.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -35,8 +34,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
-    - Class: 64
-      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -46,22 +43,34 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 12064}
+      Script: {instanceID: 12070}
     - Class: 114
-      Script: {instanceID: 12926}
+      Script: {instanceID: 12932}
     - Class: 114
-      Script: {instanceID: 12940}
+      Script: {instanceID: 12946}
     - Class: 114
-      Script: {instanceID: 13316}
+      Script: {instanceID: 13322}
+    - Class: 114
+      Script: {instanceID: 13480}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
+    - Class: 154
+      Script: {instanceID: 0}
+    - Class: 156
+      Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
-    - Class: 850595691
+    - Class: 208
+      Script: {instanceID: 0}
+    - Class: 218
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -306,7 +315,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 4e67c3e8e366584cdc4a1e8a2c4986da
+      Hash: 62c6318ba6692a9733d6832af955a272
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameState
@@ -400,6 +409,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 3d5f6bee9a0f87be92445633296c28f9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Enemy
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -510,5 +525,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 19
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Usuario/Documents/Git/IFCT06092019C3/PedroL/proyecto/unity/fase-base/versiones/0.5/test.exe
+  - Assets/Scenes/Map.unity
+  playerPath: C:/Users/Usuario/Documents/Git/IFCT06092019C3/PedroL/proyecto/unity/fase-mvp/versiones/test.exe
