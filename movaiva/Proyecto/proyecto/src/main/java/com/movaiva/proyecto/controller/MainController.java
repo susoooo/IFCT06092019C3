@@ -412,6 +412,7 @@ public class MainController {
 		if(usuario!=null) {
 			Evento evento=eventoService.findById(id).get();
 			model.addAttribute("participantes",evento.getClientes());
+			model.addAttribute("usuario", usuario);
 			request.getSession().setAttribute("usuario", usuario);
 			return "listarParticipantes";	
 		}else {			
