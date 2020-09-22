@@ -61,3 +61,4 @@
 	
 22/09:
 	Version 1.1
+	Fixed some searching and chasing behavior details
