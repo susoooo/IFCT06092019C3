@@ -43,7 +43,7 @@
 				margin: auto;
 				position: absolute;
 				right: 15.5%;
-				width: 17%;
+				width: 23%;
 				border: 3px solid silver;
 				padding:5px;
 				background-color: silver;
@@ -65,7 +65,7 @@
 						
 						<article>
 						
-							<button class="salarioJH">{{$oferta->salario}}, {{$oferta->jornada}}, {{$oferta->horario}}</button>
+							<button class="salarioJH">Salario: {{$oferta->salario}}, {{$oferta->jornada}}, Horario: {{$oferta->horario}}</button>
 							
 						</article>
 						
@@ -79,6 +79,6 @@
 			
 		</section>
 		<aside>
-			<button class="right" <!--onclick=href--> Inicio sesión</button>
+			<a class="right " href="{{route('registro_empresario')}}"> Inicio sesión</a>
 		</aside>
 </html>

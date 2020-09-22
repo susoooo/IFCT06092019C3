@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
     public function inicio(){
 		
-		//$nombres = DB::table('empresa')->get();
+		//
 		$EId = DB::table('ofertas')
 			->value('empresaId');			
 		
@@ -23,16 +24,16 @@ class PageController extends Controller
 	}
 		
 	public function empresa(){
-		
+
 		/*en este controlador muestro los datos de las tablas*/
 		$empresas = DB::table('empresa')->get();
 		$ofertas = DB::table('profesiones')->get();
 		
-		return view('pagina_empresa', ['tabla_empresa' => $empresas, 'tabla_profesión' => $ofertas]);
+		return view('registro_de_oferta', ['tabla_empresa' => $empresas, 'tabla_profesión' => $ofertas]);		
 	}
 	
 	public function crea_ofertas(Request $request){
-		
+		$id=1;
 		/*en este controlador guardo la pagina en la tabla */
 		
 		$user= DB::table('empresa')						
@@ -51,5 +52,8 @@ class PageController extends Controller
 			'updated_at' => date_format(date_create(),'Y-m-d H:i:s'),
 			
 		]);
+		return redirect()->action(
+			'registration@mod_ofertas',['id' => $id]
+		);
 	}
 }

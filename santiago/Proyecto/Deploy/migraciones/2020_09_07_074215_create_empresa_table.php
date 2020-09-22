@@ -24,8 +24,7 @@ class CreateEmpresaTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
 			$table->integer('numeroTelefono');
-			$table->integer('segundoNTeléf');          
-			$table->rememberToken();
+			$table->integer('segundoNTeléf');			
             $table->timestamps();
         });
     }
