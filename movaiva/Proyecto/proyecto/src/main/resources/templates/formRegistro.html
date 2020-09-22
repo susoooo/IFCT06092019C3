@@ -42,9 +42,6 @@
         </div>
       </div>
       <form class="form-signin" th:action="@{/registrar}" th:object="${usuario}" method="POST">
-        <div class="text-center mb-4">
-          <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        </div>
 
         <div class="form-label-group">
           <input type="text" id="nick" class="form-control" placeholder="Usuario" th:field="*{nick}" required>

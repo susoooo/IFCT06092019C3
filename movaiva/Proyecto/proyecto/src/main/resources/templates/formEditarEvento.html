@@ -28,9 +28,11 @@
         <li th:if="${usuario!=null and usuario.getTipo()=='cliente'}" class="nav-item">
           <a class="nav-link" th:href="@{/misReservas}">Mis reservas</a>
         </li>
+        <!--
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/misEventos}">Mis eventos</a>
         </li>
+      -->
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>
         </li>
@@ -56,9 +58,6 @@
   </nav>
     <div class="container mt-3">
       <form id="formEditar" th:action="@{/editarEvento}" th:object="${evento}" method="POST">
-        <div class="text-center mb-4">
-          <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        </div>
 
         <div class="form-label-group">
           <input type="text" id="nombre" class="form-control" placeholder="Nombre" th:field="*{nombre}" required>

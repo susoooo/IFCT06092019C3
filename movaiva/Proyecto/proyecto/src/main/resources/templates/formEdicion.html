@@ -54,9 +54,6 @@
   </nav>
   <div class="container mt-3">
     <form class="form-signin" th:action="@{/editar}" th:object="${usuario}" method="POST">
-      <div class="text-center mb-4">
-        <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      </div>
 
       <input type="hidden" id="id" th:field="*{id}">
       <input type="hidden" id="email" th:field="*{email}">

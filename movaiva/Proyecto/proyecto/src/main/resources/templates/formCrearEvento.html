@@ -28,9 +28,11 @@
         <li th:if="${usuario!=null and usuario.getTipo()=='cliente'}" class="nav-item">
           <a class="nav-link" th:href="@{/misReservas}">Mis reservas</a>
         </li>
+        <!--
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/misEventos}">Mis eventos</a>
         </li>
+      -->
         <li th:if="${usuario!=null and usuario.getTipo()=='organizador'}" class="nav-item">
           <a class="nav-link" th:href="@{/formCrearEvento}">Crear evento</a>
         </li>
@@ -56,12 +58,9 @@
   </nav>
     <div class="container mt-3">
       <form th:action="@{/crearEvento}" th:object="${evento}" method="POST">
-        <div class="text-center mb-4">
-          <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        </div>
 
         <div class="form-label-group">
-          <input type="text" id="nombre" class="form-control" placeholder="Nombre" th:field="*{nombre}" required>
+          <input type="text" id="nombre" class="form-control" placeholder="Nombre del evento" th:field="*{nombre}" required>
           <label for="nombre">Nombre del evento</label>
         </div>
 
@@ -87,12 +86,12 @@
         </div>
 
           <div class="form-label-group">
-            <input type="text" id="direccion" class="form-control" placeholder="Dirección" th:field="*{direccion}" required>
+            <input type="text" id="direccion" class="form-control" placeholder="Dirección del evento" th:field="*{direccion}" required>
             <label for="direccion">Dirección del evento</label>
           </div>
           <div class="form-label-group">
-            <input type="number" id="aforo" class="form-control" placeholder="Aforo" th:field="*{aforo}" required>
-            <label for="aforo">Aforo</label>
+            <input type="number" id="aforo" class="form-control" placeholder="Aforo del evento" th:field="*{aforo}" required>
+            <label for="aforo">Aforo del evento</label>
           </div>
 
         <div class="input-daterange input-group" id="datepicker">

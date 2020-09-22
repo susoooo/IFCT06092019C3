@@ -44,33 +44,13 @@ public class MainController {
 	public String home(HttpServletRequest request,HttpSession session,Model model) {
 		Usuario usuario=(Usuario) session.getAttribute("usuario");
 		List<Evento> eventos=new ArrayList<>();
-		boolean esta=false;
+		request.getSession().setAttribute("usuario", usuario);
+		model.addAttribute("usuario", usuario);
 		System.out.println(">>>>Home: Sesion -- "+session.getAttribute("usuario"));
-		if(usuario!=null) {
-			request.getSession().setAttribute("usuario", usuario);
-			model.addAttribute("usuario", usuario);
-			if(usuario.getTipo().equalsIgnoreCase("cliente")) {
-				Cliente cliente=clienteService.findById(usuario.getId()).get();
-				List<Evento> misEventos=eventoService.findAll();
-				for(Evento e:misEventos) {
-					esta=false;
-					for(Cliente c: e.getClientes()) {
-						if(cliente==c) {
-							esta=true;
-						}
-					}
-					if(!esta) {
-						eventos.add(e);
-					}
-				}
-			}else {
-				Organizador organizador=organizadorService.findById(usuario.getId()).get();
-				eventos=eventoService.findByOrganizador(organizador);
-			}
-		}else {
-			eventos=eventoService.findAll();
-		}
+		eventos=cargarEventos(usuario);
 		model.addAttribute("eventos", eventos);
+		model.addAttribute("categorias",categoriaService.findAll());
+		model.addAttribute("provincias",provinciaService.findAll());		
 		model.addAttribute("buscarEvento", new Evento());
 		return "index";
 	}
@@ -439,4 +419,102 @@ public class MainController {
 		}
 	}
 	
+	@PostMapping("/buscar")
+	public String buscar(HttpServletRequest request, @ModelAttribute Evento buscarEvento, Model model) {
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuario");		
+		List<Evento> eventoCargados=new ArrayList<>();
+		List<Evento> eventos=new ArrayList<>();
+		List<String> errores=new ArrayList<>();
+		eventoCargados=cargarEventos(usuario);
+		request.getSession().setAttribute("usuario", usuario);
+		model.addAttribute("usuario", usuario);
+		System.out.println(">>>> Buscar: Sesion -- "+request.getSession().getAttribute("usuario"));
+		//System.out.println(">>>> Buscar: buscarEvento -- "+buscarEvento.toString());
+		if(buscarEvento.getNombre()=="" && buscarEvento.getCategoria()==null && buscarEvento.getProvincia()==null) {
+			errores.add("Parámetros insuficientes");
+			model.addAttribute("errores", errores);
+		}else {
+			for (Evento e : eventoCargados) {
+				if (buscarEvento.getNombre() != "") {
+					if (buscarEvento.getCategoria() != null) {
+						if (buscarEvento.getProvincia() != null) {
+							if (buscarEvento.getNombre().equalsIgnoreCase(e.getNombre())
+									&& buscarEvento.getCategoria() == e.getCategoria()
+									&& buscarEvento.getProvincia() == e.getProvincia()) {
+								eventos.add(e);
+							}
+						} else {
+							if (buscarEvento.getNombre().equalsIgnoreCase(e.getNombre())
+									&& buscarEvento.getCategoria() == e.getCategoria()) {
+								eventos.add(e);
+							}
+						}
+					} else {
+						if (buscarEvento.getProvincia() != null) {
+							if (buscarEvento.getNombre().equalsIgnoreCase(e.getNombre())
+									&& buscarEvento.getProvincia() == e.getProvincia()) {
+								eventos.add(e);
+							}
+						} else {
+							if (buscarEvento.getNombre().equalsIgnoreCase(e.getNombre())) {
+								eventos.add(e);
+							}
+						}
+					}
+				} else {
+					if (buscarEvento.getCategoria() != null) {
+						if (buscarEvento.getProvincia() != null) {
+							if (buscarEvento.getCategoria() == e.getCategoria()
+									&& buscarEvento.getProvincia() == e.getProvincia()) {
+								eventos.add(e);
+							}
+						} else {
+							if (buscarEvento.getCategoria() == e.getCategoria()) {
+								eventos.add(e);
+							}
+						}
+					} else {
+						if (buscarEvento.getProvincia() != null) {
+							if (buscarEvento.getProvincia() == e.getProvincia()) {
+								eventos.add(e);
+							}
+						}
+					}
+				}
+			}
+		}
+		model.addAttribute("eventos", eventos);
+		model.addAttribute("categorias",categoriaService.findAll());
+		model.addAttribute("provincias",provinciaService.findAll());		
+		model.addAttribute("buscarEvento", new Evento());
+		return "index";
+	}
+	
+	public List<Evento> cargarEventos(Usuario usuario){
+		boolean esta=false;
+		List<Evento> eventos=new ArrayList<>();
+		if(usuario!=null) {			
+			if(usuario.getTipo().equalsIgnoreCase("cliente")) {
+				Cliente cliente=clienteService.findById(usuario.getId()).get();
+				List<Evento> misEventos=eventoService.findAll();
+				for(Evento e:misEventos) {
+					esta=false;
+					for(Cliente c: e.getClientes()) {
+						if(cliente==c) {
+							esta=true;
+						}
+					}
+					if(!esta) {
+						eventos.add(e);
+					}
+				}
+			}else {
+				Organizador organizador=organizadorService.findById(usuario.getId()).get();
+				eventos=eventoService.findByOrganizador(organizador);
+			}
+		}else {
+			eventos=eventoService.findAll();
+		}
+		return eventos;
+	}
 }
